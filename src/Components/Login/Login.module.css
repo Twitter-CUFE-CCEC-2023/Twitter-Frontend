@@ -1,0 +1,70 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap"); */
+/* rude wide font => twitter */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+.loginSection {
+  font-family: "Montserrat", sans-serif;
+  /* font-size: 150%; */
+
+  width: 690px;
+  height: 100%;
+  float: right;
+
+  background-color: white;
+}
+
+.twitterBluelogo {
+  margin: 5.5%;
+  width: 6%;
+  margin-bottom: 4%;
+}
+
+.heading {
+  font-size: 270%;
+  margin: 5%;
+}
+
+.content {
+  font-weight: 900;
+  font-size: 130%;
+
+  margin: 5.5%;
+  margin-top: 7%;
+  margin-bottom: 4%;
+}
+
+.privacyPolicy {
+  width: 320px;
+
+  margin: 5%;
+  margin-top: 1%;
+
+  font-size: 45%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(83, 100, 113);
+  line-height: 12px;
+  font-weight: 400;
+  font-size: 11px;
+}
+
+.privacyPolicy a {
+  color: rgb(29, 155, 240);
+  text-decoration: none;
+}
+
+.privacyPolicy a:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 1015px) {
+  .loginSection {
+    float: left;
+  }
+}

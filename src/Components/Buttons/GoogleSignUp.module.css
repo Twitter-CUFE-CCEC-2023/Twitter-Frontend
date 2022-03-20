@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+.googleSignUp {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 60%;
+  color: #3c4043;
+  text-align: center;
+
+  margin-left: 5.5%;
+  padding: 0px;
+  height: 40px;
+  width: 298px;
+
+  background-color: white;
+  border: 1px solid #dadce0;
+  border-radius: 20px;
+}
+
+.googleSignUp:hover {
+  background-color: #f8faff;
+  border-color: #d2e3fc;
+  cursor: pointer;
+}
+
+.googleSignUp:active {
+  background-color: #ecf3fe;
+}
+
+.googleSignUp table {
+  margin-left: 68px;
+  margin-top: 5px;
+}
+
+.logo {
+  padding-top: 2px;
+  padding-right: 4px;
+}

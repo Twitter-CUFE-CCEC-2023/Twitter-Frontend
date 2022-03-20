@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+.appleSignUp {
+  font-family: "Mukta", sans-serif;
+  font-size: 60%;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+
+  margin-left: 5.5%;
+  margin-top: 2%;
+  padding: 0px;
+  height: 40px;
+  width: 298px;
+
+  background-color: white;
+  border: 1px solid rgb(207, 217, 222);
+  border-radius: 20px;
+}
+
+.appleSignUp:hover {
+  background-color: rgb(230, 230, 230);
+  cursor: pointer;
+}
+
+.appleSignUp:active {
+  background-color: rgb(204, 204, 204);
+}
+
+.appleSignUp table {
+  margin-left: 73px;
+}
+
+.logo {
+  padding-top: 4px;
+}
