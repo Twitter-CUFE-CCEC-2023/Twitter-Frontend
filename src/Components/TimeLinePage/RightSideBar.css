@@ -1,0 +1,7 @@
+
+@media (max-width : 1005px) {
+    .rightSideBar{
+        display: none;
+        flex: 0 !important;
+    }
+}

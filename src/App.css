@@ -1,3 +1,16 @@
+body{
+  --twitterBlue : #1D9BF0;
+  --twitterRed : #ff3855;
+  --twitterGreen : #63f33f;
+  --twitterBlueHighlighted : #1A8CD8;
+  --twitterGrayHighligh : #E7E7E8;
+  --twitterBorder : #EFF3F4;
+  --twitterHoverBlue: #E8F5FD;
+  --twitterHoverGreen: #ceffdd;
+  --twitterHoverRed: #fde5e3;
+  --tweetHover : #F7F7F7;
+}
+
 .App {
   text-align: center;
 }

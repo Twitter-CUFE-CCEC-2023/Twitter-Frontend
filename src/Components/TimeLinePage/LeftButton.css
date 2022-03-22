@@ -1,0 +1,36 @@
+
+.onPage{
+    font-weight: 700;
+}
+.navLink{
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.leftButton{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width:max-content;
+    font-size: 20px;
+}
+
+.leftButton > p{
+    margin:0 20px 0 0;
+}
+
+@media (max-width : 1300px) {
+    .leftButton > p{
+        display: none;
+    }
+}
+
+.leftButton > .MuiSvgIcon-root {
+    margin: 17px;
+}
+
+.leftButton:hover{
+    background-color: var(--twitterGrayHighligh);
+    border-radius: 50px;
+}
+

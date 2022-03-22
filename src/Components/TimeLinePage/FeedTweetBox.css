@@ -1,0 +1,51 @@
+.feedTweetBox{
+    border-bottom: 1px solid var(--twitterBorder);
+}
+
+.boxInput{
+    display: flex;
+    margin-left: 20px;
+}
+
+.profileImg{
+    border-radius: 50%;
+    height: 50px;
+    cursor: pointer;
+}
+
+.profileImgOpacity :hover{
+    opacity: .5;
+}
+
+.tweetBoxText{
+    border: none;
+    outline-style: none;
+    font-size: large;
+}
+
+.tweetBoxText:focus{
+    border-bottom: 1px solid var(--twitterBorder);
+}
+
+.buttons{
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.tweetButton{
+    margin-left: auto !important;
+    margin-right: 15px !important;
+    margin-bottom: 10px !important;
+    background-color: var(--twitterBlue) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 25px !important;
+    text-transform: inherit !important;
+    padding: 5px 15px 5px 15px !important;
+}
+
+.tweetButton:hover{
+    background-color: var(--twitterBlueHighlighted);
+}
+
