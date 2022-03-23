@@ -4,7 +4,7 @@ import classes from "./SignInButton.module.css";
 
 const SignInButton = () => {
   return (
-    <div>
+    <div className={classes.container}>
       <p className={classes.heading}>Already have an account?</p>
       <NavLink to="/SignIn" className={classes.navLink}>
         <div className={classes.buttonSignIn}>

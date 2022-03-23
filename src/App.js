@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
-import Login from "./Components/Login/Login";
-import SignInPage from "./Components/SignInPage/SignInPage";
+import MainPage from "./Components/Login/FirstPage/MainPage";
+import SignInPage from "./Components/Login/SignInPage/SignInPage";
 import Home from "./Components/TimeLinePage/Home";
 
 function App() {
@@ -14,9 +14,9 @@ function App() {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route exact={true} path="/" component={Login} />
+          <Route exact={true} path="/" component={MainPage} />
           <Route path="/SignIn" component={SignInPage} />
-          <Route path = "/home" component={Home} />
+          <Route path="/home" component={Home} />
           {/*  
           <Route path="/Select" component={Login} />
           <Route path="/AddRow" component={Login} />

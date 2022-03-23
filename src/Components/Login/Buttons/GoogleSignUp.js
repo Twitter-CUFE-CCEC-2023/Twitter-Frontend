@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./GoogleSignUp.module.css";
+import googleLogo from "../../../Assets/googleLogo.png";
 
 const GoogleSignUp = (props) => {
   return (
@@ -8,11 +9,7 @@ const GoogleSignUp = (props) => {
         <tbody>
           <tr>
             <td className={classes.logo}>
-              <img
-                src="https://freesvg.org/img/1534129544.png"
-                alt="GoogleLogo"
-                width="20px"
-              />
+              <img src={googleLogo} alt="GoogleLogo" width="20px" />
             </td>
             <td>Sign up with Google</td>
           </tr>

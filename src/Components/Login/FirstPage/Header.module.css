@@ -1,0 +1,38 @@
+.container {
+  margin-top: 1.5%;
+}
+
+.twitterBluelogo {
+  width: 40px;
+}
+
+.heading {
+  font-size: 270%;
+  margin: 7.5%;
+  margin-left: 0%;
+}
+
+.content {
+  font-weight: 900;
+  font-size: 130%;
+
+  margin-top: 7%;
+  margin-bottom: 4%;
+  margin-left: 0%;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 1015px) {
+  .twitterBluelogo {
+    margin-top: 7.5%;
+    width: 39.5px;
+  }
+
+  .heading {
+    font-size: 170%;
+    margin: 13% 0%;
+  }
+
+  .content {
+    font-size: 90%;
+  }
+}

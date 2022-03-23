@@ -4,6 +4,7 @@
 
 .container {
   margin: 1% 5%;
+  margin-left: 0%;
   display: flex;
 }
 
@@ -12,10 +13,17 @@
   font-size: 70%;
   font-weight: lighter;
   padding: 0 3px;
+  color: #0f1419;
 }
 
 .straightLine {
   border: 0.2px solid rgb(239, 243, 244);
   width: 136px;
   height: 1px;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 1015px) {
+  .content {
+    font-size: 50%;
+  }
 }

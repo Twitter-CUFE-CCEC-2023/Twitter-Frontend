@@ -5,12 +5,14 @@
 .buttonSignUp {
   margin-left: 5.5%;
   margin-top: 1%;
+  margin-left: 0%;
   padding: 0px;
   height: 40px;
   width: 298px;
 
-  background-color: rgb(29, 155, 240);
-  border: 1px solid rgb(29, 155, 240);
+  background-color: var(--twitterBlue);
+  border: 1px solid var(--twitterBlue);
+  /* border: 1px solid rgb(29, 155, 240); */
   border-radius: 20px;
 }
 

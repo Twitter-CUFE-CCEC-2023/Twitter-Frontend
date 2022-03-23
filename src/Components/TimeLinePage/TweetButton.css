@@ -1,43 +1,41 @@
+.button {
+  background-color: var(--twitterBlue);
+  width: 230px;
+  height: 55px;
+  border-radius: 55px;
+  cursor: pointer;
+  margin-left: 10px;
+}
 
+.button:hover {
+  background-color: var(--twitterBlueHighlighted);
+}
 
-.button{
+.text {
+  padding-top: 11px;
+  font-size: 19px;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+}
+@media (min-width: 1300px) {
+  .icon {
+    display: none;
+  }
+}
+
+@media (max-width: 1300px) {
+  .button {
     background-color: var(--twitterBlue);
-    width: 230px;
+    width: fit-content;
     height: 55px;
     border-radius: 55px;
     cursor: pointer;
-    margin-left: 10px;
-}
+  }
 
-.button:hover{
-    background-color: var(--twitterBlueHighlighted);
-}
-
-.text{
-    padding-top: 11px;
-    font-size: 19px;
+  .icon {
+    padding-top: 14px;
     text-align: center;
     color: white;
-    font-weight: 600;
-}
-@media (min-width : 1300px) {
-    .icon{
-        display: none;
-    }
-}
-
-@media (max-width : 1300px) {
-    .button{
-        background-color: var(--twitterBlue);
-        width: fit-content;
-        height: 55px;
-        border-radius: 55px;
-        cursor: pointer;
-    }
-
-    .icon{
-        padding-top: 14px;
-        text-align: center;
-        color: white;
-    }
+  }
 }
