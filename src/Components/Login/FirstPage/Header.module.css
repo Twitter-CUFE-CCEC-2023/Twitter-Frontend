@@ -21,7 +21,7 @@
   margin-left: 0%;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 1015px) {
+@media only screen and (min-width: 0px) and (max-width: 800px) {
   .twitterBluelogo {
     margin-top: 7.5%;
     width: 39.5px;
@@ -34,5 +34,6 @@
 
   .content {
     font-size: 90%;
+    margin-bottom: 7%;
   }
 }

@@ -9,6 +9,8 @@ import OrLabel from "../Buttons/OrLabel";
 import NextButton from "../Buttons/NextButton";
 import ForgetPasswordButton from "../Buttons/ForgetPasswordButton";
 
+import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
+
 const SignInPage = () => {
   return (
     <div className={classes.outerContainer}>
@@ -17,7 +19,7 @@ const SignInPage = () => {
       <div className={classes.innerContainer}>
         <img
           className={classes.twitterBluelogo}
-          src="https://www.freeiconspng.com/thumbs/logo-twitter-png/blue-logo-twitter-birds-emblem-3.png"
+          src={twitterBlueLogo}
           alt="TwitterLogo"
         />
         <NavLink to="/" className={classes.closeIcon}>

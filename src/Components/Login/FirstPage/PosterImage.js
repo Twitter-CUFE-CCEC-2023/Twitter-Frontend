@@ -8,21 +8,23 @@ import twitterWhiteLogoBlueBackground from "../../../Assets/twitterWhiteLogoBlue
 const PosterImage = () => {
   return (
     <div className={classes.posterSection}>
-      <img
+      {/* <img
         className={classes.smallScreenLogo}
         src={twitterWhiteLogoBlueBackground}
         alt="TwitterLogo"
-      />
+      /> */}
       <img
         className={classes.background}
         src={backgroundImage}
         alt="TwitterBackground"
       />
-      <img
-        className={classes.logo}
-        src={twitterWhiteLogo}
-        alt="TwitterWhiteLogo"
-      />
+      <div>
+        <img
+          className={classes.logo}
+          src={twitterWhiteLogo}
+          alt="TwitterWhiteLogo"
+        />
+      </div>
     </div>
   );
 };

@@ -6,6 +6,7 @@
   display: flex;
   width: 55%;
   height: 93vh;
+  position: relative;
 }
 
 .background {
@@ -14,27 +15,34 @@
   margin: 0%;
 
   object-fit: cover;
-  position: relative;
 }
 
 .logo {
-  /* width: 350px; */
-  width: 22%;
+  width: 340px;
+  /* width: 40%; */
   position: absolute;
-  top: 28%;
-  left: 17%;
+  top: 30%;
+  left: 30%;
 }
 
 .smallScreenLogo {
   display: none;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 1015px) {
+@media only screen and (min-width: 0px) and (max-width: 800px) {
   .posterSection {
-    display: none;
+    height: 45vh;
+    width: 100%;
+    margin-bottom: 1%;
   }
 
-  .smallScreenLogo {
-    display: flex;
+  .logo {
+    width: 225px;
+    top: 19%;
+    left: 21%;
   }
+
+  /* .smallScreenLogo {
+    display: flex;
+  } */
 }
