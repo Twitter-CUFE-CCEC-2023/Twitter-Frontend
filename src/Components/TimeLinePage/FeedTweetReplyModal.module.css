@@ -37,4 +37,36 @@
 }
 .header-x:hover {
   color: white;
+  cursor: pointer;
+}
+.message {
+  flex-grow: 2;
+  padding: 10px 10px;
+}
+.replying {
+  margin: 25px 10%;
+}
+.reply {
+  display: flex;
+  flex-direction: row;
+}
+.replyText {
+  border: 1px solid #ccc;
+  /* height: 5rem; */
+  /* display: flex; */
+  /* align-content: flex-start; */
+}
+
+.actions {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 10px 20px;
+}
+.button {
+  padding: 5px;
+  color: white;
+  background-color: var(--twitterBlue);
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }

@@ -20,7 +20,10 @@ export default function FeedTweet(props) {
   return (
     <div className="feedTweet">
       {replyModal && (
-        <FeedTweetReplyModal onHide={hideReplyModal}></FeedTweetReplyModal>
+        <FeedTweetReplyModal
+          onHide={hideReplyModal}
+          data={props}
+        ></FeedTweetReplyModal>
       )}
       <img className="profilePic" alt="profile" src={props.profilePic}></img>
       <div className="hoverProfile">
@@ -42,30 +45,37 @@ export default function FeedTweet(props) {
           <p className="gray underline">12h</p> {/*placeholder */}
         </div>
         <p>{props.text}</p>
-        <div className="attributes">
-          <TweetAtrribute
-            Icon={ChatBubbleOutlineOutlinedIcon}
-            num={props.replies}
-            color="b"
-            tooltip="Reply"
-            onClick={viewReplyModal}
-          />
-          <TweetAtrribute
-            Icon={LoopOutlinedIcon}
-            num={props.retweets}
-            color="g"
-            tooltip="Retweet"
-          />
-          <TweetAtrribute
-            Icon={FavoriteBorderOutlinedIcon}
-            FilledIcon={FavoriteIcon}
-            num={props.likes}
-            color="r"
-            tooltip="Like"
-          />
-          <TweetAtrribute Icon={ShareOutlinedIcon} color="b" tooltip="Share" />
-        </div>
+        {props.showAction && (
+          <div className="attributes">
+            <TweetAtrribute
+              Icon={ChatBubbleOutlineOutlinedIcon}
+              num={props.replies}
+              color="b"
+              tooltip="Reply"
+              onClick={viewReplyModal}
+            />
+            <TweetAtrribute
+              Icon={LoopOutlinedIcon}
+              num={props.retweets}
+              color="g"
+              tooltip="Retweet"
+            />
+            <TweetAtrribute
+              Icon={FavoriteBorderOutlinedIcon}
+              FilledIcon={FavoriteIcon}
+              num={props.likes}
+              color="r"
+              tooltip="Like"
+            />
+            <TweetAtrribute
+              Icon={ShareOutlinedIcon}
+              color="b"
+              tooltip="Share"
+            />
+          </div>
+        )}
       </div>
+      {/* {!props.showAction && <div></div>} */}
     </div>
   );
 }

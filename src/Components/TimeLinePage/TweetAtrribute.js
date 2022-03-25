@@ -20,6 +20,8 @@ function TweetAtrribute(props) {
       setClicked((prevClicked) => {
         return prevClicked === "clicked" ? "" : "clicked";
       });
+    } else if (props.tooltip === "Reply") {
+      props.onClick();
     }
   }
   return (
