@@ -1,12 +1,12 @@
 import React from "react";
-import "./FeedBoxButton.css";
+import classes from "./FeedBoxButton.module.css";
 
 function FeedBoxButton(props) {
   return (
     <div>
-      <div className="tooltip feedBoxButton">
+      <div className={`${classes.tooltip} ${classes.feedBoxButton}`}>
         <props.Icon />
-        <span className="tooltiptext">{props.text}</span>
+        <span className={classes.tooltiptext}>{props.text}</span>
       </div>
     </div>
   );
