@@ -1,9 +1,9 @@
 import React from 'react'
-import "./WhatsHappeningItem.css"
+import classes from "./WhatsHappeningItem.module.css"
 
 function WhatsHappeningItem() {
   return (
-    <div className='whatsHappeningItem'>
+    <div className={classes.whatsHappeningItem}>
         WhatsHappeningItem
     </div>
   )
