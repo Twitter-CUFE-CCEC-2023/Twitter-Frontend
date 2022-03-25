@@ -17,6 +17,7 @@ export default function FeedTweet(props) {
   function hideReplyModal() {
     setReplyModal(false);
   }
+  {console.log(props.img)}
   return (
     <div className={classes.feedTweet}>
       {replyModal && (
@@ -62,6 +63,8 @@ export default function FeedTweet(props) {
           <p className={classes.gray + " " +classes.underline}>12h</p> {/*placeholder */}
         </div>
         <p>{props.text}</p>
+        
+        {props.img && <img className={classes.tweetImg} src={props.img}></img>}
         <div className={classes.attributes}>
           <TweetAtrribute
             Icon={ChatBubbleOutlineOutlinedIcon}

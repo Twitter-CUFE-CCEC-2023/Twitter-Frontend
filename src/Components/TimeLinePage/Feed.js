@@ -20,8 +20,8 @@ export default function Feed(){
         <div className = {classes.feed}>
             <h2 className = {classes.feedHeader}>Home</h2>
             <FeedTweetBox/>
-            <FeedTweet {...user}/>
-            <FeedTweet {...user}/>
+            <FeedTweet {...user} img = "https://pbs.twimg.com/media/FOteEvHXIBATGwD?format=jpg&name=small"/>
+            <FeedTweet {...user }/>
             <FeedTweet {...user}/>
             <FeedTweet {...user}/>
             <FeedTweet {...user}/>

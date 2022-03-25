@@ -97,3 +97,9 @@
     outline: none;
     border-color: transparent;
 }
+
+.tweetImg{
+    max-width: 504px;
+    border-radius: 18px;
+    margin-top: 14px;
+}
