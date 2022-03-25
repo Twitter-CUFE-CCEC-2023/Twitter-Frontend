@@ -1,5 +1,5 @@
 import React from "react";
-import "./Feed.css";
+import classes from "./Feed.module.css";
 import FeedTweetBox from "./FeedTweetBox";
 import FeedTweet from "./FeedTweet";
 import defaultMaleProfile from "../../Assets/defaultMaleProfile.jpg";
@@ -16,9 +16,14 @@ export default function Feed() {
   };
 
   return (
-    <div className="feed">
-      <h2 className="feedHeader">Home</h2>
+    <div className={classes.feed}>
+      <h2 className={classes.feedHeader}>Home</h2>
       <FeedTweetBox />
+      <FeedTweet
+        {...user}
+        img="https://pbs.twimg.com/media/FOteEvHXIBATGwD?format=jpg&name=small"
+        showAction={true}
+      />
       <FeedTweet {...user} showAction={true} />
       <FeedTweet {...user} showAction={true} />
       <FeedTweet {...user} showAction={true} />

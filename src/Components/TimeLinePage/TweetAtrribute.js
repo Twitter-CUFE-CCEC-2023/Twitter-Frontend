@@ -1,5 +1,5 @@
 import React from "react";
-import "./TweetAtrribute.css";
+import classes from "./TweetAtrribute.module.css";
 import feedBoxButtonClasses from "./FeedBoxButton.module.css";
 
 function TweetAtrribute(props) {
@@ -15,21 +15,21 @@ function TweetAtrribute(props) {
         });
       }
       setNum((prevNum) => {
-        return clicked === "clicked" ? prevNum - 1 : prevNum + 1;
+        return clicked === classes.clicked ? prevNum - 1 : prevNum + 1;
       });
       setClicked((prevClicked) => {
-        return prevClicked === "clicked" ? "" : "clicked";
+        return prevClicked === classes.clicked ? "" : classes.clicked;
       });
     } else if (props.tooltip === "Reply") {
       props.onClick();
     }
   }
   return (
-    <div className={`tweetAtrribute ${props.color} ${clicked}`} onClick={click}>
+    <div className={`${classes.tweetAtrribute} ${classes[props.color]} ${clicked}`} onClick={click}>
       <div className={feedBoxButtonClasses.tooltip}>
-        <div className="flex">
-          {!hlLike && <props.Icon className="attIcon" />}
-          {hlLike && <props.FilledIcon className="attIcon" />}
+        <div className={classes.flex}>
+          {!hlLike && <props.Icon className={classes.attIcon} />}
+          {hlLike && <props.FilledIcon className={classes.attIcon} />}
           <p>{num}</p>
         </div>
         <span className={feedBoxButtonClasses.tooltiptext}>

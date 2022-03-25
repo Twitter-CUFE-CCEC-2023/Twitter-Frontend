@@ -1,13 +1,13 @@
 import React from 'react'
-import "./SearchBar.css"
+import classes from "./SearchBar.module.css"
 import SearchIcon from '@material-ui/icons/Search';
 
 function SearchBar() {
   return (
-    <div className='searchBar'>
-        <form className='searchForm'>
-            <input placeholder='Search Twitter' className='searchInput'></input>
-            <SearchIcon className='searchIcon'/>
+    <div className={classes.searchBar}>
+        <form className={classes.searchForm}>
+            <input placeholder='Search Twitter' className={classes.searchInput}></input>
+            <SearchIcon className={classes.searchIcon}/>
         </form>
     </div>
   )

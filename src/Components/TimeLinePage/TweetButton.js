@@ -1,14 +1,14 @@
 import React from "react";
-import "./TweetButton.css";
+import classes from "./TweetButton.module.css";
 import RateReviewIcon from '@material-ui/icons/RateReview';
 
 export default function TweetButton(){
   return (
-    <div className= "button">
-        <div className="icon">
+    <div className={classes.button}>
+        <div className={classes.icon}>
             <RateReviewIcon/>
         </div>
-        <p className="text">Tweet</p>
+        <p className={classes.text}>Tweet</p>
     </div>
   );
 };

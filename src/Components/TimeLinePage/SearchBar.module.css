@@ -1,6 +1,7 @@
 .searchBar{
     position: sticky;
     margin-top: 10px;
+    margin-left: 20px;
 }
 
 .searchForm{
@@ -9,7 +10,7 @@
 
 .searchIcon{
     position: absolute;
-    margin-left: 35px;
+    margin-left: 20px;
     margin-top: 9px;
 }
 

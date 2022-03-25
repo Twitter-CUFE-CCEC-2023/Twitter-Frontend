@@ -51,14 +51,18 @@ body{
   }
 }
 
-.pointer{
-  cursor: pointer;
+.noDecoration{
+  text-decoration: none;
 }
 
-.normalText{
-    font-size: 15px;
+.black{
+  color: black;
 }
 
 .gray{
   color: gray;
+}
+
+.noMargin{
+  margin: 0;
 }
