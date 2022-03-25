@@ -6,16 +6,27 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
 import TweetAtrribute from "./TweetAtrribute";
+import MiniProfile from "./MiniProfile";
 
 export default function FeedTweet(props){
     return (
         <div className="feedTweet">
             <img className="profilePic" alt = "profile" src={props.profilePic}></img>
+            <div className="hoverProfile">
+                <MiniProfile    profilePic = "https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
+                                name = "Andrew"
+                                userName = "andrew9991"
+                                profileDesciption = "Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler "
+                                following = {777}
+                                followers = {1863}/>
+            </div>
             <div className="tweet">
                 <div className="user">
-                    <h2>{props.name}</h2>
-                    <p className="gray">&nbsp;@{props.userName}</p>
-                    <p className="gray">&nbsp;. 12h</p>  {/*placeholder */}
+                    <h2 className="underline">{props.name}</h2>
+                    &nbsp;
+                    <p className="gray">@{props.userName}</p>
+                    &nbsp;<p className="gray">.</p>&nbsp;
+                    <p className="gray underline">12h</p>  {/*placeholder */}
                 </div>
                 <p>{props.text}</p>
                 <div className="attributes">
@@ -25,6 +36,7 @@ export default function FeedTweet(props){
                     <TweetAtrribute Icon = {ShareOutlinedIcon} color = "b" tooltip = "Share"/>
                 </div>
             </div>
+            
         </div>
     )
 }

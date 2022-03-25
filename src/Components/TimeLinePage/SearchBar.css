@@ -15,6 +15,7 @@
 
 .searchInput{
     background-color: var(--tweetHover);
+    border: none;
     border-radius: 40px;
     height: 44px;
     width: 350px;

@@ -1,0 +1,9 @@
+.whatsHappeningItem{
+    height: 92px;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.whatsHappeningItem:hover{
+    background-color: var(--tweetHover);
+}
