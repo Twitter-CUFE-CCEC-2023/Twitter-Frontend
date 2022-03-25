@@ -1,22 +1,22 @@
-.feed{
-    margin-top: 0;
-    border-right: 1px solid var(--twitterBorder);
-    
-    overflow-y: scroll;
-    -ms-overflow-style: none;  /* IE and Edge  to hide scrollbar*/
-    scrollbar-width: none;  /* Firefox to hide scrollbar*/
-    max-width: 598px;
+.feed {
+  margin-top: 0;
+  border-right: 1px solid var(--twitterBorder);
+
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
+  scrollbar-width: none; /* Firefox to hide scrollbar*/
+  max-width: 598px;
 }
 
-.feed::-webkit-scrollbar{
-    display: none;
+.feed::-webkit-scrollbar {
+  display: none;
 }
 
-.feedHeader{
-    position:sticky;
-    background-color: rgb(255, 255, 255, 0.97);
-    top : 0;
-    z-index: 999;
-    margin-top: 0;
-    padding: 10px;
+.feedHeader {
+  position: sticky;
+  background-color: rgb(255, 255, 255, 0.97);
+  top: 0;
+  z-index: 2;
+  margin-top: 0;
+  padding: 10px;
 }

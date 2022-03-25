@@ -39,3 +39,8 @@
   visibility: visible;
   display: inline;
 }
+.buttonRemover {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}

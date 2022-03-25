@@ -1,68 +1,66 @@
-.feedTweet{
-    display: flex;
-    border: 1px solid var(--twitterBorder);
-    cursor: pointer;
-    font-size: 14px;
+.feedTweet {
+  display: flex;
+  border: 1px solid var(--twitterBorder);
+  cursor: pointer;
+  font-size: 14px;
 }
 
-.feedTweet:hover{
-    background-color: var(--tweetHover);
+.feedTweet:hover {
+  background-color: var(--tweetHover);
 }
 
-.profilePic{
-    border-radius: 50%;
-    height: 50px;
-    cursor: pointer;
-    margin: 10px;
-    user-select: none;
+.profilePic {
+  border-radius: 50%;
+  height: 50px;
+  cursor: pointer;
+  margin: 10px;
+  user-select: none;
 }
 
-.hoverProfile{
-    transition: 0s 180s;
+.hoverProfile {
+  transition: 0s 180s;
 }
 
-.profilePic:hover + .hoverProfile{
-    position: relative;
-    display: inline-block;
-    z-index: 999;
-    transition: 0s 180s;
+.profilePic:hover + .hoverProfile {
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  transition: 0s 180s;
 }
 
-.hoverProfile:hover{
-    position: relative;
-    display: inline-block;
-    z-index: 999;
+.hoverProfile:hover {
+  position: relative;
+  display: inline-block;
+  z-index: 2;
 }
 
-
-.user > *{
-    margin-bottom: 0;
-    margin-top: 10px;
+.user > * {
+  margin-bottom: 0;
+  margin-top: 10px;
 }
 
-.user{
-    display: flex;
-    align-items: center;
+.user {
+  display: flex;
+  align-items: center;
 }
 
-.tweet > *{
-    margin-top: 0;
-    margin-bottom: 0;
+.tweet > * {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.attributes{
-    display: flex;
+.attributes {
+  display: flex;
 }
 
-.gray{
-    color: gray;
+.gray {
+  color: gray;
 }
 
-.underline:hover{
-    text-decoration: underline;
+.underline:hover {
+  text-decoration: underline;
 }
 
-.hoverProfile{
-    display: none;
+.hoverProfile {
+  display: none;
 }
-
