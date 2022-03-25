@@ -17,7 +17,15 @@
   background-color: white;
   border: 1px solid rgb(207, 217, 222);
   border-radius: 4px;
+  border: none;
+  outline: none;
+  resize: none;
 }
+
+.tweetBoxText:focus{
+  border-bottom: 1px solid var(--tweetHover);
+}
+
 .tweetBoxTextSpanContainer {
   position: relative;
 }

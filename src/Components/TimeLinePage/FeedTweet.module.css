@@ -17,6 +17,10 @@
   user-select: none;
 }
 
+.profilePic:hover{
+    opacity: 0.6;
+}
+
 .hoverProfile {
   transition: 0s 180s;
 }
@@ -87,4 +91,9 @@
 .bot{
     top:15px;
     left: -70px;
+}
+
+.tweetBoxText{
+    outline: none;
+    border-color: transparent;
 }

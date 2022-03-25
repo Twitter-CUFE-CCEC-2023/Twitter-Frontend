@@ -1,7 +1,7 @@
 .whoToFollow{
     margin: 20px;
     height: fit-content;
-    width: 350px;
+    max-width: 350px;
     border-radius: 20px;
     background-color: var(--WhatsHappening);
 }

@@ -7,3 +7,46 @@
 .whatsHappeningItem:hover{
     background-color: var(--tweetHover);
 }
+
+.whatsHappeningItem > p{
+    margin: 0;
+}
+
+.text > p{
+    margin: 0;
+}
+
+.fs13{
+    font-size: 13px;
+}
+
+.fs15{
+    font-size: 15px;
+}
+
+.gray{
+    color : gray;
+}
+
+.bold{
+    font-weight: 600;
+}
+
+.flex{
+    display: flex;
+}
+
+.img{
+    width: 68px;
+    height: 68px;
+    margin-left: auto;
+    border-radius: 10px;
+}
+
+.link{
+    color: var(--twitterBlue);
+}
+
+.link:hover{
+    text-decoration: underline;
+}
