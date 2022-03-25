@@ -1,0 +1,27 @@
+.whatsHappening{
+    margin: 20px;
+    height: fit-content;
+    width: 350px;
+    border-radius: 20px;
+    background-color: var(--WhatsHappening);
+}
+
+.whatsHappeningHeader{
+    padding: 12px 16px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.showMore{
+    padding: 16px;
+    color: var(--twitterBlue);
+    font-size: 18px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.showMore:hover{
+    background-color: var(--tweetHover);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px ;
+}

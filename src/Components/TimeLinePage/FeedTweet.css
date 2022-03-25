@@ -14,7 +14,26 @@
     height: 50px;
     cursor: pointer;
     margin: 10px;
+    user-select: none;
 }
+
+.hoverProfile{
+    transition: 0s 180s;
+}
+
+.profilePic:hover + .hoverProfile{
+    position: relative;
+    display: inline-block;
+    z-index: 999;
+    transition: 0s 180s;
+}
+
+.hoverProfile:hover{
+    position: relative;
+    display: inline-block;
+    z-index: 999;
+}
+
 
 .user > *{
     margin-bottom: 0;
@@ -37,5 +56,13 @@
 
 .gray{
     color: gray;
+}
+
+.underline:hover{
+    text-decoration: underline;
+}
+
+.hoverProfile{
+    display: none;
 }
 

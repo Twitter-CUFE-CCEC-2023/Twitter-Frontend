@@ -26,6 +26,7 @@ export default function LeftSideBar(){
             <LeftButton Icon = {PermIdentityOutlinedIcon} url = "profileName" title = "Profile"/>
             <LeftButton Icon = {MoreOutlinedIcon} url = "home" title = "More"/> {/* need to add the functionality of more */}
             <TweetButton />
+
         </div>
     )
 }

@@ -1,0 +1,56 @@
+.miniProfile{
+    position: absolute;
+    width: 300px;
+    height: fit-content;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 16px;
+    background-color: white;
+}
+
+.flex{
+    display: flex;
+}
+
+.miniButton{
+    margin-left: auto;
+    background-color: black;
+    color: white;
+    height: 36px;
+    font-weight: 600 !important;
+    border-radius: 25px !important;
+    text-transform: inherit !important;
+    padding: 5px 15px 5px 15px !important;
+}
+
+.miniButton:hover{
+    background-color: #272C30 !important;
+}
+
+.miniImg{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.userNames > *{
+    margin: 0;
+    font-size: 15px;
+}
+
+.name{
+    font-weight: bold;
+}
+
+.name:hover{
+    text-decoration: underline;
+}
+
+.userName{
+    color: gray;
+}
+
+.bold{
+    font-weight: 500;
+}
+
