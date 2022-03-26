@@ -18,8 +18,8 @@ function MainPage() {
         <div className={classes.loginSection}>
           <div>
             <Header />
-            <GoogleSignUp />
-            <AppleSignUp />
+            <GoogleSignUp content="Sign up with Google" />
+            <AppleSignUp content="Sign up with Apple" />
             <OrLabel />
             <ButtonSignUp />
             <PrivacyAndPolicy />
