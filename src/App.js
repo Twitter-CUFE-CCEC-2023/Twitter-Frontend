@@ -6,6 +6,8 @@ import MainPage from "./Components/Login/FirstPage/MainPage";
 import SignInPage from "./Components/Login/SignInPage/SignInPage";
 import Home from "./Components/TimeLinePage/Home";
 import Settings from "./Components/Settings/Settings";
+import UserProfile from "./Components/UserProfilePage/UserProfile";
+
 function App() {
   // const loginCtx = useContext(LoginContext);
   // console.log(loginCtx.isLoggedIn);
@@ -18,6 +20,7 @@ function App() {
           <Route path="/SignIn" component={SignInPage} />
           <Route path="/home" component={Home} />
           <Route path="/settings" component={Settings} />
+          <Route path="/userprofile" component={UserProfile} />
           {/*  
           <Route path="/Select" component={Login} />
           <Route path="/AddRow" component={Login} />
