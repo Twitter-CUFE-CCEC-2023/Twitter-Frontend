@@ -5,6 +5,7 @@ import "./App.css";
 import MainPage from "./Components/Login/FirstPage/MainPage";
 import SignInPage from "./Components/Login/SignInPage/SignInPage";
 import Home from "./Components/TimeLinePage/Home";
+import UserProfile from "./Components/UserProfilePage/UserProfile";
 
 function App() {
   // const loginCtx = useContext(LoginContext);
@@ -17,6 +18,7 @@ function App() {
           <Route exact={true} path="/" component={MainPage} />
           <Route path="/SignIn" component={SignInPage} />
           <Route path="/home" component={Home} />
+          <Route path="/userprofile" component={UserProfile} />
           {/*  
           <Route path="/Select" component={Login} />
           <Route path="/AddRow" component={Login} />
