@@ -10,7 +10,7 @@ function NotificationsNavBar(props) {
           <h2 className={classes.notificationsHeader}>Notifications</h2>
         </div>
         <div className="col-2 text-right">
-          <a className={classes.setIcon} href="#">
+          <a className={classes.setIcon} href="/settings">
             <SettingsOutlinedIcon />
           </a>
         </div>

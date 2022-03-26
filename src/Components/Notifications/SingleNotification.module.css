@@ -1,8 +1,30 @@
-.notificationsHeader {
-  position: sticky;
-  background-color: rgb(255, 255, 255, 0.97);
-  top: 0;
-  z-index: 999;
-  margin-top: 0;
-  padding: 10px;
+.notification {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--twitterBorder);
+  cursor: pointer;
+  font-size: 14px;
+}
+.notification:hover {
+  background-color: var(--tweetHover);
+}
+.profilePic {
+  border-radius: 50%;
+  height: 64px;
+  transform: scale(0.7);
+  margin-left: -10px;
+}
+
+.profilePic:hover {
+  opacity: 0.6;
+}
+
+.noteicon {
+  margin-top: 5px;
+  margin-left: 20px;
+  font-size: 25px !important;
+  transform: scale(1.7);
+}
+.like {
+  color: rgb(249, 24, 128);
 }

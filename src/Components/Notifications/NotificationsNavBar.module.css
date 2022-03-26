@@ -8,11 +8,10 @@
 }
 
 .notebutton {
-  display: flex;
-  align-items: center;
+  text-align: center;
   cursor: pointer;
   width: max-content;
-  font-size: 18px;
+  font-size: 0.75em;
   color: black;
   text-decoration: none;
   border-bottom: 1px solid var(--twitterBorder);
@@ -23,8 +22,9 @@
   color: var(--twitterBlue);
 }
 .selected {
-  background-color: var(--twitterGrayHighligh);
-  color: var(--twitterBlue);
+  background-color: var(--twitterBlue);
+  color: white;
+  font-weight: 700;
 }
 
 .setIcon {
@@ -37,4 +37,6 @@
 .setIcon:hover {
   background-color: var(--twitterHoverBlue);
   border-radius: 50%;
+  width: 128px;
+  height: 128px;
 }

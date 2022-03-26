@@ -7,3 +7,27 @@
   scrollbar-width: none; /* Firefox to hide scrollbar*/
   max-width: 598px;
 }
+
+@media screen and (min-width: 689px) {
+  .notes {
+    margin-top: 0;
+    border-right: 1px solid var(--twitterBorder);
+
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    min-width: 598px;
+  }
+}
+
+@media screen and (max-width: 689px) {
+  .notes {
+    margin-top: 0;
+    border-right: 1px solid var(--twitterBorder);
+
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    width: 100%;
+  }
+}
