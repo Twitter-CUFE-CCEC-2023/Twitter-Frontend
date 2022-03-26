@@ -1,6 +1,6 @@
 .profileDataContainer{
     margin-top: 0;
-    border-right: 10px solid var(--twitterBorder);
+    border-right: 1px solid var(--twitterBorder);
   
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
@@ -23,7 +23,7 @@
 @media screen and (min-width: 689px) {
   .profileDataContainer{
     margin-top: 0;
-    border-right: 10px solid var(--twitterBorder);
+    border-right: 1px solid var(--twitterBorder);
   
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
@@ -35,7 +35,7 @@
 @media screen and (max-width: 689px) {
   .profileDataContainer{
     margin-top: 0;
-    border-right: 10px solid var(--twitterBorder);
+    border-right: 1px solid var(--twitterBorder);
   
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
