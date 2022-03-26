@@ -7,6 +7,8 @@ import SignInPage from "./Components/Login/SignInPage/SignInPage";
 import Home from "./Components/TimeLinePage/Home";
 import AllNotificationsPage from "./Components/Notifications/AllNotificationsPage";
 import MentionNotificationsPage from "./Components/Notifications/MentionNotificationsPage";
+import Settings from "./Components/Settings/Settings";
+import UserProfile from "./Components/UserProfilePage/UserProfile";
 
 function App() {
   // const loginCtx = useContext(LoginContext);
@@ -24,6 +26,8 @@ function App() {
             path="/mentionnotifications"
             component={MentionNotificationsPage}
           />
+          <Route path="/settings" component={Settings} />
+          <Route path="/userprofile" component={UserProfile} />
           {/*  
           <Route path="/Select" component={Login} />
           <Route path="/AddRow" component={Login} />

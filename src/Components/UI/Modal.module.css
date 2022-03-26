@@ -1,0 +1,54 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 3;
+}
+.body {
+  position: fixed;
+  width: 30rem;
+  left: calc(50% - 15rem);
+  min-height: 25rem;
+  top: calc(50% - 12.5rem);
+  z-index: 4;
+  background-color: white;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.header {
+  color: white;
+  background-color: var(--twitterBlue);
+  padding: 1px 5px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px 15px 0 0;
+}
+
+.message {
+  height: auto;
+  flex-grow: 2;
+  padding: 10px 10px;
+}
+.actions {
+  height: 5rem;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 10px 20px;
+}
+.button {
+  color: white;
+  background-color: var(--twitterBlue);
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: rgba(0, 0, 255, 0.651);
+}

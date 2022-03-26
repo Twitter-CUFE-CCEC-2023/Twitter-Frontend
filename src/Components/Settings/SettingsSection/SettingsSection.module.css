@@ -1,0 +1,12 @@
+.settings-section {
+  width: 45%;
+}
+@media (max-width: 900px) {
+  .settings-section {
+    width: 90%;
+  }
+}
+.settings-section-header {
+  padding-left: 20%;
+  text-transform: capitalize;
+}
