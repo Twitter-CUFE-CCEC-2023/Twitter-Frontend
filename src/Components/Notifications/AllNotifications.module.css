@@ -1,0 +1,9 @@
+.notes {
+  margin-top: 0;
+  border-right: 1px solid var(--twitterBorder);
+
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
+  scrollbar-width: none; /* Firefox to hide scrollbar*/
+  max-width: 598px;
+}
