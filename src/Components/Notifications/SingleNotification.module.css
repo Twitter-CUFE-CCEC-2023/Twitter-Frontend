@@ -10,9 +10,10 @@
 }
 .profilePic {
   border-radius: 50%;
-  height: 64px;
-  transform: scale(0.7);
-  margin-left: -10px;
+  height: 48px;
+  width: 48px;
+  margin-top: 0.3em;
+  margin-left: 0.15em;
 }
 
 .profilePic:hover {
@@ -20,11 +21,20 @@
 }
 
 .noteicon {
-  margin-top: 5px;
-  margin-left: 20px;
-  font-size: 25px !important;
-  transform: scale(1.7);
+  font-size: 2.5em !important;
+  margin-top: 0.25em;
+  /* transform: scale(1.7); */
 }
 .like {
   color: rgb(249, 24, 128);
+}
+.retweet {
+  color: rgb(0, 186, 124);
+}
+.follow {
+  color: var(--twitterBlue);
+}
+.notedescription {
+  font-size: 0.9em;
+  margin-left: 4em;
 }

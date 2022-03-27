@@ -9,22 +9,29 @@
 
 .notebutton {
   text-align: center;
+  display: inline-block;
   cursor: pointer;
-  width: max-content;
-  font-size: 0.75em;
+  width: 100%;
+  font-size: 0.6em;
   color: black;
   text-decoration: none;
-  border-bottom: 1px solid var(--twitterBorder);
+  transition-duration: 200ms;
+}
+.notebutton:hover {
+  color: black;
 }
 
-.notebutton:hover {
+.selectedcol:hover {
+  cursor: pointer;
   background-color: var(--twitterGrayHighligh);
-  color: var(--twitterBlue);
 }
 .selected {
-  background-color: var(--twitterBlue);
-  color: white;
+  /* background-color: var(--twitterBlue); */
+  color: black;
   font-weight: 700;
+  width: 5em;
+  border-bottom: 0.3em solid var(--twitterBlue);
+  border-radius: 5%;
 }
 
 .setIcon {
@@ -37,6 +44,4 @@
 .setIcon:hover {
   background-color: var(--twitterHoverBlue);
   border-radius: 50%;
-  width: 128px;
-  height: 128px;
 }

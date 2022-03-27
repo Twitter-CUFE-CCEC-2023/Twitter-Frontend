@@ -6,8 +6,14 @@ function MentionNotifications() {
   return (
     <div className={classes.notes}>
       <NotificationsNavBar selected={false} />
-      <h6>Nothing to see here yet</h6>
-      <h3>When someone mentions you, you'll find it here</h3>
+      <div className="row mt-4">
+        <div className="col-12">
+          <h6>Nothing to see here yet</h6>
+        </div>
+        <div className="col-12">
+          <h3>When someone mentions you, you'll find it here</h3>
+        </div>
+      </div>
     </div>
   );
 }

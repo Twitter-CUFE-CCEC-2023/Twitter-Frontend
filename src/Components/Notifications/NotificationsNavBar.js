@@ -10,28 +10,32 @@ function NotificationsNavBar(props) {
           <h2 className={classes.notificationsHeader}>Notifications</h2>
         </div>
         <div className="col-2 text-right">
-          <a className={classes.setIcon} href="/settings">
-            <SettingsOutlinedIcon />
+          <a href="/settings">
+            <SettingsOutlinedIcon className={classes.setIcon} />
           </a>
         </div>
       </div>
       <div className="row">
-        <a
-          href="/notifications"
-          className={`${classes.notebutton} ${
-            props.selected && classes.selected
-          } col`}
-        >
-          All
-        </a>
-        <a
-          href="/mentionnotifications"
-          className={`${classes.notebutton} ${
-            !props.selected && classes.selected
-          } col`}
-        >
-          Mentions
-        </a>
+        <div className={`${classes.selectedcol} col-6 text-center`}>
+          <a
+            href="/notifications"
+            className={`${classes.notebutton} ${
+              props.selected && classes.selected
+            } `}
+          >
+            All
+          </a>
+        </div>
+        <div className={`${classes.selectedcol} col-6 text-center`}>
+          <a
+            href="/mentionnotifications"
+            className={`${classes.notebutton} ${
+              !props.selected && classes.selected
+            } `}
+          >
+            Mentions
+          </a>
+        </div>
       </div>
     </div>
   );
