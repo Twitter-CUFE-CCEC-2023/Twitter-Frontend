@@ -1,0 +1,13 @@
+.following{
+    color: black;
+    font-size: 0.67em;
+    text-decoration: none;
+}
+.followingNum{
+    font-weight: bold;
+}
+
+.following:hover{
+    text-decoration: underline;
+    color: black;
+}

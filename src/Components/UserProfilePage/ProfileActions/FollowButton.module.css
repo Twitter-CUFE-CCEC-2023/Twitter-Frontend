@@ -17,19 +17,25 @@
 .followingButton{
   margin-right: 5px;
   border-radius: 25px;
-  font-size: 0.6em;
+  font-size: 13px;
   border-color: #cbd6db;
   border-style: solid;
   border-width: 1px;
   font-weight: 670;
   color: black;
   background-color: transparent;
-  margin-left: -5px;
-  max-width: 100%;
+  margin-left: 6px;
+  margin-right: 12px;
   transition-duration: 0.7s;
 }
 .followingButton:hover {
   border-color: #c76969;
   background-color: #f7d0d0;
   color: black;
+}
+
+@media screen and (max-width: 689px) {
+.followingButton{
+  font-size: 1.9vw;
+}
 }

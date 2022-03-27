@@ -22,13 +22,13 @@ function ProfileActions(props) {
   } else {
     actionsRendered = (
       <Fragment>
-        <div className={`${classes.settingButton} col-1`}>
+        <div className={`${classes.settingButton} col-2`}>
           <MoreHorizOutlinedIcon />
         </div>
-        <div className={`${classes.messageButton} col-1 d-flex `}>
+        <div className={`${classes.messageButton} col-2 d-flex `}>
           <MailOutlineRoundedIcon fontsize="meduim" />
         </div>
-        <div className={`col-2 pe-0 me-3`}>
+        <div className={`col-2 pe-0 ${!isFollowing? 'me-3': 'me-4'}`}>
           <FollowButton
             isFollowing={isFollowing}
             onFollow={onFollowHandeler}
