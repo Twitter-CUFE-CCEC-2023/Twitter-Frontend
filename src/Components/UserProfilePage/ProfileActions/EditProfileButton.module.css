@@ -1,0 +1,12 @@
+.editButton{
+ border-radius: 25px;
+ font-size: 0.8em;
+ background-color: transparent;
+ border-color: #cbd6db;
+ font-weight: 650;
+ font-size: 0.67em;
+}
+.editButton:hover {
+    border-color: #b0bec5;
+    background-color: #e0e6e9;
+  }

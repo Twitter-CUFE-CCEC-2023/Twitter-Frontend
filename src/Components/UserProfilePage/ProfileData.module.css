@@ -20,6 +20,10 @@
     padding: 10px;
 }
 
+.coverPhoto{
+  height: 199px;
+}
+
 @media screen and (min-width: 689px) {
   .profileDataContainer{
     margin-top: 0;
