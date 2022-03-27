@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./AppleSignUp.module.css";
 import AppleIcon from "@material-ui/icons/Apple";
 
-const AppleSignUp = () => {
+const AppleSignUp = (props) => {
   return (
     <div className={classes.appleSignUp}>
       <table>
@@ -11,7 +11,7 @@ const AppleSignUp = () => {
             <td className={classes.logo}>
               <AppleIcon />
             </td>
-            <td>Sign up with Apple</td>
+            <td className={classes.content}>{props.content}</td>
           </tr>
         </tbody>
       </table>

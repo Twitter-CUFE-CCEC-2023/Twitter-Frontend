@@ -1,0 +1,19 @@
+.container {
+  height: 73vh;
+}
+
+.paper {
+  height: 80vh;
+  width: 55vw;
+  margin-left: 13%;
+  margin-top: 1%;
+}
+
+.tableHead {
+  background-color: black;
+  color: white;
+}
+
+/* .even {
+  background-color: #edf1fa;
+} */
