@@ -55,10 +55,10 @@ const UsersList = () => {
             {DummyData.map((row, index) => {
               if (index % 2 != 0) {
                 return (
-                  <UserTableRow key={row.name} row={row} class={classes.even} />
+                  <UserTableRow key={index} row={row} class={classes.even} />
                 );
               } else {
-                return <UserTableRow key={row.name} row={row} />;
+                return <UserTableRow key={index} row={row} />;
               }
             })}
           </TableBody>

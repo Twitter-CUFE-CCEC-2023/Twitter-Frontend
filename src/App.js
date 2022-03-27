@@ -8,7 +8,6 @@ import Home from "./Components/TimeLinePage/Home";
 import Settings from "./Components/Settings/Settings";
 import UserProfile from "./Components/UserProfilePage/UserProfile";
 import Admin from "./Components/AdminPage/Admin";
-import Filters from "./Components/AdminPage/Filters";
 
 function App() {
   // const loginCtx = useContext(LoginContext);
@@ -24,12 +23,6 @@ function App() {
           <Route path="/settings" component={Settings} />
           <Route path="/userprofile" component={UserProfile} />
           <Route path="/admin" component={Admin} />
-          <Route path="/filters" component={Filters} />
-          {/*  
-          <Route path="/Select" component={Login} />
-          <Route path="/AddRow" component={Login} />
-          <Route path="/UpdateGenres" component={Login} /> */}
-
           <Route path="*">
             <Redirect to="/" />
           </Route>
