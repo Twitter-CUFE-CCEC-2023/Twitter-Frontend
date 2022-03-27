@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function ProfileHeader() {
   return (
     <div className={`row`}>
-      <div className={`col-1 ${classes.arrowRow}`}>
+      <div className={`col-1 me-3 ${classes.arrowRow}`}>
         <ArrowBack></ArrowBack>
       </div>
       <div className={` col-9`}>
