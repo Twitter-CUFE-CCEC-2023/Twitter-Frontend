@@ -1,0 +1,42 @@
+.notes {
+  margin-top: 0;
+  border-right: 1px solid var(--twitterBorder);
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
+  scrollbar-width: none; /* Firefox to hide scrollbar*/
+  max-width: 598px;
+}
+@media screen and (min-width: 689px) {
+  .notes {
+    margin-top: 0;
+    border-right: 1px solid var(--twitterBorder);
+
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    min-width: 598px;
+  }
+}
+
+@media screen and (max-width: 689px) {
+  .notes {
+    margin-top: 0;
+    border-right: 1px solid var(--twitterBorder);
+
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    width: 100%;
+  }
+}
+
+h6 {
+  margin-top: 10px;
+  font-size: 40px;
+  text-align: center;
+}
+h3 {
+  font-size: 15px;
+  text-align: center;
+  color: grey;
+}

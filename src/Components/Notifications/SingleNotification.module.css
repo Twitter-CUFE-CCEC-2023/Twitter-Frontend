@@ -1,0 +1,40 @@
+.notification {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--twitterBorder);
+  cursor: pointer;
+  font-size: 14px;
+}
+.notification:hover {
+  background-color: var(--tweetHover);
+}
+.profilePic {
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  margin-top: 0.3em;
+  margin-left: 0.15em;
+}
+
+.profilePic:hover {
+  opacity: 0.6;
+}
+
+.noteicon {
+  font-size: 2.5em !important;
+  margin-top: 0.25em;
+  /* transform: scale(1.7); */
+}
+.like {
+  color: rgb(249, 24, 128);
+}
+.retweet {
+  color: rgb(0, 186, 124);
+}
+.follow {
+  color: var(--twitterBlue);
+}
+.notedescription {
+  font-size: 0.9em;
+  margin-left: 4em;
+}
