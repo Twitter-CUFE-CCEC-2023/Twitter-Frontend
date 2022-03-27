@@ -22,6 +22,21 @@
 
 .coverPhoto{
   height: 199px;
+  position: relative;
+}
+
+.profileImage{
+  position: absolute;
+  top:5em;
+  left: 1.6em !important;
+  background-color: rgb(255, 255, 255);
+  width:145.5px !important; 
+  height: 145.5px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(255, 255, 255);
+
 }
 
 @media screen and (min-width: 689px) {

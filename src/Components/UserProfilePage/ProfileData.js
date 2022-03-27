@@ -14,9 +14,16 @@ function ProfileData() {
       </div>
       <div className={`${classes.coverPhoto}  row `}>
         <CoverPhoto coverImage={image}></CoverPhoto>
+        <div className={`p-0`}>
+          <img
+          className={`${classes.profileImage} img-fluid`}
+            src="https://pbs.twimg.com/profile_images/1492532221110104067/_3ozwoyh_400x400.jpg"
+            alt=""
+          />
+        </div>
       </div>
       <div className={`row justify-content-end my-2 mb-4 `}>
-        <ProfileActions isMyProfile={true}></ProfileActions>
+        <ProfileActions isMyProfile={false}></ProfileActions>
       </div>
     </div>
   );
