@@ -1,0 +1,14 @@
+.followers {
+  color: black;
+  font-size: 0.67em;
+  text-decoration: none;
+  margin-left: 11px;
+}
+.followersNum {
+  font-weight: bold;
+}
+
+.followers:hover {
+  text-decoration: underline;
+  color: black;
+}
