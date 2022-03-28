@@ -1,0 +1,17 @@
+.settings {
+  display: flex;
+  height: 100vh;
+  max-width: 1300px;
+  margin: auto;
+  flex-direction: row;
+}
+.right-conatiner {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 900px) {
+  .right-conatiner {
+    flex-direction: column;
+  }
+}

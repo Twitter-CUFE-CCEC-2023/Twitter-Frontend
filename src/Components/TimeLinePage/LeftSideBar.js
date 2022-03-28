@@ -1,5 +1,5 @@
 import React from "react"
-import "./LeftSideBar.css"
+import classes from "./LeftSideBar.module.css"
 import TweetButton from "./TweetButton";
 import LeftButton from "./LeftButton";
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -15,8 +15,8 @@ import { Twitter } from "@material-ui/icons";
 
 export default function LeftSideBar(){
     return(
-        <div className="leftSideBar">
-            <TwitterIcon className="twitterIcon"/>
+        <div className={classes.leftSideBar}>
+            <TwitterIcon className={classes.twitterIcon}/>
             <LeftButton Icon = {HomeIcon} url = "home" title = "Home" onPage = {true}/>
             <LeftButton Icon = {SearchOutlinedIcon} url = "explore" title = "Explore"/>
             <LeftButton Icon = {NotificationsNoneOutlinedIcon} url = "notifications" title = "Notifications"/>
@@ -26,6 +26,7 @@ export default function LeftSideBar(){
             <LeftButton Icon = {PermIdentityOutlinedIcon} url = "profileName" title = "Profile"/>
             <LeftButton Icon = {MoreOutlinedIcon} url = "home" title = "More"/> {/* need to add the functionality of more */}
             <TweetButton />
+
         </div>
     )
 }

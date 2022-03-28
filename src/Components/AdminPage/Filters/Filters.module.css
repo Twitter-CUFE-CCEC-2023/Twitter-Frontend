@@ -1,0 +1,69 @@
+/* .gender {
+  margin-left: 2%;
+  display: inline-block;
+} */
+
+.color {
+  color: #3f51b5;
+}
+
+.container {
+  height: 73vh;
+  margin: 3% 10%;
+  padding: 2%;
+  position: relative;
+}
+
+.filtersWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filtersWrapper > div {
+  margin: 3% 1%;
+  margin-right: 2%;
+}
+
+.instructions {
+  box-sizing: border-box;
+  font-size: 200%;
+  font-family: sans-serif;
+  margin-bottom: 3%;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+/* .submitButton {
+  position: absolute;
+  right: 1%;
+  bottom: 1%;
+}
+
+.clearFiltersButton {
+  position: absolute;
+  right: 12%;
+  bottom: 1%;
+  width: 150px;
+} */
+
+.buttonsGroup {
+  position: absolute;
+  right: 1%;
+  bottom: 2%;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 800px) {
+  .instructions {
+    font-size: 110%;
+    margin-bottom: 5%;
+  }
+
+  .container {
+    height: 85vh;
+    margin: 2%;
+  }
+
+  .buttonsGroup {
+    right: 2%;
+    bottom: 2%;
+  }
+}

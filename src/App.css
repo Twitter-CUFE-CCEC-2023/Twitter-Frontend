@@ -1,14 +1,15 @@
-body{
-  --twitterBlue : #1D9BF0;
-  --twitterRed : #ff3855;
-  --twitterGreen : #63f33f;
-  --twitterBlueHighlighted : #1A8CD8;
-  --twitterGrayHighligh : #E7E7E8;
-  --twitterBorder : #EFF3F4;
-  --twitterHoverBlue: #E8F5FD;
+body {
+  --twitterBlue: #1d9bf0;
+  --twitterRed: #ff3855;
+  --twitterGreen: #63f33f;
+  --twitterBlueHighlighted: #1a8cd8;
+  --twitterGrayHighligh: #e7e7e8;
+  --twitterBorder: #eff3f4;
+  --twitterHoverBlue: #e8f5fd;
   --twitterHoverGreen: #ceffdd;
   --twitterHoverRed: #fde5e3;
-  --tweetHover : #F7F7F7;
+  --tweetHover: #eff3f4;
+  --WhatsHappening: #f7f9f9;
 }
 
 .App {
@@ -48,4 +49,28 @@ body{
   to {
     transform: rotate(360deg);
   }
+}
+
+.noDecoration {
+  text-decoration: none;
+}
+
+.black {
+  color: black;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.normalText {
+  font-size: 15px;
+}
+
+.gray {
+  color: gray;
+}
+
+.noMargin {
+  margin: 0;
 }

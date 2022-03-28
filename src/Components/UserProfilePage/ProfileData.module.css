@@ -1,0 +1,80 @@
+.profileDataContainer{
+    margin-top: 0;
+    border-right: 1px solid var(--twitterBorder);
+  
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
+    scrollbar-width: none;    /* Firefox to hide scrollbar */
+    max-width: 598px;
+  }
+
+  .profileDataContainer::-webkit-scrollbar {
+    display: none;
+  }
+  .header{
+    position: sticky;
+    background-color: rgb(255, 255, 255, 0.97);
+    top: 0;
+    z-index: 2;
+    margin-top: 0;
+    padding: 10px;
+}
+
+.coverPhoto{
+  height: 199px;
+  position: relative;
+}
+
+.profileImage{
+  position: absolute;
+  top:5em;
+  left: 1.6em !important;
+  background-color: rgb(255, 255, 255);
+  width:23% !important; 
+  height: 23%;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(255, 255, 255);
+}
+
+.profileActionsRow{
+  margin-top: 1.5% !important;
+  z-index: 1;
+  top: -2px;
+}
+
+.profileImageContainer{
+  width:10% !important;
+  max-width: 10% !important;
+  height: 1px !important;
+  max-height: 1px !important;
+
+
+   display: inline-block;
+}
+
+
+@media screen and (min-width: 689px) {
+  .profileDataContainer{
+    margin-top: 0;
+    border-right: 1px solid var(--twitterBorder);
+  
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
+    scrollbar-width: none;    /* Firefox to hide scrollbar */
+    min-width: 598px;
+  }
+}
+
+@media screen and (max-width: 689px) {
+  .profileDataContainer{
+    margin-top: 0;
+    border-right: 1px solid var(--twitterBorder);
+  
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
+    scrollbar-width: none;    /* Firefox to hide scrollbar */
+    width:100%;
+  }
+}

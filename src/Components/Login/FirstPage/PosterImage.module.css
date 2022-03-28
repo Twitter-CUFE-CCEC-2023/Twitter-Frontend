@@ -1,11 +1,7 @@
-* {
-  box-sizing: border-box;
-}
-
 .posterSection {
   display: flex;
-  width: 55%;
-  height: 93vh;
+  width: 54%;
+  height: 95vh;
   position: relative;
 }
 
@@ -29,7 +25,7 @@
   display: none;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 800px) {
+@media only screen and (min-width: 0px) and (max-width: 700px) {
   .posterSection {
     height: 45vh;
     width: 100%;
@@ -37,12 +33,40 @@
   }
 
   .logo {
-    width: 225px;
-    top: 19%;
-    left: 21%;
+    /* width: 60%; */
+    width: 300px;
+    top: 17%;
+    left: 13%;
+  }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1000px) {
+  .posterSection {
+    height: 46vh;
+    width: 100%;
   }
 
-  /* .smallScreenLogo {
-    display: flex;
-  } */
+  .logo {
+    width: 450px;
+    top: 15%;
+    left: 23%;
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+  .posterSection {
+    height: 107.5vh;
+    width: 41%;
+  }
+
+  .background {
+    object-position: 48% 10%;
+    transform: scale(1.1, 1);
+  }
+
+  .logo {
+    width: 340px;
+    top: 33%;
+    left: 13%;
+  }
 }
