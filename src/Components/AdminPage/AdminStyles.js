@@ -1,6 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const drawerWidth = 200;
+let drawerWidth = 200;
+const screenSize = window.innerWidth;
+
+if (screenSize < 800) {
+  drawerWidth = 60;
+} else {
+  drawerWidth = 175;
+}
+
+// console.log(screenSize);
+// console.log(drawerWidth);
 
 const useStyles = makeStyles((theme) => ({
   root: {

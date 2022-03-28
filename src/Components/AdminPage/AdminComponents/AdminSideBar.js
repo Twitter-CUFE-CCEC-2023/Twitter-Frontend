@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Drawer from "@material-ui/core/Drawer";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -16,84 +16,41 @@ import LoopRoundedIcon from "@material-ui/icons/LoopRounded";
 import AdminStyles from "../AdminStyles";
 
 const AdminSideBar = (props) => {
+  const screenSize = window.innerWidth;
+  let largeScreen = true;
+
+  if (screenSize < 800) {
+    largeScreen = false;
+  } else {
+    largeScreen = true;
+  }
+
   const classes = AdminStyles();
-
-  const [filters, setFilters] = useState(true);
-  const [usersList, setUsersList] = useState(false);
-  const [likes, setLikes] = useState(false);
-  const [tweets, setTweets] = useState(false);
-  const [retweets, setRetweets] = useState(false);
-
-  const handleFilters = () => {
-    setFilters(true);
-    setUsersList(false);
-    setLikes(false);
-    setTweets(false);
-    setRetweets(false);
-    props.handleChosenFeature(filters, usersList, likes, tweets, retweets);
-  };
-  const handleUsersList = () => {
-    setFilters(false);
-    setUsersList(true);
-    setLikes(false);
-    setTweets(false);
-    setRetweets(false);
-    props.handleChosenFeature(filters, usersList, likes, tweets, retweets);
-  };
-  const handleLikes = () => {
-    setFilters(false);
-    setUsersList(false);
-    setLikes(true);
-    setTweets(false);
-    setRetweets(false);
-    props.handleChosenFeature(filters, usersList, likes, tweets, retweets);
-  };
-  const handleTweets = () => {
-    setFilters(false);
-    setUsersList(false);
-    setLikes(false);
-    setTweets(true);
-    setRetweets(false);
-    props.handleChosenFeature(filters, usersList, likes, tweets, retweets);
-  };
-  const handleRetweets = () => {
-    setFilters(false);
-    setUsersList(false);
-    setLikes(false);
-    setTweets(false);
-    setRetweets(true);
-    props.handleChosenFeature(filters, usersList, likes, tweets, retweets);
-  };
 
   const features = [
     {
       title: "Filters",
       icon: <EqualizerRoundedIcon />,
-      onClick: handleFilters,
       url: "/admin/filter",
     },
     {
       title: "Users List",
       icon: <PeopleAltRoundedIcon />,
-      onClick: handleUsersList,
       url: "/admin/feature-userlist",
     },
     {
       title: "Likes",
       icon: <ThumbUpAltRoundedIcon />,
-      onClick: handleLikes,
       url: "/admin/feature-likes",
     },
     {
       title: "Tweets",
       icon: <TwitterIcon />,
-      onClick: handleTweets,
       url: "/admin/feature-tweets",
     },
     {
       title: "Retweets",
       icon: <LoopRoundedIcon />,
-      onClick: handleRetweets,
       url: "/admin/feature-retweets",
     },
   ];
@@ -113,9 +70,20 @@ const AdminSideBar = (props) => {
             {features.map((item, index) => {
               return (
                 <div key={index}>
-                  <ListItem button key={index} onClick={item.onClick}>
-                    <ListItemIcon>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.title} />
+                  <ListItem
+                    button
+                    key={index}
+                    onClick={props.handleChosenFeature[index]}
+                  >
+                    <ListItemIcon style={{ minWidth: 0 }}>
+                      {item.icon}
+                    </ListItemIcon>
+                    {largeScreen && (
+                      <ListItemText
+                        style={{ marginLeft: "15px" }}
+                        primary={item.title}
+                      />
+                    )}
                   </ListItem>
                   <Divider />
                 </div>
