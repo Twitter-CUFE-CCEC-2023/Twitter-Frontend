@@ -1,6 +1,5 @@
 .tweetAtrribute{
     display: flex;
-    align-items: center;
     color: gray;
     font-size: 12px;
     margin-left: 0;
@@ -9,11 +8,13 @@
 
 .flex{
     display: flex;
-    align-items: center;
+    margin-top: 10px;
+    margin-bottom: -5px;
 }
 
-.tweetAtrribute p{
+.num{
     margin-left: 10px;
+    padding-top: 1px;
     padding-bottom: 3px;
 }
 
