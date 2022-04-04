@@ -20,38 +20,50 @@ export default function FeedTweet(props) {
   {
     console.log(props.img);
   }
-  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",];
-  function getDateDiff(date){
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  function getDateDiff(date) {
     const date1 = new Date(date);
     const date2 = new Date();
     const diffTime = Math.abs(date2 - date1);
     const diffSeconds = Math.floor(diffTime / 1000);
     const diffMinutes = Math.floor(diffTime / (1000 * 60));
     const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
-    if(diffDays > 0){
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays > 0) {
       return `${months[date1.getMonth()]} ${date1.getDate()}`;
     }
-    if(diffHours > 0){
-      return `${diffHours}h`
+    if (diffHours > 0) {
+      return `${diffHours}h`;
     }
-    if(diffMinutes > 0){
-      return `${diffMinutes}m`
+    if (diffMinutes > 0) {
+      return `${diffMinutes}m`;
     }
-    if(diffSeconds > 0){
-      return `${diffSeconds}s`
+    if (diffSeconds > 0) {
+      return `${diffSeconds}s`;
     }
   }
 
-
   return (
     <div className={classes.feedTweet}>
-      {replyModal && (
+      {/* {replyModal && (
         <FeedTweetReplyModal
           onHide={hideReplyModal}
           data={props}
         ></FeedTweetReplyModal>
-      )}
+      )} */}
       <img
         className={classes.profilePic + " " + classes.minip}
         alt="profile"
@@ -69,7 +81,11 @@ export default function FeedTweet(props) {
       </div>
       <div className={classes.tweet}>
         <div className={classes.user}>
-          <h2 className={classes.underline + " " + classes.minip + " " + classes.fs15}>
+          <h2
+            className={
+              classes.underline + " " + classes.minip + " " + classes.fs15
+            }
+          >
             {props.name}
           </h2>
           <div className={classes.hoverProfile + " " + classes.bot}>
@@ -97,7 +113,9 @@ export default function FeedTweet(props) {
             />
           </div>
           &nbsp;<p className={classes.gray}>.</p>&nbsp;
-          <p className={classes.gray + " " + classes.underline}>{getDateDiff(props.date)}</p>{" "}
+          <p className={classes.gray + " " + classes.underline}>
+            {getDateDiff(props.date)}
+          </p>{" "}
           {/*placeholder */}
         </div>
         <p>{props.text}</p>
