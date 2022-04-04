@@ -28,10 +28,11 @@
   flex-grow: 2;
 }
 .name {
-  font-size: 20px;
-}
+  
+  font-size: 15px;
+  font-weight: 400;}
 .description {
-  font-size: 50%;
-  color: #777;
-  font-weight: 600;
-}
+  font-size: 50%;color: rgb(83, 100, 113);
+  font-size: 13px;
+  font-weight: 400;}
+

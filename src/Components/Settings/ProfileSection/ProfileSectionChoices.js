@@ -40,7 +40,10 @@ function ProfileSectionChoices() {
   return (
     <div className={classes.choices}>
       {choisces.map((choice) => (
-        <ProfileSectionChoice key={choice} data={choice}></ProfileSectionChoice>
+        <ProfileSectionChoice
+          key={choice.name}
+          data={choice}
+        ></ProfileSectionChoice>
       ))}
     </div>
   );
