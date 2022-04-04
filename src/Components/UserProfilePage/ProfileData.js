@@ -5,6 +5,7 @@ import CoverPhoto from "./CoverPhoto";
 import image from "../../Assets/new-york-city.jpg";
 import ProfileActions from "./ProfileActions/ProfileActions.js";
 import ProfileInfo from "./ProfileInfo";
+import ProfileTabs from "./ProfileTabs/ProfileTabs";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ProfileData() {
@@ -35,6 +36,9 @@ function ProfileData() {
           birthDay={17}
           birthYear={2000}
         ></ProfileInfo>
+      </div>
+      <div className={`row`}>
+        <ProfileTabs></ProfileTabs>
       </div>
     </div>
   );
