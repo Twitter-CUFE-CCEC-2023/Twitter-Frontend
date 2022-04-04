@@ -9,9 +9,6 @@ if (screenSize < 800) {
   drawerWidth = 175;
 }
 
-// console.log(screenSize);
-// console.log(drawerWidth);
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
