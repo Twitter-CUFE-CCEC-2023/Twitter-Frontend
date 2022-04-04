@@ -13,8 +13,8 @@
 }
 
 .buttonNext:hover {
-  background-color: rgb(39, 44, 48);
-  border-color: rgb(39, 44, 48);
+  background-color: rgb(26, 140, 216);
+  border-color: rgb(26, 140, 216);
   cursor: pointer;
   transition-property: background-color, box-shadow;
   transition-duration: 0.2s;
@@ -31,6 +31,6 @@
   font-size: 60%;
   text-align: center;
 
-  margin-top: 12px;
+  margin-top: 13px;
   font-weight: 700;
 }

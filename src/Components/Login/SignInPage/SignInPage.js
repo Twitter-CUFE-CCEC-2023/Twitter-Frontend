@@ -44,7 +44,7 @@ const SignInPage = () => {
         <ForgetPasswordButton />
         <div className={classes.alreadyHaveAcc}>
           Don't have an account?{" "}
-          <NavLink to="/" className={classes.signUp}>
+          <NavLink to="/Mail" className={classes.signUp}>
             <span>Sign up</span>
           </NavLink>
         </div>
