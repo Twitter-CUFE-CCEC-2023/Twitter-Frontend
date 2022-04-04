@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap");
 
-* {
-  box-sizing: border-box;
-}
-
 .appleSignUp {
   font-family: "Mukta", sans-serif;
   font-size: 60%;
@@ -35,11 +31,15 @@
   margin-left: 73px;
 }
 
+.content {
+  padding-top: 5%;
+}
+
 .logo {
   padding-top: 4px;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 800px) {
+@media only screen and (min-width: 0px) and (max-width: 700px) {
   .appleSignUp {
     margin-top: 4%;
   }

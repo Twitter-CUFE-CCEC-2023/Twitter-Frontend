@@ -1,0 +1,33 @@
+.messageButton{
+    border-radius: 50% ;
+    width: 40px;
+    height: 40px;
+    border-style: solid ;
+    border-width: 1px;
+    border-color: rgb(217, 224, 236);
+    background-color: transparent;
+    padding: 6px;
+    margin-left: 12px;
+}
+.settingButton{
+    border-radius: 50% ;
+    width: 40px;
+    height: 40px;
+    border-style: solid ;
+    border-width: 1px;
+    border-color: rgb(217, 224, 236);
+    background-color: transparent;
+    padding-left: 6px;
+}
+
+.settingButton:hover {
+    border-radius: 200px;
+    border-color: rgb(209, 213, 219);
+    background-color: rgb(209, 213, 219);
+  }
+
+.messageButton:hover {
+    border-radius: 200px;
+    border-color: rgb(209, 213, 219);
+    background-color: rgb(209, 213, 219);
+  }

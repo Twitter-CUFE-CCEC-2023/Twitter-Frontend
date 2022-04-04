@@ -1,0 +1,30 @@
+.username{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size:large;
+} 
+
+.email{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: medium;
+    color: #616161;
+} 
+
+.userBio{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: medium;
+}
+
+.userBirthDate{
+font-size: medium;
+color: #616161;
+}
+
+.calender{
+    font-size: 20px;
+}
+
+.followesRow{
+    width:589px !important;
+}

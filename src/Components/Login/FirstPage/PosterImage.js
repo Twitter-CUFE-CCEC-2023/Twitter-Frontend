@@ -3,7 +3,7 @@ import classes from "./PosterImage.module.css";
 
 import backgroundImage from "../../../Assets/background.png";
 import twitterWhiteLogo from "../../../Assets/twitterWhiteLogo.png";
-import twitterWhiteLogoBlueBackground from "../../../Assets/twitterWhiteLogoBlueBackground.png";
+// import twitterWhiteLogoBlueBackground from "../../../Assets/twitterWhiteLogoBlueBackground.png";
 
 const PosterImage = () => {
   return (

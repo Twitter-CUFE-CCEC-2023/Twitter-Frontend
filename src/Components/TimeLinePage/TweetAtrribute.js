@@ -30,7 +30,7 @@ function TweetAtrribute(props) {
         <div className={classes.flex}>
           {!hlLike && <props.Icon className={classes.attIcon} />}
           {hlLike && <props.FilledIcon className={classes.attIcon} />}
-          <p>{num}</p>
+          <p className={classes.num}>{num}</p>
         </div>
         <span className={feedBoxButtonClasses.tooltiptext}>
           {props.tooltip}

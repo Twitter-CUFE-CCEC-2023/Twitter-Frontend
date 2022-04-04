@@ -5,6 +5,7 @@
 
 * {
   box-sizing: border-box;
+  font-size: 105%;
 }
 
 .loginSection {
@@ -16,10 +17,28 @@
   padding: 2%;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 800px) {
+@media only screen and (min-width: 0px) and (max-width: 700px) {
   .loginSection {
     margin-left: 7.5%;
     float: left;
     width: 90%;
+  }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1000px) {
+  .loginSection {
+    width: 80%;
+    margin-left: 16%;
+    float: left;
+    padding-top: 3%;
+    margin-bottom: 3%;
+    /* width: 90%; */
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+  .loginSection {
+    width: 57%;
+    padding: 3%;
   }
 }

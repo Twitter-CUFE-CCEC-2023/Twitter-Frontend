@@ -6,7 +6,7 @@
   size: 100px;
 }
 .arrowBack:hover {
-  border-radius: 2000px;
+  border-radius: 200px;
   border-color: rgb(209, 213, 219);
   background-color: rgb(209, 213, 219);
 }

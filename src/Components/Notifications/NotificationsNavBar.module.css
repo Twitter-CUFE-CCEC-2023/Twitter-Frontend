@@ -1,0 +1,47 @@
+.notificationsHeader {
+  position: sticky;
+  background-color: rgb(255, 255, 255, 0.97);
+  top: 0;
+  z-index: 999;
+  margin-top: 0;
+  padding: 10px;
+}
+
+.notebutton {
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  font-size: 0.6em;
+  color: black;
+  text-decoration: none;
+  transition-duration: 200ms;
+}
+.notebutton:hover {
+  color: black;
+}
+
+.selectedcol:hover {
+  cursor: pointer;
+  background-color: var(--twitterGrayHighligh);
+}
+.selected {
+  /* background-color: var(--twitterBlue); */
+  color: black;
+  font-weight: 700;
+  width: 5em;
+  border-bottom: 0.3em solid var(--twitterBlue);
+  border-radius: 5%;
+}
+
+.setIcon {
+  font-size: 40px !important;
+  margin: 10px 0 0 14px;
+  padding: 5px;
+  cursor: pointer;
+  color: grey;
+}
+.setIcon:hover {
+  background-color: var(--twitterHoverBlue);
+  border-radius: 50%;
+}

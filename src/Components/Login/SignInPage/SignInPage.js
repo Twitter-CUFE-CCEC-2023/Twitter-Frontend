@@ -10,35 +10,38 @@ import NextButton from "../Buttons/NextButton";
 import ForgetPasswordButton from "../Buttons/ForgetPasswordButton";
 
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
+import SignInBackground from "./SignInBackground";
 
 const SignInPage = () => {
   return (
-    <div className={classes.outerContainer}>
-      {/* <span style={{ visibility: "hidden" }}>.</span> */}
+    <SignInBackground>
+      <img
+        className={classes.twitterBluelogo}
+        src={twitterBlueLogo}
+        alt="TwitterLogo"
+      />
+      <NavLink to="/" className={classes.closeIcon}>
+        <ClearIcon />
+      </NavLink>
 
-      <div className={classes.innerContainer}>
-        <img
-          className={classes.twitterBluelogo}
-          src={twitterBlueLogo}
-          alt="TwitterLogo"
+      <div className={classes.container}>
+        <p className={classes.signInToTwitter}>Sign in to Twitter</p>
+        <GoogleSignUp
+          content="Sign in with Google"
+          style={{ marginBottom: "23px" }}
         />
-        <NavLink to="/" className={classes.closeIcon}>
-          <ClearIcon />
-        </NavLink>
-
-        <div className={classes.container}>
-          <p className={classes.signInToTwitter}>Sign in to Twitter</p>
-          <GoogleSignUp style={{ marginBottom: "23px" }} />
-          <AppleSignUp />
-          <OrLabel
-            color="rgb(207, 217, 222, 0.6)"
-            style={{ margin: "9px 15px" }}
-          />
-          <input type="text" placeholder="Phone, email address, or username" />
-          <NextButton />
-          <ForgetPasswordButton />
+        <AppleSignUp content="Sign in with Apple" />
+        <OrLabel
+          color="rgb(207, 217, 222, 0.6)"
+          style={{ margin: "9px 0px" }}
+        />
+        <input type="text" className={classes.input} />
+        <div className={classes.placeholder}>
+          Phone, email address, or username
         </div>
 
+        <NextButton />
+        <ForgetPasswordButton />
         <div className={classes.alreadyHaveAcc}>
           Don't have an account?{" "}
           <NavLink to="/" className={classes.signUp}>
@@ -46,7 +49,7 @@ const SignInPage = () => {
           </NavLink>
         </div>
       </div>
-    </div>
+    </SignInBackground>
   );
 };
 
