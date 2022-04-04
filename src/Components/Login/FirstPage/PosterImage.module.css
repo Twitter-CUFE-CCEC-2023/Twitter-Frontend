@@ -1,7 +1,7 @@
 .posterSection {
   display: flex;
   width: 54%;
-  height: 95vh;
+  height: 94vh;
   position: relative;
 }
 
@@ -33,10 +33,10 @@
   }
 
   .logo {
-    /* width: 60%; */
-    width: 300px;
-    top: 17%;
-    left: 13%;
+    width: 60%;
+    /* width: 300px; */
+    top: 19%;
+    left: 21%;
   }
 }
 
