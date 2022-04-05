@@ -12,22 +12,28 @@ function WhatsHappeningItem(props) {
     }
     return (
       <div className={classes.whatsHappeningItem}>
-        <p className={classes.fs13 + " " + classes.gray}>
+        <p className={classes.fs13 + " " + classes.gray} data-testid="genre">
           {props.genre} . Trending
         </p>
-        <p className={classes.fs15 + " " + classes.bold}>{props.topic}</p>
-        <p className={classes.fs13 + " " + classes.gray}>{stTweets} Tweets</p>
+        <p className={classes.fs15 + " " + classes.bold} data-testid="topic">
+          {props.topic}
+        </p>
+        <p className={classes.fs13 + " " + classes.gray} data-testid="tweets">
+          {stTweets} Tweets
+        </p>
       </div>
     );
   } else if (props.isLive) {
     return (
       <div className={classes.whatsHappeningItem + " " + classes.flex}>
         <div className={classes.text}>
-          <p className={classes.fs13 + " " + classes.gray}>
+          <p className={classes.fs13 + " " + classes.gray} data-testid="genre">
             {props.genre} . LIVE
           </p>
-          <p className={classes.fs15 + " " + classes.bold}>{props.topic}</p>
-          <p className={classes.fs13 + " " + classes.gray}>
+          <p className={classes.fs15 + " " + classes.bold} data-testid="topic">
+            {props.topic}
+          </p>
+          <p className={classes.fs13 + " " + classes.gray} data-testid="tag">
             Trending with <span className={classes.link}>#{props.tag}</span>
           </p>
         </div>

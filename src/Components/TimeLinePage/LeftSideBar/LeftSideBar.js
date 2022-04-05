@@ -6,7 +6,9 @@ import LeftButton from "./LeftButton";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import HomeIcon from "@material-ui/icons/Home";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
-import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
+//import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
+import PageviewOutlinedIcon from "@material-ui/icons/PageviewOutlined";
+import PageviewIcon from "@material-ui/icons/Pageview";
 import NotificationsNoneOutlinedIcon from "@material-ui/icons/NotificationsNoneOutlined";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import LocalPostOfficeOutlinedIcon from "@material-ui/icons/LocalPostOfficeOutlined";
@@ -24,7 +26,7 @@ import SelectMore from "./SelectMore/SelectMore";
 const LeftSideBar = () => {
   const [moreSelected, setMoreSelected] = useState(false);
 
-  const pathname = window.location.pathname;
+  const pathname = window.location.pathname.toLowerCase();
 
   const [pageActive, setPageActive] = React.useState(
     new Map([
@@ -42,6 +44,9 @@ const LeftSideBar = () => {
   useEffect(() => {
     setPageActive((prevPageActive) => {
       let newPageActive = new Map(prevPageActive);
+      [...newPageActive.keys()].forEach((key) => {
+        newPageActive.set(key, false);
+      });
       newPageActive.set(pathname.substring(1, pathname.length), true);
       return newPageActive;
     });
@@ -52,68 +57,82 @@ const LeftSideBar = () => {
       {moreSelected && <SelectMore />}
       {!moreSelected && <TwitterIcon className={classes.twitterIcon} />}
       {!moreSelected && (
-        <LeftButton
-          Icon={HomeOutlinedIcon}
-          IconActive={HomeIcon}
-          url="home"
-          title="Home"
-          onPage={pageActive.get("home")}
-        />
+        <div data-testid="homeButton">
+          <LeftButton
+            Icon={HomeOutlinedIcon}
+            IconActive={HomeIcon}
+            url="home"
+            title="Home"
+            onPage={pageActive.get("home")}
+          />
+        </div>
       )}
       {!moreSelected && (
-        <LeftButton
-          Icon={SearchOutlinedIcon}
-          IconActive={SearchOutlinedIcon}
-          url="explore"
-          title="Explore"
-          onPage={pageActive.get("explore")}
-        />
+        <div data-testid="exploreButton">
+          <LeftButton
+            Icon={PageviewOutlinedIcon}
+            IconActive={PageviewIcon}
+            url="explore"
+            title="Explore"
+            onPage={pageActive.get("explore")}
+          />
+        </div>
       )}
       {!moreSelected && (
-        <LeftButton
-          Icon={NotificationsNoneOutlinedIcon}
-          IconActive={NotificationsIcon}
-          url="notifications"
-          title="Notifications"
-          onPage={pageActive.get("notifications")}
-        />
+        <div data-testid="notificationsButton">
+          <LeftButton
+            Icon={NotificationsNoneOutlinedIcon}
+            IconActive={NotificationsIcon}
+            url="notifications"
+            title="Notifications"
+            onPage={pageActive.get("notifications")}
+          />
+        </div>
       )}
       {!moreSelected && (
-        <LeftButton
-          Icon={LocalPostOfficeOutlinedIcon}
-          IconActive={LocalPostOfficeIcon}
-          url="messages"
-          title="Messages"
-          onPage={pageActive.get("messages")}
-        />
+        <div data-testid="messagesButton">
+          <LeftButton
+            Icon={LocalPostOfficeOutlinedIcon}
+            IconActive={LocalPostOfficeIcon}
+            url="messages"
+            title="Messages"
+            onPage={pageActive.get("messages")}
+          />
+        </div>
       )}
       {!moreSelected && (
-        <LeftButton
-          Icon={BookmarkBorderOutlinedIcon}
-          IconActive={BookmarkIcon}
-          url="i/bookmarks"
-          title="Bookmarks"
-          onPage={pageActive.get("bookmarks")}
-        />
+        <div data-testid="bookmarksButton">
+          <LeftButton
+            Icon={BookmarkBorderOutlinedIcon}
+            IconActive={BookmarkIcon}
+            url="i/bookmarks"
+            title="Bookmarks"
+            onPage={pageActive.get("i/bookmarks")}
+          />
+        </div>
       )}
       {!moreSelected && (
-        <LeftButton
-          Icon={ViewListOutlinedIcon}
-          IconActive={ViewListIcon}
-          url="profileName/lists"
-          title="Lists"
-          onPage={pageActive.get("lists")}
-        />
+        <div data-testid="listsButton">
+          <LeftButton
+            Icon={ViewListOutlinedIcon}
+            IconActive={ViewListIcon}
+            url="profileName/lists"
+            title="Lists"
+            onPage={pageActive.get("profilename/lists")}
+          />
+        </div>
       )}{" "}
       {/* profile name is the logged in user in the future*/}
       {!moreSelected && (
-        <LeftButton
-          Icon={AccountCircleOutlinedIcon}
-          IconActive={AccountCircleIcon}
-          url="userprofile"
-          title="Profile"
-          onPage={pageActive.get("userprofile")}
-        />
+        <div data-testid="profileButton">
+          <LeftButton
+            Icon={AccountCircleOutlinedIcon}
+            IconActive={AccountCircleIcon}
+            url="userprofile"
+            title="Profile"
+            onPage={pageActive.get("userprofile")}
+          />
+        </div>
       )}
       {!moreSelected && (
         <div className={`${classesLeftButton.leftButton}`}>

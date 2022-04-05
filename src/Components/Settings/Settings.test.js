@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Settings from "./Settings";
 
 test("the component renders successfully", () => {
-  render(<Settings />);
+  render(<Router> <Settings /> </Router>);
   const element = screen.findByText("");
   expect(element).not.toBeNull();
 });

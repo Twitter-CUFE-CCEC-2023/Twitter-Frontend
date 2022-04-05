@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./RightSideBar.module.css";
 import SearchBar from "./SearchBar";
 import WhatsHappening from "./WhatsHappening/WhatsHappening";
-import WhoToFollow from "./HowToFollow/WhoToFollow";
+import WhoToFollow from "./WhoToFollow/WhoToFollow";
 
 export default function RightSideBar() {
   return (

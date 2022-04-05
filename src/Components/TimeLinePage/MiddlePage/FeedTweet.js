@@ -84,10 +84,8 @@ export default function FeedTweet(props) {
       <div className={classes.tweet}>
         <div className={classes.user}>
           <h2
-            className={
-              classes.underline + " " + classes.minip + " " + classes.fs15
-            }
-          >
+            data-testid="name"
+            className={classes.underline + " " + classes.minip + " " + classes.fs15}>
             {props.name}
           </h2>
           <div className={classes.hoverProfile + " " + classes.bot}>
@@ -103,7 +101,8 @@ export default function FeedTweet(props) {
           &nbsp;
           <p
             className={classes.gray + " " + classes.minip + " " + classes.fs15}
-          >
+            data-testid="userName">
+          
             @{props.userName}
           </p>
           <div className={classes.hoverProfile + " " + classes.bot}>
@@ -121,12 +120,14 @@ export default function FeedTweet(props) {
             className={
               classes.gray + " " + classes.underline + " " + classes.fs15
             }
+            data-testid="date"
           >
             {getDateDiff(props.date)}
           </p>{" "}
           {/*placeholder */}
         </div>
-        <p className={classes.fs15}>{props.text}</p>
+        <p className={classes.fs15} 
+        data-testid = "text" >{props.text}</p>
 
         {props.img && (
           <img className={classes.tweetImg} src={props.img} alt=""></img>
