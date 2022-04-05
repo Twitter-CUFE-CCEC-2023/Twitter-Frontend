@@ -27,11 +27,11 @@
 
 .profileImage{
   position: absolute;
-  top:5em;
-  left: 1.6em !important;
+  top:5.2em;
+  left: 1.3em !important;
   background-color: rgb(255, 255, 255);
-  width:23% !important; 
-  height: 23%;
+  width: 23%; 
+  height: 71%;
   border-radius: 50%;
   border-style: solid;
   border-width: 5px;
@@ -65,16 +65,18 @@
     scrollbar-width: none;    /* Firefox to hide scrollbar */
     min-width: 598px;
   }
-}
-
-@media screen and (max-width: 689px) {
-  .profileDataContainer{
-    margin-top: 0;
-    border-right: 1px solid var(--twitterBorder);
-  
-    overflow-y: scroll;
-    -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
-    scrollbar-width: none;    /* Firefox to hide scrollbar */
-    width:100%;
+  .profileImage{
+    position: absolute;
+    top:5.2em;
+    left: 1.3em !important;
+    background-color: rgb(255, 255, 255);
+    width: 23%; 
+    height: 71%;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(255, 255, 255);
   }
 }
+
+
