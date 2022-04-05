@@ -27,7 +27,7 @@ const LeftSideBar = () => {
   const [moreSelected, setMoreSelected] = useState(false);
 
   const pathname = window.location.pathname.toLowerCase();
-    console.log(pathname);
+
   const [pageActive, setPageActive] = React.useState(
     new Map([
       ["home", pathname === "home"],
@@ -56,9 +56,9 @@ const LeftSideBar = () => {
   return (
     <div className={classes.leftSideBar}>
       {moreSelected && <SelectMore />}
-      {!moreSelected && <TwitterIcon className={classes.twitterIcon} />}
+      {!moreSelected && <div className={classes.twitterIcon}> <TwitterIcon/> </div>}
       {!moreSelected && (
-        <div data-testid="homeButton">
+        <div data-testid="homeButton" className={classes.phoneVis}>
           <LeftButton
             Icon={HomeOutlinedIcon}
             IconActive={HomeIcon}
@@ -69,7 +69,7 @@ const LeftSideBar = () => {
         </div>
       )}
       {!moreSelected && (
-        <div data-testid="exploreButton">
+        <div data-testid="exploreButton" className={classes.phoneVis}>
           <LeftButton
             Icon={PageviewOutlinedIcon}
             IconActive={PageviewIcon}
@@ -80,7 +80,7 @@ const LeftSideBar = () => {
         </div>
       )}
       {!moreSelected && (
-        <div data-testid="notificationsButton">
+        <div data-testid="notificationsButton" className={classes.phoneVis}>
           <LeftButton
             Icon={NotificationsNoneOutlinedIcon}
             IconActive={NotificationsIcon}
@@ -91,7 +91,7 @@ const LeftSideBar = () => {
         </div>
       )}
       {!moreSelected && (
-        <div data-testid="messagesButton">
+        <div data-testid="messagesButton" className={classes.phoneVis}>
           <LeftButton
             Icon={LocalPostOfficeOutlinedIcon}
             IconActive={LocalPostOfficeIcon}
@@ -102,7 +102,7 @@ const LeftSideBar = () => {
         </div>
       )}
       {!moreSelected && (
-        <div data-testid="bookmarksButton">
+        <div data-testid="bookmarksButton" className={classes.phoneInvis}>
           <LeftButton
             Icon={BookmarkBorderOutlinedIcon}
             IconActive={BookmarkIcon}
@@ -113,7 +113,7 @@ const LeftSideBar = () => {
         </div>
       )}
       {!moreSelected && (
-        <div data-testid="listsButton">
+        <div data-testid="listsButton" className={classes.phoneInvis}>
           <LeftButton
             Icon={ViewListOutlinedIcon}
             IconActive={ViewListIcon}
@@ -125,7 +125,7 @@ const LeftSideBar = () => {
       )}{" "}
       {/* profile name is the logged in user in the future*/}
       {!moreSelected && (
-        <div data-testid="profileButton">
+        <div data-testid="profileButton" className={classes.phoneInvis}>
           <LeftButton
             Icon={AccountCircleOutlinedIcon}
             IconActive={AccountCircleIcon}
@@ -136,7 +136,7 @@ const LeftSideBar = () => {
         </div>
       )}
       {!moreSelected && (
-        <div className={`${classesLeftButton.leftButton}`}>
+        <div className={`${classesLeftButton.leftButton} ${classes.phoneInvis}`} >
           <MoreOutlinedIcon />
           <p
             className={classesLeftButton.title}
@@ -147,7 +147,9 @@ const LeftSideBar = () => {
         </div>
       )}{" "}
       {/* need to add the functionality of more */}
+      <div  className={classes.phoneInvis}>
       <TweetButton />
+      </div>
     </div>
   );
 };
