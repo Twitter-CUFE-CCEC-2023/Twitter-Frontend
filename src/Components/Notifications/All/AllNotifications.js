@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./AllNotifications.module.css";
-import NotificationsNavBar from "./NotificationsNavBar";
+import NotificationsNavBar from "../NotificationsNavBar";
 import SingleNotification from "./SingleNotification";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";

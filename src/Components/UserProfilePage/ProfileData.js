@@ -9,8 +9,6 @@ import ProfileTabs from "./ProfileTabs/ProfileTabs";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ProfileData() {
-
-
   return (
     <div className={`${classes.profileDataContainer} `}>
       <div className={`${classes.header} row`}>
@@ -41,16 +39,6 @@ function ProfileData() {
       </div>
       <div className={`row`}>
         <ProfileTabs></ProfileTabs>
-      </div>
-      <div className={`${classes.profileInfo} row  my-4 mx-1`}>
-        <ProfileInfo
-          username="عمرو أكا زيكا"
-          userEmail="@Amr_Zaki2000"
-          userBio="Al Ahly"
-          birthMonth="October"
-          birthDay={17}
-          birthYear={2000}
-        ></ProfileInfo>
       </div>
     </div>
   );

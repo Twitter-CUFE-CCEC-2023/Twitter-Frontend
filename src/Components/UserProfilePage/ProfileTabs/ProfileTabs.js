@@ -72,7 +72,9 @@ function ProfileTabs(props) {
     <Fragment>
       <a
         href="#"
-        className={`${tweetsSelected ? classes.selectedTab : classes.tab} col pb-0 text-muted btn `}
+        className={`${
+          tweetsSelected ? classes.selectedTab : classes.tab
+        } col pb-0 text-muted btn `}
         onClick={onClickTweets}
       >
         <div className={` align-self-center`}>
@@ -86,7 +88,9 @@ function ProfileTabs(props) {
       </a>
       <a
         href="#"
-        className={`${tweetsAndRepliesSelected ?classes.selectedTab: classes.tab}  col btn text-muted pb-0 `}
+        className={`${
+          tweetsAndRepliesSelected ? classes.selectedTab : classes.tab
+        }  col btn text-muted pb-0 `}
         onClick={onClickTweetsAndReplies}
       >
         <div className={` align-self-center`}>
@@ -102,7 +106,9 @@ function ProfileTabs(props) {
       </a>
       <a
         href="#"
-        className={`${mediaSelected ?classes.selectedTab: classes.tab} col btn text-muted pb-0`}
+        className={`${
+          mediaSelected ? classes.selectedTab : classes.tab
+        } col btn text-muted pb-0`}
         onClick={onClickMedia}
       >
         <div className={`align-self-center`}>
@@ -114,7 +120,9 @@ function ProfileTabs(props) {
       </a>
       <a
         href="#"
-        className={` ${likesSelected ?classes.selectedTab: classes.tab} col btn text-muted pb-0`}
+        className={` ${
+          likesSelected ? classes.selectedTab : classes.tab
+        } col btn text-muted pb-0`}
         onClick={onClickLikes}
       >
         <div className={` align-self-center`}>

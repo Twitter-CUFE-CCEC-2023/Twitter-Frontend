@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import classes from "./EditProfileButton.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Modal } from "bootstrap";
+// import { Modal } from "bootstrap";
 import CloseIcon from "@mui/icons-material/Close";
 import coverphoto from "../../../Assets/new-york-city.jpg";
 import CameraEnhanceOutlinedIcon from "@mui/icons-material/CameraEnhanceOutlined";
@@ -64,7 +64,10 @@ function EditProfileButton() {
               </div>
               <div className={`${classes.nameInput} row mt-5 mb-2`}>
                 <div className={`col form-group `}>
-                  <input type="text" className={`${classes.inputfield} form-control ms-2 me-2 pb-0`} />
+                  <input
+                    type="text"
+                    className={`${classes.inputfield} form-control ms-2 me-2 pb-0`}
+                  />
                 </div>
               </div>
               <div className={`${classes.nameInput} row mt-4 mb-2`}>
@@ -78,12 +81,18 @@ function EditProfileButton() {
               </div>
               <div className={`${classes.nameInput} row mt-4 mb-2`}>
                 <div className={`col form-group `}>
-                  <input type="text" className={`${classes.inputfield} form-control ms-2 me-2 pb-0`} />
+                  <input
+                    type="text"
+                    className={`${classes.inputfield} form-control ms-2 me-2 pb-0`}
+                  />
                 </div>
               </div>
               <div className={`${classes.nameInput} row mt-4 mb-2`}>
                 <div className={`col form-group `}>
-                  <input type="text" className={`${classes.inputfield} form-control ms-2 me-2 pb-0`} />
+                  <input
+                    type="text"
+                    className={`${classes.inputfield} form-control ms-2 me-2 pb-0`}
+                  />
                 </div>
               </div>
             </div>

@@ -11,30 +11,42 @@ function MiniProfile(props) {
           <img
             className={classes.miniImg + " " + classes.pointer}
             src={props.profilePic}
+            data-testid = "profilePicmp"
           ></img>
         </NavLink>
         <Button className={classes.miniButton}>Follow</Button>
       </div>
       <div className={classes.userNames}>
         <NavLink className={`noDecoration black `} to="profile">
-          <p className={classes.name + " " + classes.pointer + " noMargin"}>{props.name}</p>
+          <p className={classes.name + " " + classes.pointer + " noMargin"}
+          data-testid = "namemp"
+        >
+            {props.name}</p>
         </NavLink>
         <NavLink className={`noDecoration gray `} to="profile">
-          <p className={classes.gray + " " + classes.pointer+ " noMargin"}>
+          <p className={classes.gray + " " + classes.pointer+ " noMargin"}
+          data-testid = "userNamemp"
+          >
             @{props.userName}
           </p>
         </NavLink>
       </div>
-      <p className={classes.normalText}>{props.profileDesciption}</p>
+      <p className={classes.normalText}
+      data-testid = "profileDesciption"
+      >{props.profileDesciption}</p>
       <div className={classes.flex}>
-        <p className={classes.normalText + " " + classes.underline}>
+        <p className={classes.normalText + " " + classes.underline}
+        data-testid = "followingmp"
+        >
           <span className={classes.bold}>{props.following}</span>{" "}
           <span className={classes.gray}>
             Following
           </span>
         </p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <p className={classes.normalText + " " + classes.underline}>
+        <p className={classes.normalText + " " + classes.underline}
+        data-testid = "followersmp"
+        >
           <span className={classes.bold}>{props.followers}</span>{" "}
           <span className={classes.gray}>Followers</span>
         </p>

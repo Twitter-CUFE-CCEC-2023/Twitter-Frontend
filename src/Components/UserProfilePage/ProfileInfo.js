@@ -22,8 +22,8 @@ function ProfileInfo(props) {
         July 2021
       </div>
       <div className={`${classes.followesRow}row  mt-2 no-gutters`}>
-          <FollowingButton  followingNum={289}/>
-          <FollowersButton  followersNum={56}/>
+        <FollowingButton followingNum={289} />
+        <FollowersButton followersNum={56} />
       </div>
     </Fragment>
   );

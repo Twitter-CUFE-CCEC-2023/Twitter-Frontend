@@ -1,8 +1,8 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import classes from "./WhoToFollowItem.module.css";
-import ftclasses from "./FeedTweet.module.css";
-import MiniProfile from "./MiniProfile";
+import ftclasses from "../../MiddlePage/FeedTweet.module.css";
+import MiniProfile from "../../MiniProfile";
 import { NavLink } from "react-router-dom";
 
 function WhoToFollowItem(props) {
@@ -12,6 +12,8 @@ function WhoToFollowItem(props) {
         <img
           className={`${ftclasses.profilePic} ${classes.center} ${classes.minip}`}
           src={props.profilePic}
+          alt="profile"
+          data-testid="profilePic"
         ></img>
       </NavLink>
       <div className={`${classes.hoverProfile} ${classes.top}`}>
@@ -24,15 +26,21 @@ function WhoToFollowItem(props) {
           followers={1863}
         />
       </div>
-      
+
       <div className={classes.names + " " + classes.minip}>
         <NavLink className={classes.navl} to="profile">
-          <p className={classes.name + " " + classes.minip + " " + classes.nom}>
+          <p
+            className={classes.name + " " + classes.minip + " " + classes.nom}
+            data-testid="name"
+          >
             {props.name}
           </p>
         </NavLink>
         <NavLink className={classes.navl} to="profile">
-          <p className={classes.userName + " " + classes.nom}>
+          <p
+            className={classes.userName + " " + classes.nom}
+            data-testid="userName"
+          >
             @{props.userName}
           </p>
         </NavLink>

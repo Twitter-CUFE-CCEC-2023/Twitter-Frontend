@@ -6,20 +6,22 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import TweetAtrribute from "./TweetAtrribute";
-import MiniProfile from "./MiniProfile";
-import FeedTweetReplyModal from "./FeedTweetReplyModal";
+import MiniProfile from "../MiniProfile";
+// import FeedTweetReplyModal from "./FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
   const [replyModal, setReplyModal] = useState(false);
   function viewReplyModal() {
     setReplyModal(true);
   }
-  function hideReplyModal() {
-    setReplyModal(false);
-  }
-  {
-    console.log(props.img);
-  }
+
+  // function hideReplyModal() {
+  //   setReplyModal(false);
+  // }
+
+  // {
+  //   console.log(props.img);
+  // }
   const months = [
     "Jan",
     "Feb",
@@ -82,10 +84,8 @@ export default function FeedTweet(props) {
       <div className={classes.tweet}>
         <div className={classes.user}>
           <h2
-            className={
-              classes.underline + " " + classes.minip + " " + classes.fs15
-            }
-          >
+            data-testid="name"
+            className={classes.underline + " " + classes.minip + " " + classes.fs15}>
             {props.name}
           </h2>
           <div className={classes.hoverProfile + " " + classes.bot}>
@@ -101,7 +101,8 @@ export default function FeedTweet(props) {
           &nbsp;
           <p
             className={classes.gray + " " + classes.minip + " " + classes.fs15}
-          >
+            data-testid="userName">
+          
             @{props.userName}
           </p>
           <div className={classes.hoverProfile + " " + classes.bot}>
@@ -119,14 +120,18 @@ export default function FeedTweet(props) {
             className={
               classes.gray + " " + classes.underline + " " + classes.fs15
             }
+            data-testid="date"
           >
             {getDateDiff(props.date)}
           </p>{" "}
           {/*placeholder */}
         </div>
-        <p className={classes.fs15}>{props.text}</p>
+        <p className={classes.fs15} 
+        data-testid = "text" >{props.text}</p>
 
-        {props.img && <img className={classes.tweetImg} src={props.img}></img>}
+        {props.img && (
+          <img className={classes.tweetImg} src={props.img} alt=""></img>
+        )}
         <div className={classes.attributes}>
           <TweetAtrribute
             Icon={ChatBubbleOutlineOutlinedIcon}

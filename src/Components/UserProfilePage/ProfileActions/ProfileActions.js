@@ -28,7 +28,7 @@ function ProfileActions(props) {
         <div className={`${classes.messageButton} col-2 d-flex `}>
           <MailOutlineRoundedIcon fontsize="meduim" />
         </div>
-        <div className={`col-2 pe-0 ${!isFollowing? 'me-3': 'me-4'}`}>
+        <div className={`col-2 pe-0 ${!isFollowing ? "me-3" : "me-4"}`}>
           <FollowButton
             isFollowing={isFollowing}
             onFollow={onFollowHandeler}
