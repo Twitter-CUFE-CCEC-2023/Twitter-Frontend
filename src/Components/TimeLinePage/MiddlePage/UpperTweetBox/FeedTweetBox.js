@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./FeedTweetBox.css";
-import defaultMaleProfile from "../../Assets/defaultMaleProfile.jpg";
-import FeedBoxButton from "./FeedBoxButton";
+import defaultMaleProfile from "../../../../Assets/defaultMaleProfile.jpg";
+import FeedBoxButton from "../FeedBoxButton";
 import { NavLink } from "react-router-dom";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import GifOutlinedIcon from "@material-ui/icons/GifOutlined";
@@ -11,7 +11,7 @@ import DateRangeOutlinedIcon from "@material-ui/icons/DateRangeOutlined";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { Button } from "@material-ui/core";
 import classes from "./FeedTweetBox.module.css";
-import Modal from "../UI/Modal";
+import Modal from "../../../UI/Modal";
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
   const [photosNumberErrorModal, setPhotosNumberErrorModal] = useState(false);

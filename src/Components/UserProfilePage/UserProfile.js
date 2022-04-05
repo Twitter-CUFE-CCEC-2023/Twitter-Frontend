@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./UserProfile.module.css";
-import LeftSideBar from "../TimeLinePage/LeftSideBar";
+import LeftSideBar from "../TimeLinePage/LeftSideBar/LeftSideBar";
 import ProfileData from "./ProfileData";
-import RightSideBar from "../TimeLinePage/RightSideBar";
+import RightSideBar from "../TimeLinePage/RightSideBar/RightSideBar";
 
 function UserProfile() {
   return (

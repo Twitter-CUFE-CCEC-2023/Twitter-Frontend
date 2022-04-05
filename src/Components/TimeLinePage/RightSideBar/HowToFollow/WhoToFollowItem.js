@@ -1,8 +1,8 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import classes from "./WhoToFollowItem.module.css";
-import ftclasses from "./FeedTweet.module.css";
-import MiniProfile from "./MiniProfile";
+import ftclasses from "../../MiddlePage/FeedTweet.module.css";
+import MiniProfile from "../../MiniProfile";
 import { NavLink } from "react-router-dom";
 
 function WhoToFollowItem(props) {
@@ -24,7 +24,7 @@ function WhoToFollowItem(props) {
           followers={1863}
         />
       </div>
-      
+
       <div className={classes.names + " " + classes.minip}>
         <NavLink className={classes.navl} to="profile">
           <p className={classes.name + " " + classes.minip + " " + classes.nom}>

@@ -6,7 +6,7 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import TweetAtrribute from "./TweetAtrribute";
-import MiniProfile from "./MiniProfile";
+import MiniProfile from "../MiniProfile";
 import FeedTweetReplyModal from "./FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
