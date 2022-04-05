@@ -12,6 +12,7 @@ function WhoToFollowItem(props) {
         <img
           className={`${ftclasses.profilePic} ${classes.center} ${classes.minip}`}
           src={props.profilePic}
+          data-testid = "profilePic"
         ></img>
       </NavLink>
       <div className={`${classes.hoverProfile} ${classes.top}`}>
@@ -27,12 +28,14 @@ function WhoToFollowItem(props) {
 
       <div className={classes.names + " " + classes.minip}>
         <NavLink className={classes.navl} to="profile">
-          <p className={classes.name + " " + classes.minip + " " + classes.nom}>
+          <p className={classes.name + " " + classes.minip + " " + classes.nom}
+          data-testid = "name">
             {props.name}
           </p>
         </NavLink>
         <NavLink className={classes.navl} to="profile">
-          <p className={classes.userName + " " + classes.nom}>
+          <p className={classes.userName + " " + classes.nom}
+          data-testid = "userName">
             @{props.userName}
           </p>
         </NavLink>
