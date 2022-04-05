@@ -14,7 +14,12 @@ import AllNotificationsPage from "./Components/Notifications/AllNotificationsPag
 import MentionNotificationsPage from "./Components/Notifications/MentionNotificationsPage";
 import Settings from "./Components/Settings/Settings";
 import UserProfile from "./Components/UserProfilePage/UserProfile";
+
 import Admin from "./Components/AdminPage/Admin";
+import UsersList from "./Components/AdminPage/SideBarTabs/UsersList";
+import Likes from "./Components/AdminPage/SideBarTabs/Likes";
+import Tweets from "./Components/AdminPage/SideBarTabs/Tweets";
+import Retweets from "./Components/AdminPage/SideBarTabs/Retweets";
 
 function App() {
   // const loginCtx = useContext(LoginContext);
@@ -39,7 +44,12 @@ function App() {
           />
           <Route path="/settings" component={Settings} />
           <Route path="/userprofile" component={UserProfile} />
+
           <Route path="/admin" component={Admin} />
+          <Route path="/admin-userslist" component={UsersList} />
+          <Route path="/admin-likes" component={Likes} />
+          <Route path="/admin-tweets" component={Tweets} />
+          <Route path="/admin-retweets" component={Retweets} />
           <Route path="*">
             <Redirect to="/" />
           </Route>

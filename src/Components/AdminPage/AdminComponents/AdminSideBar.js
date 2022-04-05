@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import Drawer from "@material-ui/core/Drawer";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -7,13 +8,9 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import EqualizerRoundedIcon from "@material-ui/icons/EqualizerRounded";
-import PeopleAltRoundedIcon from "@material-ui/icons/PeopleAltRounded";
-import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import LoopRoundedIcon from "@material-ui/icons/LoopRounded";
 
 import AdminStyles from "../AdminStyles";
+import Tabs from "./AdminSideBarTabs";
 
 const AdminSideBar = (props) => {
   const screenSize = window.innerWidth;
@@ -27,34 +24,6 @@ const AdminSideBar = (props) => {
 
   const classes = AdminStyles();
 
-  const features = [
-    {
-      title: "Filters",
-      icon: <EqualizerRoundedIcon />,
-      url: "/admin/filter",
-    },
-    {
-      title: "Users List",
-      icon: <PeopleAltRoundedIcon />,
-      url: "/admin/feature-userlist",
-    },
-    {
-      title: "Likes",
-      icon: <ThumbUpAltRoundedIcon />,
-      url: "/admin/feature-likes",
-    },
-    {
-      title: "Tweets",
-      icon: <TwitterIcon />,
-      url: "/admin/feature-tweets",
-    },
-    {
-      title: "Retweets",
-      icon: <LoopRoundedIcon />,
-      url: "/admin/feature-retweets",
-    },
-  ];
-
   return (
     <React.Fragment>
       <Drawer
@@ -67,24 +36,28 @@ const AdminSideBar = (props) => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {features.map((item, index) => {
+            {Tabs.map((item, index) => {
               return (
                 <div key={index}>
-                  <ListItem
-                    button
-                    key={index}
-                    onClick={props.handleChosenFeature[index]}
+                  <NavLink
+                    to={`${item.url}`}
+                    style={{
+                      textDecoration: "none",
+                      color: "rgba(0, 0, 0, 0.8)",
+                    }}
                   >
-                    <ListItemIcon style={{ minWidth: 0 }}>
-                      {item.icon}
-                    </ListItemIcon>
-                    {largeScreen && (
-                      <ListItemText
-                        style={{ marginLeft: "15px" }}
-                        primary={item.title}
-                      />
-                    )}
-                  </ListItem>
+                    <ListItem button key={index}>
+                      <ListItemIcon style={{ minWidth: 0 }}>
+                        {item.icon}
+                      </ListItemIcon>
+                      {largeScreen && (
+                        <ListItemText
+                          style={{ marginLeft: "15px" }}
+                          primary={item.title}
+                        />
+                      )}
+                    </ListItem>
+                  </NavLink>
                   <Divider />
                 </div>
               );

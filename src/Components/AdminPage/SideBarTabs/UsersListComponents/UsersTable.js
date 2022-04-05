@@ -8,11 +8,11 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import TablePagination from "@material-ui/core/TablePagination";
-
-import classes from "./UsersList.module.css";
-import DummyData from "./DummyData";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
-import UserTableRow from "./UserTableRow";
+
+import classess from "./UsersList.module.css";
+import DummyData from "./DummyData";
+import TableRowOfUser from "./TableRowOfUser";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -24,7 +24,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-const UsersList = () => {
+const UsersTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -38,8 +38,8 @@ const UsersList = () => {
   };
 
   return (
-    <Paper className={classes.paper}>
-      <TableContainer className={classes.container}>
+    <Paper className={classess.paper}>
+      <TableContainer className={classess.container}>
         <Table stickyHeader aria-label="collapsible table">
           <TableHead>
             <TableRow>
@@ -53,12 +53,12 @@ const UsersList = () => {
           </TableHead>
           <TableBody>
             {DummyData.map((row, index) => {
-              if (index % 2 != 0) {
+              if (index % 2 !== 0) {
                 return (
-                  <UserTableRow key={index} row={row} class={classes.even} />
+                  <TableRowOfUser key={index} row={row} class={classess.even} />
                 );
               } else {
-                return <UserTableRow key={index} row={row} />;
+                return <TableRowOfUser key={index} row={row} />;
               }
             })}
           </TableBody>
@@ -77,4 +77,4 @@ const UsersList = () => {
   );
 };
 
-export default UsersList;
+export default UsersTable;

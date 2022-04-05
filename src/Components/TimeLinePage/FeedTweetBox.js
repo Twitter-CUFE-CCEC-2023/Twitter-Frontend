@@ -38,12 +38,12 @@ export default function FeedTweetBox(props) {
     //   console.warn(e.target.result);
     // };
   }
-  function hideModal(){
+  function hideModal() {
     setPhotosNumberErrorModal(false);
   }
   return (
     <div className="feedTweetBox">
-      {photosNumberErrorModal && (
+      {/* {photosNumberErrorModal && (
         <Modal
           data={{
             header: "more photos than allowed",
@@ -53,7 +53,7 @@ export default function FeedTweetBox(props) {
           }}
           onHide={hideModal}
         ></Modal>
-      )}
+      )} */}
       <div className="boxInput">
         <div className="profileImgOpacity">
           <NavLink to="profile">

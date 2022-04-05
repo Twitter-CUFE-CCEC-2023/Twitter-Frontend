@@ -1,13 +1,12 @@
 import React from "react";
 
 import Toolbar from "@material-ui/core/Toolbar";
+import AdminStyles from "../AdminStyles";
+import AdminHeader from "../AdminComponents/AdminHeader";
+import AdminSideBar from "../AdminComponents/AdminSideBar";
+import UsersTable from "./UsersListComponents/UsersTable";
 
-import AdminStyles from "./AdminStyles";
-import AdminHeader from "./AdminComponents/AdminHeader";
-import AdminSideBar from "./AdminComponents/AdminSideBar";
-import Filters from "./Filters/Filters";
-
-const Admin = () => {
+const UsersList = () => {
   const classes = AdminStyles();
 
   return (
@@ -16,10 +15,10 @@ const Admin = () => {
       <AdminSideBar />
       <main className={classes.content}>
         <Toolbar />
-        <Filters />
+        <UsersTable />
       </main>
     </div>
   );
 };
 
-export default Admin;
+export default UsersList;
