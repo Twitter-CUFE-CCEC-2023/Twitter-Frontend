@@ -1,13 +1,8 @@
-* {
-  box-sizing: border-box;
-}
-
 .buttonNext {
-  margin-left: 5.5%;
   margin-top: 25px;
   padding: 0px;
-  height: 40px;
-  width: 298px;
+  height: 45px;
+  width: max;
 
   text-decoration: none;
 

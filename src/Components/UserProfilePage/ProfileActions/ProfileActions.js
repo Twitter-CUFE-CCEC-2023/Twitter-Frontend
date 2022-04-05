@@ -37,7 +37,6 @@ function ProfileActions(props) {
       </Fragment>
     );
   }
-
   return <Fragment>{actionsRendered}</Fragment>;
 }
 

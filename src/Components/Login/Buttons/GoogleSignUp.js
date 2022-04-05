@@ -11,7 +11,7 @@ const GoogleSignUp = (props) => {
             <td className={classes.logo}>
               <img src={googleLogo} alt="GoogleLogo" width="20px" />
             </td>
-            <td>Sign up with Google</td>
+            <td>{props.content}</td>
           </tr>
         </tbody>
       </table>

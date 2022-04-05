@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 .buttonSignUp {
   margin-left: 5.5%;
   margin-top: 1%;
@@ -28,6 +24,12 @@
   color: white;
   text-align: center;
 
-  margin-top: 12px;
+  margin-top: 9px;
   font-weight: 700;
 }
+
+.navLink {
+  text-decoration: none;
+}
+
+
