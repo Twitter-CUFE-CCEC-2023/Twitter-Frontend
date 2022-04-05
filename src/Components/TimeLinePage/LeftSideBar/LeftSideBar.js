@@ -27,12 +27,13 @@ const LeftSideBar = () => {
   const [moreSelected, setMoreSelected] = useState(false);
 
   const pathname = window.location.pathname.toLowerCase();
-
+    console.log(pathname);
   const [pageActive, setPageActive] = React.useState(
     new Map([
       ["home", pathname === "home"],
       ["explore", pathname === "explore"],
       ["notifications", pathname === "notifications"],
+      ["mentionnotifications", pathname === "mentionnotifications"],
       ["messages", pathname === "messages"],
       ["bookmarks", pathname === "i/bookmarks"],
       ["lists", pathname === "profileName/lists"],
@@ -85,7 +86,7 @@ const LeftSideBar = () => {
             IconActive={NotificationsIcon}
             url="notifications"
             title="Notifications"
-            onPage={pageActive.get("notifications")}
+            onPage={pageActive.get("notifications") || pageActive.get("mentionnotifications")}
           />
         </div>
       )}
