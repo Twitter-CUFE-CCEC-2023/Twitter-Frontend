@@ -7,19 +7,21 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import TweetAtrribute from "./TweetAtrribute";
 import MiniProfile from "../MiniProfile";
-import FeedTweetReplyModal from "./FeedTweetReplyModal";
+// import FeedTweetReplyModal from "./FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
   const [replyModal, setReplyModal] = useState(false);
   function viewReplyModal() {
     setReplyModal(true);
   }
-  function hideReplyModal() {
-    setReplyModal(false);
-  }
-  {
-    console.log(props.img);
-  }
+
+  // function hideReplyModal() {
+  //   setReplyModal(false);
+  // }
+
+  // {
+  //   console.log(props.img);
+  // }
   const months = [
     "Jan",
     "Feb",
@@ -126,7 +128,9 @@ export default function FeedTweet(props) {
         </div>
         <p className={classes.fs15}>{props.text}</p>
 
-        {props.img && <img className={classes.tweetImg} src={props.img}></img>}
+        {props.img && (
+          <img className={classes.tweetImg} src={props.img} alt=""></img>
+        )}
         <div className={classes.attributes}>
           <TweetAtrribute
             Icon={ChatBubbleOutlineOutlinedIcon}

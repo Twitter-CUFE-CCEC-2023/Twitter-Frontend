@@ -1,7 +1,7 @@
 import React from "react";
 
 import classes from "./UnderConstructionPage.module.css";
-import MoreHorizOutlinedIcon from "@material-ui/icons/MoreHorizOutlined";
+// import MoreHorizOutlinedIcon from "@material-ui/icons/MoreHorizOutlined";
 
 import LeftSideBar from "../TimeLinePage/LeftSideBar/LeftSideBar";
 import underConstructionLogo from "../../Assets/underconstruction.jpg";

@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./MentionNotifications.module.css";
-import NotificationsNavBar from "./NotificationsNavBar";
+import NotificationsNavBar from "../NotificationsNavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 function MentionNotifications() {
   return (

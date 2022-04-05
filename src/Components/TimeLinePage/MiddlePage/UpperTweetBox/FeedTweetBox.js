@@ -11,7 +11,8 @@ import DateRangeOutlinedIcon from "@material-ui/icons/DateRangeOutlined";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { Button } from "@material-ui/core";
 import classes from "./FeedTweetBox.module.css";
-import Modal from "../../../UI/Modal";
+// import Modal from "../../../UI/Modal";
+
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
   const [photosNumberErrorModal, setPhotosNumberErrorModal] = useState(false);
@@ -27,9 +28,9 @@ export default function FeedTweetBox(props) {
     if (files.length > 4) {
       setPhotosNumberErrorModal(true);
     }
-    let reader = new FileReader();
-    let urls = [];
-    let i = 0;
+    // let reader = new FileReader();
+    // let urls = [];
+    // let i = 0;
     // for (; i < files.length; i++) {
     //   // urls.push(reader.readAsDataURL(files[i]));
     //   reader.readAsDataURL(files[i]);
@@ -38,9 +39,11 @@ export default function FeedTweetBox(props) {
     //   console.warn(e.target.result);
     // };
   }
-  function hideModal() {
-    setPhotosNumberErrorModal(false);
-  }
+
+  // function hideModal() {
+  //   setPhotosNumberErrorModal(false);
+  // }
+
   return (
     <div className="feedTweetBox">
       {/* {photosNumberErrorModal && (
@@ -57,7 +60,11 @@ export default function FeedTweetBox(props) {
       <div className="boxInput">
         <div className="profileImgOpacity">
           <NavLink to="profile">
-            <img className="profileImg" src={defaultMaleProfile}></img>
+            <img
+              className="profileImg"
+              src={defaultMaleProfile}
+              alt="profile"
+            ></img>
           </NavLink>
         </div>
         <form className={classes.tweetBoxForm}>

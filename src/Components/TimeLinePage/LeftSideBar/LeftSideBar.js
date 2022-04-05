@@ -28,14 +28,14 @@ const LeftSideBar = () => {
 
   const [pageActive, setPageActive] = React.useState(
     new Map([
-      ["home", pathname == "home"],
-      ["explore", pathname == "explore"],
-      ["notifications", pathname == "notifications"],
-      ["messages", pathname == "messages"],
-      ["bookmarks", pathname == "i/bookmarks"],
-      ["lists", pathname == "profileName/lists"],
-      ["userprofile", pathname == "userprofile"],
-      ["more", pathname == "more"],
+      ["home", pathname === "home"],
+      ["explore", pathname === "explore"],
+      ["notifications", pathname === "notifications"],
+      ["messages", pathname === "messages"],
+      ["bookmarks", pathname === "i/bookmarks"],
+      ["lists", pathname === "profileName/lists"],
+      ["userprofile", pathname === "userprofile"],
+      ["more", pathname === "more"],
     ])
   );
 

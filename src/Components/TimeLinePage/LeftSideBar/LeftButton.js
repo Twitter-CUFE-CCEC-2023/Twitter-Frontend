@@ -1,10 +1,9 @@
 import React from "react";
 import classes from "./LeftButton.module.css";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function LeftButton(props) {
   return (
-    // <Router>
     <NavLink to={`/${props.url}`} className={classes.navLink}>
       <div
         className={`${classes.leftButton} ${props.onPage && classes.onPage}`}
@@ -14,6 +13,5 @@ export default function LeftButton(props) {
         <p className={classes.title}>{props.title}</p>
       </div>
     </NavLink>
-    // </Router>
   );
 }

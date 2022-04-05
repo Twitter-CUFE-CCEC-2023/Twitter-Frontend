@@ -12,6 +12,7 @@ function WhoToFollowItem(props) {
         <img
           className={`${ftclasses.profilePic} ${classes.center} ${classes.minip}`}
           src={props.profilePic}
+          alt="profile"
         ></img>
       </NavLink>
       <div className={`${classes.hoverProfile} ${classes.top}`}>
