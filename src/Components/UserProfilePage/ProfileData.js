@@ -9,6 +9,8 @@ import ProfileTabs from "./ProfileTabs/ProfileTabs";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ProfileData() {
+
+
   return (
     <div className={`${classes.profileDataContainer} `}>
       <div className={`${classes.header} row`}>
@@ -25,7 +27,7 @@ function ProfileData() {
         </div>
       </div>
       <div className={`${classes.profileActionsRow} row justify-content-end  `}>
-        <ProfileActions isMyProfile={false}></ProfileActions>
+        <ProfileActions isMyProfile={true}></ProfileActions>
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>
         <ProfileInfo
