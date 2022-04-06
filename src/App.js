@@ -23,6 +23,7 @@ import UsersList from "./Components/AdminPage/SideBarTabs/UsersList";
 import Likes from "./Components/AdminPage/SideBarTabs/Likes";
 import Tweets from "./Components/AdminPage/SideBarTabs/Tweets";
 import Retweets from "./Components/AdminPage/SideBarTabs/Retweets";
+import Statistics from "./Components/AdminPage/SideBarTabs/Statistics";
 
 function App() {
   // const loginCtx = useContext(LoginContext);
@@ -57,6 +58,7 @@ function App() {
           <Route path="/admin-likes" component={Likes} />
           <Route path="/admin-tweets" component={Tweets} />
           <Route path="/admin-retweets" component={Retweets} />
+          <Route path="/admin-statistics" component={Statistics} />
           <Route path="*">
             <Redirect to="/" />
           </Route>
