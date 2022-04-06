@@ -15,7 +15,7 @@ function ProfileActions(props) {
   let actionsRendered;
   if (props.isMyProfile === true) {
     actionsRendered = (
-      <div className="col-3 pe-0">
+      <div className="">
         <EditProfileButton></EditProfileButton>
       </div>
     );
