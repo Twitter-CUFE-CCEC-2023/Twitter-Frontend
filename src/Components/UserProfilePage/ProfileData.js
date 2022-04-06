@@ -24,8 +24,10 @@ function ProfileData() {
           />
         </div>
       </div>
-      <div className={`${classes.profileActionsRow} row justify-content-end  `}>
+      <div className={`${classes.profileActionsRow}  `}>
+
         <ProfileActions isMyProfile={true}></ProfileActions>
+        
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>
         <ProfileInfo
