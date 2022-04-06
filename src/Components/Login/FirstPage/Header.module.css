@@ -30,8 +30,9 @@
   }
 
   .heading {
-    font-size: 165%;
+    font-size: 180%;
     margin: 13% 0%;
+    margin-left: -1%;
   }
 
   .content {

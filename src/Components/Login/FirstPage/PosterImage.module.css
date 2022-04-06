@@ -1,7 +1,7 @@
 .posterSection {
   display: flex;
   width: 54%;
-  height: 94vh;
+  height: 95vh;
   position: relative;
 }
 
@@ -14,11 +14,11 @@
 }
 
 .logo {
-  width: 340px;
+  width: 335px;
   /* width: 40%; */
   position: absolute;
   top: 30%;
-  left: 30%;
+  left: 30.5%;
 }
 
 .smallScreenLogo {

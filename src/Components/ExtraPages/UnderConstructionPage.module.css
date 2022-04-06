@@ -30,3 +30,18 @@
 .imageContainer {
   margin: 5%;
 }
+
+@media only screen and (min-width: 0px) and (max-width: 700px) {
+  .image {
+    width: 100%;
+  }
+
+  .imageContainer {
+    margin-top: 20%;
+  }
+
+  .content {
+    margin-top: -30%;
+    text-align: center;
+  }
+}
