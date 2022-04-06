@@ -16,7 +16,7 @@ function ProfileData() {
       </div>
       <div className={`${classes.coverPhoto}  row `}>
         <CoverPhoto coverImage={image}></CoverPhoto>
-        <div className={`${classes.profileImageContainer} p-0`}>
+        <div className={`${classes.profileImageContainer} `}>
           <img
             className={`${classes.profileImage} img-fluid`}
             src="https://pbs.twimg.com/profile_images/1492532221110104067/_3ozwoyh_400x400.jpg"

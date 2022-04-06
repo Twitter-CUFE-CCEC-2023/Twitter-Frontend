@@ -21,12 +21,12 @@
 }
 
 .coverPhoto {
-  height: 199px;
+  /* height: 199px; */
   position: relative;
 }
 
 .profileImage {
-  position: absolute;
+  /* position: absolute;
   top: 5.2em;
   left: 1.3em !important;
   background-color: rgb(255, 255, 255);
@@ -36,7 +36,17 @@
   border-radius: 50%;
   border-style: solid;
   border-width: 5px;
+  border-color: rgb(255, 255, 255); */
+  position: absolute;
+
+  background-color: rgb(255, 255, 255);
+
+  object-fit: cover;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 5px;
   border-color: rgb(255, 255, 255);
+  top: -50%;
 }
 
 .profileActionsRow {
@@ -49,12 +59,12 @@
 }
 
 .profileImageContainer {
-  width: 10% !important;
-  max-width: 10% !important;
-  height: 1px !important;
-  max-height: 1px !important;
-
-  display: inline-block;
+  width: 23%;
+  height: 0;
+  padding-bottom: 23%;
+  position: absolute;
+  top: 100%;
+  left: 1.3rem;
 }
 
 @media screen and (min-width: 689px) {
