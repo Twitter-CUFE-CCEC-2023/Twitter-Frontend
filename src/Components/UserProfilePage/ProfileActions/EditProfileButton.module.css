@@ -15,12 +15,13 @@
 }
 
 .modalContent {
-  width: 22em;
-  top: 1em;
-  right: 1.5em;
-  border-radius: 0.6em !important;
+  width: 100% !important;
+  border-radius: 1em;
 }
 
+.modalDialog {
+  border-radius: 40% !important;
+}
 .modalBody {
   height: 75vh;
   overflow-y: scroll;
@@ -28,13 +29,17 @@
 
 .modalHeader {
   position: sticky;
-  background-color: rgb(255, 255, 255, 0.97);
+  background-color: rgb(255, 255, 255, 0.98);
   border-top-left-radius: 0.8em;
   border-top-right-radius: 0.8em;
   border-bottom: none;
+  width: 100%;
 }
+
 .modalTitle {
   font-weight: bold;
+  justify-self: start;
+  flex-grow: 3;
 }
 
 .closeIcon:hover {
@@ -53,6 +58,7 @@
   padding-left: 6px;
   font-size: 25px !important;
 }
+
 .saveButton {
   border-radius: 25px;
   font-size: 0.8em;
@@ -62,7 +68,7 @@
   font-weight: 600;
   font-size: 0.6em;
   color: white;
-  margin-left: 18em !important;
+  /* margin-left: 15em ; */
 }
 
 .saveButton:hover {
@@ -127,3 +133,26 @@
   height: 54px;
   font-size: 15px;
 }
+
+@media screen and (max-width: 705px) {
+  .modalDialog {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0;
+    border: 0 !important;
+    border-radius: 0 !important;
+    max-width: 705px !important;
+  }
+  .modalBody{
+    height: 100% !important;
+  }
+  .modalContent{
+    border-radius: 0;
+  }
+}
+  @media screen and (min-width: 705px) {
+    .modalDialog {
+      max-width: 600px !important;
+    }
+  }
+

@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
 import classes from "./EditProfileButton.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-//  import { Modal } from "bootstrap";
+import { Modal } from "bootstrap";
 import CloseIcon from "@mui/icons-material/Close";
 import coverphoto from "../../../Assets/new-york-city.jpg";
 import CameraEnhanceOutlinedIcon from "@mui/icons-material/CameraEnhanceOutlined";
+import { screen } from "@testing-library/react";
 
 function EditProfileButton() {
+  var resWidth=screen.width;
   return (
     <Fragment>
       <button
@@ -21,9 +23,9 @@ function EditProfileButton() {
         tabIndex="-1"
         id="myModal"
       >
-        <div className={`${classes.modalDialog} modal-dialog modal-md`}>
+        <div className={`${classes.modalDialog} modal-dialog `}>
           <div
-            className={`${classes.modalContent} modal-content container m-0 p-0`}
+            className={`${classes.modalContent} modal-content p-0`}
           >
             <div className={`${classes.modalHeader} modal-header pb-3 pt-2 `}>
               <CloseIcon
@@ -31,11 +33,11 @@ function EditProfileButton() {
                 data-bs-dismiss="modal"
                 aria-label="Close"
               />
-              <h5 className={`${classes.modalTitle} modal-title`}>
+              <h5 className={`${classes.modalTitle} col-3 modal-title`}>
                 Edit profile
               </h5>
               <button
-                className={`${classes.saveButton} ms-4 text-bold p-1 pt-0 px-3`}
+                className={`${classes.saveButton}   text-bold p-1 pt-0 px-3 `}
                 type="button"
                 data-bs-dismiss="modal"
                 aria-label="Close"
@@ -44,7 +46,7 @@ function EditProfileButton() {
               </button>
             </div>
             <div
-              className={`${classes.modalBody} modal-body container py-0 px-1`}
+              className={`${classes.modalBody} modal-body py-0 px-1`}
             >
               <div className={`${classes.coverPhotoEdit}`}>
                 <img src={coverphoto} alt="" className={` img-fluid py-0`} />
