@@ -12,7 +12,11 @@ const UnderConstructionPage = () => {
       <LeftSideBar />
       <div className={classes.middlePage}>
         <div className={classes.imageContainer}>
-          <img src={underConstructionLogo} alt="page under construction" />
+          <img
+            className={classes.image}
+            src={underConstructionLogo}
+            alt="page under construction"
+          />
         </div>
         <h1 className={classes.content}>Coming Soon 📢, Stay Tuned</h1>
       </div>
