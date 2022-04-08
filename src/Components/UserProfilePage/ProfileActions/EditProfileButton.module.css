@@ -79,53 +79,67 @@
 .coverPhotoEdit {
   position: relative;
   filter: brightness(80%);
+  z-index: 1;
 }
 
 .profilePhotoEdit {
   position: absolute;
-  top: 5em;
-  left: 1.2em !important;
   background-color: rgb(255, 255, 255);
-  width: 20% !important;
+  object-fit: cover;
   border-radius: 50%;
   border-style: solid;
-  border-width: 5px;
+  border-width: 4px;
   border-color: rgb(255, 255, 255);
+  top: -32%;
 }
 
 .profileImageContainer {
-  width: 10% !important;
-  max-width: 10% !important;
-  height: 1px !important;
-  max-height: 1px !important;
-  display: inline-block;
+  width: 21%;
+  position: absolute;
+  top: 90%;
+  left: 1rem;
+  padding-bottom: 15%;
+  z-index: 2;
 }
 
 .coverEditor {
   position: absolute;
-  left: 11em;
-  top: 3em;
+  left: 45%;
+  top: 45%;
   border-radius: 50%;
-  border-color: #c11d1d;
   border-width: 2px;
   color: white;
   background-color: #535151;
   cursor: pointer;
+  font-size: 30px !important;
 }
 
 .photoEditor {
   position: absolute;
-  left: 3em;
-  top: 8em;
+  left: 33%;
+  top: 9%;
   border-radius: 50%;
-  border-color: #c11d1d;
   border-width: 2px;
   color: white;
   background-color: #5b5353;
   cursor: pointer;
+  font-size: 30px !important;
 }
 
 .nameInput {
+  width: 100%;
+  margin-top: 16% !important;
+  z-index: 100;
+  position: relative;
+}
+.nameLabel{
+  position: absolute;
+  font-size: 0.6rem;
+  top: 0.5em;
+  left:1.7rem;
+}
+
+.textInput {
   width: 100%;
 }
 
@@ -134,25 +148,41 @@
   font-size: 15px;
 }
 
+.inputfield:focus{
+  box-shadow: none !important;
+}
+
 @media screen and (max-width: 705px) {
   .modalDialog {
     width: 100% !important;
-    height: 100% !important;
     margin: 0;
     border: 0 !important;
     border-radius: 0 !important;
     max-width: 705px !important;
+    height: 100vh !important;
   }
-  .modalBody{
+  .modalBody {
     height: 100% !important;
   }
-  .modalContent{
+  .modalContent {
     border-radius: 0;
+    height: 100%;
+  }
+  #myModal {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0;
   }
 }
-  @media screen and (min-width: 705px) {
-    .modalDialog {
-      max-width: 600px !important;
-    }
+@media screen and (min-width: 705px) {
+  .modalDialog {
+    max-width: 600px !important;
   }
+}
 
+@media  (max-width: 370px) {
+  .photoEditor{
+    left: 27% !important;
+    top: -10% !important;
+  }
+}

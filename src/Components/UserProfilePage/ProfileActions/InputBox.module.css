@@ -1,0 +1,25 @@
+.inputfield {
+  height: 54px;
+  font-size: 15px;
+}
+.inputfield:focus {
+  box-shadow: none !important;
+}
+
+.nameInput {
+  width: 100%;
+  margin-top: 16% !important;
+  z-index: 100;
+  position: relative;
+}
+.nameLabel {
+  position: absolute;
+  font-size: 0.6rem;
+  top: 0.5em;
+  left: 1.7rem;
+}
+.textInput {
+  width: 100%;
+  z-index: 100;
+  position: relative;
+}

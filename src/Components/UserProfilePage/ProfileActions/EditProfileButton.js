@@ -1,14 +1,16 @@
-import React, { Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import classes from "./EditProfileButton.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal } from "bootstrap";
 import CloseIcon from "@mui/icons-material/Close";
 import coverphoto from "../../../Assets/new-york-city.jpg";
+import InputBox from "./InputBox";
 import CameraEnhanceOutlinedIcon from "@mui/icons-material/CameraEnhanceOutlined";
 import { screen } from "@testing-library/react";
+import $ from "jquery";
+import { css } from "@emotion/react";
 
 function EditProfileButton() {
-  var resWidth=screen.width;
   return (
     <Fragment>
       <button
@@ -24,9 +26,7 @@ function EditProfileButton() {
         id="myModal"
       >
         <div className={`${classes.modalDialog} modal-dialog `}>
-          <div
-            className={`${classes.modalContent} modal-content p-0`}
-          >
+          <div className={`${classes.modalContent} modal-content p-0`}>
             <div className={`${classes.modalHeader} modal-header pb-3 pt-2 `}>
               <CloseIcon
                 className={`${classes.closeIcon} ps-0  me-4`}
@@ -45,9 +45,7 @@ function EditProfileButton() {
                 Save
               </button>
             </div>
-            <div
-              className={`${classes.modalBody} modal-body py-0 px-1`}
-            >
+            <div className={`${classes.modalBody} modal-body py-0 px-1`}>
               <div className={`${classes.coverPhotoEdit}`}>
                 <img src={coverphoto} alt="" className={` img-fluid py-0`} />
                 <CameraEnhanceOutlinedIcon
@@ -59,44 +57,17 @@ function EditProfileButton() {
                     src="https://pbs.twimg.com/profile_images/1492532221110104067/_3ozwoyh_400x400.jpg"
                     alt=""
                   />
-                </div>
-                <CameraEnhanceOutlinedIcon
-                  className={`${classes.photoEditor}`}
-                />
-              </div>
-              <div className={`${classes.nameInput} row mt-5 mb-2`}>
-                <div className={`col form-group `}>
-                  <input
-                    type="text"
-                    className={`${classes.inputfield} form-control ms-2 me-2 pb-0`}
+                  <CameraEnhanceOutlinedIcon
+                    className={`${classes.photoEditor}`}
                   />
                 </div>
               </div>
-              <div className={`${classes.nameInput} row mt-4 mb-2`}>
-                <div className={`col form-group `}>
-                  <textarea
-                    type="text"
-                    className={` form-control ms-2 me-2`}
-                    rows="3"
-                  ></textarea>
-                </div>
-              </div>
-              <div className={`${classes.nameInput} row mt-4 mb-2`}>
-                <div className={`col form-group `}>
-                  <input
-                    type="text"
-                    className={`${classes.inputfield} form-control ms-2 me-2 pb-0`}
-                  />
-                </div>
-              </div>
-              <div className={`${classes.nameInput} row mt-4 mb-2`}>
-                <div className={`col form-group `}>
-                  <input
-                    type="text"
-                    className={`${classes.inputfield} form-control ms-2 me-2 pb-0`}
-                  />
-                </div>
-              </div>
+              <form action="">
+                <InputBox inputName="Name" inputValue="عمرو اكا زيكا" label="nameLabel" labelID="'#nameID'" pID='nameID'></InputBox>
+                <InputBox inputName="Bio" label="bioLabel" labelID='"#bioID"' pID='bioID'></InputBox>
+                <InputBox inputName="Location" label="location" labelID='"#locID"' pID='locID'></InputBox>
+                <InputBox inputName="Website" labelID='"#webID"' pID='webID'></InputBox>
+              </form>
             </div>
             <div class="modal-footer"></div>
           </div>
