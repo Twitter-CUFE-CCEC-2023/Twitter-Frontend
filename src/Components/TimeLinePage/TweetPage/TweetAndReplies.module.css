@@ -1,0 +1,60 @@
+.TweetAndReplies {
+  margin-top: 0;
+  border-right: 1px solid var(--twitterBorder);
+
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
+  scrollbar-width: none; /* Firefox to hide scrollbar*/
+  max-width: 598px;
+}
+
+.TweetAndReplies::-webkit-scrollbar {
+  display: none;
+}
+
+.feedHeader {
+  position: sticky;
+  background-color: rgb(255, 255, 255, 0.97);
+  top: 0;
+  z-index: 2;
+  margin-top: 0;
+  padding: 10px;
+}
+
+.tbox{
+  margin-top: 10px;
+}
+
+.tweetHeader {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 255, 255, 0.97);
+  top: 0;
+  z-index: 2;
+  margin-top: 0;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.headerText{
+  margin-left: 10px;
+  padding-top: 8px;
+}
+
+.fs20{
+  font-size: 20px;
+}
+  
+.icon{
+  cursor: pointer;
+}
+.icon:hover{
+  background-color: var(--twitterGrayHighligh);
+  border-radius: 50%;
+}
+
+.nlink{
+  color: black;
+  text-decoration: none!important;
+}

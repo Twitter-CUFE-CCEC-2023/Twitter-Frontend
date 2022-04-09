@@ -1,0 +1,64 @@
+.flex{
+    display: flex;
+}
+
+.gray{
+    color: gray;
+}
+
+.fs15{
+    font-size: 15px;
+}
+
+.ul{
+    cursor: pointer;
+}
+.ul:hover{
+    text-decoration: underline;
+}
+
+.centre{
+    margin : 10px auto 10px 20px;
+}
+
+.nums{
+    margin-top: 10px;
+    border-bottom: 1px solid var(--twitterBorder);
+}
+
+.attIcon{
+    padding: 3px;
+    transition: 1s background-color;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.b:hover{
+    background-color: var(--twitterHoverBlue);
+    border-radius: 50%;
+    color: var(--twitterBlue);
+}
+
+.g:hover{
+    background-color: var(--twitterHoverGreen);
+    border-radius: 50%;
+    color: var(--twitterGreen);
+}
+
+.r:hover{
+    background-color: var(--twitterHoverRed);
+    border-radius: 50%;
+    color: var(--twitterRed);
+}
+
+.clicked.r{
+    color: var(--twitterRed) !important;
+}
+
+.clicked.g{
+    color: var(--twitterGreen) !important;
+}
+
+.bold{
+    font-weight: bold;
+}

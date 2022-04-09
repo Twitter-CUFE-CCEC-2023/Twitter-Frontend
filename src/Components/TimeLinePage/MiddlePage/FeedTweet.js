@@ -7,6 +7,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import TweetAtrribute from "./TweetAtrribute";
 import MiniProfile from "../MiniProfile";
+import { NavLink } from "react-router-dom";
+import TopTweetAttributes from "./TopTweetAttributes";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
@@ -22,6 +24,7 @@ export default function FeedTweet(props) {
   // {
   //   console.log(props.img);
   // }
+  const tweetDate = new Date(props.date);
   const months = [
     "Jan",
     "Feb",
@@ -44,6 +47,11 @@ export default function FeedTweet(props) {
     const diffMinutes = Math.floor(diffTime / (1000 * 60));
     const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
+
+    if(diffYears > 0) {
+      return `${months[date1.getMonth()]} ${date1.getDate()}, ${date1.getFullYear()}`;
+    }
     if (diffDays > 0) {
       return `${months[date1.getMonth()]} ${date1.getDate()}`;
     }
@@ -58,8 +66,31 @@ export default function FeedTweet(props) {
     }
   }
 
+  function URLReplacer(str) {
+    let match = str.match(
+      /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi
+    );
+    let final = str;
+    if (match) {
+      match.map((url) => {
+        final = final.replace(
+          url,
+          '<a href="' + url + '" target="_BLANK">' + url + "</a>"
+        );
+      });
+    }
+    return final;
+  }
+
+  // React.useEffect(() => {
+  // document.getElementById(`Tweet${props.tweetId}`).addEventListener('click', e => {
+  //   if(e.target !== e.currentTarget) console.log(`child ${props.tweetId} clicked`)
+  //   else window.location.href = '/explore';
+  // });
+  // }, []);
+
   return (
-    <div className={classes.feedTweet}>
+    <div id={`Tweet${props.tweetId}`} className={props.isTopTweet ?classes.topTweet : classes.feedTweet}>
       {/* {replyModal && (
         <FeedTweetReplyModal
           onHide={hideReplyModal}
@@ -85,7 +116,10 @@ export default function FeedTweet(props) {
         <div className={classes.user}>
           <h2
             data-testid="name"
-            className={classes.underline + " " + classes.minip + " " + classes.fs15}>
+            className={
+              classes.underline + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer
+            }
+          >
             {props.name}
           </h2>
           <div className={classes.hoverProfile + " " + classes.bot}>
@@ -100,9 +134,9 @@ export default function FeedTweet(props) {
           </div>
           &nbsp;
           <p
-            className={classes.gray + " " + classes.minip + " " + classes.fs15}
-            data-testid="userName">
-          
+            className={classes.gray + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer}
+            data-testid="userName"
+          >
             @{props.userName}
           </p>
           <div className={classes.hoverProfile + " " + classes.bot}>
@@ -115,23 +149,44 @@ export default function FeedTweet(props) {
               followers={1863}
             />
           </div>
-          &nbsp;<p className={classes.gray}>.</p>&nbsp;
-          <p
-            className={
-              classes.gray + " " + classes.underline + " " + classes.fs15
-            }
-            data-testid="date"
-          >
-            {getDateDiff(props.date)}
-          </p>{" "}
-          {/*placeholder */}
-        </div>
-        <p className={classes.fs15} 
-        data-testid = "text" >{props.text}</p>
+          &nbsp;{!props.isTopTweet && <p className={classes.gray}>.</p>}&nbsp;
 
+          {!props.isTopTweet && <p className={classes.gray + " " + classes.underline + " " + classes.fs15} data-testid="date">
+            {getDateDiff(props.date)}
+          </p>}
+
+        </div>
+        {props.isReply && <div className={classes.flex}>
+            <p className={`${classes.gray} ${classes.fs15} ${classes.nom}`}>Replying to </p>
+            &nbsp;
+            <p className={`${classes.gray}  ${classes.fs15} ${classes.minip} ${classes.replyat} ${classes.nom}`}>@{props.topUser}</p>
+            <div className={classes.hoverProfile + " " + classes.repmin}>
+            <MiniProfile
+              profilePic="https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
+              name="Andrew"
+              userName="andrew9991"
+              profileDesciption="Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler "
+              following={777}
+              followers={1863}
+            />
+          </div>
+          </div>}
+        {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} exact={true} className={classes.fs15 + " " + classes.noStyle}>
+              <div data-testid="text"  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
+        </NavLink>}
+        {(props.isTopTweet) && 
+          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>}
         {props.img && (
           <img className={classes.tweetImg} src={props.img} alt=""></img>
         )}
+
+        {props.isTopTweet && <div className= {classes.flex + " " + classes.gray  + " " + classes.m10}>
+        <p className={classes.underline + " " + classes.fs15 + " " + classes.pointer }>
+          {`${tweetDate.getHours()}:${tweetDate.getMinutes()} . ${months[tweetDate.getMonth()]} ${tweetDate.getDay()}, ${tweetDate.getFullYear()}`}
+          </p>
+          </div>}
+
+        {!props.isTopTweet && 
         <div className={classes.attributes}>
           <TweetAtrribute
             Icon={ChatBubbleOutlineOutlinedIcon}
@@ -155,6 +210,9 @@ export default function FeedTweet(props) {
           />
           <TweetAtrribute Icon={ShareOutlinedIcon} color="b" tooltip="Share" />
         </div>
+      }
+
+      {props.isTopTweet && <TopTweetAttributes likes = {props.likes} retweets = {props.retweets} quoteTweets = {23}/>}
       </div>
       {/* {!props.showAction && <div></div>} */}
     </div>
