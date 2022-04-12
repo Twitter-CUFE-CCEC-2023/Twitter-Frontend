@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./FeedTweet.module.css";
 import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
 import LoopOutlinedIcon from "@material-ui/icons/LoopOutlined";
@@ -75,21 +75,30 @@ export default function FeedTweet(props) {
       match.map((url) => {
         final = final.replace(
           url,
-          '<a href="' + url + '" target="_BLANK">' + url + "</a>"
+          '<a onClick={(e) =>{e.preventDefault()}} href="' + url + '" target="_BLANK">' + url + "</a>"
         );
       });
     }
     return final;
   }
 
+  function stopProp (event, someParam){
+    //console.log("stopped");
+    event.preventDefault();
+  }
+
+
   // React.useEffect(() => {
-  // document.getElementById(`Tweet${props.tweetId}`).addEventListener('click', e => {
-  //   if(e.target !== e.currentTarget) console.log(`child ${props.tweetId} clicked`)
-  //   else window.location.href = '/explore';
+  // document.getElementById(`Tweet${props.tweetId}`).click(e=>{
+  //   e.stopPropagation();
+  //   e.stopImmediatePropagation();
+  //   e.preventDefault();
+  //   console.log(e.target.id);
   // });
   // }, []);
 
   return (
+    <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
     <div id={`Tweet${props.tweetId}`} className={props.isTopTweet ?classes.topTweet : classes.feedTweet}>
       {/* {replyModal && (
         <FeedTweetReplyModal
@@ -98,11 +107,12 @@ export default function FeedTweet(props) {
         ></FeedTweetReplyModal>
       )} */}
       <img
+        onClick={(e) =>{e.preventDefault()}}
         className={classes.profilePic + " " + classes.minip}
         alt="profile"
         src={props.profilePic}
       ></img>
-      <div className={classes.hoverProfile + " " + classes.top}>
+      <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.top}>
         <MiniProfile
           profilePic="https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
           name="Andrew"
@@ -115,6 +125,7 @@ export default function FeedTweet(props) {
       <div className={classes.tweet}>
         <div className={classes.user}>
           <h2
+          onClick={(e) =>{e.preventDefault()}}
             data-testid="name"
             className={
               classes.underline + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer
@@ -122,7 +133,7 @@ export default function FeedTweet(props) {
           >
             {props.name}
           </h2>
-          <div className={classes.hoverProfile + " " + classes.bot}>
+          <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
               profilePic="https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
               name="Andrew"
@@ -134,12 +145,13 @@ export default function FeedTweet(props) {
           </div>
           &nbsp;
           <p
+            onClick={(e) =>{e.preventDefault()}}
             className={classes.gray + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer}
             data-testid="userName"
           >
             @{props.userName}
           </p>
-          <div className={classes.hoverProfile + " " + classes.bot}>
+          <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
               profilePic="https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
               name="Andrew"
@@ -171,7 +183,7 @@ export default function FeedTweet(props) {
             />
           </div>
           </div>}
-        {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} exact={true} className={classes.fs15 + " " + classes.noStyle}>
+        {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
               <div data-testid="text"  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
         </NavLink>}
         {(props.isTopTweet) && 
@@ -187,7 +199,8 @@ export default function FeedTweet(props) {
           </div>}
 
         {!props.isTopTweet && 
-        <div className={classes.attributes}>
+        <div id="FeedTweetAttributes" className={classes.attributes}>
+          
           <TweetAtrribute
             Icon={ChatBubbleOutlineOutlinedIcon}
             num={props.replies}
@@ -216,5 +229,6 @@ export default function FeedTweet(props) {
       </div>
       {/* {!props.showAction && <div></div>} */}
     </div>
+    </NavLink>
   );
 }
