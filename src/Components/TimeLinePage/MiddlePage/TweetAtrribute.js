@@ -24,10 +24,11 @@ function TweetAtrribute(props) {
       props.onClick();
     }
   }
+  
   return (
     <div className={`${classes.tweetAtrribute} ${classes[props.color]} ${clicked}`} onClick={click}>
-      <div className={feedBoxButtonClasses.tooltip}>
-        <div className={classes.flex}>
+      <div onClick={(e) =>{e.preventDefault()}} className={feedBoxButtonClasses.tooltip}>
+        <div  className={classes.flex}>
           {!hlLike && <props.Icon className={classes.attIcon} />}
           {hlLike && <props.FilledIcon className={classes.attIcon} />}
           <p className={classes.num}>{num}</p>
