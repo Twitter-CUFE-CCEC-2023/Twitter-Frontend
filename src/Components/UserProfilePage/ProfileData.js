@@ -5,6 +5,7 @@ import CoverPhoto from "./CoverPhoto";
 import image from "../../Assets/new-york-city.jpg";
 import ProfileActions from "./ProfileActions/ProfileActions.js";
 import ProfileInfo from "./ProfileInfo";
+import ProfileTabs from "./ProfileTabs/ProfileTabs";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ProfileData() {
@@ -15,7 +16,7 @@ function ProfileData() {
       </div>
       <div className={`${classes.coverPhoto}  row `}>
         <CoverPhoto coverImage={image}></CoverPhoto>
-        <div className={`${classes.profileImageContainer} p-0`}>
+        <div className={`${classes.profileImageContainer} `}>
           <img
             className={`${classes.profileImage} img-fluid`}
             src="https://pbs.twimg.com/profile_images/1492532221110104067/_3ozwoyh_400x400.jpg"
@@ -23,8 +24,10 @@ function ProfileData() {
           />
         </div>
       </div>
-      <div className={`${classes.profileActionsRow} row justify-content-end  `}>
-        <ProfileActions isMyProfile={false}></ProfileActions>
+      <div className={`${classes.profileActionsRow}  `}>
+
+        <ProfileActions isMyProfile={true}></ProfileActions>
+        
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>
         <ProfileInfo
@@ -35,6 +38,9 @@ function ProfileData() {
           birthDay={17}
           birthYear={2000}
         ></ProfileInfo>
+      </div>
+      <div className={`row`}>
+        <ProfileTabs></ProfileTabs>
       </div>
     </div>
   );

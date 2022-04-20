@@ -10,25 +10,44 @@ import BootstrapButton from "../BootstrapButton";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 
 function Filters() {
-  const [clearFilters, setClearFilters] = useState(false);
+  const [fromdate, setFromDate] = useState(new Date());
+  const [todate, setToDate] = useState(new Date());
+  const [gender, setGender] = useState("male");
+  const [regions, setRegions] = useState([]);
+
   const [submitFilters, setSubmitFilters] = useState(false);
 
-  const handleClearFilters = () => {
-    setClearFilters(true);
-    window.localStorage.setItem(`filter-To-date`, JSON.stringify(new Date()));
-    window.localStorage.setItem(`filter-From-date`, JSON.stringify(new Date()));
-    window.localStorage.setItem(`filter-gender`, JSON.stringify("male"));
-    window.localStorage.setItem(`filter-regions`, JSON.stringify([]));
-    setClearFilters(false);
+  const handleFromDateChange = (value) => {
+    setFromDate(value);
+  };
+  const handleToDateChange = (value) => {
+    setToDate(value);
+  };
+  const handleGenderChange = (event) => {
+    setGender(event.target.value);
+  };
+  const handleRegionsChange = (event) => {
+    setRegions(event.target.value);
   };
 
   const handleSubmissiom = () => {
+    window.localStorage.setItem(`filter-From-date`, fromdate);
+    window.localStorage.setItem(`filter-To-date`, todate);
+    window.localStorage.setItem(`filter-gender`, gender);
+    window.localStorage.setItem(`filter-regions`, regions);
     setSubmitFilters(true);
-    console.log("sending fetch request now");
-    console.log(window.localStorage.getItem(`filter-To-date`));
-    console.log(window.localStorage.getItem(`filter-From-date`));
-    console.log(window.localStorage.getItem(`filter-gender`));
-    console.log(window.localStorage.getItem(`filter-regions`));
+  };
+
+  const handleClearFilters = () => {
+    setFromDate(new Date());
+    setToDate(new Date());
+    setGender("male");
+    setRegions([]);
+    setSubmitFilters(false);
+    window.localStorage.removeItem(`filter-To-date`);
+    window.localStorage.removeItem(`filter-From-date`);
+    window.localStorage.removeItem(`filter-gender`);
+    window.localStorage.removeItem(`filter-regions`);
   };
 
   return (
@@ -37,15 +56,18 @@ function Filters() {
         Please select the filters you want to apply
       </h1>
       <div className={classes.filtersWrapper}>
-        {/* {!clearFilters && <FilterDates label="From" date={new Date()} />}
-        {!clearFilters && <FilterDates label="To" date={new Date()} />}
-        {!clearFilters && <FilterGender />}
-        {!clearFilters && <FilterRegion />} */}
-
-        <FilterDates label="From" date={new Date()} />
-        <FilterDates label="To" date={new Date()} />
-        <FilterGender />
-        <FilterRegion />
+        <FilterDates
+          label="From"
+          date={fromdate}
+          handleChange={handleFromDateChange}
+        />
+        <FilterDates
+          label="To"
+          date={todate}
+          handleChange={handleToDateChange}
+        />
+        <FilterGender gender={gender} handleChange={handleGenderChange} />
+        <FilterRegion regions={regions} handleChange={handleRegionsChange} />
       </div>
       <div className={classes.buttonsGroup}>
         <BootstrapButton
@@ -60,6 +82,7 @@ function Filters() {
         <BootstrapButton
           variant="contained"
           color="primary"
+          data-testid="submitButton"
           disableRipple
           className={classes.submitButton}
           onClick={handleSubmissiom}
@@ -74,3 +97,9 @@ function Filters() {
 }
 
 export default Filters;
+
+// when you want to use the state after updating use it inside useEffect
+// because:
+// React useState does not make changes directly to the state object
+// But it create queues for React core to update the state object of a React component
+// date.toLocaleDateString()

@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import classes from "./SignInPage.module.css";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import classess from "./SignInPage.module.css";
 import ClearIcon from "@material-ui/icons/Clear";
 
 import GoogleSignUp from "../Buttons/GoogleSignUp";
@@ -12,20 +14,31 @@ import ForgetPasswordButton from "../Buttons/ForgetPasswordButton";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignInBackground from "./SignInBackground";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
+  },
+}));
+
 const SignInPage = () => {
+  const classes = useStyles();
+
   return (
     <SignInBackground>
       <img
-        className={classes.twitterBluelogo}
+        className={classess.twitterBluelogo}
         src={twitterBlueLogo}
         alt="TwitterLogo"
       />
-      <NavLink to="/" className={classes.closeIcon}>
+      <NavLink to="/" className={classess.closeIcon}>
         <ClearIcon />
       </NavLink>
 
-      <div className={classes.container}>
-        <p className={classes.signInToTwitter}>Sign in to Twitter</p>
+      <div className={classess.container}>
+        <p className={classess.signInToTwitter}>Sign in to Twitter</p>
         <GoogleSignUp
           content="Sign in with Google"
           style={{ marginBottom: "23px" }}
@@ -35,16 +48,19 @@ const SignInPage = () => {
           color="rgb(207, 217, 222, 0.6)"
           style={{ margin: "9px 0px" }}
         />
-        <input type="text" className={classes.input} />
-        <div className={classes.placeholder}>
-          Phone, email address, or username
-        </div>
+        <form className={classes.root} noValidate autoComplete="off">
+          <TextField
+            id="outlined-basic"
+            label="Phone, email address, or username"
+            variant="outlined"
+          />
+        </form>
 
         <NextButton />
         <ForgetPasswordButton />
-        <div className={classes.alreadyHaveAcc}>
+        <div className={classess.alreadyHaveAcc}>
           Don't have an account?{" "}
-          <NavLink to="/" className={classes.signUp}>
+          <NavLink to="/Mail" className={classess.signUp}>
             <span>Sign up</span>
           </NavLink>
         </div>

@@ -1,0 +1,68 @@
+.tab {
+  color: black;
+  width: 2em;
+  font-size: 14px;
+  font-weight: 700;
+  align-content: center;
+  display: block;
+  border-radius: 0px;
+  border: none !important;
+  outline: none !important;
+  text-align: center;
+  box-shadow: none !important;
+}
+
+.selectedTab {
+  color: black !important;
+  width: 2em;
+  font-size: 14px;
+  font-weight: bold;
+  align-content: center;
+  display: block;
+  border-radius: 0px;
+  border: none !important;
+  outline: none !important;
+  text-align: center;
+  box-shadow: none !important;
+}
+
+.tab:hover {
+  background-color: rgb(209, 213, 219);
+  border-radius: 0px;
+  text-decoration: none !important;
+}
+.selectedTab:hover {
+  background-color: rgb(209, 213, 219);
+  border-radius: 0px;
+  text-decoration: none !important;
+}
+
+.tab::after,
+::before,
+::content,
+:focus {
+  border-width: 0px !important;
+  border: none !important;
+  outline: none !important;
+  box-sizing: none !important;
+  box-shadow: none !important;
+  font-style: bold !important;
+}
+
+.tabdiv {
+  width: 50%;
+  text-align: center;
+  align-self: center;
+  margin: auto;
+  border-bottom: 0.3em solid var(--twitterBlue);
+  border-radius: 5%;
+  margin-top: 0px;
+}
+.tabdivTweetsAndReplies {
+  width: 90%;
+  text-align: center;
+  align-self: center;
+  margin: auto;
+  border-bottom: 0.3em solid var(--twitterBlue);
+  border-radius: 5%;
+}

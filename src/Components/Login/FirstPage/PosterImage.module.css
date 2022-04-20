@@ -14,11 +14,11 @@
 }
 
 .logo {
-  width: 340px;
+  width: 335px;
   /* width: 40%; */
   position: absolute;
   top: 30%;
-  left: 30%;
+  left: 30.5%;
 }
 
 .smallScreenLogo {
@@ -33,10 +33,10 @@
   }
 
   .logo {
-    /* width: 60%; */
-    width: 300px;
-    top: 17%;
-    left: 13%;
+    width: 60%;
+    /* width: 300px; */
+    top: 19%;
+    left: 21%;
   }
 }
 

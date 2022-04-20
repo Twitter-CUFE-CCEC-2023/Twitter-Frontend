@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./AllNotificationsPage.module.css";
-import LeftSideBar from "../TimeLinePage/LeftSideBar";
-import RightSideBar from "../TimeLinePage/RightSideBar";
-import MentionNotifications from "./MentionNotifications";
+import LeftSideBar from "../TimeLinePage/LeftSideBar/LeftSideBar";
+import RightSideBar from "../TimeLinePage/RightSideBar/RightSideBar";
+import MentionNotifications from "./Mentions/MentionNotifications";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function MentionNotificationsPage() {

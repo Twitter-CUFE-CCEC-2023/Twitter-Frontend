@@ -1,5 +1,5 @@
 import React from "react";
-import LeftSideBar from "../TimeLinePage/LeftSideBar";
+import LeftSideBar from "../TimeLinePage/LeftSideBar/LeftSideBar";
 import ProfilesSection from "./ProfileSection/ProfileSection";
 import classes from "./Settings.module.css";
 import SettingsSection from "./SettingsSection/SettingsSection";

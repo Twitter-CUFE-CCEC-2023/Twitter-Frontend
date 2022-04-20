@@ -1,12 +1,129 @@
-.editButton{
- border-radius: 25px;
- font-size: 0.8em;
- background-color: transparent;
- border-color: #cbd6db;
- font-weight: 650;
- font-size: 0.67em;
+.editButton {
+  border-radius: 25px;
+  font-size: 0.8em;
+  background-color: transparent;
+  border-color: #cbd6db;
+  font-weight: 650;
+  font-size: 0.67em;
+  box-shadow: none;
+  outline: none;
 }
+
 .editButton:hover {
-    border-color: #b0bec5;
-    background-color: #e0e6e9;
-  }
+  border-color: #b0bec5;
+  background-color: #e0e6e9;
+}
+
+.modalContent {
+  width: 22em;
+  top: 1em;
+  right: 1.5em;
+  border-radius: 0.6em !important;
+}
+
+.modalBody {
+  height: 75vh;
+  overflow-y: scroll;
+}
+
+.modalHeader {
+  position: sticky;
+  background-color: rgb(255, 255, 255, 0.97);
+  border-top-left-radius: 0.8em;
+  border-top-right-radius: 0.8em;
+  border-bottom: none;
+}
+.modalTitle {
+  font-weight: bold;
+}
+
+.closeIcon:hover {
+  border-radius: 400px;
+  border-color: rgb(209, 213, 219);
+  background-color: rgb(209, 213, 219);
+}
+.closeIcon {
+  border-radius: 60%;
+  width: 50px;
+  height: 50px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
+  background-color: transparent;
+  padding-left: 6px;
+  font-size: 25px !important;
+}
+.saveButton {
+  border-radius: 25px;
+  font-size: 0.8em;
+  background-color: black;
+  border-color: #cbd6db;
+  border-width: 1px;
+  font-weight: 600;
+  font-size: 0.6em;
+  color: white;
+  margin-left: 18em !important;
+}
+
+.saveButton:hover {
+  border-color: #b0bec5;
+  background-color: #2b2c2c;
+  color: white;
+}
+.coverPhotoEdit {
+  position: relative;
+  filter: brightness(80%);
+}
+
+.profilePhotoEdit {
+  position: absolute;
+  top: 5em;
+  left: 1.2em !important;
+  background-color: rgb(255, 255, 255);
+  width: 20% !important;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 5px;
+  border-color: rgb(255, 255, 255);
+}
+
+.profileImageContainer {
+  width: 10% !important;
+  max-width: 10% !important;
+  height: 1px !important;
+  max-height: 1px !important;
+  display: inline-block;
+}
+
+.coverEditor {
+  position: absolute;
+  left: 11em;
+  top: 3em;
+  border-radius: 50%;
+  border-color: #c11d1d;
+  border-width: 2px;
+  color: white;
+  background-color: #535151;
+  cursor: pointer;
+}
+
+.photoEditor {
+  position: absolute;
+  left: 3em;
+  top: 8em;
+  border-radius: 50%;
+  border-color: #c11d1d;
+  border-width: 2px;
+  color: white;
+  background-color: #5b5353;
+  cursor: pointer;
+}
+
+.nameInput {
+  width: 100%;
+}
+
+.inputfield {
+  height: 54px;
+  font-size: 15px;
+}
