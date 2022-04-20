@@ -29,7 +29,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "430017309159.dkr.ecr.us-east-1.amazonaws.com/frontend_try",
+      "image": "430017309159.dkr.ecr.us-east-1.amazonaws.com/frontend",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -46,7 +46,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "FrontendTryContainer"
+      "name": "frontendContainer"
     }
   ],
   "placementConstraints": [],
@@ -56,8 +56,8 @@
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:430017309159:task-definition/DeploymentContainer:1",
-  "family": "DeploymentContainer",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:430017309159:task-definition/DeploymentContainerFrontend:1",
+  "family": "DeploymentContainerFrontend",
   "requiresAttributes": [
     {
       "targetId": null,
