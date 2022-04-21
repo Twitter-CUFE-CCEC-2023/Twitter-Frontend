@@ -44,6 +44,10 @@ export default function FeedTweetBox(props) {
   //   setPhotosNumberErrorModal(false);
   // }
 
+  const [show, setShow] = React.useState(false);
+  function focus(){
+    setShow(true);
+  }
   return (
     <div className="feedTweetBox">
       {/* {photosNumberErrorModal && (
@@ -59,7 +63,7 @@ export default function FeedTweetBox(props) {
       )} */}
       <div className="boxInput">
         <div className="profileImgOpacity">
-          <NavLink to="profile">
+          <NavLink to="/profile">
             <img
               className="profileImg"
               src={defaultMaleProfile}
@@ -67,19 +71,19 @@ export default function FeedTweetBox(props) {
             ></img>
           </NavLink>
         </div>
-        <form className={classes.tweetBoxForm}>
+        <form onFocus={focus} className={classes.tweetBoxForm}>
           <div className={classes.tweetBoxFormContainer}>
             <textarea
               onChange={textAreaChangeHandler}
               className={classes.tweetBoxText}
-              placeholder="What's happening?"
+              placeholder={props.isReply? "Tweet Your Reply" : "What's happening?"}
               maxLength="280"
             ></textarea>
             <span className={classes.tweetBoxTextSpan}>{leftLetters}/280</span>
           </div>
         </form>
       </div>
-      <div className="buttons">
+      <div className={`buttons  ${(!props.isReply || show) ? classes.show : classes.hidden}`}>
         <input
           type="file"
           id="myPhoto"
@@ -100,7 +104,7 @@ export default function FeedTweetBox(props) {
         <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
         <FeedBoxButton Icon={DateRangeOutlinedIcon} text="Schedule" />
         <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
-        <Button className="tweetButton">Tweet</Button>
+        <Button className={`tweetButton`}>{props.isReply ? "Reply" : "Tweet"}</Button>
       </div>
     </div>
   );

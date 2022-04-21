@@ -10,6 +10,13 @@
   background-color: var(--tweetHover);
 }
 
+.topTweet {
+  display: flex;
+  border: 1px solid var(--twitterBorder);
+  font-size: 15px;
+}
+
+
 .profilePic {
   border-radius: 50%;
   height: 48px;
@@ -69,6 +76,10 @@
   line-height: 20px;
 }
 
+.tweet{
+  padding-right: 6px;
+}
+
 .attributes {
   display: flex;
 }
@@ -108,4 +119,44 @@
 
 .fs15{
     font-size: 15px;
+}
+
+.noStyle{
+    text-decoration: none !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    cursor: inherit;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.m10{
+    margin-top: 10px;
+    
+    border-bottom: 1px solid var(--twitterBorder);
+}
+
+.flex{
+    display: flex;
+}
+
+.replyat{
+  color: var(--twitterBlue);
+}
+
+.replyat:hover{
+  text-decoration: underline;
+}
+
+.nom{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.repmin{
+  top: 22px;
+  left: -100px;
 }

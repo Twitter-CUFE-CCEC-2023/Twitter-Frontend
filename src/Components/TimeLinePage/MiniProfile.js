@@ -7,7 +7,7 @@ function MiniProfile(props) {
   return (
     <div className={classes.miniProfile}>
       <div className={classes.flex}>
-        <NavLink className={`noDecoration`} to="profile">
+        <NavLink className={`noDecoration`} to="/profile">
           <img
             className={classes.miniImg + " " + classes.pointer}
             src={props.profilePic}
@@ -17,13 +17,13 @@ function MiniProfile(props) {
         <Button className={classes.miniButton}>Follow</Button>
       </div>
       <div className={classes.userNames}>
-        <NavLink className={`noDecoration black `} to="profile">
+        <NavLink className={`noDecoration black `} to="/profile">
           <p className={classes.name + " " + classes.pointer + " noMargin"}
           data-testid = "namemp"
         >
             {props.name}</p>
         </NavLink>
-        <NavLink className={`noDecoration gray `} to="profile">
+        <NavLink className={`noDecoration gray `} to="/profile">
           <p className={classes.gray + " " + classes.pointer+ " noMargin"}
           data-testid = "userNamemp"
           >
