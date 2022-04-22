@@ -1,0 +1,31 @@
+.container {
+  background-color: rgb(29, 155, 240);
+  color: #fff;
+
+  width: 50%;
+  height: 40px;
+  position: absolute;
+  top: 97%;
+  left: 25%;
+
+  padding-top: 8px;
+  border-radius: 5px;
+
+  font-size: 65%;
+  font-family: sans-serif;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 700px) {
+  .container {
+    height: 45px;
+    width: 100%;
+
+    left: 0%;
+    top: 93.2%;
+
+    padding-left: 20px;
+    padding-top: 12px;
+    border-radius: 0px;
+    text-align: left;
+  }
+}

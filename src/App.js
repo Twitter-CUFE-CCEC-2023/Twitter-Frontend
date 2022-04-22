@@ -5,6 +5,7 @@ import "./App.css";
 
 import MainPage from "./Components/Login/FirstPage/MainPage";
 import SignInPage from "./Components/Login/SignInPage/SignInPage";
+
 import Mail from "./Components/Login/SignUp/Mail";
 import Phone from "./Components/Login/SignUp/Phone";
 import PhoneVerify from "./Components/Login/SignUp/PhoneVerify";
@@ -37,11 +38,13 @@ function App() {
         <Switch>
           <Route exact={true} path="/" component={MainPage} />
           <Route path="/SignIn" component={SignInPage} />
+
           <Route path="/Mail" component={Mail} />
           <Route path="/Phone" component={Phone} />
           <Route path="/phoneVerify" component={PhoneVerify} />
           <Route path="/TrackOption" component={TrackOption} />
           <Route path="/AddPhone" component={AddPhone} />
+
           <Route path="/home" component={Home} />
           <Route path="/:userId/status/:id" component={MainTweetPage} />
           <Route path="/notifications" component={AllNotificationsPage} />

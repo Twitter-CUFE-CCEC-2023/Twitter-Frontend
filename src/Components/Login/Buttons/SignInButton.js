@@ -6,7 +6,7 @@ const SignInButton = () => {
   return (
     <div className={classes.container}>
       <p className={classes.heading}>Already have an account?</p>
-      <NavLink to="/home" className={classes.navLink}>
+      <NavLink to="/SignIn" className={classes.navLink}>
         <div className={classes.buttonSignIn}>
           <p className={classes.content}>Sign in</p>
         </div>
