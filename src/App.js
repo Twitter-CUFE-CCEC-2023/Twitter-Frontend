@@ -16,6 +16,7 @@ import AllNotificationsPage from "./Components/Notifications/AllNotificationsPag
 import MentionNotificationsPage from "./Components/Notifications/MentionNotificationsPage";
 import Settings from "./Components/Settings/Settings";
 import UserProfile from "./Components/UserProfilePage/UserProfile";
+import ImageCropper from "./Components/UserProfilePage/ProfileActions/ImageCropper";
 import UnderConstructionPage from "./Components/ExtraPages/UnderConstructionPage";
 
 import Admin from "./Components/AdminPage/Admin";
@@ -48,10 +49,12 @@ function App() {
           />
           <Route path="/settings" component={Settings} />
           <Route path="/userprofile" component={UserProfile} />
+          <Route path="/crop" component={ImageCropper}/>
           <Route path="/explore" component={UnderConstructionPage} />
           <Route path="/messages" component={UnderConstructionPage} />
           <Route path="/i/bookmarks" component={UnderConstructionPage} />
           <Route path="/profileName/lists" component={UnderConstructionPage} />
+          
 
           <Route path="/admin" component={Admin} />
           <Route path="/admin-userslist" component={UsersList} />

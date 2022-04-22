@@ -1,16 +1,17 @@
 import React, { useState, Fragment } from "react";
 import classes from "./EditProfileButton.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Modal } from "bootstrap";
 import CloseIcon from "@mui/icons-material/Close";
 import coverphoto from "../../../Assets/new-york-city.jpg";
 import InputBox from "./InputBox";
 import CameraEnhanceOutlinedIcon from "@mui/icons-material/CameraEnhanceOutlined";
-import { screen } from "@testing-library/react";
-import $ from "jquery";
-import { css } from "@emotion/react";
+import ImageUploader from "./ImageUploader";
 
 function EditProfileButton() {
+  const [croppedCoverPhoto, setCroppedCoverPhoto] = useState("https://i.pinimg.com/564x/8b/fc/ac/8bfcacfd1ebb5ff9013ab9ca815ff04d.jpg");
+  const editCover=(editedcover)=>{
+    setCroppedCoverPhoto(editedcover);
+  }
   return (
     <Fragment>
       <button
@@ -26,7 +27,9 @@ function EditProfileButton() {
         id="myModal"
       >
         <div className={`${classes.modalDialog} modal-dialog `}>
+    
           <div className={`${classes.modalContent} modal-content p-0`}>
+          
             <div className={`${classes.modalHeader} modal-header pb-3 pt-2 `}>
               <CloseIcon
                 className={`${classes.closeIcon} ps-0  me-4`}
@@ -45,28 +48,33 @@ function EditProfileButton() {
                 Save
               </button>
             </div>
+            
             <div className={`${classes.modalBody} modal-body py-0 px-1`}>
+            
+            <ImageUploader className={classes.cropUploader} editCover={editCover} croppedCoverPhoto={croppedCoverPhoto}></ImageUploader>
               <div className={`${classes.coverPhotoEdit}`}>
-                <img src={coverphoto} alt="" className={` img-fluid py-0`} />
-                <CameraEnhanceOutlinedIcon
-                  className={`${classes.coverEditor}`}
-                />
+                <img src={croppedCoverPhoto} alt="" className={` img-fluid py-0`} />
+                
                 <div className={`${classes.profileImageContainer}`}>
                   <img
                     className={`${classes.profilePhotoEdit} img-fluid`}
                     src="https://pbs.twimg.com/profile_images/1492532221110104067/_3ozwoyh_400x400.jpg"
                     alt=""
                   />
+                  
                   <CameraEnhanceOutlinedIcon
                     className={`${classes.photoEditor}`}
                   />
+                  
                 </div>
+               
               </div>
+              
               <form action="">
-                <InputBox inputName="Name" inputValue="عمرو اكا زيكا" label="nameLabel" labelID="'#nameID'" pID='nameID'></InputBox>
-                <InputBox inputName="Bio" label="bioLabel" labelID='"#bioID"' pID='bioID'></InputBox>
-                <InputBox inputName="Location" label="location" labelID='"#locID"' pID='locID'></InputBox>
-                <InputBox inputName="Website" labelID='"#webID"' pID='webID'></InputBox>
+                <InputBox inputName="Name" inputValue="عمرو اكا زيكا"></InputBox>
+                <InputBox inputName="Bio" inputValue="Al Ahly"></InputBox>
+                <InputBox inputName="Location" inputValue=""></InputBox>
+                <InputBox inputName="Website" inputValue=""></InputBox>
               </form>
             </div>
             <div class="modal-footer"></div>

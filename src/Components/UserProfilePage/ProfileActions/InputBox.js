@@ -10,21 +10,14 @@ function InputBox(props) {
     setinputValue(event.target.value);
   };
 
-  const onFocusoutInput = () => {
-    $(props.labelID).css("color", "black");
-  };
-  const onFocusinInput = () => {
-    $(props.labelID).css("color", "#1DA1F2");
-  };
+
 
   const inputBoxRendered =
     props.inputName == "Bio" ? (
       <textarea
         type="text"
-        className={` form-control ms-2 me-2 pt-3 mb-3`}
+        className={`${classes.textareaField} form-control ms-2 me-2  mb-3`}
         rows="3"
-        onFocus={onFocusinInput}
-        onBlur={onFocusoutInput}
         value={inputValue}
         onChange={onInputchange}
       ></textarea>
@@ -32,8 +25,6 @@ function InputBox(props) {
       <input
         type="text"
         className={`${classes.inputfield} form-control ms-2 me-2 pb-0 mb-3`}
-        onFocus={onFocusinInput}
-        onBlur={onFocusoutInput}
         value={inputValue}
         onChange={onInputchange}
       />
@@ -45,13 +36,10 @@ function InputBox(props) {
       } row mb-2 `}
     >
       <div className={`col form-group `}>
-        <label
-          className={`${classes.nameLabel} form-label`}
-          id={props.pID}
-        >
+        {inputBoxRendered}
+        <label className={`${classes.nameLabel} form-label`} id={props.pID}>
           {props.inputName}
         </label>
-        {inputBoxRendered}
       </div>
     </div>
   );

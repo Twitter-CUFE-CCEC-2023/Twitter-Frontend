@@ -13,6 +13,9 @@
   border-color: #b0bec5;
   background-color: #e0e6e9;
 }
+.editModal.show:nth-of-type(even){
+  z-index: 1061 !important;
+}
 
 .modalContent {
   width: 100% !important;
@@ -21,6 +24,7 @@
 
 .modalDialog {
   border-radius: 40% !important;
+  margin-top: 2.9rem;
 }
 .modalBody {
   height: 75vh;
@@ -29,7 +33,7 @@
 
 .modalHeader {
   position: sticky;
-  background-color: rgb(255, 255, 255, 0.98);
+  background-color: rgb(255, 255, 255, 0.98) !important;
   border-top-left-radius: 0.8em;
   border-top-right-radius: 0.8em;
   border-bottom: none;
@@ -57,6 +61,11 @@
   background-color: transparent;
   padding-left: 6px;
   font-size: 25px !important;
+}
+.cropUploader{
+  top:-18%;
+  /* z-index: 1800 !important; */
+  position: absolute;
 }
 
 .saveButton {
@@ -126,31 +135,7 @@
   font-size: 30px !important;
 }
 
-.nameInput {
-  width: 100%;
-  margin-top: 16% !important;
-  z-index: 100;
-  position: relative;
-}
-.nameLabel{
-  position: absolute;
-  font-size: 0.6rem;
-  top: 0.5em;
-  left:1.7rem;
-}
 
-.textInput {
-  width: 100%;
-}
-
-.inputfield {
-  height: 54px;
-  font-size: 15px;
-}
-
-.inputfield:focus{
-  box-shadow: none !important;
-}
 
 @media screen and (max-width: 705px) {
   .modalDialog {
