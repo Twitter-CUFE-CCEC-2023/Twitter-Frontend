@@ -1,5 +1,6 @@
 .feedTweetBox {
   border-bottom: 1px solid var(--twitterBorder);
+  min-width: inherit;
   flex-grow: 3;
 }
 

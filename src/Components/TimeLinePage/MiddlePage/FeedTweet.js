@@ -75,30 +75,26 @@ export default function FeedTweet(props) {
       match.map((url) => {
         final = final.replace(
           url,
-          '<a onClick={(e) =>{e.preventDefault()}} href="' + url + '" target="_BLANK">' + url + "</a>"
+          `<a href="' + url + '" target="_BLANK">` + url + `</a>`
         );
       });
     }
     return final;
   }
 
-  function stopProp (event, someParam){
-    //console.log("stopped");
-    event.preventDefault();
+  let tweet ={
+    content : props.text,
+    dateCreated : props.date,
+    likes : props.likes,
+    retweets : props.retweets,
+    replies : props.replies,
+    id : props.tweetId,
+    userId : props.userId,
   }
 
 
-  // React.useEffect(() => {
-  // document.getElementById(`Tweet${props.tweetId}`).click(e=>{
-  //   e.stopPropagation();
-  //   e.stopImmediatePropagation();
-  //   e.preventDefault();
-  //   console.log(e.target.id);
-  // });
-  // }, []);
-
   return (
-    <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
+    <NavLink to = {`/${props.userId}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
     <div id={`Tweet${props.tweetId}`} className={props.isTopTweet ?classes.topTweet : classes.feedTweet}>
       {/* {replyModal && (
         <FeedTweetReplyModal
@@ -114,10 +110,10 @@ export default function FeedTweet(props) {
       ></img>
       <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.top}>
         <MiniProfile
-          profilePic="https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
-          name="Andrew"
-          userName="andrew9991"
-          profileDesciption="Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler "
+          profilePic = {props.profilePic}
+          name={props.name}
+          userName={props.userName}
+          profileDesciption={props.bio}
           following={777}
           followers={1863}
         />
@@ -135,10 +131,10 @@ export default function FeedTweet(props) {
           </h2>
           <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
-              profilePic="https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
-              name="Andrew"
-              userName="andrew9991"
-              profileDesciption="Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler "
+              profilePic = {props.profilePic}
+              name={props.name}
+              userName={props.userName}
+              profileDesciption={props.bio}
               following={777}
               followers={1863}
             />
@@ -153,10 +149,10 @@ export default function FeedTweet(props) {
           </p>
           <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
-              profilePic="https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
-              name="Andrew"
-              userName="andrew9991"
-              profileDesciption="Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler "
+              profilePic = {props.profilePic}
+              name={props.name}
+              userName={props.userName}
+              profileDesciption={props.bio}
               following={777}
               followers={1863}
             />
@@ -174,20 +170,21 @@ export default function FeedTweet(props) {
             <p className={`${classes.gray}  ${classes.fs15} ${classes.minip} ${classes.replyat} ${classes.nom}`}>@{props.topUser}</p>
             <div className={classes.hoverProfile + " " + classes.repmin}>
             <MiniProfile
-              profilePic="https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg"
-              name="Andrew"
-              userName="andrew9991"
-              profileDesciption="Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler "
+              profilePic = {props.profilePic}
+              name={props.name}
+              userName={props.userName}
+              profileDesciption={props.bio}
               following={777}
               followers={1863}
             />
           </div>
           </div>}
-        {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
+        {/* {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
               <div data-testid="text"  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
         </NavLink>}
         {(props.isTopTweet) && 
-          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>}
+          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>} */}
+          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
         {props.img && (
           <img className={classes.tweetImg} src={props.img} alt=""></img>
         )}
@@ -207,12 +204,14 @@ export default function FeedTweet(props) {
             color="b"
             tooltip="Reply"
             onClick={viewReplyModal}
+            tweet = {tweet}
           />
           <TweetAtrribute
             Icon={LoopOutlinedIcon}
             num={props.retweets}
             color="g"
             tooltip="Retweet"
+            tweet = {tweet}
           />
           <TweetAtrribute
             Icon={FavoriteBorderOutlinedIcon}
@@ -220,8 +219,9 @@ export default function FeedTweet(props) {
             num={props.likes}
             color="r"
             tooltip="Like"
+            tweet = {tweet}
           />
-          <TweetAtrribute Icon={ShareOutlinedIcon} color="b" tooltip="Share" />
+          <TweetAtrribute Icon={ShareOutlinedIcon} color="b" tooltip="Share" tweet = {tweet} />
         </div>
       }
 

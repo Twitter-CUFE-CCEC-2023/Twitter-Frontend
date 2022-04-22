@@ -3,86 +3,96 @@ import classes from "./Feed.module.css";
 import FeedTweetBox from "./UpperTweetBox/FeedTweetBox";
 import FeedTweet from "./FeedTweet";
 import defaultMaleProfile from "../../../Assets/defaultMaleProfile.jpg";
+import axios from "axios";
+import { ContactlessOutlined } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 
 export default function Feed() {
-  const tweet = {
-    tweetId : 1,
-    profilePic: defaultMaleProfile,
-    name: "Andrew",
-    userName: "andrew9991",
-    text: "Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler ",
-    replies: 121,
-    retweets: 13,
-    likes: 2345,
-    date: new Date("April 4, 2022 13:23:00"),
-  };
 
-  const tweet2 = {
-    tweetId : 2,
-    profilePic: defaultMaleProfile,
-    name: "Andrew",
-    userName: "andrew9991",
-    text: "Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler ",
-    replies: 121,
-    retweets: 13,
-    likes: 2345,
-    date: new Date("April 3, 2022 01:00:00"),
-  };
+  const api = axios.create({
+    baseURL: "https://6262975a005a66e1e3aa1ebb.mockapi.io/",
+  })
+  
+  // let feedTweets;
+  // async function getTweets() {
+    //   const res = await api.get("users/1/tweet");
+    //   setTweets(res.data);
+    //   feedTweets = tweets.map((tweet) => {
+      //     return <FeedTweet {...tweet} showAction={true} />;
+      //   });
+      // }
+      // React.useEffect(() => {
+        //   getTweets();
+        // }, []);
+        
+  const [users, setUsers] = React.useState([]);
+  const [tweets, setTweets] = React.useState([]);
+  const [isLoading, setLoading] = React.useState(true);
 
-  const tweet3 = {
-    tweetId : 3,
-    profilePic: defaultMaleProfile,
-    name: "Andrew",
-    userName: "andrew9991",
-    text: "Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler ",
-    replies: 121,
-    retweets: 13,
-    likes: 2345,
-    date: new Date("April 2, 2022 01:00:00"),
-  };
+  let feedTweets;
+  React.useEffect(() => getTweets(), []);
+  
+  const getTweets = async () => {
+    const res = await api.get("users");
+    users.push(res.data);
 
-  const tweet4 = {
-    tweetId : 4,
-    profilePic: defaultMaleProfile,
-    name: "Andrew",
-    userName: "andrew9991",
-    text: "Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler ",
-    replies: 121,
-    retweets: 13,
-    likes: 2345,
-    date: new Date("April 2, 2022 01:00:00"),
-  };
-
-  const tweet5 = {
-    tweetId : 5,
-    profilePic: defaultMaleProfile,
-    name: "Andrew",
-    userName: "andrew9991",
-    text: "Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler ",
-    replies: 121,
-    retweets: 13,
-    likes: 2345,
-    date: new Date("April 1, 2020 01:00:00"),
-  };
+    //console.log(users);
+    for(const user of users[0]) {
+      //console.log(user);
+      const resp = await api.get(`users/${user.id}/tweet`);
+      const userTweets = resp.data;
+      //console.log(userTweets);
+      userTweets.forEach((userTweet) => {
+        //console.log(userTweet);
+        let tweet = {
+          userId : user.id,
+          name : user.name,
+          profilePic : user.profilePic,
+          userName : user.userName,
+          bio : user.bio,
+          text : userTweet.content,
+          tweetId : userTweet.id,
+          date : userTweet.dateCreated,
+          replies : userTweet.replies,
+          likes : userTweet.likes,
+          retweets : userTweet.retweets
+        }
+        setTweets((prevTweets) => {
+          return [...prevTweets, tweet];
+        });
+      });  
+    }
+      
+    feedTweets = tweets.map((tweet) => {
+      return <FeedTweet {...tweet} showAction={true} />;
+    });
+    // console.log(tweets);
+    setLoading(false);
+  }
+    
+  
   
 
-  const users = [
-    tweet,
-    tweet2,
-    tweet3,
-    tweet4,
-    tweet5,
-  ];
+   
+  if(isLoading) {
+    return (
+    <div className={classes.feed}>
+      <h2 className={classes.feedHeader}>Home</h2>
+      <FeedTweetBox />
+      <div className="App">Loading...</div>
+    </div>);
+    
+  }
 
-  const tweets = users.map((tweet) => {
-    return <FeedTweet {...tweet} showAction={true} />;
-  });
+  
 
   return (
     <div className={classes.feed}>
       <h2 className={classes.feedHeader}>Home</h2>
       <FeedTweetBox />
-      {tweets}
+      {tweets.map((tweet) => {
+      return <FeedTweet {...tweet} showAction={true} />;
+    })}
     </div>
   );
 }

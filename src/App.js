@@ -42,7 +42,7 @@ function App() {
           <Route path="/TrackOption" component={TrackOption} />
           <Route path="/AddPhone" component={AddPhone} />
           <Route path="/home" component={Home} />
-          <Route path="/:userName/status/:id" component={MainTweetPage} />
+          <Route path="/:userId/status/:id" component={MainTweetPage} />
           <Route path="/notifications" component={AllNotificationsPage} />
           <Route
             path="/mentionnotifications"
