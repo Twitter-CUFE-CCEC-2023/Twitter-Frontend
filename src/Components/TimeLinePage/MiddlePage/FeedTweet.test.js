@@ -17,6 +17,8 @@ const tweet = {
 
 test ("the component renders successfully", () => {
     const {getByTestId} = render(<Router><FeedTweet {...tweet} showAction={true}/></Router>);
-    const element = getByTestId("name");
-    expect(element).toHaveTextContent(tweet.name);
+    expect(getByTestId("name")).toHaveTextContent(tweet.name);
+    expect(getByTestId("userName")).toHaveTextContent(tweet.userName);
+    expect(getByTestId("text")).toHaveTextContent(tweet.text);
+    
   });

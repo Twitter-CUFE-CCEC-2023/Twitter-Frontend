@@ -25,6 +25,7 @@ import Likes from "./Components/AdminPage/SideBarTabs/Likes";
 import Tweets from "./Components/AdminPage/SideBarTabs/Tweets";
 import Retweets from "./Components/AdminPage/SideBarTabs/Retweets";
 import Statistics from "./Components/AdminPage/SideBarTabs/Statistics";
+import MainTweetPage from "./Components/TimeLinePage/TweetPage/MainTweetPage";
 
 function App() {
   // const loginCtx = useContext(LoginContext);
@@ -42,6 +43,7 @@ function App() {
           <Route path="/TrackOption" component={TrackOption} />
           <Route path="/AddPhone" component={AddPhone} />
           <Route path="/home" component={Home} />
+          <Route path="/:userId/status/:id" component={MainTweetPage} />
           <Route path="/notifications" component={AllNotificationsPage} />
           <Route
             path="/mentionnotifications"
