@@ -167,13 +167,13 @@ export default function FeedTweet(props) {
         {props.isReply && <div className={classes.flex}>
             <p className={`${classes.gray} ${classes.fs15} ${classes.nom}`}>Replying to </p>
             &nbsp;
-            <p className={`${classes.gray}  ${classes.fs15} ${classes.minip} ${classes.replyat} ${classes.nom}`}>@{props.topUser}</p>
+            <p className={`${classes.gray}  ${classes.fs15} ${classes.minip} ${classes.replyat} ${classes.nom}`}>@{props.topUser.userName}</p>
             <div className={classes.hoverProfile + " " + classes.repmin}>
             <MiniProfile
-              profilePic = {props.profilePic}
-              name={props.name}
-              userName={props.userName}
-              profileDesciption={props.bio}
+              profilePic = {props.topUser.profilePic}
+              name={props.topUser.name}
+              userName={props.topUser.userName}
+              profileDesciption={props.topUser.bio}
               following={777}
               followers={1863}
             />
