@@ -3,34 +3,43 @@ import classes from "./AccountInfo.module.css";
 import classes1 from "../ProfileSection.module.css";
 import React, { useState } from "react";
 import UserNameItem from "./UserNameItem";
-import { info } from "fontawesome";
 export default function AccountInfo(props) {
-  const Info = [
-    { name: "username", value: "mena_lateaf" },
-    { name: "Phone", value: "01276011964" },
-    { name: "email", value: "mena.lateaf@gmail.com" },
-    { name: "verified", value: false },
-    { name: "protected tweets", value: false },
+  const [Info, setInfo] = useState([
+    { id: 0, name: "username", value: "mena_lateaf" },
+    { id: 1, name: "Phone", value: "01276011964" },
+    { id: 2, name: "email", value: "mena.lateaf@gmail.com" },
+    { id: 3, name: "verified", value: false },
+    { id: 4, name: "protected tweets", value: false },
     {
+      id: 5,
       name: "account creation",
       value: `Mar 25, 2022, 4:10:18 PM
     62.114.47.17 (Egypt)`,
     },
-    { name: "country", value: "Egypt" },
-    // { name: "languages", value1: "arabic", value2: "english" },
-    { name: "gender", value: "malle" },
-    { name: "birth date", value: "14/8/2000" },
-    { name: "age", value: "21" },
-    { name: "automation", value: "manage your automated account" },
-  ];
+    { id: 6, name: "country", value: "Egypt" },
+    //{ name: "languages", value1: "arabic", value2: "english" },
+    { id: 7, name: "gender", value: "malle" },
+    { id: 8, name: "birth date", value: "14/8/2000" },
+    { id: 9, name: "age", value: "21" },
+    { id: 10, name: "automation", value: "manage your automated account" },
+  ]);
   const [chosenInfoItem, setChosenInfoItem] = useState(undefined);
-  const [chosenInfoVAlue, setChosenInfoValue] = useState(undefined);
-  function modifyChosenInfoItemHandler(name, value) {
+  const [chosenInfoValue, setChosenInfoValue] = useState(undefined);
+  const [chosenInfoId, setchosenInfoId] = useState(undefined);
+
+  function modifyChosenInfoItemHandler(name, value, id) {
     setChosenInfoItem(name);
     setChosenInfoValue(value);
+    setchosenInfoId(id);
   }
   function goBack() {
     setChosenInfoItem(undefined);
+  }
+  function userNameChangeHandler(value) {
+    setChosenInfoItem(undefined);
+    let copy = Info;
+    copy[chosenInfoId].value = value;
+    setInfo(copy);
   }
   return (
     <div className={classes1["profile-section"]}>
@@ -53,14 +62,24 @@ export default function AccountInfo(props) {
             {Info.map((item) => (
               <AccountInfoItem
                 data={item}
-                key={item.name}
+                key={item.id}
                 onModify={modifyChosenInfoItemHandler}
               ></AccountInfoItem>
             ))}
           </div>
         </React.Fragment>
       ) : chosenInfoItem.toLowerCase() === "username" ? (
-        <UserNameItem onGoBack={goBack} value={chosenInfoVAlue}></UserNameItem>
+        <UserNameItem
+          onGoBack={goBack}
+          value={chosenInfoValue}
+          onSave={userNameChangeHandler}
+        ></UserNameItem>
+      ) : chosenInfoItem.toLowerCase() === "" ? (
+        <UserNameItem
+          onGoBack={goBack}
+          value={chosenInfoValue}
+          id={chosenInfoId}
+        ></UserNameItem>
       ) : (
         ""
       )}
