@@ -10,38 +10,6 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { SkipPreviousRounded } from '@material-ui/icons';
 
-const tweet = {
-  tweetId : 1,
-  profilePic: defaultMaleProfile,
-  name: "Andrew",
-  userName: "andrew9991",
-  text: "Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler ",
-  replies: 121,
-  retweets: 13,
-  likes: 2345,
-  date: new Date("April 4, 2022 13:23:00"),
-};
-
-const reply ={
-  tweetId : 2,
-  profilePic: defaultMaleProfile,
-  name: "replyUser",
-  userName: "reUser",
-  text: "Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler Filler ",
-  replies: 121,
-  retweets: 13,
-  likes: 2345,
-  date: new Date("April 4, 2022 13:23:00"),
-}
-
-const r = [reply,reply,reply,reply,reply,reply,reply]
-
-
-
-const tweets = r.map((tweet) => {
-  return <FeedTweet {...tweet} isReply = {true}  topUser = "andrew9991" showAction={true} />;
-});
-
 function TweetAndReplies() {
   const api = axios.create({
     baseURL: "https://6262975a005a66e1e3aa1ebb.mockapi.io/",

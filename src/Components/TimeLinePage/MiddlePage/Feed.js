@@ -83,7 +83,7 @@ export default function Feed() {
   }
     
   
-  
+  let history = useHistory();
 
    
   // if(isLoading) {
@@ -105,10 +105,10 @@ export default function Feed() {
       {tweets.map((tweet, index) => {
         if(index === tweets.length - 1) {
           return <div ref ={lastTweetElementRef} key = {index}>
-                  <FeedTweet  {...tweet} showAction={true} />
+                  <FeedTweet history = {history} {...tweet} showAction={true} />
                 </div>
         } else {
-        return <FeedTweet {...tweet} key = {index} showAction={true} />;
+        return <FeedTweet history = {history} {...tweet} key = {index} showAction={true} />;
         }
     })}
       {isLoading && <div className="App">Loading...</div>}

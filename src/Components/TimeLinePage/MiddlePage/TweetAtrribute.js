@@ -23,7 +23,7 @@ function TweetAtrribute(props) {
         }else{
           props.tweet.likes += 1;
         }
-        console.log(props.tweet.likes);
+        //console.log(props.tweet.likes);
       }
       else{
         if(clicked === classes.clicked){
@@ -48,9 +48,9 @@ function TweetAtrribute(props) {
   }
   
   return (
-    <div className={`${classes.tweetAtrribute} ${classes[props.color]} ${clicked}`} onClick={click}>
-      <div onClick={(e) =>{e.preventDefault()}} className={feedBoxButtonClasses.tooltip}>
-        <div  className={classes.flex}>
+    <div onClick={(e) =>{e.stopPropagation()}} className={`${classes.tweetAtrribute} ${classes[props.color]} ${clicked}`} >
+      <div onClick={click} className={feedBoxButtonClasses.tooltip}>
+        <div className={classes.flex}>
           {!hlLike && <props.Icon className={classes.attIcon} />}
           {hlLike && <props.FilledIcon className={classes.attIcon} />}
           <p className={classes.num}>{num}</p>
