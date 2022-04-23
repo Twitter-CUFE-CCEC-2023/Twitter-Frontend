@@ -96,7 +96,8 @@ function ProfileData() {
         <ProfileTabs onChangeTab={changeTypeHandeler}></ProfileTabs>
       </div>
       <div>
-      {!isLoading && tweets.map((tweet, index) => {
+        {/* FOR TWEETS */}
+      {!isLoading&& tabType=="Tweets" && tweets.map((tweet, index) => {
         return <FeedTweet {...tweet} key = {index} showAction={true} />;
         }
       )}
