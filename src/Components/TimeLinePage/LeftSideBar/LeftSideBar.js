@@ -56,7 +56,12 @@ const LeftSideBar = () => {
   return (
     <div className={classes.leftSideBar}>
       {moreSelected && <SelectMore />}
-      {!moreSelected && <div className={classes.twitterIcon}> <TwitterIcon/> </div>}
+      {!moreSelected && (
+        <div className={classes.twitterIcon}>
+          {" "}
+          <TwitterIcon />{" "}
+        </div>
+      )}
       {!moreSelected && (
         <div data-testid="homeButton" className={classes.phoneVis}>
           <LeftButton
@@ -86,7 +91,10 @@ const LeftSideBar = () => {
             IconActive={NotificationsIcon}
             url="notifications"
             title="Notifications"
-            onPage={pageActive.get("notifications") || pageActive.get("mentionnotifications")}
+            onPage={
+              pageActive.get("notifications") ||
+              pageActive.get("mentionnotifications")
+            }
           />
         </div>
       )}
@@ -136,7 +144,9 @@ const LeftSideBar = () => {
         </div>
       )}
       {!moreSelected && (
-        <div className={`${classesLeftButton.leftButton} ${classes.phoneInvis}`} >
+        <div
+          className={`${classesLeftButton.leftButton} ${classes.phoneInvis}`}
+        >
           <MoreOutlinedIcon />
           <p
             className={classesLeftButton.title}
@@ -147,8 +157,8 @@ const LeftSideBar = () => {
         </div>
       )}{" "}
       {/* need to add the functionality of more */}
-      <div  className={classes.phoneInvis}>
-      <TweetButton />
+      <div className={classes.phoneInvis}>
+        <TweetButton />
       </div>
     </div>
   );

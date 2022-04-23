@@ -5,6 +5,7 @@ import "./App.css";
 
 import MainPage from "./Components/Login/FirstPage/MainPage";
 import SignInPage from "./Components/Login/SignInPage/SignInPage";
+
 import Mail from "./Components/Login/SignUp/Mail";
 import Phone from "./Components/Login/SignUp/Phone";
 import PhoneVerify from "./Components/Login/SignUp/PhoneVerify";
@@ -16,6 +17,7 @@ import AllNotificationsPage from "./Components/Notifications/AllNotificationsPag
 import MentionNotificationsPage from "./Components/Notifications/MentionNotificationsPage";
 import Settings from "./Components/Settings/Settings";
 import UserProfile from "./Components/UserProfilePage/UserProfile";
+import ImageCropper from "./Components/UserProfilePage/ProfileActions/ImageCropper";
 import UnderConstructionPage from "./Components/ExtraPages/UnderConstructionPage";
 
 import Admin from "./Components/AdminPage/Admin";
@@ -36,13 +38,15 @@ function App() {
         <Switch>
           <Route exact={true} path="/" component={MainPage} />
           <Route path="/SignIn" component={SignInPage} />
+
           <Route path="/Mail" component={Mail} />
           <Route path="/Phone" component={Phone} />
           <Route path="/phoneVerify" component={PhoneVerify} />
           <Route path="/TrackOption" component={TrackOption} />
           <Route path="/AddPhone" component={AddPhone} />
+
           <Route path="/home" component={Home} />
-          <Route path="/:userName/status/:id" component={MainTweetPage} />
+          <Route path="/:userId/status/:id" component={MainTweetPage} />
           <Route path="/notifications" component={AllNotificationsPage} />
           <Route
             path="/mentionnotifications"
@@ -50,10 +54,12 @@ function App() {
           />
           <Route path="/settings" component={Settings} />
           <Route path="/userprofile" component={UserProfile} />
+          <Route path="/crop" component={ImageCropper}/>
           <Route path="/explore" component={UnderConstructionPage} />
           <Route path="/messages" component={UnderConstructionPage} />
           <Route path="/i/bookmarks" component={UnderConstructionPage} />
           <Route path="/profileName/lists" component={UnderConstructionPage} />
+          
 
           <Route path="/admin" component={Admin} />
           <Route path="/admin-userslist" component={UsersList} />

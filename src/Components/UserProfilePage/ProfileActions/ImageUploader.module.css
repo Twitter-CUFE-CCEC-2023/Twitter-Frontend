@@ -1,0 +1,24 @@
+.coverEditor {
+    position: absolute;
+    left: 45%;
+    top: 20%;
+    border-radius: 50%;
+    border-width: 2px;
+    color: white;
+    background-color: #535151;
+    cursor: pointer;
+    font-size: 30px !important;
+    z-index: 1000;
+  }
+  
+  .photoEditor {
+    position: absolute;
+    left: 33%;
+    top: 9%;
+    border-radius: 50%;
+    border-width: 2px;
+    color: white;
+    background-color: #5b5353;
+    cursor: pointer;
+    font-size: 30px !important;
+  }

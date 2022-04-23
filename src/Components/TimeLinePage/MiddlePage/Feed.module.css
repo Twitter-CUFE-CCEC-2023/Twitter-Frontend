@@ -1,4 +1,5 @@
 .feed {
+  flex: auto;
   margin-top: 0;
   border-right: 1px solid var(--twitterBorder);
 

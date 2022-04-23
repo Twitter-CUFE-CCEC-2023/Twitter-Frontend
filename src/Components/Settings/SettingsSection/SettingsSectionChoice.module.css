@@ -5,16 +5,22 @@
   justify-content: space-between;
   color: rgb(51, 51, 51);
   padding: 15px 10px 5px 5px;
-  width: 95%;
-  border-radius: 15px;
+  width: 100%;
+  /* border-radius: 15px; */
   cursor: pointer;
   font-size: 15px;
-  font-weight: 400;}
+  font-weight: 400;
+  transition: all ease-in-out 0.5s;
+}
 
 .choice:hover {
-  background-color: rgb(223, 226, 226);
+  background-color: rgba(192, 234, 180, 0.238);
 }
 .choice-svg {
   height: 25px;
   min-width: 15%;
+}
+.chosen{
+  border-right: 2px solid var(--twitterBlue);
+  background-color: rgba(192, 234, 180, 0.238);
 }

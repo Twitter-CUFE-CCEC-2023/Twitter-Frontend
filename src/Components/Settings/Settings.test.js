@@ -5,8 +5,7 @@ import Settings from "./Settings";
 test("the component renders successfully", () => {
   render(
     <BrowserRouter>
-      {" "}
-      <Settings />{" "}
+      <Settings />
     </BrowserRouter>
   );
   const element = screen.findByText("");
