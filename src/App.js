@@ -53,7 +53,7 @@ function App() {
             component={MentionNotificationsPage}
           />
           <Route path="/settings" component={Settings} />
-          <Route path="/userprofile" component={UserProfile} />
+          <Route path="/userprofile/:userId" component={UserProfile} />
           <Route path="/crop" component={ImageCropper}/>
           <Route path="/explore" component={UnderConstructionPage} />
           <Route path="/messages" component={UnderConstructionPage} />

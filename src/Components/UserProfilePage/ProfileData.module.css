@@ -67,6 +67,11 @@
   left: 1.3rem;
 }
 
+.loadingIcon{
+  margin-left: 50%;
+  margin-top: 5%;
+}
+
 @media screen and (min-width: 689px) {
   .profileDataContainer {
     margin-top: 0;
