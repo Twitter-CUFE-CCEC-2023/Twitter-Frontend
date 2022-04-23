@@ -20,8 +20,11 @@
 .profilePic {
   border-radius: 50%;
   height: 48px;
-  cursor: pointer;
+  min-width: 48px;
+  max-width: 48px;
   margin: 10px;
+  overflow: hidden;
+  cursor: pointer;
   user-select: none;
 }
 
