@@ -1,8 +1,7 @@
 .buttonNext {
   margin-top: 25px;
   padding: 0px;
-  height: 45px;
-  width: max;
+  height: 36px;
 
   text-decoration: none;
 
@@ -31,6 +30,6 @@
   font-size: 60%;
   text-align: center;
 
-  margin-top: 12px;
+  margin-top: 7px;
   font-weight: 700;
 }

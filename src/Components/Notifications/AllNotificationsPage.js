@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./AllNotificationsPage.module.css";
-import LeftSideBar from "../TimeLinePage/LeftSideBar";
-import RightSideBar from "../TimeLinePage/RightSideBar";
-import AllNotifications from "./AllNotifications";
+import LeftSideBar from "../TimeLinePage/LeftSideBar/LeftSideBar";
+import RightSideBar from "../TimeLinePage/RightSideBar/RightSideBar";
+import AllNotifications from "./All/AllNotifications";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function AllNotificationsPage() {

@@ -5,8 +5,9 @@ import key from "../../../Assets/settings-profile/key.png";
 import download from "../../../Assets/settings-profile/download.png";
 import people from "../../../Assets/settings-profile/people.png";
 import brkoen from "../../../Assets/settings-profile/broken-heart.png";
+import { useState } from "react";
 
-function ProfileSectionChoices() {
+function ProfileSectionChoices(props) {
   const choisces = [
     {
       name: "Account information",
@@ -37,12 +38,16 @@ function ProfileSectionChoices() {
       image: brkoen,
     },
   ];
+  function chooseChoiceHandler(name) {
+    props.onChangeChosenOption(name);
+  }
   return (
     <div className={classes.choices}>
       {choisces.map((choice) => (
         <ProfileSectionChoice
           key={choice.name}
           data={choice}
+          onChoose={chooseChoiceHandler}
         ></ProfileSectionChoice>
       ))}
     </div>

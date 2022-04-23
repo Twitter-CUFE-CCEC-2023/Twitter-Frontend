@@ -1,0 +1,46 @@
+.choice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    color: rgb(51, 51, 51);
+    padding: 15px 10px 5px 15px;
+    width: 100%;
+    /* border-radius: 15px; */
+    cursor: pointer;
+    
+  transition: all ease-in-out 0.5s;
+  }
+  .choice:hover {
+    background-color: rgba(192, 234, 180, 0.238);
+    
+  }
+  .choice-svg {
+    height: 25px;
+    min-width: 15%;
+  }
+  .data-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+  }
+  .name {
+    
+    font-size: 15px;
+    font-weight: 400;}
+  .description {
+    font-size: 50%;color: rgb(83, 100, 113);
+    font-size: 13px;
+    font-weight: 400;}
+  
+  .chosen{
+    background-color: rgba(192, 234, 180, 0.238);
+  
+  }
+  .anchor{
+    color: rgb(29, 155, 240);;
+    text-decoration: none;
+  }
+  .anchor:hover{
+    text-decoration: underline;
+  }

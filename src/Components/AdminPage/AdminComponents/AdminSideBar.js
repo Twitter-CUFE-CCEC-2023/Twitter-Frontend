@@ -12,7 +12,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import AdminStyles from "../AdminStyles";
 import Tabs from "./AdminSideBarTabs";
 
-const AdminSideBar = (props) => {
+const AdminSideBar = () => {
   const screenSize = window.innerWidth;
   let largeScreen = true;
 

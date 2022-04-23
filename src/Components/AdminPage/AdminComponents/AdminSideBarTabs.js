@@ -3,6 +3,8 @@ import PeopleAltRoundedIcon from "@material-ui/icons/PeopleAltRounded";
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import LoopRoundedIcon from "@material-ui/icons/LoopRounded";
+import PieChartRoundedIcon from "@material-ui/icons/PieChartRounded";
+import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
 
 const Tabs = [
   {
@@ -29,6 +31,16 @@ const Tabs = [
     title: "Retweets",
     icon: <LoopRoundedIcon />,
     url: "/admin-retweets",
+  },
+  {
+    title: "Statistics",
+    icon: <PieChartRoundedIcon />,
+    url: "/admin-statistics",
+  },
+  {
+    title: "Logout",
+    icon: <ExitToAppRoundedIcon />,
+    url: "/",
   },
 ];
 

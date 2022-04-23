@@ -82,6 +82,7 @@ function Filters() {
         <BootstrapButton
           variant="contained"
           color="primary"
+          data-testid="submitButton"
           disableRipple
           className={classes.submitButton}
           onClick={handleSubmissiom}
