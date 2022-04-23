@@ -194,7 +194,7 @@ export default function FeedTweet(props) {
           </div>
           </div>}
         
-          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
+          <div data-testid="text" className={classes.fs15 + " " + classes.text}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
 
         {props.img && (
           <img className={classes.tweetImg} src={props.img} alt=""></img>
