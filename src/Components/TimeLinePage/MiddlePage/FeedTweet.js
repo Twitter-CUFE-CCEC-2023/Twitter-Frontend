@@ -9,6 +9,7 @@ import TweetAtrribute from "./TweetAtrribute";
 import MiniProfile from "../MiniProfile";
 import { NavLink } from "react-router-dom";
 import TopTweetAttributes from "./TopTweetAttributes";
+import { Link } from "@material-ui/core";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
@@ -94,7 +95,7 @@ export default function FeedTweet(props) {
 
 
   return (
-    <NavLink to = {`/${props.userId}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
+    // <NavLink as = {Link} to = {`/${props.userId}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
     <div id={`Tweet${props.tweetId}`} className={props.isTopTweet ?classes.topTweet : classes.feedTweet}>
       {/* {replyModal && (
         <FeedTweetReplyModal
@@ -179,12 +180,9 @@ export default function FeedTweet(props) {
             />
           </div>
           </div>}
-        {/* {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
-              <div data-testid="text"  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
-        </NavLink>}
-        {(props.isTopTweet) && 
-          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>} */}
+        <NavLink to = {`/${props.userId}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
           <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
+        </NavLink>
         {props.img && (
           <img className={classes.tweetImg} src={props.img} alt=""></img>
         )}
@@ -229,6 +227,6 @@ export default function FeedTweet(props) {
       </div>
       {/* {!props.showAction && <div></div>} */}
     </div>
-    </NavLink>
+    // </NavLink>
   );
 }

@@ -57,7 +57,7 @@ function TweetAndReplies() {
   const getTweet = async () => {
     const userRes = await api.get(`users/${userId}/`);
     let user = userRes.data;
-    console.log(user);
+    //console.log(user);
     setTopUser(prevUser => ({
       ...prevUser,
       name: user.name,
@@ -96,7 +96,8 @@ function TweetAndReplies() {
         tweetId : reply.id,
         date : reply.dateCreated,
         likes : reply.likes,
-        retweets : reply.retweets
+        retweets : reply.retweets,
+        replies : reply.replies
       }
     })
     const resolved = await Promise.all(repl);
@@ -133,8 +134,8 @@ function TweetAndReplies() {
       </div>
       <FeedTweet isTopTweet = {true} {...topTweet}/>
       <div className= {classes.tbox} > <FeedTweetBox isReply = {true}/> </div>
-      {replies.map((tweet) => {
-  return <FeedTweet {...tweet} isReply = {true}  topUser = {topUser} showAction={true} />;
+      {replies.map((tweet, index) => {
+  return <FeedTweet {...tweet} isReply = {true}  topUser = {topUser} showAction={true} key = {index}/>;
 })}
     </div>
   )
