@@ -51,6 +51,8 @@ export default function FeedTweetBox(props) {
   // }
 
   const [show, setShow] = React.useState(false);
+  const [loggedInUser, setLoggedInUser] = React.useState(null);
+
   function focus() {
     setShow(true);
   }
@@ -67,6 +69,10 @@ export default function FeedTweetBox(props) {
     // });
   };
 
+  React.useEffect(() => {setLoggedInUser(JSON.parse(localStorage.getItem("UserInfo")));}, []);
+
+  let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
+  //console.log(loggedUser);
   return (
     <ImageUploading
       multiple
@@ -87,10 +93,10 @@ export default function FeedTweetBox(props) {
         <div className="feedTweetBox">
           <div className="boxInput">
             <div className="profileImgOpacity">
-              <NavLink to="/profile">
+              <NavLink to= {`userprofile/${loggedUser.username}`}>
                 <img
                   className="profileImg"
-                  src={defaultMaleProfile}
+                  src={loggedUser.profile_image_url}
                   alt="profile"
                 ></img>
               </NavLink>

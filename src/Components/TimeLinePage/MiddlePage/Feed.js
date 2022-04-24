@@ -16,9 +16,9 @@ export default function Feed() {
   const [isLoading, setLoading] = React.useState(true);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
-
   const observer = useRef();
 
+  
   const lastTweetElementRef = useCallback(node => {
     if (isLoading) return;
     if (observer.current) observer.current.disconnect();
@@ -29,6 +29,8 @@ export default function Feed() {
     });
     if (node) observer.current.observe(node);
   }, [isLoading, hasMore]);
+
+  
 
   React.useEffect(() => getTweets(), [pageNumber]);
   const getTweets = async () => {
