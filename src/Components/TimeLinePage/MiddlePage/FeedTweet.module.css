@@ -1,9 +1,10 @@
 .feedTweet {
+  min-width: 100%;
   display: flex;
   border: 1px solid var(--twitterBorder);
   cursor: pointer;
   font-size: 15px;
-  
+  flex: auto;
 }
 
 .feedTweet:hover {
@@ -11,6 +12,7 @@
 }
 
 .topTweet {
+  
   display: flex;
   border: 1px solid var(--twitterBorder);
   font-size: 15px;
@@ -64,22 +66,28 @@
 }
 
 .user > * {
+  
   margin-bottom: 5px;
   margin-top: 12px;
 }
 
 .user {
+  min-width: 100%;
+
   display: flex;
   align-items: center;
 }
 
 .tweet > * {
+
   margin-top: 0;
   margin-bottom: 0;
   line-height: 20px;
 }
 
 .tweet{
+  min-width: 100%;
+
   padding-right: 6px;
 }
 
@@ -155,6 +163,11 @@
 }
 
 .nom{
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.nomr{
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -162,4 +175,8 @@
 .repmin{
   top: 22px;
   left: -100px;
+}
+
+.text{
+  width: 90%;
 }

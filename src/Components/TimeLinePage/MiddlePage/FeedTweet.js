@@ -9,6 +9,9 @@ import TweetAtrribute from "./TweetAtrribute";
 import MiniProfile from "../MiniProfile";
 import { NavLink } from "react-router-dom";
 import TopTweetAttributes from "./TopTweetAttributes";
+import { Link } from "@material-ui/core";
+//import history from "../globalHistory";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
@@ -92,23 +95,30 @@ export default function FeedTweet(props) {
     userId : props.userId,
   }
 
+  let history = useHistory();
+  function goToTweetPage(){
+    //console.log("go to tweet page");
+    history.push(`/${props.userId}/status/${props.tweetId}`);
+  }
 
   return (
-    <NavLink to = {`/${props.userId}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
-    <div id={`Tweet${props.tweetId}`} className={props.isTopTweet ?classes.topTweet : classes.feedTweet}>
+    // <NavLink as = {Link} to = {`/${props.userId}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
+    <div onClick={goToTweetPage} id={`Tweet${props.tweetId}`} className={props.isTopTweet ?classes.topTweet : classes.feedTweet}>
       {/* {replyModal && (
         <FeedTweetReplyModal
           onHide={hideReplyModal}
           data={props}
         ></FeedTweetReplyModal>
       )} */}
+      <NavLink to={"/userProfile"} className={classes.fs15 + " " + classes.noStyle  + " " + classes.minip }>
       <img
-        onClick={(e) =>{e.preventDefault()}}
+        onClick={(e) =>{e.stopPropagation()}}
         className={classes.profilePic + " " + classes.minip}
         alt="profile"
         src={props.profilePic}
       ></img>
-      <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.top}>
+      </NavLink>
+      <div onClick={(e) =>{e.stopPropagation()}} className={classes.hoverProfile + " " + classes.top}>
         <MiniProfile
           profilePic = {props.profilePic}
           name={props.name}
@@ -120,16 +130,18 @@ export default function FeedTweet(props) {
       </div>
       <div className={classes.tweet}>
         <div className={classes.user}>
+        <NavLink to={"/userProfile"} className={classes.fs15 + " " + classes.noStyle  + " " + classes.minip }>
           <h2
-          onClick={(e) =>{e.preventDefault()}}
+          onClick={(e) =>{e.stopPropagation()}}
             data-testid="name"
             className={
-              classes.underline + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer
+              classes.underline + " " + classes.fs15 + " " + classes.pointer + " " + classes.topBar + " " + classes.nom
             }
           >
             {props.name}
           </h2>
-          <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.bot}>
+          </NavLink>
+          <div onClick={(e) =>{e.stopPropagation()}} className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
               profilePic = {props.profilePic}
               name={props.name}
@@ -140,14 +152,16 @@ export default function FeedTweet(props) {
             />
           </div>
           &nbsp;
+          <NavLink to={"/userProfile"} className={classes.fs15 + " " + classes.noStyle  + " " + classes.minip }>
           <p
-            onClick={(e) =>{e.preventDefault()}}
-            className={classes.gray + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer}
+            onClick={(e) =>{e.stopPropagation()}}
+            className={classes.gray + " " + classes.fs15 + " " + classes.pointer + " " + classes.nom}
             data-testid="userName"
           >
             @{props.userName}
           </p>
-          <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.bot}>
+          </NavLink>  
+          <div onClick={(e) =>{e.stopPropagation()}} className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
               profilePic = {props.profilePic}
               name={props.name}
@@ -165,9 +179,9 @@ export default function FeedTweet(props) {
 
         </div>
         {props.isReply && <div className={classes.flex}>
-            <p className={`${classes.gray} ${classes.fs15} ${classes.nom}`}>Replying to </p>
+            <p className={`${classes.gray} ${classes.fs15} ${classes.nomr}`}>Replying to </p>
             &nbsp;
-            <p className={`${classes.gray}  ${classes.fs15} ${classes.minip} ${classes.replyat} ${classes.nom}`}>@{props.topUser.userName}</p>
+            <p className={`${classes.gray}  ${classes.fs15} ${classes.minip} ${classes.replyat} ${classes.nomr}`}>@{props.topUser.userName}</p>
             <div className={classes.hoverProfile + " " + classes.repmin}>
             <MiniProfile
               profilePic = {props.topUser.profilePic}
@@ -179,12 +193,9 @@ export default function FeedTweet(props) {
             />
           </div>
           </div>}
-        {/* {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
-              <div data-testid="text"  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
-        </NavLink>}
-        {(props.isTopTweet) && 
-          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>} */}
-          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
+        
+          <div data-testid="text" className={classes.fs15 + " " + classes.text}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
+
         {props.img && (
           <img className={classes.tweetImg} src={props.img} alt=""></img>
         )}
@@ -225,10 +236,10 @@ export default function FeedTweet(props) {
         </div>
       }
 
-      {props.isTopTweet && <TopTweetAttributes likes = {props.likes} retweets = {props.retweets} quoteTweets = {23}/>}
+      {props.isTopTweet && <TopTweetAttributes tweet = {tweet} likes = {props.likes} retweets = {props.retweets} quoteTweets = {23}/>}
       </div>
       {/* {!props.showAction && <div></div>} */}
     </div>
-    </NavLink>
+    // </NavLink>
   );
 }
