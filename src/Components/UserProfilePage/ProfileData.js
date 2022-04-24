@@ -16,6 +16,9 @@ function ProfileData() {
   const api = axios.create({
     baseURL: "https://6262975a005a66e1e3aa1ebb.mockapi.io/",
   })
+
+  const user=localStorage.getItem("UserInfo")
+  console.log(user);
   const location = useLocation();
   const [tabType, setTabType] = useState("Tweets");
   const [isLoading, setLoading] = useState(true);
