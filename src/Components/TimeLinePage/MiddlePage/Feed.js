@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useCallback} from "react";
 import classes from "./Feed.module.css";
 import FeedTweetBox from "./UpperTweetBox/FeedTweetBox";
 import FeedTweet from "./FeedTweet";
@@ -28,22 +28,35 @@ export default function Feed() {
   const [users, setUsers] = React.useState([]);
   const [tweets, setTweets] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
+  const [pageNumber, setPageNumber] = React.useState(1);
+  const [hasMore, setHasMore] = React.useState(true);
+
+  const observer = useRef();
+
+  const lastTweetElementRef = useCallback(node => {
+    if (isLoading) return;
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPageNumber(prevPageNumber => prevPageNumber + 1);
+      }
+    });
+    if (node) observer.current.observe(node);
+  }, [isLoading, hasMore]);
 
   let feedTweets;
-  React.useEffect(() => getTweets(), []);
+  React.useEffect(() => getTweets(), [pageNumber]);
   
   const getTweets = async () => {
-    const res = await api.get("users");
+    setLoading(true);
+    const res = await api.get(`users?page=${pageNumber}&limit=3`);
+    setHasMore(res.data.length > 0);
     users.push(res.data);
 
-    //console.log(users);
     for(const user of users[0]) {
-      //console.log(user);
       const resp = await api.get(`users/${user.id}/tweet`);
       const userTweets = resp.data;
-      //console.log(userTweets);
       userTweets.forEach((userTweet) => {
-        //console.log(userTweet);
         let tweet = {
           userId : user.id,
           name : user.name,
@@ -66,7 +79,6 @@ export default function Feed() {
     feedTweets = tweets.map((tweet) => {
       return <FeedTweet {...tweet} showAction={true} />;
     });
-    // console.log(tweets);
     setLoading(false);
   }
     
@@ -74,15 +86,15 @@ export default function Feed() {
   
 
    
-  if(isLoading) {
-    return (
-    <div className={classes.feed}>
-      <h2 className={classes.feedHeader}>Home</h2>
-      <FeedTweetBox />
-      <div className="App">Loading...</div>
-    </div>);
+  // if(isLoading) {
+  //   return (
+  //   <div className={classes.feed}>
+  //     <h2 className={classes.feedHeader}>Home</h2>
+  //     <FeedTweetBox />
+  //     <div className="App">Loading...</div>
+  //   </div>);
     
-  }
+  // }
 
   
 
@@ -90,9 +102,16 @@ export default function Feed() {
     <div className={classes.feed}>
       <h2 className={classes.feedHeader}>Home</h2>
       <FeedTweetBox />
-      {tweets.map((tweet) => {
-      return <FeedTweet {...tweet} showAction={true} />;
+      {tweets.map((tweet, index) => {
+        if(index === tweets.length - 1) {
+          return <div ref ={lastTweetElementRef} key = {index}>
+                  <FeedTweet  {...tweet} showAction={true} />
+                </div>
+        } else {
+        return <FeedTweet {...tweet} key = {index} showAction={true} />;
+        }
     })}
+      {isLoading && <div className="App">Loading...</div>}
     </div>
   );
 }

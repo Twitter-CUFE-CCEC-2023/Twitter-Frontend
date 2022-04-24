@@ -2,10 +2,14 @@ import classes from "./UserNameItem.module.css";
 import classes1 from "../ProfileSection.module.css";
 import React, { useState } from "react";
 function UserNameItem(props) {
-  const [UserNameValue, setUserNAmeValue] = useState(props.value);
+  const [UserNameValue, setUserNameValue] = useState(props.value);
   const initial = props.value;
   function UserNameValueChangeHandler(e) {
-    setUserNAmeValue(e.target.value);
+    setUserNameValue(e.target.value);
+  }
+  function saveName(e) {
+    e.preventDefault();
+    props.onSave(UserNameValue);
   }
   return (
     <React.Fragment>
@@ -35,6 +39,7 @@ function UserNameItem(props) {
             type="submit"
             className={classes.button}
             disabled={initial == UserNameValue}
+            onClick={saveName}
           >
             save
           </button>

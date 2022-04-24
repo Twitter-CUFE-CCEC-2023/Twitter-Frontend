@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { SkipPreviousRounded } from '@material-ui/icons';
 
 const tweet = {
   tweetId : 1,
@@ -33,11 +34,11 @@ const reply ={
   date: new Date("April 4, 2022 13:23:00"),
 }
 
-const replies = [reply,reply,reply,reply,reply,reply,reply]
+const r = [reply,reply,reply,reply,reply,reply,reply]
 
 
 
-const tweets = replies.map((tweet) => {
+const tweets = r.map((tweet) => {
   return <FeedTweet {...tweet} isReply = {true}  topUser = "andrew9991" showAction={true} />;
 });
 
@@ -49,12 +50,21 @@ function TweetAndReplies() {
   let {userId , id} = useParams();
   const [isLoading, setLoading] = React.useState(true);
   const [topTweet, setTopTweet] = React.useState([]);
+  const [replies, setReplies] = React.useState([]);
+  const [topUser, setTopUser] = React.useState({ name: "", userName: "", profilePic: "" , bio: ""});
   React.useEffect(() => getTweet(), []);
 
   const getTweet = async () => {
     const userRes = await api.get(`users/${userId}/`);
     let user = userRes.data;
-
+    console.log(user);
+    setTopUser(prevUser => ({
+      ...prevUser,
+      name: user.name,
+      userName: user.userName,
+      profilePic: user.profilePic,
+      bio: user.bio,
+      }));
     const tweetRes = await api.get(`users/${userId}/tweet/${id}`);
     let userTweet = tweetRes.data;
     let tweet = {
@@ -69,7 +79,31 @@ function TweetAndReplies() {
       likes : userTweet.likes,
       retweets : userTweet.retweets
     }
+
+    const repliesRes = await api.get(`users/${userId}/tweet/${id}/replies`);
+    
+    let inReplies = repliesRes.data;
+    let repl = inReplies.map(async(reply) => {
+      const replyUserRes = await api.get(`users/${reply.userId % 11}`);
+      const replyUser = replyUserRes.data;
+      return {
+        userId : replyUser.id,
+        name : replyUser.name,
+        profilePic : replyUser.profilePic,
+        userName : replyUser.userName,
+        bio : replyUser.bio,
+        text : reply.content,
+        tweetId : reply.id,
+        date : reply.dateCreated,
+        likes : reply.likes,
+        retweets : reply.retweets
+      }
+    })
+    const resolved = await Promise.all(repl);
+
+    
     setTopTweet(tweet);
+    setReplies(resolved);
     setLoading(false);
   }
     
@@ -99,7 +133,9 @@ function TweetAndReplies() {
       </div>
       <FeedTweet isTopTweet = {true} {...topTweet}/>
       <div className= {classes.tbox} > <FeedTweetBox isReply = {true}/> </div>
-      {tweets}
+      {replies.map((tweet) => {
+  return <FeedTweet {...tweet} isReply = {true}  topUser = {topUser} showAction={true} />;
+})}
     </div>
   )
 }

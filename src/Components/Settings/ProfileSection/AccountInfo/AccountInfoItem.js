@@ -1,7 +1,7 @@
 import classes from "./AccountInfoItem.module.css";
 function AccountInfoItem(props) {
   function modify() {
-    props.onModify(props.data.name, props.data.value);
+    props.onModify(props.data.name, props.data.value, props.data.id);
   }
   return (
     <div
