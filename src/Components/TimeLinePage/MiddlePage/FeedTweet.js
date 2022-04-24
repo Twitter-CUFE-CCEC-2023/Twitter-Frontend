@@ -5,10 +5,14 @@ import LoopOutlinedIcon from "@material-ui/icons/LoopOutlined";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
+//import VerifiedIcon from '@material-ui/icons/Verified';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import TweetAtrribute from "./TweetAtrribute";
 import MiniProfile from "../MiniProfile";
 import { NavLink } from "react-router-dom";
 import TopTweetAttributes from "./TopTweetAttributes";
+import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
@@ -66,6 +70,21 @@ export default function FeedTweet(props) {
     }
   }
 
+  // axios(
+  //   {
+  //     method: "get",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRhNGE5NGM2NjczOGYxMzg1NGI0NzQiLCJ1c2VybmFtZSI6ImFtcnpha2kiLCJpYXQiOjE2NTA3NTYyODd9.KaFYhHkBjN1PGo7JmG7GQNY-QPLr1CQqwcYh2Q2eHgg`,
+  //       count : 20,
+  //       page : 1
+  //     },
+  //     url: `http://backendlb-1541065125.us-east-1.elb.amazonaws.com/home`,
+  //   }
+  // ).then((res) => {
+  //   console.log(res.data);
+  // });
+
   function URLReplacer(str) {
     let match = str.match(
       /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi
@@ -92,9 +111,13 @@ export default function FeedTweet(props) {
     userId : props.userId,
   }
 
+  let history = useHistory();
+  function handleClick(e) {
+    history.push(`/${props.userId}/status/${props.tweetId}`);
+  }
 
   return (
-    <NavLink to = {`/${props.userId}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
+    <div onClick={handleClick} className={classes.FeedTweet}>
     <div id={`Tweet${props.tweetId}`} className={props.isTopTweet ?classes.topTweet : classes.feedTweet}>
       {/* {replyModal && (
         <FeedTweetReplyModal
@@ -102,59 +125,65 @@ export default function FeedTweet(props) {
           data={props}
         ></FeedTweetReplyModal>
       )} */}
+      <NavLink to={`/userProfile/${props.userId}`} className={classes.fs15 + " " + classes.minip + " " + classes.noStyle} >
       <img
-        onClick={(e) =>{e.preventDefault()}}
+        onClick={(e) =>{e.stopPropagation()}}
         className={classes.profilePic + " " + classes.minip}
         alt="profile"
         src={props.profilePic}
       ></img>
-      <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.top}>
+      </NavLink>
+      <div onClick={(e) =>{e.stopPropagation()}} className={classes.hoverProfile + " " + classes.top}>
         <MiniProfile
           profilePic = {props.profilePic}
           name={props.name}
           userName={props.userName}
           profileDesciption={props.bio}
-          following={777}
-          followers={1863}
+          following={props.following}
+          followers={props.followers}
         />
       </div>
       <div className={classes.tweet}>
         <div className={classes.user}>
+          <NavLink to={`/userProfile/${props.userId}`} className={classes.fs15 + " " + classes.minip + " " + classes.noStyle} >
           <h2
-          onClick={(e) =>{e.preventDefault()}}
+          onClick={(e) =>{e.stopPropagation()}}
             data-testid="name"
             className={
-              classes.underline + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer
+              classes.underline  + " " + classes.fs15 + " " + classes.pointer+ " " +classes.alignTop
             }
           >
-            {props.name}
+            {props.name} {props.isVerified &&<CheckCircleIcon className={classes.verifiedIcon}/>}
           </h2>
-          <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.bot}>
+          </NavLink>
+          <div onClick={(e) =>{e.stopPropagation()}} className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
               profilePic = {props.profilePic}
               name={props.name}
               userName={props.userName}
               profileDesciption={props.bio}
-              following={777}
-              followers={1863}
+              following={props.following}
+              followers={props.followers}
             />
           </div>
           &nbsp;
+          <NavLink to={`/userProfile/${props.userId}`} className={classes.fs15 + " " + classes.minip + " " + classes.noStyle} >
           <p
-            onClick={(e) =>{e.preventDefault()}}
-            className={classes.gray + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer}
+            onClick={(e) =>{e.stopPropagation()}}
+            className={classes.gray + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer + " " +classes.alignTop}
             data-testid="userName"
           >
             @{props.userName}
           </p>
-          <div onClick={(e) =>{e.preventDefault()}} className={classes.hoverProfile + " " + classes.bot}>
+          </NavLink>
+          <div onClick={(e) =>{e.stopPropagation()}} className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
               profilePic = {props.profilePic}
               name={props.name}
               userName={props.userName}
               profileDesciption={props.bio}
-              following={777}
-              followers={1863}
+              following={props.following}
+              followers={props.followers}
             />
           </div>
           &nbsp;{!props.isTopTweet && <p className={classes.gray}>.</p>}&nbsp;
@@ -174,8 +203,8 @@ export default function FeedTweet(props) {
               name={props.topUser.name}
               userName={props.topUser.userName}
               profileDesciption={props.topUser.bio}
-              following={777}
-              followers={1863}
+              following={props.following}
+              followers={props.followers}
             />
           </div>
           </div>}
@@ -184,7 +213,7 @@ export default function FeedTweet(props) {
         </NavLink>}
         {(props.isTopTweet) && 
           <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>} */}
-          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
+          <div data-testid="text" className={classes.fs15 + " " + classes.txt}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
         {props.img && (
           <img className={classes.tweetImg} src={props.img} alt=""></img>
         )}
@@ -211,6 +240,7 @@ export default function FeedTweet(props) {
             num={props.retweets}
             color="g"
             tooltip="Retweet"
+            isRetweeted = {props.isRetweeted}
             tweet = {tweet}
           />
           <TweetAtrribute
@@ -219,6 +249,7 @@ export default function FeedTweet(props) {
             num={props.likes}
             color="r"
             tooltip="Like"
+            isLiked = {props.isLiked}
             tweet = {tweet}
           />
           <TweetAtrribute Icon={ShareOutlinedIcon} color="b" tooltip="Share" tweet = {tweet} />
@@ -229,6 +260,6 @@ export default function FeedTweet(props) {
       </div>
       {/* {!props.showAction && <div></div>} */}
     </div>
-    </NavLink>
+    </div>
   );
 }

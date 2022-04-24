@@ -80,6 +80,7 @@
 }
 
 .tweet{
+  min-width: 100%;
   padding-right: 6px;
 }
 
@@ -162,4 +163,21 @@
 .repmin{
   top: 22px;
   left: -100px;
+}
+
+.txt{
+  max-width: 90%;
+}
+
+.alignTop{
+  margin: 0;
+  margin-top: 7px;
+  align-items:baseline;
+  margin-bottom: 0;
+}
+
+.verifiedIcon{
+  color: var(--twitterBlue) !important;
+  font-size: 15px !important;
+  padding-bottom: 2px !important;
 }

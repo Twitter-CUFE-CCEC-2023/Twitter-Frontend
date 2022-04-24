@@ -4,27 +4,13 @@ import FeedTweetBox from "./UpperTweetBox/FeedTweetBox";
 import FeedTweet from "./FeedTweet";
 import defaultMaleProfile from "../../../Assets/defaultMaleProfile.jpg";
 import axios from "axios";
+import ReactLoading from "react-loading";
+import instance from "../../axios";
 import { ContactlessOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 
 export default function Feed() {
 
-  const api = axios.create({
-    baseURL: "https://6262975a005a66e1e3aa1ebb.mockapi.io/",
-  })
-  
-  // let feedTweets;
-  // async function getTweets() {
-    //   const res = await api.get("users/1/tweet");
-    //   setTweets(res.data);
-    //   feedTweets = tweets.map((tweet) => {
-      //     return <FeedTweet {...tweet} showAction={true} />;
-      //   });
-      // }
-      // React.useEffect(() => {
-        //   getTweets();
-        // }, []);
-        
   const [users, setUsers] = React.useState([]);
   const [tweets, setTweets] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
@@ -44,59 +30,38 @@ export default function Feed() {
     if (node) observer.current.observe(node);
   }, [isLoading, hasMore]);
 
-  let feedTweets;
   React.useEffect(() => getTweets(), [pageNumber]);
-  
   const getTweets = async () => {
     setLoading(true);
-    const res = await api.get(`users?page=${pageNumber}&limit=3`);
-    setHasMore(res.data.length > 0);
-    users.push(res.data);
-
-    for(const user of users[0]) {
-      const resp = await api.get(`users/${user.id}/tweet`);
-      const userTweets = resp.data;
-      userTweets.forEach((userTweet) => {
-        let tweet = {
-          userId : user.id,
-          name : user.name,
-          profilePic : user.profilePic,
-          userName : user.userName,
-          bio : user.bio,
-          text : userTweet.content,
-          tweetId : userTweet.id,
-          date : userTweet.dateCreated,
-          replies : userTweet.replies,
-          likes : userTweet.likes,
-          retweets : userTweet.retweets
-        }
-        setTweets((prevTweets) => {
-          return [...prevTweets, tweet];
-        });
-      });  
-    }
-      
-    feedTweets = tweets.map((tweet) => {
-      return <FeedTweet {...tweet} showAction={true} />;
+    const res = await instance.get(`/home/${pageNumber}/5`);
+    let newTweets = res.data.tweets;
+    newTweets.forEach((APItweet) => {
+      let tweet = {
+        //userId : APItweet.user.id,
+        name : APItweet.user.name,//user.name,
+        profilePic : APItweet.user.profile_image_url,
+        userName : APItweet.user.username,
+        isVerified : APItweet.user.isVerified,
+        bio : APItweet.user.bio,
+        followers : APItweet.user.followers_count,
+        following : APItweet.user.following_count,
+        text : APItweet.content,
+        tweetId : APItweet.id,
+        date : APItweet.created_at,
+        replies : APItweet.replies,
+        likes : APItweet.likes_count,
+        retweets : APItweet.retweets_count,
+        quotes : APItweet.quotes_count,
+        isLiked : APItweet.is_liked,
+        isRetweeted : APItweet.is_retweeted,
+        isReply : APItweet.is_reply
+      }
+      //console.log(tweet);
+      setTweets((prevTweets) => {
+        return [...prevTweets, tweet];
+      });
     });
-    setLoading(false);
   }
-    
-  
-  
-
-   
-  // if(isLoading) {
-  //   return (
-  //   <div className={classes.feed}>
-  //     <h2 className={classes.feedHeader}>Home</h2>
-  //     <FeedTweetBox />
-  //     <div className="App">Loading...</div>
-  //   </div>);
-    
-  // }
-
-  
 
   return (
     <div className={classes.feed}>
@@ -111,7 +76,7 @@ export default function Feed() {
         return <FeedTweet {...tweet} key = {index} showAction={true} />;
         }
     })}
-      {isLoading && <div className="App">Loading...</div>}
+      {isLoading && <ReactLoading type={"spin"} color={"#1DA1F2"} height={'4%'} width={'4%'} className={`${classes.loadingIcon}`}  />}
     </div>
   );
 }

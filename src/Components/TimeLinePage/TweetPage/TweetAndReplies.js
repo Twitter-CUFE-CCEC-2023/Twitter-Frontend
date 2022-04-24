@@ -57,7 +57,7 @@ function TweetAndReplies() {
   const getTweet = async () => {
     const userRes = await api.get(`users/${userId}/`);
     let user = userRes.data;
-    console.log(user);
+    //console.log(user);
     setTopUser(prevUser => ({
       ...prevUser,
       name: user.name,
