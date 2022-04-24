@@ -70,7 +70,7 @@ const EnterPassword = () => {
               handleLoginClick={handleLoginClick}
               handleLoading={handleLoading}
             />
-            <AlreadyHaveAccount style={{ marginTop: "5%" }} />
+            <DoNotHaveAccount style={{ marginTop: "5%" }} />
           </div>
           {!alert && (
             <div className={classes.alert}>
