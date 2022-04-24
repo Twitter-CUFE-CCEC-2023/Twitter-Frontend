@@ -2,15 +2,12 @@ import React from "react";
 import classes from "./TweetAtrribute.module.css";
 import feedBoxButtonClasses from "./FeedBoxButton.module.css";
 import axios from "axios";
+import instance from "../../axios";
 
 function TweetAtrribute(props) {
   const [clicked, setClicked] = React.useState("");
   const [num, setNum] = React.useState(props.num);
   const [hlLike, setHlLike] = React.useState(false);
-
-  const api = axios.create({
-    baseURL: "https://6262975a005a66e1e3aa1ebb.mockapi.io/",
-  });
 
   React.useEffect(() => {
     if (props.tooltip === "Like" && props.isLiked) {
@@ -29,33 +26,23 @@ function TweetAtrribute(props) {
         setHlLike((prevhlLike) => {
           return !prevhlLike;
         });
-        if (clicked === classes.clicked) {
-          props.tweet.likes -= 1;
-        } else {
+        if(clicked === classes.clicked){
+          // props.tweet.likes -= 1;
+          instance.post("/status/unlike", {id: props.tweet.id});
+        }else{
           // props.tweet.likes += 1;
-          axios({
-            url: "http://backendlb-1541065125.us-east-1.elb.amazonaws.com/status/like",
-            headers: {
-              "Access-Control-Allow-Credentials": true,
-              "Access-Control-Allow-Origin": "*",
-              "Content-Type": "application/json; charset=utf-8",
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRhNGE5NGM2NjczOGYxMzg1NGI0NzQiLCJ1c2VybmFtZSI6ImFtcnpha2kiLCJpYXQiOjE2NTA3OTg3MDR9.rubqGuQ7HdZZNnWxValrJWdHVGbxtXv1fY5N9dXhneI",
-            },
-            method: "post",
-            data: {
-              id: props.tweet.id,
-            },
-          }).then((res) => {
-            console.log(res.data);
-          });
+          instance.post("/status/like", {id: props.tweet.id});
         }
         //console.log(props.tweet.likes);
-      } else {
-        if (clicked === classes.clicked) {
-          props.tweet.retweets -= 1;
-        } else {
-          props.tweet.retweets += 1;
+      }
+      else{
+        if(clicked === classes.clicked){
+          // props.tweet.retweets -= 1;
+          instance.post("/status/unretweet", {id: props.tweet.id});
+        }
+        else{
+          // props.tweet.retweets += 1;
+          instance.post("/status/retweet", {id: props.tweet.id});
         }
       }
       setNum((prevNum) => {
@@ -65,10 +52,8 @@ function TweetAtrribute(props) {
         return prevClicked === classes.clicked ? "" : classes.clicked;
       });
       //console.log(props.tweet);
-      const resp = api.put(
-        `users/${props.tweet.userId}/tweet/${props.tweet.id}`,
-        props.tweet
-      );
+      //const resp = api.put(`users/${props.tweet.userId}/tweet/${props.tweet.id}`, props.tweet);
+
     } else if (props.tooltip === "Reply") {
       props.onClick();
     }
