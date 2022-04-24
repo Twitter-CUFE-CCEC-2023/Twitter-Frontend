@@ -3,7 +3,7 @@ import classes from "./FollowingFollowersPage.module.css";
 import LeftSideBar from "../../TimeLinePage/LeftSideBar/LeftSideBar";
 import RightSideBar from "../../TimeLinePage/RightSideBar/RightSideBar";
 import ProfileHeader from "../ProfileHeader";
-import User from "./User"
+import User from "./User";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { useLocation } from "react-router-dom";
 
@@ -80,13 +80,17 @@ function FollowingFollowersPage() {
         </div>
         {/* add each user */}
         <div>
-        <User    profilePic={"https://i.imgur.com/X2JhY8Y.jpg"}
-        name={"Amr Zaki"}
-        userName={"amrzaki"}
-        bio={"bio AlAhly jkllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll"}
-        following={100}
-        followers={500}>
-        </User>
+          <User
+            profilePic={"https://i.imgur.com/X2JhY8Y.jpg"}
+            name={"Amr Zaki"}
+            userName={"amrzaki"}
+            bio={
+              "bio AlAhly jkllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll"
+            }
+            following={100}
+            followers={500}
+            isFollowing={true}
+          ></User>
         </div>
       </div>
       <RightSideBar />
