@@ -15,6 +15,14 @@
   margin-bottom: 9%;
 }
 
+.alert {
+  position: relative;
+  /* border: 1px solid violet; */
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+
 @media only screen and (min-width: 0px) and (max-width: 300px) {
   .upperContainer {
     margin-top: 68px;
@@ -38,6 +46,20 @@
 
   .signInToTwitter {
     font-size: 120%;
+  }
+
+  /* .alert {
+    position: inherit;
+  } */
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1024px) {
+  .container {
+    margin-top: 68px;
+  }
+
+  .signInToTwitter {
+    font-size: 130%;
   }
 }
 

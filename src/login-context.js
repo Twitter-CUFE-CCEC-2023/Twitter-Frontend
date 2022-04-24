@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-const LoginContext = React.createContext({
+export const LoginContext = React.createContext({
   token: "",
   isLoggedIn: false,
+  isAdmin: false,
   login: () => {},
   logout: () => {},
 });
@@ -42,11 +43,14 @@ export const LoginContextProvider = (props) => {
   if (tokenData) {
     initialToken = tokenData.token;
   }
+
   const [token, setToken] = useState(initialToken);
+  const [admin, setAdmin] = useState(false);
   const loginState = !!token;
 
   const logoutHandler = () => {
     setToken(null);
+    setAdmin(false);
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
     if (logoutTimer) {
@@ -54,24 +58,27 @@ export const LoginContextProvider = (props) => {
     }
   };
 
-  const loginHandler = (token, expirationTime) => {
+  const loginHandler = (admin, token, expirationTime) => {
+    console.log("Login is called");
     setToken(token);
+    setAdmin(admin);
     localStorage.setItem("token", token);
     localStorage.setItem("expirationTime", expirationTime);
-    const remainingTime = calculateRemainingTime(expirationTime);
-    logoutTimer = setTimeout(logoutHandler, remainingTime);
+    // const remainingTime = calculateRemainingTime(expirationTime);
+    // logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
 
-  useEffect(() => {
-    if (tokenData) {
-      console.log(tokenData.duration);
-      logoutTimer = setTimeout(logoutHandler, tokenData.duration);
-    }
-  }, [tokenData, logoutHandler]);
+  // useEffect(() => {
+  //   if (tokenData) {
+  //     // console.log(tokenData.duration);
+  //     logoutTimer = setTimeout(logoutHandler, tokenData.duration);
+  //   }
+  // }, [tokenData, logoutHandler]);
 
   const contextValue = {
     token: token,
     isLoggedIn: loginState,
+    isAdmin: admin,
     login: loginHandler,
     logout: logoutHandler,
   };
@@ -83,4 +90,4 @@ export const LoginContextProvider = (props) => {
   );
 };
 
-export default LoginContext;
+export default LoginContextProvider;

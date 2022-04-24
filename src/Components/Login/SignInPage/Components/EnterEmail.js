@@ -55,7 +55,11 @@ const EnterEmail = (props) => {
           <DoNotHaveAccount />
         </div>
       </div>
-      {!alert && <Alert message="Sorry, we could not find your account." />}
+      {!alert && (
+        <div className={classes.alert}>
+          <Alert message="Sorry, we could not find your account." />
+        </div>
+      )}
     </div>
   );
 };
