@@ -29,3 +29,8 @@ color: #616161;
 .followesRow{
     width:589px !important;
 }
+.Info{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 1px !important;
+}

@@ -12,10 +12,13 @@ import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { Button } from "@material-ui/core";
 import classes from "./FeedTweetBox.module.css";
 // import Modal from "../../../UI/Modal";
-
+import ImageUploading from "react-images-uploading";
+import PhotosContainer from "./PhotosContainer";
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
-  const [photosNumberErrorModal, setPhotosNumberErrorModal] = useState(false);
+  {
+    /*const [photosNumberErrorModal, setPhotosNumberErrorModal] = useState(false);*/
+  }
   function textAreaChangeHandler(event) {
     setLeftLetters(280 - event.target.value.length);
   }
@@ -23,6 +26,8 @@ export default function FeedTweetBox(props) {
   function browseMedia() {
     browseMediaButton.current.click();
   }
+  {
+    /*
   function photosSubmitHandler(event) {
     const files = event.target.files;
     if (files.length > 4) {
@@ -38,6 +43,7 @@ export default function FeedTweetBox(props) {
     // reader.onload = (e) => {
     //   console.warn(e.target.result);
     // };
+  }*/
   }
 
   // function hideModal() {
@@ -45,67 +51,125 @@ export default function FeedTweetBox(props) {
   // }
 
   const [show, setShow] = React.useState(false);
-  function focus(){
+  function focus() {
     setShow(true);
   }
+  //image uploding variables&states
+  const [images, setImages] = React.useState([]);
+  const maxNumber = 4;
+  const [imagesState, setImagesState] = useState(0);
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+    // setImagesState((previous) => {
+    //   return previous + 1;
+    // });
+  };
+
   return (
-    <div className="feedTweetBox">
-      {/* {photosNumberErrorModal && (
-        <Modal
-          data={{
-            header: "more photos than allowed",
-            message:
-              "you are not allowed to post more than four photos per one post , go back and rechoose your attached photos.",
-            button: "okay",
-          }}
-          onHide={hideModal}
-        ></Modal>
-      )} */}
-      <div className="boxInput">
-        <div className="profileImgOpacity">
-          <NavLink to="/profile">
-            <img
-              className="profileImg"
-              src={defaultMaleProfile}
-              alt="profile"
-            ></img>
-          </NavLink>
-        </div>
-        <form onFocus={focus} className={classes.tweetBoxForm}>
-          <div className={classes.tweetBoxFormContainer}>
-            <textarea
-              onChange={textAreaChangeHandler}
-              className={classes.tweetBoxText}
-              placeholder={props.isReply? "Tweet Your Reply" : "What's happening?"}
-              maxLength="280"
-            ></textarea>
-            <span className={classes.tweetBoxTextSpan}>{leftLetters}/280</span>
+    <ImageUploading
+      multiple
+      value={images}
+      onChange={onChange}
+      maxNumber={maxNumber}
+      dataURLKey="data_url"
+    >
+      {({
+        imageList,
+        onImageUpload,
+        // onImageRemoveAll,
+        onImageUpdate,
+        onImageRemove,
+        // isDragging,
+        // dragProps,
+      }) => (
+        <div className="feedTweetBox">
+          <div className="boxInput">
+            <div className="profileImgOpacity">
+              <NavLink to="/profile">
+                <img
+                  className="profileImg"
+                  src={defaultMaleProfile}
+                  alt="profile"
+                ></img>
+              </NavLink>
+            </div>
+            <form onFocus={focus} className={classes.tweetBoxForm}>
+              <div className={classes.tweetBoxFormContainer}>
+                <textarea
+                  onChange={textAreaChangeHandler}
+                  className={classes.tweetBoxText}
+                  placeholder={
+                    props.isReply ? "Tweet Your Reply" : "What's happening?"
+                  }
+                  maxLength="280"
+                ></textarea>
+
+                {images.length > 0 && (
+                  <div className={classes.container}>
+                    {imageList.map((image, index) => (
+                      <PhotosContainer
+                        photos={image}
+                        onUpdate={() => onImageUpdate(index)}
+                        onRemove={() => onImageRemove(index)}
+                      ></PhotosContainer>
+                    ))}
+                  </div>
+                )}
+                <span className={classes.tweetBoxTextSpan}>
+                  {leftLetters}/280
+                </span>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-      <div className={`buttons  ${(!props.isReply || show) ? classes.show : classes.hidden}`}>
-        <input
-          type="file"
-          id="myPhoto"
-          name="myphoto"
-          hidden={true}
-          ref={browseMediaButton}
-          accept="image/png, image/gif, image/jpeg"
-          multiple={true}
-          onChange={photosSubmitHandler}
-        ></input>
-        <FeedBoxButton
-          Icon={ImageOutlinedIcon}
-          text="Media"
-          onClick={browseMedia}
-        />
-        <FeedBoxButton Icon={GifOutlinedIcon} text="GIF" />
-        <FeedBoxButton Icon={PollOutlinedIcon} text="Poll" />
-        <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
-        <FeedBoxButton Icon={DateRangeOutlinedIcon} text="Schedule" />
-        <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
-        <Button className={`tweetButton`}>{props.isReply ? "Reply" : "Tweet"}</Button>
-      </div>
-    </div>
+          <div
+            className={`buttons  ${
+              !props.isReply || show ? classes.show : classes.hidden
+            }`}
+          >
+            {/* // write your building UI */}
+            <div className="upload__image-wrapper">
+              <FeedBoxButton
+                Icon={ImageOutlinedIcon}
+                text="Media"
+                // style={isDragging ? { color: "red" } : null}
+                onClick={onImageUpload}
+                // {...dragProps}
+              />
+
+              {/* <button
+                style={isDragging ? { color: "red" } : null}
+                onClick={onImageUpload}
+                {...dragProps}
+              >
+                Click or Drop here
+              </button> 
+              &nbsp;
+              <button onClick={onImageRemoveAll}>Remove all images</button>
+              //toCopy
+              {imageList.map((image, index) => (
+                <div key={index} className="image-item">
+                  <img src={image.data_url} alt="" width="100" />
+                  <div className="image-item__btn-wrapper">
+                    <button onClick={() => onImageUpdate(index)}>Update</button>
+                    <button onClick={() => onImageRemove(index)}>Remove</button>
+                  </div>
+                </div>
+              ))}
+              */}
+            </div>
+            <FeedBoxButton Icon={GifOutlinedIcon} text="GIF" />
+            <FeedBoxButton Icon={PollOutlinedIcon} text="Poll" />
+            <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
+            <FeedBoxButton Icon={DateRangeOutlinedIcon} text="Schedule" />
+            <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
+            <Button className={`tweetButton`}>
+              {props.isReply ? "Reply" : "Tweet"}
+            </Button>
+          </div>
+        </div>
+      )}
+    </ImageUploading>
   );
 }

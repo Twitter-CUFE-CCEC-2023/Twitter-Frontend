@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import classes from "./LoginButton.module.css";
+import { LoginContext } from "../../../../../login-context";
 import axios from "../../../../axios";
 
 const LoginButton = (props) => {
+  const loginCtx = useContext(LoginContext);
   const history = useHistory();
   const disable = props.data.length === 0;
 
   const handleClick = () => {
+    props.handleLoading(true);
     const username = JSON.parse(localStorage.getItem("userEmailOrName"));
     const password = JSON.parse(localStorage.getItem("userPassword"));
 
@@ -17,29 +20,24 @@ const LoginButton = (props) => {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        if (response.message === "User logged in successfully") {
-          // save user object in a local storage
-          localStorage.setItem("UserInfo", JSON.stringify(response.user));
-          history.push("/home");
+        console.log(response);
+        if (response.statusText === "OK") {
+          localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+          if (response.data.user.role === "User") {
+            loginCtx.login(false, response.data.access_token, 360000);
+            history.push("/home");
+          } else if (response.data.user.role === "Admin") {
+            loginCtx.login(true, response.data.access_token, 360000);
+            history.push("/admin");
+          }
         }
+        props.handleLoading(false);
       })
       .catch((err) => {
         console.log(err);
         props.handleLoginClick(false);
       });
   };
-
-  // axios
-  //   .post("/portal/auth/login", admin, {
-  //     headers: { "Content-Type": "application/json" },
-  //   })
-  //   .then((response) => {
-  //     if (response.statusText === "OK") {
-  //       setValidAdmin(true);
-  //       props.successfulAdminSubmit(true);
-  //     }
-  //   })
-  //   .catch((err) => console.log(err));
 
   return (
     <div>
