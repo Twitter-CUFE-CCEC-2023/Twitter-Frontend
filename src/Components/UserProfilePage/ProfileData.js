@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import classes from "./ProfileData.module.css";
 import ProfileHeader from "./ProfileHeader";
 import CoverPhoto from "./CoverPhoto";
-import image from "../../Assets/new-york-city.jpg";
+import coverimage from "../../Assets/new-york-city.jpg";
 import ProfileActions from "./ProfileActions/ProfileActions.js";
 import ProfileInfo from "./ProfileInfo";
 import ProfileTabs from "./ProfileTabs/ProfileTabs";
@@ -61,16 +61,13 @@ function ProfileData() {
   };
 
 
-
-
-  
   return (
     <div className={`${classes.profileDataContainer} `}>
       <div className={`${classes.header} row`}>
         <ProfileHeader></ProfileHeader>
       </div>
       <div className={`${classes.coverPhoto}  row `}>
-        <CoverPhoto coverImage={image}></CoverPhoto>
+        <CoverPhoto coverImage={coverimage}></CoverPhoto>
         <div className={`${classes.profileImageContainer} `}>
           <img
             className={`${classes.profileImage} img-fluid`}
