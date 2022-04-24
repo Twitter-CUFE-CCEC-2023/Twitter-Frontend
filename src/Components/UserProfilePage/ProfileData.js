@@ -129,7 +129,7 @@ function ProfileData() {
         </div>
       </div>
       <div className={`${classes.profileActionsRow}  `}>
-        <ProfileActions isMyProfile={true}></ProfileActions>
+        <ProfileActions isMyProfile={false}></ProfileActions>
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>
         <ProfileInfo
