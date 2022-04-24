@@ -241,7 +241,7 @@ export default function FeedTweet(props) {
         </div>
       }
 
-      {props.isTopTweet && <TopTweetAttributes likes = {props.likes} retweets = {props.retweets} quoteTweets = {23}/>}
+      {props.isTopTweet && <TopTweetAttributes isLiked = {props.isLiked} isRetweeted = {props.isRetweeted} tweet = {tweet} likes = {props.likes} retweets = {props.retweets} quoteTweets = {23}/>}
       </div>
       {/* {!props.showAction && <div></div>} */}
     </div>
