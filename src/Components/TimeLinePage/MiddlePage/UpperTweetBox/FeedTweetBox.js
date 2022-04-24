@@ -68,86 +68,76 @@ export default function FeedTweetBox(props) {
   };
 
   return (
-    <div className="feedTweetBox">
-      {/* {photosNumberErrorModal && (
-        <Modal
-          data={{
-            header: "more photos than allowed",
-            message:
-              "you are not allowed to post more than four photos per one post , go back and rechoose your attached photos.",
-            button: "okay",
-          }}
-          onHide={hideModal}
-        ></Modal>
-      )} */}
-      <div className="boxInput">
-        <div className="profileImgOpacity">
-          <NavLink to="/profile">
-            <img
-              className="profileImg"
-              src={defaultMaleProfile}
-              alt="profile"
-            ></img>
-          </NavLink>
-        </div>
-        <form onFocus={focus} className={classes.tweetBoxForm}>
-          <div className={classes.tweetBoxFormContainer}>
-            <textarea
-              onChange={textAreaChangeHandler}
-              className={classes.tweetBoxText}
-              placeholder={
-                props.isReply ? "Tweet Your Reply" : "What's happening?"
-              }
-              maxLength="280"
-            ></textarea>
+    <ImageUploading
+      multiple
+      value={images}
+      onChange={onChange}
+      maxNumber={maxNumber}
+      dataURLKey="data_url"
+    >
+      {({
+        imageList,
+        onImageUpload,
+        // onImageRemoveAll,
+        onImageUpdate,
+        onImageRemove,
+        // isDragging,
+        // dragProps,
+      }) => (
+        <div className="feedTweetBox">
+          <div className="boxInput">
+            <div className="profileImgOpacity">
+              <NavLink to="/profile">
+                <img
+                  className="profileImg"
+                  src={defaultMaleProfile}
+                  alt="profile"
+                ></img>
+              </NavLink>
+            </div>
+            <form onFocus={focus} className={classes.tweetBoxForm}>
+              <div className={classes.tweetBoxFormContainer}>
+                <textarea
+                  onChange={textAreaChangeHandler}
+                  className={classes.tweetBoxText}
+                  placeholder={
+                    props.isReply ? "Tweet Your Reply" : "What's happening?"
+                  }
+                  maxLength="280"
+                ></textarea>
 
-            {images.length > 0 && (
-              <PhotosContainer photos={images}></PhotosContainer>
-            )}
-
-            <span className={classes.tweetBoxTextSpan}>{leftLetters}/280</span>
+                {images.length > 0 && (
+                  <div className={classes.container}>
+                    {imageList.map((image, index) => (
+                      <PhotosContainer
+                        photos={image}
+                        onUpdate={() => onImageUpdate(index)}
+                        onRemove={() => onImageRemove(index)}
+                      ></PhotosContainer>
+                    ))}
+                  </div>
+                )}
+                <span className={classes.tweetBoxTextSpan}>
+                  {leftLetters}/280
+                </span>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-      <div
-        className={`buttons  ${
-          !props.isReply || show ? classes.show : classes.hidden
-        }`}
-      >
-        <ImageUploading
-          multiple
-          value={images}
-          onChange={onChange}
-          maxNumber={maxNumber}
-          dataURLKey="data_url"
-        >
-          {/*<input
-          type="file"
-          id="myPhoto"
-          name="myphoto"
-          hidden={true}
-          ref={browseMediaButton}
-          accept="image/png, image/gif, image/jpeg"
-          multiple={true}
-          onChange={photosSubmitHandler}
-      ></input>*/}
-          {({
-            onImageUpload,
-            // onImageRemoveAll,
-            // onImageUpdate,
-            // onImageRemove,
-            isDragging,
-            dragProps,
-          }) => (
-            // write your building UI
+          <div
+            className={`buttons  ${
+              !props.isReply || show ? classes.show : classes.hidden
+            }`}
+          >
+            {/* // write your building UI */}
             <div className="upload__image-wrapper">
               <FeedBoxButton
                 Icon={ImageOutlinedIcon}
                 text="Media"
-                style={isDragging ? { color: "red" } : null}
+                // style={isDragging ? { color: "red" } : null}
                 onClick={onImageUpload}
-                {...dragProps}
+                // {...dragProps}
               />
+
               {/* <button
                 style={isDragging ? { color: "red" } : null}
                 onClick={onImageUpload}
@@ -169,23 +159,17 @@ export default function FeedTweetBox(props) {
               ))}
               */}
             </div>
-          )}
-        </ImageUploading>
-
-        {/* <FeedBoxButton
-          Icon={ImageOutlinedIcon}
-          text="Media"
-          onClick={browseMedia}
-        /> */}
-        <FeedBoxButton Icon={GifOutlinedIcon} text="GIF" />
-        <FeedBoxButton Icon={PollOutlinedIcon} text="Poll" />
-        <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
-        <FeedBoxButton Icon={DateRangeOutlinedIcon} text="Schedule" />
-        <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
-        <Button className={`tweetButton`}>
-          {props.isReply ? "Reply" : "Tweet"}
-        </Button>
-      </div>
-    </div>
+            <FeedBoxButton Icon={GifOutlinedIcon} text="GIF" />
+            <FeedBoxButton Icon={PollOutlinedIcon} text="Poll" />
+            <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
+            <FeedBoxButton Icon={DateRangeOutlinedIcon} text="Schedule" />
+            <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
+            <Button className={`tweetButton`}>
+              {props.isReply ? "Reply" : "Tweet"}
+            </Button>
+          </div>
+        </div>
+      )}
+    </ImageUploading>
   );
 }

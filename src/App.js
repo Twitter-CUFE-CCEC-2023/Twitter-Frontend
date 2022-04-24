@@ -1,6 +1,7 @@
 import React from "react";
 // import { useContext } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import "./App.css";
 
 import MainPage from "./Components/Login/FirstPage/MainPage";
@@ -18,6 +19,7 @@ import MentionNotificationsPage from "./Components/Notifications/MentionNotifica
 import Settings from "./Components/Settings/Settings";
 import UserProfile from "./Components/UserProfilePage/UserProfile";
 import ImageCropper from "./Components/UserProfilePage/ProfileActions/ImageCropper";
+import FollowingFollowersPage from "./Components/UserProfilePage/FollowingFollowersPage/FollowingFollowersPage";
 import UnderConstructionPage from "./Components/ExtraPages/UnderConstructionPage";
 
 import Admin from "./Components/AdminPage/Admin";
@@ -31,6 +33,7 @@ import MainTweetPage from "./Components/TimeLinePage/TweetPage/MainTweetPage";
 function App() {
   // const loginCtx = useContext(LoginContext);
   // console.log(loginCtx.isLoggedIn);
+
 
   return (
     <div>
@@ -54,6 +57,8 @@ function App() {
           />
           <Route path="/settings" component={Settings} />
           <Route path="/userprofile/:userId" component={UserProfile} />
+          <Route path={`/followers/:userId`} component={FollowingFollowersPage} />
+          <Route path="/following/:userId" component={FollowingFollowersPage} />
           <Route path="/crop" component={ImageCropper}/>
           <Route path="/explore" component={UnderConstructionPage} />
           <Route path="/messages" component={UnderConstructionPage} />

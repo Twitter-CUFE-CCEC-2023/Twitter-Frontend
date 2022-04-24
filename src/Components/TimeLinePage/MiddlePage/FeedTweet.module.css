@@ -12,12 +12,10 @@
 }
 
 .topTweet {
-  
   display: flex;
   border: 1px solid var(--twitterBorder);
   font-size: 15px;
 }
-
 
 .profilePic {
   border-radius: 50%;
@@ -30,43 +28,42 @@
   user-select: none;
 }
 
-.profilePic:hover{
-    opacity: 0.6;
+.profilePic:hover {
+  opacity: 0.6;
 }
 
 .hoverProfile {
   transition: 0s 180s;
 }
 
-.minip + .hoverProfile{
-    position: relative;
-    display: inline-block;
-    visibility: hidden;
-    transition-delay: 0.6s;
-    transition-property: visibility;
-    z-index: 2;
+.minip + .hoverProfile {
+  position: relative;
+  display: inline-block;
+  visibility: hidden;
+  transition-delay: 0.6s;
+  transition-property: visibility;
+  z-index: 2;
 }
 
-.minip:hover + .hoverProfile{
-    visibility : visible;
-    opacity: 1;
-    z-index: 2;
+.minip:hover + .hoverProfile {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
 }
 
-.hoverProfile{
-    visibility : visible;
-    opacity: 1;
-    z-index: 2;
+.hoverProfile {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
 }
 
-.hoverProfile:hover{
-    visibility : visible;
-    opacity: 1;
-    z-index: 2;
+.hoverProfile:hover {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
 }
 
 .user > * {
-  
   margin-bottom: 5px;
   margin-top: 12px;
 }
@@ -79,15 +76,13 @@
 }
 
 .tweet > * {
-
   margin-top: 0;
   margin-bottom: 0;
   line-height: 20px;
 }
 
-.tweet{
+.tweet {
   min-width: 100%;
-
   padding-right: 6px;
 }
 
@@ -107,76 +102,89 @@
   display: none;
 }
 
-.top{
-    top:65px;
-    left:-55px;
+.top {
+  top: 65px;
+  left: -55px;
 }
 
-.bot{
-    top:15px;
-    left: -70px;
+.bot {
+  top: 15px;
+  left: -70px;
 }
 
-.tweetBoxText{
-    outline: none;
-    border-color: transparent;
+.tweetBoxText {
+  outline: none;
+  border-color: transparent;
 }
 
-.tweetImg{
-    max-width: 504px;
-    border-radius: 18px;
-    margin-top: 14px;
+.tweetImg {
+  max-width: 504px;
+  border-radius: 18px;
+  margin-top: 14px;
 }
 
-.fs15{
-    font-size: 15px;
+.fs15 {
+  font-size: 15px;
 }
 
-.noStyle{
-    text-decoration: none !important;
-    color: black !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    cursor: inherit;
+.noStyle {
+  text-decoration: none !important;
+  color: black !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: inherit;
 }
 
-.pointer{
-    cursor: pointer;
+.pointer {
+  cursor: pointer;
 }
 
-.m10{
-    margin-top: 10px;
-    
-    border-bottom: 1px solid var(--twitterBorder);
+.m10 {
+  margin-top: 10px;
+
+  border-bottom: 1px solid var(--twitterBorder);
 }
 
-.flex{
-    display: flex;
+.flex {
+  display: flex;
 }
 
-.replyat{
+.replyat {
   color: var(--twitterBlue);
 }
 
-.replyat:hover{
+.replyat:hover {
   text-decoration: underline;
 }
 
-.nom{
+.nom {
   margin-top: 8px;
   margin-bottom: 0;
 }
 
-.nomr{
+.nomr {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.repmin{
+.repmin {
   top: 22px;
   left: -100px;
 }
 
-.text{
-  width: 90%;
+.txt {
+  max-width: 90%;
+}
+
+.alignTop {
+  margin: 0;
+  margin-top: 7px;
+  align-items: baseline;
+  margin-bottom: 0;
+}
+
+.verifiedIcon {
+  color: var(--twitterBlue) !important;
+  font-size: 15px !important;
+  padding-bottom: 2px !important;
 }
