@@ -62,7 +62,9 @@ function App() {
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/notifications" component={AllNotificationsPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/mentionnotifications" component={MentionNotificationsPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/settings" component={Settings} />}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/userprofile/:userId" component={UserProfile} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/userprofile/:userName" component={UserProfile} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/following/:userName" component={FollowingFollowersPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/followers/:userName" component={FollowingFollowersPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/crop" component={ImageCropper} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/explore" component={UnderConstructionPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/messages" component={UnderConstructionPage} />}

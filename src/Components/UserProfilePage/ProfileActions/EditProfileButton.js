@@ -81,7 +81,7 @@ function EditProfileButton() {
                 <InputBox inputName="Website" inputValue=""></InputBox>
               </form>
             </div>
-            <div class="modal-footer"></div>
+            <div className="modal-footer"></div>
           </div>
         </div>
       </div>
