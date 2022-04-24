@@ -50,8 +50,11 @@ const EnterEmail = (props) => {
         <ForgetPasswordButton />
         <AlreadyHaveAccount />
       </div>
-      {/* </div> */}
-      {!alert && <Alert message="Sorry, we could not find your account." />}
+      {!alert && (
+        <div className={classes.alert}>
+          <Alert message="Sorry, we could not find your account." />
+        </div>
+      )}
     </div>
   );
 };
