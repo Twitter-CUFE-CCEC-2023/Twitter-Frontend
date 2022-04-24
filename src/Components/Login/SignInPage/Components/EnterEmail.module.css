@@ -1,8 +1,12 @@
+.upperContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   text-align: left;
-  margin: 0% 25%;
-  /* position: absolute;
-  left: 50%; */
 }
 
 .signInToTwitter {
@@ -12,8 +16,14 @@
 }
 
 @media only screen and (min-width: 0px) and (max-width: 300px) {
-  .container {
-    margin: 5% 3%;
+  .upperContainer {
+    margin-top: 68px;
+    overflow-x: scroll;
+    width: 350px;
+    /* height: 60%; */
+    position: static;
+    /* width: 100vw; */
+    height: 100vh;
   }
 
   .signInToTwitter {
@@ -23,10 +33,20 @@
 
 @media only screen and (min-width: 300px) and (max-width: 700px) {
   .container {
-    margin: 5% 10%;
+    margin-top: 4%;
   }
 
   .signInToTwitter {
     font-size: 120%;
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1024px) {
+  .container {
+    margin-top: 68px;
+  }
+
+  .signInToTwitter {
+    font-size: 130%;
   }
 }

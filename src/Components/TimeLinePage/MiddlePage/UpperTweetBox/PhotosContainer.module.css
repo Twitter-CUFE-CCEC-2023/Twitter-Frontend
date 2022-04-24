@@ -1,0 +1,7 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+.container-photo{
+max-height: 10rem;
+}

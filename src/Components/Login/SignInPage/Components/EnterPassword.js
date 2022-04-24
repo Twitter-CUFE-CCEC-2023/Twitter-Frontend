@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classes from "./EnterPassword.module.css";
 
 import LogoHeader from "./HeaderAndFooter/LogoHeader";
-import AlreadyHaveAccount from "./HeaderAndFooter/AlreadyHaveAccount";
+import DoNotHaveAccount from "./HeaderAndFooter/DoNotHaveAccount";
 import InputField from "../../InputField";
 import LoginButton from "./Buttons/LoginButton";
 import Alert from "./AlertMessage/Alert";
@@ -46,7 +46,7 @@ const EnterPassword = () => {
         />
         <p className={classes.forgetPassword}>Forgot Password?</p>
         <LoginButton data={dataFrowarded} handleLoginClick={handleLoginClick} />
-        <AlreadyHaveAccount style={{ marginTop: "5%" }} />
+        <DoNotHaveAccount style={{ marginTop: "5%" }} />
       </div>
       {!alert && (
         <Alert

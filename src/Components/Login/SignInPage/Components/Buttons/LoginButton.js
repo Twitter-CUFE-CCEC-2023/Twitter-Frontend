@@ -17,10 +17,18 @@ const LoginButton = (props) => {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        if (response.message === "User logged in successfully") {
-          // save user object in a local storage
-          localStorage.setItem("UserInfo", JSON.stringify(response.user));
-          history.push("/home");
+        console.log(response);
+        if (response.statusText === "OK") {
+          localStorage.setItem(
+            "Token",
+            JSON.stringify(response.data.access_token)
+          );
+          localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+          if (response.data.user.role === "User") {
+            history.push("/home");
+          } else if (response.data.user.role === "Admin") {
+            history.push("/admin");
+          }
         }
       })
       .catch((err) => {

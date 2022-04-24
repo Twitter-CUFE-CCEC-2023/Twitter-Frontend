@@ -5,7 +5,7 @@
   width: 50%;
   height: 40px;
   position: absolute;
-  top: 97%;
+  top: 91%;
   left: 25%;
 
   padding-top: 8px;
@@ -27,5 +27,11 @@
     padding-top: 12px;
     border-radius: 0px;
     text-align: left;
+  }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1024px) {
+  .container {
+    top: 92%;
   }
 }

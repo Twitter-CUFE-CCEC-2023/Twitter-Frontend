@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import classes from "./AlreadyHaveAccount.module.css";
+import classes from "./DoNotHaveAccount.module.css";
 
-const AlreadyHaveAccount = (props) => {
+const DoNotHaveAccount = (props) => {
   return (
     <div className={classes.alreadyHaveAcc} style={props.style}>
       Don't have an account?{" "}
@@ -13,4 +13,4 @@ const AlreadyHaveAccount = (props) => {
   );
 };
 
-export default AlreadyHaveAccount;
+export default DoNotHaveAccount;
