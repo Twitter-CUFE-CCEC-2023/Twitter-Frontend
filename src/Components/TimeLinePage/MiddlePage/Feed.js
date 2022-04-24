@@ -65,6 +65,18 @@ export default function Feed() {
     });
   };
 
+  let history = useHistory();
+
+  // if(isLoading) {
+  //   return (
+  //   <div className={classes.feed}>
+  //     <h2 className={classes.feedHeader}>Home</h2>
+  //     <FeedTweetBox />
+  //     <div className="App">Loading...</div>
+  //   </div>);
+
+  // }
+
   return (
     <div className={classes.feed}>
       <h2 className={classes.feedHeader}>Home</h2>
