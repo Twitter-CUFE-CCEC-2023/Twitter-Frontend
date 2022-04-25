@@ -60,7 +60,7 @@ function FollowingFollowersPage() {
           );
         }
       });
-      if (node) observerFollowers.current.observe(node);
+      if (node) observerFollowing.current.observe(node);
     },
     [isLoading, hasMoreFollowing]
   );
@@ -100,6 +100,7 @@ function FollowingFollowersPage() {
           bio: APIfollower.bio,
           followers: APIfollower.followers_count,
           following: APIfollower.following_count,
+          isFollowing: APIfollower.is_followed,
         };
         setFollowers((prevFollowers) => {
           return [...prevFollowers, follower];
