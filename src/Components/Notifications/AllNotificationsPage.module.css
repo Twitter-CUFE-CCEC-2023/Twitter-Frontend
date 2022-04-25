@@ -4,4 +4,5 @@
   max-width: 1300px;
   margin-left: auto; /* These two lines centers the page */
   margin-right: auto;
+  scrollbar-width: none;
 }
