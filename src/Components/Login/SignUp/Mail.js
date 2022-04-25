@@ -51,7 +51,7 @@ const Mail = () => {
                     This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.
                 </div>
                 <Day />
-                    <NextButtonUp/>
+                <NextButtonUp/>
                 </div>
             </div>
         </SignUpBackground>
