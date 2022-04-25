@@ -21,6 +21,7 @@ function ProfileTabs(props) {
     setlikesSelected(() => {
       return false;
     });
+    props.onChangeTab('Tweets');
   };
 
   const onClickTweetsAndReplies = () => {
@@ -36,6 +37,7 @@ function ProfileTabs(props) {
     setlikesSelected(() => {
       return false;
     });
+    props.onChangeTab('TweetsAndReplies');
   };
 
   const onClickMedia = () => {
@@ -51,6 +53,7 @@ function ProfileTabs(props) {
     setlikesSelected(() => {
       return false;
     });
+    props.onChangeTab('Media');
   };
 
   const onClickLikes = () => {
@@ -66,6 +69,7 @@ function ProfileTabs(props) {
     setlikesSelected(() => {
       return true;
     });
+    props.onChangeTab('Likes');
   };
 
   return (

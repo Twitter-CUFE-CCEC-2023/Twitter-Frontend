@@ -1,16 +1,21 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,Route, Redirect ,Switch } from 'react'
+import { useLocation } from 'react-router-dom'
 import classes from './FollowersButton.module.css'
+import { NavLink } from "react-router-dom";
 
 function FollowersButton(props) {
+  const location = useLocation();
+  let userName = location.pathname.split("/")[2];
+ 
   return (
     <Fragment>
-    <a href="" className={`${classes.followers} col-2 col-sm-3 `}>
+    <NavLink to={`/followers/${userName}`} className={`${classes.followers} col-2 col-sm-3 `} >
       {" "}
       <span className={`${classes.followersNum}`}>
         {props.followersNum}
       </span>{" "}
       Followers
-    </a>
+    </NavLink>
   </Fragment>
   )
 }

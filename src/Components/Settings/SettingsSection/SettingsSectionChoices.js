@@ -10,12 +10,14 @@ function SettingsSectionChoices() {
     "Accessibility,Display and Languages",
     "Additional resources",
   ];
+  const chosen = "Your Account";
   return (
     <div className={classes.choices}>
       {choisces.map((choice) => (
         <SettingsSectionChoice
           key={choice}
           name={choice}
+          chosen={choice === chosen}
         ></SettingsSectionChoice>
       ))}
     </div>

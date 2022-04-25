@@ -1,4 +1,5 @@
 .feed {
+  flex: auto;
   margin-top: 0;
   border-right: 1px solid var(--twitterBorder);
 
@@ -19,4 +20,9 @@
   z-index: 2;
   margin-top: 0;
   padding: 10px;
+}
+
+.loadingIcon{
+  margin-left: 50%;
+  margin-top: 5%;
 }

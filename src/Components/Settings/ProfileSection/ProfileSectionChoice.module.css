@@ -5,12 +5,13 @@
   justify-content: flex-start;
   color: rgb(51, 51, 51);
   padding: 15px 10px 5px 5px;
-  width: 95%;
-  border-radius: 15px;
+  width: 100%;
+  /* border-radius: 15px; */
   cursor: pointer;
 }
 .choice:hover {
-  background-color: rgb(223, 226, 226);
+  background-color: rgba(192, 234, 180, 0.238);
+  
 }
 .choice-svg {
   height: 25px;
@@ -36,3 +37,7 @@
   font-size: 13px;
   font-weight: 400;}
 
+.chosen{
+  background-color: rgba(192, 234, 180, 0.238);
+
+}

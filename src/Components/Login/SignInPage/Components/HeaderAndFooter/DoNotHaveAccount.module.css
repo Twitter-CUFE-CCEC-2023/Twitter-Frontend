@@ -1,0 +1,24 @@
+.alreadyHaveAcc {
+  text-align: left;
+  margin-top: 17%;
+  font-size: 65%;
+  color: #536471;
+}
+
+.signUp {
+  font-size: 90%;
+  color: rgb(29, 155, 240);
+  text-decoration: none;
+}
+.signUp:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1024px) {
+  .alreadyHaveAcc {
+    margin-top: 16%;
+    margin-bottom: 15%;
+  }
+}

@@ -34,13 +34,13 @@ function MiniProfile(props) {
         </div>
       </div>
       <div className={classes.userNames}>
-        <NavLink className={`noDecoration black `} to="profile">
+        <NavLink className={`noDecoration black `} to={`/userprofile/${props.userName}`}>
           <p className={classes.name + " " + classes.pointer + " noMargin"}
           data-testid = "namemp"
         >
             {props.name}</p>
         </NavLink>
-        <NavLink className={`noDecoration gray `} to="profile">
+        <NavLink className={`noDecoration gray `} to={`/userprofile/${props.userName}`}>
           <p className={classes.gray + " " + classes.pointer+ " noMargin"}
           data-testid = "userNamemp"
           >

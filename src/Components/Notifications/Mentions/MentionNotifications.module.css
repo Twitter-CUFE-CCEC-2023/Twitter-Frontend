@@ -1,3 +1,7 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
 .notes {
   margin-top: 0;
   border-right: 1px solid var(--twitterBorder);
@@ -14,7 +18,7 @@
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    min-width: 598px;
+    min-width: 625px;
   }
 }
 

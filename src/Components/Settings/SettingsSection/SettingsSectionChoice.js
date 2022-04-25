@@ -1,7 +1,7 @@
 import classes from "./SettingsSectionChoice.module.css";
 function SettingsSectionChoice(props) {
   return (
-    <div className={classes.choice}>
+    <div className={`${classes.choice} ${props.chosen ? classes.chosen : ""}`}>
       {props.name}
       <svg
         viewBox="0 0 24 24"
