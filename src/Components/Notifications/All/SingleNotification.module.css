@@ -34,7 +34,22 @@
 .follow {
   color: var(--twitterBlue);
 }
+
+.ban {
+  color: red;
+}
+
+.tweet {
+  color: var(--twitterBlue);
+}
 .notedescription {
   font-size: 0.9em;
   margin-left: 4em;
+}
+.link {
+  text-decoration: none !important;
+  color: black !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: inherit;
 }
