@@ -24,7 +24,7 @@ function TopTweetAttributes(props) {
     if (props.isRetweeted) {
       setHlRet(true);
     }
-    console.log(hlLike, hlRet);
+    //console.log(hlLike, hlRet);
   }, []);
 
   function clickLike() {

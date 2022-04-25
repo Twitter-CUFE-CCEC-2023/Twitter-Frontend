@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./FeedTweet.module.css";
 import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
 import LoopOutlinedIcon from "@material-ui/icons/LoopOutlined";
@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 import TopTweetAttributes from "./TopTweetAttributes";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { LinkSharp } from "@material-ui/icons";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
@@ -70,21 +71,42 @@ export default function FeedTweet(props) {
     }
   }
 
-  function URLReplacer(str) {
-    let match = str.match(
-      /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi
-    );
-    let final = str;
-    if (match) {
-      match.map((url) => {
-        final = final.replace(
-          url,
-          `<a href="' + url + '" target="_BLANK">` + url + `</a>`
-        );
+  // let observer = React.createRef();
+
+  const [tweetText , setTweetText] = useState(props.text);
+
+  React.useEffect(() => setTweetText(linkify(props.text)), []); 
+
+  let linkIds = 0;
+  function linkify(inputText) {
+    var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+    //URLs starting with http://, https://, or ftp://
+    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    replacedText = inputText.replace(replacePattern1, `<div name = "link" > <a href="$1" target="_blank">$1</a> </div>`);
+
+    //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    replacedText = replacedText.replace(replacePattern2, `<div name = "link" >$1<a href="http://$2" target="_blank">$2</a></div>`);
+
+    //Change email addresses to mailto:: links.
+    replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+    replacedText = replacedText.replace(replacePattern3, `<div name = "link" ><a href="mailto:$1">$1</a></div>`);
+
+    //console.log(replacedText);
+    return replacedText;
+}
+
+  React.useEffect(() => {
+    // console.log("changed");
+    let links = document.getElementsByName("link");
+    links.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.stopPropagation();
       });
-    }
-    return final;
-  }
+    });
+   
+  }, [tweetText]);
 
   let tweet ={
     content : props.text,
@@ -198,7 +220,9 @@ export default function FeedTweet(props) {
         </NavLink>}
         {(props.isTopTweet) && 
           <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>} */}
-          <div data-testid="text" className={classes.fs15 + " " + classes.txt}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
+          <div data-testid="text" className={classes.fs15 + " " + classes.txt} dangerouslySetInnerHTML={{ __html: tweetText }} >
+           {/* Check if Click is working <div onClick={sp}><a href="https://www.google.com/" target="_blank">https://www.google.com/</a></div> after that is written */}
+          </div>
         {props.img && (
           <img className={classes.tweetImg} src={props.img} alt=""></img>
         )}

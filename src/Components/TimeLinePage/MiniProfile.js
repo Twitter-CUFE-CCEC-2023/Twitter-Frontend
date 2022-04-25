@@ -35,7 +35,7 @@ function MiniProfile(props) {
       data-testid = "profileDesciption"
       >{props.profileDesciption}</p>
       <div className={classes.flex}>
-        <p className={classes.normalText + " " + classes.underline}
+        <p className={classes.normalText + " " + classes.underline + " " + classes.pointer}
         data-testid = "followingmp"
         >
           <span className={classes.bold}>{props.following}</span>{" "}
@@ -44,7 +44,7 @@ function MiniProfile(props) {
           </span>
         </p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <p className={classes.normalText + " " + classes.underline}
+        <p className={classes.normalText + " " + classes.underline + " " + classes.pointer}
         data-testid = "followersmp"
         >
           <span className={classes.bold}>{props.followers}</span>{" "}
