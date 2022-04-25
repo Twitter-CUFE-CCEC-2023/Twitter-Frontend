@@ -24,11 +24,15 @@ function TopTweetAttributes(props) {
     if (props.isRetweeted) {
       setHlRet(true);
     }
+    console.log(hlLike, hlRet);
   }, []);
 
   function clickLike() {
     if (hlLike) {
-      instance.post(`/status/unlike`, { id: props.tweet.id });
+      instance.delete("/status/unlike", {
+        data :{
+          id: props.tweet.id
+        }})
       setLikes(likes - 1);
     } else {
       instance.post(`/status/like`, { id: props.tweet.id });
@@ -42,7 +46,10 @@ function TopTweetAttributes(props) {
 
   function clickRet(){
     if (hlRet) {
-      instance.post(`/status/unretweet`, { id: props.tweet.id });
+      instance.delete("/status/unretweet", {
+        data :{
+          id: props.tweet.id
+        }})
       setRetweets(retweets - 1);
     } else {
       instance.post(`/status/retweet`, { id: props.tweet.id });

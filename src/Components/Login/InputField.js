@@ -76,6 +76,7 @@ const InputField = (props) => {
         type={props.type}
         defaultValue={props.default}
         onChange={(event) => setEnteredValue(event.target.value)}
+        inputProps={{ maxLength: `${props.maxLength}` }}
       />
     </form>
   );

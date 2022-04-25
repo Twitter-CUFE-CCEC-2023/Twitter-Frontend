@@ -18,6 +18,7 @@ import FeedTweet from "../../Components/TimeLinePage/MiddlePage/FeedTweet";
 import ReactLoading from "react-loading";
 import axios from "axios";
 import instance from "../axios";
+import { useParams } from "react-router-dom";
 
 function ProfileData() {
   const api = axios.create({
@@ -25,8 +26,10 @@ function ProfileData() {
   });
 
   const location = useLocation();
-  let userName = location.pathname.split("/")[2];
-  userName = userName.split(":")[1];
+  
+  let {userName} = useParams(); 
+  //location.pathname.split("/")[2];
+  //userName = userName.split(":")[1];
   console.log(userName);
 
   const [tabType, setTabType] = useState("Tweets");
@@ -126,7 +129,7 @@ function ProfileData() {
         </div>
       </div>
       <div className={`${classes.profileActionsRow}  `}>
-        <ProfileActions isMyProfile={true}></ProfileActions>
+        <ProfileActions isMyProfile={false}></ProfileActions>
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>
         <ProfileInfo

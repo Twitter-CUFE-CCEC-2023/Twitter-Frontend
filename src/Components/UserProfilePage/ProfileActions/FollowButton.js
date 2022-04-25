@@ -12,7 +12,7 @@ function useHover() {
 
 function FollowButton(props) {
   const [buttonAIsHovering, buttonAHoverProps] = useHover();
-  const [followOrFollowing, setFollowOrUnFollow] = useState("Follow");
+  const [followOrFollowing, setFollowOrUnFollow] = useState(props.isFollowing===true?"Following":"Follow");
   function followUser() {
     setFollowOrUnFollow(() => {
       if (followOrFollowing === "Follow") {
@@ -30,12 +30,11 @@ function FollowButton(props) {
     <button
       {...buttonAHoverProps}
       className={`${
-        props.isFollowing ? classes.followingButton : classes.followButton
+        followOrFollowing==='Following' ? classes.followingButton : classes.followButton
       }  text-bold p-2 px-3`}
       onClick={followUser}
     >
-      {!props.isFollowing? followOrFollowing :buttonAIsHovering ? "UnFollow" : followOrFollowing}
-      
+      {followOrFollowing==='Follow'? followOrFollowing :buttonAIsHovering ? "UnFollow" : followOrFollowing}   
     </button>
   );
 

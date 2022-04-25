@@ -10,6 +10,8 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { SkipPreviousRounded } from '@material-ui/icons';
 import instance from '../../axios';
+import ReactLoading from "react-loading";
+
 
 function TweetAndReplies() {
   const api = axios.create({
@@ -24,51 +26,6 @@ function TweetAndReplies() {
   React.useEffect(() => getTweet(), []);
 
   const getTweet = async () => {
-    // const userRes = await api.get(`users/${userId}/`);
-    // let user = userRes.data;
-    // //console.log(user);
-    // setTopUser(prevUser => ({
-    //   ...prevUser,
-    //   name: user.name,
-    //   userName: user.userName,
-    //   profilePic: user.profilePic,
-    //   bio: user.bio,
-    //   }));
-    // const tweetRes = await api.get(`users/${userId}/tweet/${id}`);
-    // let userTweet = tweetRes.data;
-    // let tweet = {
-    //   userId : user.id,
-    //   name : user.name,
-    //   profilePic : user.profilePic,
-    //   userName : user.userName,
-    //   bio : user.bio,
-    //   text : userTweet.content,
-    //   tweetId : userTweet.id,
-    //   date : userTweet.dateCreated,
-    //   likes : userTweet.likes,
-    //   retweets : userTweet.retweets
-    // }
-
-    // const repliesRes = await api.get(`users/${userId}/tweet/${id}/replies`);
-    
-    // let inReplies = repliesRes.data;
-    // let repl = inReplies.map(async(reply) => {
-    //   const replyUserRes = await api.get(`users/${reply.userId % 11}`);
-    //   const replyUser = replyUserRes.data;
-    //   return {
-    //     userId : replyUser.id,
-    //     name : replyUser.name,
-    //     profilePic : replyUser.profilePic,
-    //     userName : replyUser.userName,
-    //     bio : replyUser.bio,
-    //     text : reply.content,
-    //     tweetId : reply.id,
-    //     date : reply.dateCreated,
-    //     likes : reply.likes,
-    //     retweets : reply.retweets
-    //   }
-    // })
-
     let TweetAndReplies = await instance.get(`/status/tweet/${id}?include_replies=true`);
     let maintweet = TweetAndReplies.data.tweet;
     let replies = TweetAndReplies.data.tweet.replies;
@@ -131,7 +88,7 @@ function TweetAndReplies() {
         </NavLink>
         <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
         </div>
-        <div className="App">Loading...</div>
+        {isLoading && <ReactLoading type={"spin"} color={"#1DA1F2"} height={'4%'} width={'4%'} className={`${classes.loadingIcon}`}  />}
       </div>
     );
   }
@@ -146,6 +103,7 @@ function TweetAndReplies() {
       </div>
       <FeedTweet isTopTweet = {true} {...topTweet}/>
       <div className= {classes.tbox} > <FeedTweetBox isReply = {true}/> </div>
+      {isLoading && <ReactLoading type={"spin"} color={"#1DA1F2"} height={'4%'} width={'4%'} className={`${classes.loadingIcon}`}  />}
       {replies.map((tweet, index) => {
   return <FeedTweet {...tweet} isReply = {true}  topUser = {topUser} showAction={true} key = {index}/>;
 })}

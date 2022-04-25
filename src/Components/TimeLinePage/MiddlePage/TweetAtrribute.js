@@ -28,7 +28,10 @@ function TweetAtrribute(props) {
         });
         if(clicked === classes.clicked){
           // props.tweet.likes -= 1;
-          instance.post("/status/unlike", {id: props.tweet.id});
+          instance.delete("/status/unlike", {
+            data :{
+              id: props.tweet.id
+            }})
         }else{
           // props.tweet.likes += 1;
           instance.post("/status/like", {id: props.tweet.id});
@@ -38,7 +41,10 @@ function TweetAtrribute(props) {
       else{
         if(clicked === classes.clicked){
           // props.tweet.retweets -= 1;
-          instance.post("/status/unretweet", {id: props.tweet.id});
+          instance.delete("/status/unretweet", {
+            data :{
+              id: props.tweet.id
+            }})
         }
         else{
           // props.tweet.retweets += 1;

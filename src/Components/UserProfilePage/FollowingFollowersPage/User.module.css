@@ -1,0 +1,100 @@
+.userContainer {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+}
+
+.userContainer:hover {
+  background-color: var(--tweetHover);
+}
+
+.names > p {
+  margin: 0;
+  font-size: 18px;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.userName {
+  color: gray;
+}
+
+.name:hover {
+  text-decoration: underline;
+}
+
+.miniButton {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+  margin-left: auto !important;
+  background-color: black !important;
+  color: white !important;
+  height: 36px !important;
+  font-weight: 600 !important;
+  border-radius: 25px !important;
+  text-transform: inherit !important;
+  padding: 5px 15px 5px 15px !important;
+}
+
+.miniButton:hover {
+  background-color: #272c30 !important;
+}
+
+.top {
+  top: 60px;
+  left: -60px;
+}
+
+.center {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+  margin-left: -5px !important;
+}
+
+.minip + .hoverProfile {
+  position: relative;
+  display: inline-block;
+  visibility: hidden;
+  transition-delay: 0.6s;
+  transition-property: visibility;
+  z-index: 2;
+}
+
+.minip:hover + .hoverProfile {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+}
+
+.hoverProfile:hover {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+}
+
+.bot {
+  top: 50px;
+  left: -80px;
+}
+
+.navl {
+  text-decoration: none !important;
+  color: inherit !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nom {
+  margin: 0;
+  font-size: 15px;
+}
+
+.bio {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+.followButton {
+  margin: auto;
+}
