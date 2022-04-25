@@ -14,7 +14,7 @@
   height: 80%;
   float: right;
 
-  padding: 2%;
+  padding: 1.5%;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 700px) {
@@ -22,12 +22,21 @@
     margin-left: 8.3%;
     float: left;
     width: 90%;
+    padding-right: 20px;
+  }
+}
+
+@media only screen and (min-width: 540px) and (max-width: 540px) {
+  .loginSection {
+    margin-left: 5%;
   }
 }
 
 @media only screen and (min-width: 700px) and (max-width: 1000px) {
   .loginSection {
-    width: 80%;
+    width: 60%;
+    /* height: 65vh; */
+    margin-right: 16%;
     margin-left: 16%;
     float: left;
     padding-top: 3%;

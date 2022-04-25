@@ -10,14 +10,7 @@ import LoginButton from "./Buttons/LoginButton";
 import Alert from "./AlertMessage/Alert";
 
 const EnterPassword = () => {
-  const screenSize = window.innerWidth;
-  console.log(screenSize);
-  let largeScreen = true;
-
-  if (screenSize < 750) {
-    largeScreen = false;
-  }
-
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
   const [dataFrowarded, setDataForwarded] = useState("");
   const [alert, setAlert] = useState(true);
 
@@ -45,6 +38,15 @@ const EnterPassword = () => {
     setIsLoading(val);
   };
 
+  // useEffect(() => {
+  //   if (window.innerWidth < 750) {
+  //     setIsLargeScreen(false);
+  //   } else {
+  //     setIsLargeScreen(true);
+  //   }
+  //   console.log(window.innerWidth);
+  // }, [window.innerWidth]);
+
   useEffect(() => {
     setTimeout(() => {
       setAlert(true);
@@ -60,7 +62,7 @@ const EnterPassword = () => {
           <div className={classes.upperContainer}>
             <div className={classes.container}>
               <p className={classes.enterPassword}>Enter your password</p>
-              {largeScreen && (
+              {isLargeScreen && (
                 <InputField
                   label={type}
                   disable={true}
@@ -68,7 +70,7 @@ const EnterPassword = () => {
                   itemName="userEmail"
                 />
               )}
-              {!largeScreen && (
+              {!isLargeScreen && (
                 <InputFieldSmall
                   label={type}
                   disable={true}
@@ -77,7 +79,7 @@ const EnterPassword = () => {
                 />
               )}
               <div className={classes.lineBreak}></div>
-              {largeScreen && (
+              {isLargeScreen && (
                 <InputField
                   label="Password"
                   disable={false}
@@ -87,7 +89,7 @@ const EnterPassword = () => {
                   maxLength={20}
                 />
               )}
-              {!largeScreen && (
+              {!isLargeScreen && (
                 <InputFieldSmall
                   label="Password"
                   disable={false}
@@ -98,19 +100,18 @@ const EnterPassword = () => {
                 />
               )}
               <p className={classes.forgetPassword}>Forgot Password?</p>
-              <LoginButton
-                data={dataFrowarded}
-                handleLoginClick={handleLoginClick}
-                handleLoading={handleLoading}
-              />
-              <DoNotHaveAccount style={{ marginTop: "5%" }} />
+              <div className={classes.footer}>
+                <LoginButton
+                  data={dataFrowarded}
+                  handleLoginClick={handleLoginClick}
+                  handleLoading={handleLoading}
+                />
+                <DoNotHaveAccount style={{ marginTop: "5%" }} />
+              </div>
             </div>
             {!alert && (
               <div className={classes.alert}>
-                <Alert
-                  message="Wrong password!"
-                  style={{ width: "30%", top: "-3%" }}
-                />
+                <Alert message="Wrong password!" style={{ width: "30%" }} />
               </div>
             )}
           </div>

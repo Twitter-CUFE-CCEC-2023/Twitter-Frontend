@@ -18,7 +18,7 @@ const PosterImage = () => {
         src={backgroundImage}
         alt="TwitterBackground"
       />
-      <div>
+      <div className={classes.logoContainer}>
         <img
           className={classes.logo}
           src={twitterWhiteLogo}
