@@ -50,3 +50,25 @@
   flex-wrap: wrap;
   
 }
+
+.tweetButton {
+  margin-left: auto !important;
+  margin-right: 15px !important;
+  margin-bottom: 10px !important;
+  background-color: var(--twitterBlue) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border-radius: 25px !important;
+  text-transform: inherit !important;
+  padding: 5px 15px 5px 15px !important;
+  opacity: 0.8;
+  border: 1px solid #ccc;
+}
+
+.tweetButton:hover {
+  background-color: var(--twitterBlueHighlighted);
+  opacity: 1;
+}
+.tweetButton:disabled {cursor: not-allowed;
+  opacity: 0.8;
+}
