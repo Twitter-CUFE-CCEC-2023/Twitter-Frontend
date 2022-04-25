@@ -49,6 +49,7 @@ const EnterEmail = (props) => {
             label="Phone, email address, or username"
             disable={false}
             itemName="userEmailOrName"
+            maxLength={50}
           />
           <NextButton handleButtonClick={handleClick} />
           <ForgetPasswordButton />

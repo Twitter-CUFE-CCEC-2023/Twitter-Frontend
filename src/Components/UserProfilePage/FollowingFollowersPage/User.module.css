@@ -91,8 +91,10 @@
   font-size: 15px;
 }
 
-
-.bio{
-    font-size: 15px;
-    margin-bottom: 0;
+.bio {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+.followButton {
+  margin: auto;
 }
