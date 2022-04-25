@@ -25,7 +25,8 @@ import SelectMore from "./SelectMore/SelectMore";
 
 const LeftSideBar = () => {
   const [moreSelected, setMoreSelected] = useState(false);
-
+  const currentuser =JSON.parse(localStorage.getItem("UserInfo")); 
+  console.log(currentuser.username);
   const pathname = window.location.pathname.toLowerCase();
 
   const [pageActive, setPageActive] = React.useState(
@@ -137,7 +138,7 @@ const LeftSideBar = () => {
           <LeftButton
             Icon={AccountCircleOutlinedIcon}
             IconActive={AccountCircleIcon}
-            url="userprofile"
+            url={`userprofile/${currentuser.username}`}
             title="Profile"
             onPage={pageActive.get("userprofile")}
           />

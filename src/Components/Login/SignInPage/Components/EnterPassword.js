@@ -3,12 +3,21 @@ import classes from "./EnterPassword.module.css";
 
 import LoadingSpinner from "../../../ExtraPages/LoadingSpinner";
 import LogoHeader from "./HeaderAndFooter/LogoHeader";
-import AlreadyHaveAccount from "./HeaderAndFooter/AlreadyHaveAccount";
+import DoNotHaveAccount from "./HeaderAndFooter/DoNotHaveAccount";
 import InputField from "../../InputField";
+import InputFieldSmall from "../../InputFieldSmall";
 import LoginButton from "./Buttons/LoginButton";
 import Alert from "./AlertMessage/Alert";
 
 const EnterPassword = () => {
+  const screenSize = window.innerWidth;
+  console.log(screenSize);
+  let largeScreen = true;
+
+  if (screenSize < 750) {
+    largeScreen = false;
+  }
+
   const [dataFrowarded, setDataForwarded] = useState("");
   const [alert, setAlert] = useState(true);
 
@@ -48,38 +57,63 @@ const EnterPassword = () => {
       {!isLoading && (
         <div>
           <LogoHeader width="438px" />
-          <div className={classes.container}>
-            <p className={classes.enterPassword}>Enter your password</p>
-            <InputField
-              label={type}
-              disable={true}
-              default={email}
-              itemName="userEmail"
-            />
-            <div className={classes.lineBreak}></div>
-            <InputField
-              label="Password"
-              disable={false}
-              type="password"
-              itemName="userPassword"
-              passData={forwardPassword}
-            />
-            <p className={classes.forgetPassword}>Forgot Password?</p>
-            <LoginButton
-              data={dataFrowarded}
-              handleLoginClick={handleLoginClick}
-              handleLoading={handleLoading}
-            />
-            <AlreadyHaveAccount style={{ marginTop: "5%" }} />
-          </div>
-          {!alert && (
-            <div className={classes.alert}>
-              <Alert
-                message="Wrong password!"
-                style={{ width: "30%", top: "-3%" }}
+          <div className={classes.upperContainer}>
+            <div className={classes.container}>
+              <p className={classes.enterPassword}>Enter your password</p>
+              {largeScreen && (
+                <InputField
+                  label={type}
+                  disable={true}
+                  default={email}
+                  itemName="userEmail"
+                />
+              )}
+              {!largeScreen && (
+                <InputFieldSmall
+                  label={type}
+                  disable={true}
+                  default={email}
+                  itemName="userEmail"
+                />
+              )}
+              <div className={classes.lineBreak}></div>
+              {largeScreen && (
+                <InputField
+                  label="Password"
+                  disable={false}
+                  type="password"
+                  itemName="userPassword"
+                  passData={forwardPassword}
+                  maxLength={20}
+                />
+              )}
+              {!largeScreen && (
+                <InputFieldSmall
+                  label="Password"
+                  disable={false}
+                  type="password"
+                  itemName="userPassword"
+                  passData={forwardPassword}
+                  maxLength={20}
+                />
+              )}
+              <p className={classes.forgetPassword}>Forgot Password?</p>
+              <LoginButton
+                data={dataFrowarded}
+                handleLoginClick={handleLoginClick}
+                handleLoading={handleLoading}
               />
+              <DoNotHaveAccount style={{ marginTop: "5%" }} />
             </div>
-          )}
+            {!alert && (
+              <div className={classes.alert}>
+                <Alert
+                  message="Wrong password!"
+                  style={{ width: "30%", top: "-3%" }}
+                />
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

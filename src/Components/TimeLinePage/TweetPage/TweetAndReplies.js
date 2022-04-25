@@ -9,6 +9,9 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { SkipPreviousRounded } from '@material-ui/icons';
+import instance from '../../axios';
+import ReactLoading from "react-loading";
+
 
 function TweetAndReplies() {
   const api = axios.create({
@@ -23,60 +26,58 @@ function TweetAndReplies() {
   React.useEffect(() => getTweet(), []);
 
   const getTweet = async () => {
-    const userRes = await api.get(`users/${userId}/`);
-    let user = userRes.data;
-    //console.log(user);
-    setTopUser(prevUser => ({
-      ...prevUser,
-      name: user.name,
-      userName: user.userName,
-      profilePic: user.profilePic,
-      bio: user.bio,
-      }));
-    const tweetRes = await api.get(`users/${userId}/tweet/${id}`);
-    let userTweet = tweetRes.data;
+    let TweetAndReplies = await instance.get(`/status/tweet/${id}?include_replies=true`);
+    let maintweet = TweetAndReplies.data.tweet;
+    let replies = TweetAndReplies.data.tweet.replies;
+
     let tweet = {
-      userId : user.id,
-      name : user.name,
-      profilePic : user.profilePic,
-      userName : user.userName,
-      bio : user.bio,
-      text : userTweet.content,
-      tweetId : userTweet.id,
-      date : userTweet.dateCreated,
-      likes : userTweet.likes,
-      retweets : userTweet.retweets
+      name : maintweet.user.name,
+      profilePic : maintweet.user.profile_image_url,
+      userName : maintweet.user.username,
+      isVerified : maintweet.user.isVerified,
+      bio : maintweet.user.bio,
+      followers : maintweet.user.followers_count,
+      following : maintweet.user.following_count,
+      text : maintweet.content,
+      tweetId : maintweet.id,
+      date : maintweet.created_at,
+      replies : maintweet.replies,
+      likes : maintweet.likes_count,
+      retweets : maintweet.retweets_count,
+      quotes : maintweet.quotes_count,
+      isLiked : maintweet.is_liked,
+      isRetweeted : maintweet.is_retweeted,
+      isReply : maintweet.is_reply
     }
 
-    const repliesRes = await api.get(`users/${userId}/tweet/${id}/replies`);
-    
-    let inReplies = repliesRes.data;
-    let repl = inReplies.map(async(reply) => {
-      const replyUserRes = await api.get(`users/${reply.userId % 11}`);
-      const replyUser = replyUserRes.data;
-      return {
-        userId : replyUser.id,
-        name : replyUser.name,
-        profilePic : replyUser.profilePic,
-        userName : replyUser.userName,
-        bio : replyUser.bio,
+    let repl = replies.map(async(reply) => {
+      return{
+        name : reply.user.name,
+        profilePic : reply.user.profile_image_url,
+        userName : reply.user.username,
+        isVerified : reply.user.isVerified,
+        bio : reply.user.bio,
+        followers : reply.user.followers_count,
+        following : reply.user.following_count,
         text : reply.content,
         tweetId : reply.id,
-        date : reply.dateCreated,
-        likes : reply.likes,
-        retweets : reply.retweets,
-        replies : reply.replies
+        date : reply.created_at,
+        replies : reply.replies,
+        likes : reply.likes_count,
+        retweets : reply.retweets_count,
+        quotes : reply.quotes_count,
+        isLiked : reply.is_liked,
+        isRetweeted : reply.is_retweeted,
+        isReply : reply.is_reply
       }
     })
-    const resolved = await Promise.all(repl);
 
-    
     setTopTweet(tweet);
-    setReplies(resolved);
+    setReplies(repl);
     setLoading(false);
   }
     
-  let history = useHistory();
+  //let history = useHistory();
 
   if(isLoading) {
     return(
@@ -87,7 +88,7 @@ function TweetAndReplies() {
         </NavLink>
         <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
         </div>
-        <div className="App">Loading...</div>
+        {isLoading && <ReactLoading type={"spin"} color={"#1DA1F2"} height={'4%'} width={'4%'} className={`${classes.loadingIcon}`}  />}
       </div>
     );
   }
@@ -102,6 +103,7 @@ function TweetAndReplies() {
       </div>
       <FeedTweet isTopTweet = {true} {...topTweet}/>
       <div className= {classes.tbox} > <FeedTweetBox isReply = {true}/> </div>
+      {isLoading && <ReactLoading type={"spin"} color={"#1DA1F2"} height={'4%'} width={'4%'} className={`${classes.loadingIcon}`}  />}
       {replies.map((tweet, index) => {
   return <FeedTweet {...tweet} isReply = {true}  topUser = {topUser} showAction={true} key = {index}/>;
 })}

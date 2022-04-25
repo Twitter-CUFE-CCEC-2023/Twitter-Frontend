@@ -8,9 +8,12 @@ import CameraEnhanceOutlinedIcon from "@mui/icons-material/CameraEnhanceOutlined
 import ImageUploader from "./ImageUploader";
 
 function EditProfileButton() {
-  const [croppedCoverPhoto, setCroppedCoverPhoto] = useState("https://i.pinimg.com/564x/8b/fc/ac/8bfcacfd1ebb5ff9013ab9ca815ff04d.jpg");
+  const [croppedCoverPhoto, setCroppedCoverPhoto] = useState(coverphoto);
   const editCover=(editedcover)=>{
     setCroppedCoverPhoto(editedcover);
+  }
+  const resetModal=()=>{
+    setCroppedCoverPhoto(coverphoto);
   }
   return (
     <Fragment>
@@ -35,6 +38,7 @@ function EditProfileButton() {
                 className={`${classes.closeIcon} ps-0  me-4`}
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                onClick={resetModal}
               />
               <h5 className={`${classes.modalTitle} col-3 modal-title`}>
                 Edit profile
@@ -77,7 +81,7 @@ function EditProfileButton() {
                 <InputBox inputName="Website" inputValue=""></InputBox>
               </form>
             </div>
-            <div class="modal-footer"></div>
+            <div className="modal-footer"></div>
           </div>
         </div>
       </div>

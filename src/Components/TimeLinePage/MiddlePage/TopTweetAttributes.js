@@ -6,13 +6,10 @@ import LoopOutlinedIcon from "@material-ui/icons/LoopOutlined";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
-import axios from 'axios';
+import instance from '../../axios';
 
 function TopTweetAttributes(props) {
 
-  const api = axios.create({
-    baseURL: "https://6262975a005a66e1e3aa1ebb.mockapi.io/",
-  })
 
   const [clicked, setClicked] = React.useState("");
   const [likes, setLikes] = React.useState(props.likes);
@@ -20,32 +17,48 @@ function TopTweetAttributes(props) {
   const [hlLike, setHlLike] = React.useState(false);
   const [hlRet, setHlRet] = React.useState(false);
 
+  React.useEffect(() => {
+    if (props.isLiked) {
+      setHlLike(true);
+    }
+    if (props.isRetweeted) {
+      setHlRet(true);
+    }
+    console.log(hlLike, hlRet);
+  }, []);
+
   function clickLike() {
     if (hlLike) {
-        setLikes(likes - 1);
-        props.tweet.likes -= 1;
+      instance.delete("/status/unlike", {
+        data :{
+          id: props.tweet.id
+        }})
+      setLikes(likes - 1);
     } else {
-        setLikes(likes + 1);
-        props.tweet.likes += 1;
+      instance.post(`/status/like`, { id: props.tweet.id });
+      setLikes(likes + 1);
     }
     setHlLike((prevhlLike) => {
       return !prevhlLike;
     });
-    const resp = api.put(`users/${props.tweet.userId}/tweet/${props.tweet.id}`, props.tweet);
+    //const resp = api.put(`users/${props.tweet.userId}/tweet/${props.tweet.id}`, props.tweet);
   }
 
   function clickRet(){
     if (hlRet) {
-        setRetweets(retweets - 1);
-        props.tweet.retweets -= 1;
+      instance.delete("/status/unretweet", {
+        data :{
+          id: props.tweet.id
+        }})
+      setRetweets(retweets - 1);
     } else {
-        setRetweets(retweets + 1);
-        props.tweet.retweets += 1;
+      instance.post(`/status/retweet`, { id: props.tweet.id });
+      setRetweets(retweets + 1);
     }
     setHlRet((prevhlRet) => {
       return !prevhlRet;
     });
-    const resp = api.put(`users/${props.tweet.userId}/tweet/${props.tweet.id}`, props.tweet);
+    //const resp = api.put(`users/${props.tweet.userId}/tweet/${props.tweet.id}`, props.tweet);
   }
 
   return (
