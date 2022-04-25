@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import instance from "../../axios";
 import { useParams } from "react-router-dom";
+import { diceSix } from "fontawesome";
 
 function FollowingFollowersPage() {
   const pathlocation = useLocation();
@@ -29,7 +30,6 @@ function FollowingFollowersPage() {
   const [hasMoreFollowing, setHasMoreFollowing] = React.useState(true);
   const location = useLocation();
   let { userName } = useParams();
-  console.log(userName);
   const observerFollowers = useRef();
   const observerFollowing = useRef();
 
@@ -73,7 +73,6 @@ function FollowingFollowersPage() {
     setFollowing([]);
   }, [ type]);
 
-  console.log(type);
   const getUsers = async () => {
     setLoading(true);
     if (type === "followers") {
@@ -108,7 +107,6 @@ function FollowingFollowersPage() {
       });
       setHasMoreFollowers(userFollowers.length === 3);
       setLoading(false);
-      console.log(location.pathname);
     }
     if (type === "following") {
       const res = await instance
@@ -142,7 +140,6 @@ function FollowingFollowersPage() {
       });
       setHasMoreFollowing(userFollowing.length === 3);
       setLoading(false);
-      console.log(location.pathname);
     }
   };
 
@@ -216,7 +213,10 @@ function FollowingFollowersPage() {
                   </div>
                 );
               } else {
-                return <User {...follower} key={index} showAction={true} />;
+                return 
+                <div>
+                <User {...follower} key={index} showAction={true} />
+                </div>;
               }
             })}
           {type === "following" &&
@@ -224,12 +224,14 @@ function FollowingFollowersPage() {
               if (index === following.length - 1) {
                 return (
                   <div ref={lastTweetElementRefFollowing} key={index}>
-                    <User {...followingUser} showAction={true}></User>{" "}
+                    <User {...followingUser} isFollowing={true}  showAction={true}></User>{" "}
                   </div>
                 );
               } else {
                 return (
-                  <User {...followingUser} key={index} showAction={true} />
+                  <div>
+                  <User {...followingUser} isFollowing={true} key={index} showAction={true} />
+                  </div>
                 );
               }
             })}
