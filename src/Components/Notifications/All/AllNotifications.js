@@ -28,6 +28,9 @@ function AllNotifications() {
     [isLoading, hasMore]
   );
 
+  const currentUser = JSON.parse(localStorage.getItem("UserInfo"));
+  console.log("currentUser", currentUser);
+
   useEffect(() => getNotifications(), [pageNumber]);
 
   const getNotifications = async () => {
@@ -38,11 +41,22 @@ function AllNotifications() {
     userNotifications.forEach((notes) => {
       let notification = {
         Person: notes.related_user.name,
+        personID: notes.related_user.username,
         type: notes.notification_type,
         profilePicture: notes.related_user.profile_image_url,
-        tweetID: notes.tweet.id,
-        uid: notes.tweet.user.username,
+        //tweetID: notes.tweet.id,
+        uid: currentUser.username,
       };
+      if (
+        notes.notification_type === "Like" ||
+        notes.notification_type === "Retweet" ||
+        notes.notification_type === "Following Tweet"
+      ) {
+        notification = {
+          ...notification,
+          tweetID: notes.tweet.id,
+        };
+      }
       setNotifications((prevNotifications) => {
         return [...prevNotifications, notification];
       });
@@ -54,6 +68,11 @@ function AllNotifications() {
   return (
     <div className={classes.notes}>
       <NotificationsNavBar selected={true} />
+      {/* <SingleNotification
+        Person="YoussefMokhtar"
+        type="Like"
+        profilePicture="https://pbs.twimg.com/profile_images/1409740849995522049/u85BO_GZ.jpg"
+      /> */}
       {notifications.map((notification, index) => {
         if (index === notifications.length - 1) {
           return (
