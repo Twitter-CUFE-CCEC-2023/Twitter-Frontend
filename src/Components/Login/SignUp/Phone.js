@@ -7,6 +7,7 @@ import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignUpBackground from "./MailBack";
 import Day from "./DayTest"
 import PhoneVerifyNext from "../Buttons/PhoneVerifyNext"
+import InputField from "../InputField";
 
 const Phone = () => {
     return (
@@ -19,14 +20,23 @@ const Phone = () => {
             <NavLink to="/" className={classes.closeIcon}>
                 <ClearIcon />
             </NavLink>
-
+            <div className={classes.Header}>Create your account</div> 
             <div className={classes.container}>
-                <p className={classes.signInToTwitter}>Create your account</p>
-                <input type="text" className={classes.input} placeholder="Name" />
+                <InputField
+                    label="Name"
+                    disable={false}
+                    itemName="UserName"
+                    maxLength={50}
+                />
 
+                <p></p> 
 
-
-                <input type="text" className={classes.input} placeholder="Phone" />
+                <InputField
+                    label="Phone number"
+                    disable={false}
+                    itemName="UserPhone"
+                    maxLength={50}
+                />
                 <NavLink to="/Mail" className={classes.navLink}>
                     <div className={classes.Use}>
                         <p className={classes.content}>Use Email instead</p>

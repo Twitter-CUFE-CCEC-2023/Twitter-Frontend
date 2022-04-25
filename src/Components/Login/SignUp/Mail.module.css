@@ -4,7 +4,12 @@
   margin-bottom: 4%;
   margin-left: -8%;
 }
-
+.Header
+{
+  text-align: left;
+  margin: 0% 10%;
+  font-weight: bold;
+}
 .container {
   text-align: left;
   margin: 0% 10%;
@@ -22,6 +27,7 @@
   border-radius: 9999px;
   margin: 3%;
   float: left;
+  
 }
 .boxtest
 {
