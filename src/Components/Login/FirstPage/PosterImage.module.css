@@ -47,16 +47,26 @@
   }
 }
 
-@media only screen and (min-width: 700px) and (max-width: 1000px) {
+@media only screen and (min-width: 0px) and (max-width: 700px) {
   .posterSection {
-    height: 46vh;
+    height: 45vh;
     width: 100%;
+    margin-bottom: 1%;
   }
 
   .logo {
-    width: 41%;
+    width: 60%;
+    /* width: 300px; */
+    /* top: 19%;
+    left: 21%; */
   }
 }
+
+/* @media only screen and (min-width: 280px) and (max-width: 280px) {
+  .posterSection {
+    width: 280px;
+  }
+} */
 
 @media only screen and (min-width: 1000px) and (max-width: 1200px) {
   .posterSection {
