@@ -17,7 +17,7 @@ function User(props) {
     if (isFollowing) setIsFollowing(false);
     else setIsFollowing(true);
   };
-
+  console.log("user props",props);
   return (
     <div className={classes.userContainer}>
       <NavLink className={classes.navl + " " + classes.minip} to="profile">

@@ -28,8 +28,6 @@ function ProfileData() {
   const location = useLocation();
   
   let {userName} = useParams(); 
-  //location.pathname.split("/")[2];
-  //userName = userName.split(":")[1];
   console.log(userName);
 
   const [tabType, setTabType] = useState("Tweets");

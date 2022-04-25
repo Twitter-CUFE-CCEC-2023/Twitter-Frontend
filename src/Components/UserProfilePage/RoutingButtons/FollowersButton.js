@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 function FollowersButton(props) {
   const location = useLocation();
   let userName = location.pathname.split("/")[2];
-  userName = userName.split(":")[1];
+ 
   return (
     <Fragment>
     <NavLink to={`/followers/${userName}`} className={`${classes.followers} col-2 col-sm-3 `} >
