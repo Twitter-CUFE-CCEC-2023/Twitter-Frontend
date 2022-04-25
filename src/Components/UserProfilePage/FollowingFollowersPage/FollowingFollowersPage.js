@@ -85,7 +85,7 @@ function FollowingFollowersPage() {
             name={"Amr Zaki"}
             userName={"amrzaki"}
             bio={
-              "bio AlAhly jkllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll"
+              "bio AlAhly jklllllllll"
             }
             following={100}
             followers={500}
