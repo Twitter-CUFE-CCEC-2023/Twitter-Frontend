@@ -24,11 +24,21 @@ const Mail = () => {
             <div className={classes.container}>
                 <p>Create your account</p>
                 
-                <input type="text" className={classes.input} placeholder="Name" />
-
+                {/* <input type="text" className={classes.input} placeholder="Name" /> */}
+                <InputFieldSmall
+                    label="Name"
+                    disable={false}
+                    itemName="userEmailOrName"
+                    maxLength={50}
+                />
                 
                 
-                <input type="text" className={classes.input} placeholder="Email address" />
+                <InputFieldSmall
+                    label="Email address"
+                    disable={false}
+                    itemName="userEmailOrName"
+                    maxLength={50}
+                />
                 
                 <NavLink to="/Phone">
                     <div className={classes.Use}>
