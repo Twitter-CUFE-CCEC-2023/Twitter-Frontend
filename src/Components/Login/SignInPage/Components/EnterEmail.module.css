@@ -16,11 +16,12 @@
 }
 
 .alert {
-  position: relative;
+  /* position: relative; */
   /* border: 1px solid violet; */
   height: 50px;
+  /* width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: center; */
 }
 
 @media only screen and (min-width: 0px) and (max-width: 300px) {
@@ -63,7 +64,7 @@
   }
 }
 
-@media only screen and (min-width: 1000px) and (max-width: 1024px) {
+@media only screen and (min-width: 1024px) and (max-width: 1024px) {
   .container {
     margin-top: 68px;
   }

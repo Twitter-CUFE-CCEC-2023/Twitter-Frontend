@@ -54,3 +54,13 @@
 
   opacity: 0.4;
 }
+
+@media only screen and (min-width: 0px) and (max-width: 700px) {
+  .loginButton {
+    width: 300px;
+  }
+
+  .disabled {
+    width: 300px;
+  }
+}

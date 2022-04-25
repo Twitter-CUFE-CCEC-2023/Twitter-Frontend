@@ -21,6 +21,7 @@ const LoginButton = (props) => {
       })
       .then((response) => {
         console.log(response);
+        console.log(response.status);
         if (response.statusText === "OK") {
           localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
           if (response.data.user.role === "User") {
@@ -30,12 +31,16 @@ const LoginButton = (props) => {
             loginCtx.login(true, response.data.access_token, 360000);
             history.push("/admin");
           }
+        } else {
+          props.handleLoginClick(false);
         }
         props.handleLoading(false);
       })
       .catch((err) => {
-        console.log(err);
-        props.handleLoginClick(false);
+        props.handleLoading(false);
+        if (err.response.status === 401) {
+          props.handleLoginClick(false);
+        }
       });
   };
 
