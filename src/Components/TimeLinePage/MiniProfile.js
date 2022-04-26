@@ -1,12 +1,19 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React,{useState} from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./MiniProfile.module.css";
+import FollowButton from '../UserProfilePage/ProfileActions/FollowButton';
 
 function MiniProfile(props) {
+  const [isFollowing, setIsFollowing] = useState(props.isFollowing?true:false);
+
+  const onFollow = () => {
+    if (isFollowing) setIsFollowing(false);
+    else setIsFollowing(true);
+  };
   return (
     <div className={classes.miniProfile}>
-      <div className={classes.flex}>
+      <div className={classes.flexContainer}>
         <NavLink className={`noDecoration`} to={`/userprofile/${props.userName}`}>
           <img
             className={classes.miniImg + " " + classes.pointer}
@@ -14,7 +21,17 @@ function MiniProfile(props) {
             data-testid = "profilePicmp"
           ></img>
         </NavLink>
-        <Button className={classes.miniButton}>Follow</Button>
+        <div
+        className={`${classes.followButton} col-2 pe-0 ${
+          !isFollowing ? "me-0" : "me-0"
+        }`}
+      >
+        <FollowButton
+          isFollowing={props.isFollowing}
+          onFollow={onFollow}
+          className={classes.miniButton}
+        ></FollowButton>
+        </div>
       </div>
       <div className={classes.userNames}>
         <NavLink className={`noDecoration black `} to={`/userprofile/${props.userName}`}>
