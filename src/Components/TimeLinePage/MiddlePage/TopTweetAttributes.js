@@ -16,6 +16,8 @@ function TopTweetAttributes(props) {
   const [retweets, setRetweets] = React.useState(props.retweets);
   const [hlLike, setHlLike] = React.useState(false);
   const [hlRet, setHlRet] = React.useState(false);
+  
+  let isMock = localStorage.getItem("isMock") === "true";
 
   React.useEffect(() => {
     if (props.isLiked) {
@@ -29,13 +31,60 @@ function TopTweetAttributes(props) {
 
   function clickLike() {
     if (hlLike) {
-      instance.delete("/status/unlike", {
-        data :{
-          id: props.tweet.id
-        }})
+      if (!isMock) {
+        instance.delete("/status/unlike", {
+          data: {
+            id: props.tweet.id,
+          },
+        });
+      } else {
+        fetch(`http://localhost:3000/home/${props.tweet.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes_count: likes - 1,
+            is_liked: false,
+          }),
+        });
+        fetch(`http://localhost:3000/replies/${props.tweet.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes_count: likes - 1,
+            is_liked: false,
+          }),
+        });
+      }
       setLikes(likes - 1);
     } else {
+      if (!isMock) {
       instance.post(`/status/like`, { id: props.tweet.id });
+      } else {
+        fetch(`http://localhost:3000/home/${props.tweet.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes_count: likes + 1,
+            is_liked: true,
+          }),
+        });
+        fetch(`http://localhost:3000/replies/${props.tweet.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes_count: likes + 1,
+            is_liked: true,
+          }),
+        });
+      }
       setLikes(likes + 1);
     }
     setHlLike((prevhlLike) => {

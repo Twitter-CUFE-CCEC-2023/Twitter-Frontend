@@ -20,12 +20,30 @@ function TweetAndReplies(props) {
   const [topTweet, setTopTweet] = React.useState([]);
   const [replies, setReplies] = React.useState([]);
   const [topUser, setTopUser] = React.useState({ name: "", userName: "", profilePic: "" , bio: ""});
+
+  let isMock = localStorage.getItem("isMock") === "true";
+
   React.useEffect(() => getTweet(), []);
 
   const getTweet = async () => {
-    let TweetAndReplies =props.testUrl ? await axios.get(props.testUrl) : await instance.get(`/status/tweet/${id}?include_replies=true`);
-    let maintweet = TweetAndReplies.data.tweet;
-    let replies = TweetAndReplies.data.tweet.replies;
+    let maintweet;
+    let replies;
+    if(!isMock)
+    {
+      let TweetAndReplies =props.testUrl ? await axios.get(props.testUrl) : await instance.get(`/status/tweet/${id}?include_replies=true`);
+      maintweet = TweetAndReplies.data.tweet;
+      replies = TweetAndReplies.data.tweet.replies;
+    }
+    else{
+      await fetch(`http://localhost:3000/replies/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        maintweet = data;
+        replies = data.replies;
+    }
+    )
+    }
+
 
     let tweet = {
       name : maintweet.user.name,
