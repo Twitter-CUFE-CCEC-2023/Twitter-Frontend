@@ -12,6 +12,7 @@ function AllNotifications() {
   const [notifications, setNotifications] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  let isMock = localStorage.getItem("isMock") === "true";
 
   const observer = useRef();
   const lastNotificationElementRef = useCallback(
@@ -35,9 +36,20 @@ function AllNotifications() {
 
   const getNotifications = async () => {
     setLoading(true);
-    const notes = await instance.get(`/notifications/list/${pageNumber}/5`);
-    const userNotifications = notes.data.notifications;
-    console.log("userNotifications", userNotifications);
+    let notes;
+    let userNotifications;
+    if (!isMock) {
+      notes = await instance.get(`/notifications/list/${pageNumber}/2`);
+      userNotifications = notes.data.notifications;
+    } else {
+      await fetch(
+        `http://localhost:3000/notifications?_page=${pageNumber}&_limit=2`
+      )
+        .then((res) => res.json())
+        .then((notes) => {
+          userNotifications = notes;
+        });
+    }
     userNotifications.forEach((notes) => {
       let notification = {
         Person: notes.related_user.name,
@@ -62,7 +74,7 @@ function AllNotifications() {
       });
     });
     setLoading(false);
-    setHasMore(userNotifications.length === 5);
+    setHasMore(userNotifications.length === 2);
   };
 
   return (
