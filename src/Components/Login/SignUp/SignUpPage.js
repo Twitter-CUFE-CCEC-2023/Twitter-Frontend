@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SignInBackground from "./MailBack";
+import SignUpBackground from "./MailBack";
 import Mail from "./Mail";
 import TrackOption from "./TrackOption";
 
@@ -11,10 +11,10 @@ const SignInPage = () => {
     };
 
     return (
-        <SignInBackground>
+        <SignUpBackground>
             {!nextClicked && <Mail handleButtonClick={handleClick} />}
             {nextClicked && <TrackOption />}
-        </SignInBackground>
+        </SignUpBackground>
     );
 };
 

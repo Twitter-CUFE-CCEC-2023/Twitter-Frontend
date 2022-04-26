@@ -4,12 +4,7 @@
   margin-bottom: 4%;
   margin-left: -8%;
 }
-.Header
-{
-  text-align: left;
-  margin: 0% 10%;
-  font-weight: bold;
-}
+
 .container {
   text-align: left;
   margin: 0% 10%;
@@ -105,7 +100,6 @@
 .DateOfBirth {
   text-align: left;
   margin: 0% 10%;
-  margin-left: 0;
   font-size: 80%;
   color: #000000;
 }
@@ -113,7 +107,6 @@
 .Minor3 {
   text-align: left;
   margin: 0% 10%;
-  margin-left: 0;
   font-size: 80%;
   color: #536471;
 }
@@ -124,11 +117,28 @@
   margin-bottom: 10%;
   margin-left: 1.5%;
 }
+.Header {
+  text-align: left;
+  margin: 0% 10%;
+  font-weight: bold;
+}
+.content2 {
+  text-align: left;
+  margin: 1% 10%;
+  font-size: 65%;
+}
 
 .Use {
   text-align: left;
   margin: 1% 10%;
   margin-left: 0;
   font-size: 65%;
+  color: #008ffd;
+}
+
+.button {
+  text-align: center;
+  margin: 10% 10%;
+  margin-left: 0;
   color: #008ffd;
 }

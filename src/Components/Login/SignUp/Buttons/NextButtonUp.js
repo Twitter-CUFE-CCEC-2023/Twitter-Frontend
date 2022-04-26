@@ -9,7 +9,7 @@ const NextButton = (props) => {
     } else {
       props.handleButtonClick(true);
     }
-    const email = JSON.parse(localStorage.getItem("UserName"));
+    const email = JSON.parse(localStorage.getItem("Name"));
     if (email === "") {
       props.handleButtonClick(false);
     } else {
