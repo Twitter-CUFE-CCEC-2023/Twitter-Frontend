@@ -27,7 +27,10 @@ function ProfileData() {
   const pathlocation = useLocation();
   let userInPath = pathlocation.pathname.split("/")[2];
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
-  const currentuserName = currentuser.username;
+  let currentuserName;
+  if (currentuser) {
+    currentuserName = currentuser.username;
+  }
   const [user, setUser] = useState({});
   const location = useLocation();
 
