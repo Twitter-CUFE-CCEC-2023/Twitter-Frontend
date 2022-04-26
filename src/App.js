@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { LoginContext } from "./login-context";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import "./App.css";
 
 import MainPage from "./Components/Login/FirstPage/MainPage";
@@ -34,14 +34,7 @@ import MainTweetPage from "./Components/TimeLinePage/TweetPage/MainTweetPage";
 
 function App() {
   const loginCtx = useContext(LoginContext);
-  console.log("Login " + loginCtx.isLoggedIn);
-  console.log("Admin " + loginCtx.isAdmin);
-  localStorage.setItem("isMock", "true");
-  // const log = localStorage.getItem("login");
-  // console.log("Login = " + log);
-
-  // const log2 = JSON.parse(localStorage.getItem("UserInfo"));
-  // console.log(log2.username);
+  localStorage.setItem("isMock", "false");
 
   return (
     <div>
@@ -56,76 +49,26 @@ function App() {
           <Route path="/TrackOption" component={TrackOption} />
           <Route path="/AddPhone" component={AddPhone} />
 
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route path="/home" component={Home} />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route path="/:userId/status/:id" component={MainTweetPage} />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route path="/notifications" component={AllNotificationsPage} />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route
-              path="/mentionnotifications"
-              component={MentionNotificationsPage}
-            />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route path="/settings" component={Settings} />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route path="/userprofile/:userName" component={UserProfile} />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route
-              path="/following/:userName"
-              component={FollowingFollowersPage}
-            />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route
-              path="/followers/:userName"
-              component={FollowingFollowersPage}
-            />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route path="/crop" component={ImageCropper} />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route path="/explore" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route path="/messages" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route path="/i/bookmarks" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
-            <Route
-              path="/profileName/lists"
-              component={UnderConstructionPage}
-            />
-          )}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/home" component={Home} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/:userId/status/:id" component={MainTweetPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/notifications" component={AllNotificationsPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/mentionnotifications" component={MentionNotificationsPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/settings" component={Settings} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/userprofile/:userName" component={UserProfile} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/following/:userName" component={FollowingFollowersPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/followers/:userName" component={FollowingFollowersPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/crop" component={ImageCropper} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/explore" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/messages" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/i/bookmarks" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/profileName/lists" component={UnderConstructionPage} />}
 
-          {loginCtx.isLoggedIn && loginCtx.isAdmin && (
-            <Route path="/admin" component={Admin} />
-          )}
-          {loginCtx.isLoggedIn && loginCtx.isAdmin && (
-            <Route path="/admin-userslist" component={UsersList} />
-          )}
-          {loginCtx.isLoggedIn && loginCtx.isAdmin && (
-            <Route path="/admin-likes" component={Likes} />
-          )}
-          {loginCtx.isLoggedIn && loginCtx.isAdmin && (
-            <Route path="/admin-tweets" component={Tweets} />
-          )}
-          {loginCtx.isLoggedIn && loginCtx.isAdmin && (
-            <Route path="/admin-retweets" component={Retweets} />
-          )}
-          {loginCtx.isLoggedIn && loginCtx.isAdmin && (
-            <Route path="/admin-statistics" component={Statistics} />
-          )}
+          {loginCtx.isLoggedIn && loginCtx.isAdmin && <Route path="/admin" component={Admin} />}
+          {loginCtx.isLoggedIn && loginCtx.isAdmin && <Route path="/admin-userslist" component={UsersList} />}
+          {loginCtx.isLoggedIn && loginCtx.isAdmin && <Route path="/admin-likes" component={Likes} />}
+          {loginCtx.isLoggedIn && loginCtx.isAdmin && <Route path="/admin-tweets" component={Tweets} />}
+          {loginCtx.isLoggedIn && loginCtx.isAdmin && <Route path="/admin-retweets" component={Retweets} />}
+          {loginCtx.isLoggedIn && loginCtx.isAdmin && <Route path="/admin-statistics" component={Statistics} />}
 
           <Route path="*">
             <Redirect to="/" />

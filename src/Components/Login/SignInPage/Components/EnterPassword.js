@@ -103,15 +103,19 @@ const EnterPassword = () => {
               <div className={classes.footer}>
                 <LoginButton
                   data={dataFrowarded}
-                  handleLoginClick={handleLoginClick}
-                  handleLoading={handleLoading}
+                  handleLoginClickfn={handleLoginClick}
+                  handleLoadingfn={handleLoading}
                 />
                 <DoNotHaveAccount style={{ marginTop: "5%" }} />
               </div>
             </div>
+
             {!alert && (
-              <div className={classes.alert}>
-                <Alert message="Wrong password!" style={{ width: "30%" }} />
+              <div className={classes.alert} data-testid="passwordAlert">
+                <Alert
+                  message="Wrong password!"
+                  style={{ width: "20%", left: "40%" }}
+                />
               </div>
             )}
           </div>

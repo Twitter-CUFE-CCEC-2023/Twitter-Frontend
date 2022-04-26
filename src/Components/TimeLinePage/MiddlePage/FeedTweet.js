@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
+// import { useEffect, useRef } from "react";
 import classes from "./FeedTweet.module.css";
 import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
 import LoopOutlinedIcon from "@material-ui/icons/LoopOutlined";
@@ -6,14 +7,15 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 //import VerifiedIcon from '@material-ui/icons/Verified';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import TweetAtrribute from "./TweetAtrribute";
 import MiniProfile from "../MiniProfile";
 import { NavLink } from "react-router-dom";
 import TopTweetAttributes from "./TopTweetAttributes";
-import axios from "axios";
+// import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { LinkSharp } from "@material-ui/icons";
+// import { LinkSharp } from "@material-ui/icons";
+// import { react } from "fontawesome";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
@@ -54,8 +56,10 @@ export default function FeedTweet(props) {
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
 
-    if(diffYears > 0) {
-      return `${months[date1.getMonth()]} ${date1.getDate()}, ${date1.getFullYear()}`;
+    if (diffYears > 0) {
+      return `${
+        months[date1.getMonth()]
+      } ${date1.getDate()}, ${date1.getFullYear()}`;
     }
     if (diffDays > 0) {
       return `${months[date1.getMonth()]} ${date1.getDate()}`;
@@ -73,28 +77,45 @@ export default function FeedTweet(props) {
 
   // let observer = React.createRef();
 
-  const [tweetText , setTweetText] = useState(props.text);
+  const [tweetText, setTweetText] = useState(props.text);
 
-  React.useEffect(() => setTweetText(linkify(props.text)), []); 
+  React.useEffect(() => setTweetText(linkify(props.text)), []);
 
   function linkify(inputText) {
     var replacedText, replacePattern1, replacePattern2, replacePattern3;
 
     //URLs starting with http://, https://, or ftp://
-    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-    replacedText = inputText.replace(replacePattern1, `<div name = "link" > <a href="$1" target="_blank">$1</a> </div>`);
+    replacePattern1 =
+      /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    if (inputText) {
+      replacedText = inputText.replace(
+        replacePattern1,
+        `<div name = "link" > <a href="$1" target="_blank">$1</a> </div>`
+      );
+    }
 
     //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
     replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-    replacedText = replacedText.replace(replacePattern2, `<div name = "link" >$1<a href="http://$2" target="_blank">$2</a></div>`);
+    if (replacedText) {
+      replacedText = replacedText.replace(
+        replacePattern2,
+        `<div name = "link" >$1<a href="http://$2" target="_blank">$2</a></div>`
+      );
+    }
 
     //Change email addresses to mailto:: links.
-    replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
-    replacedText = replacedText.replace(replacePattern3, `<div name = "link" ><a href="mailto:$1">$1</a></div>`);
+    if (replacedText) {
+      replacePattern3 =
+        /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+      replacedText = replacedText.replace(
+        replacePattern3,
+        `<div name = "link" ><a href="mailto:$1">$1</a></div>`
+      );
+    }
 
     //console.log(replacedText);
     return replacedText;
-}
+  }
 
   React.useEffect(() => {
     // console.log("changed");
@@ -104,18 +125,17 @@ export default function FeedTweet(props) {
         e.stopPropagation();
       });
     });
-   
   }, [tweetText]);
 
-  let tweet ={
-    content : props.text,
-    dateCreated : props.date,
-    likes : props.likes,
-    retweets : props.retweets,
-    replies : props.replies,
-    id : props.tweetId,
-    userId : props.userId,
-  }
+  let tweet = {
+    content: props.text,
+    dateCreated: props.date,
+    likes: props.likes,
+    retweets: props.retweets,
+    replies: props.replies,
+    id: props.tweetId,
+    userId: props.userId,
+  };
 
   let history = useHistory();
   function handleClick(e) {
@@ -124,150 +144,248 @@ export default function FeedTweet(props) {
 
   return (
     <div onClick={handleClick} className={classes.FeedTweet}>
-    <div id={`Tweet${props.tweetId}`} className={props.isTopTweet ?classes.topTweet : classes.feedTweet}>
-      {/* {replyModal && (
+      <div
+        id={`Tweet${props.tweetId}`}
+        className={props.isTopTweet ? classes.topTweet : classes.feedTweet}
+      >
+        {/* {replyModal && (
         <FeedTweetReplyModal
           onHide={hideReplyModal}
           data={props}
         ></FeedTweetReplyModal>
       )} */}
-      <NavLink to={`/userProfile/${props.userName}`} className={classes.fs15 + " " + classes.minip + " " + classes.noStyle} >
-      <img
-        onClick={(e) =>{e.stopPropagation()}}
-        className={classes.profilePic + " " + classes.minip}
-        alt="profile"
-        src={props.profilePic}
-      ></img>
-      </NavLink>
-      <div onClick={(e) =>{e.stopPropagation()}} className={classes.hoverProfile + " " + classes.top}>
-        <MiniProfile
-          profilePic = {props.profilePic}
-          name={props.name}
-          userName={props.userName}
-          profileDesciption={props.bio}
-          following={props.following}
-          followers={props.followers}
-        />
-      </div>
-      <div className={classes.tweet}>
-        <div className={classes.user}>
-          <NavLink to={`/userProfile/${props.userName}`} className={classes.fs15 + " " + classes.minip + " " + classes.noStyle} >
-          <h2
-          onClick={(e) =>{e.stopPropagation()}}
-            data-testid="name"
-            className={
-              classes.underline  + " " + classes.fs15 + " " + classes.pointer+ " " +classes.alignTop
-            }
-          >
-            {props.name} {props.isVerified &&<CheckCircleIcon className={classes.verifiedIcon}/>}
-          </h2>
-          </NavLink>
-          <div onClick={(e) =>{e.stopPropagation()}} className={classes.hoverProfile + " " + classes.bot}>
-            <MiniProfile
-              profilePic = {props.profilePic}
-              name={props.name}
-              userName={props.userName}
-              profileDesciption={props.bio}
-              following={props.following}
-              followers={props.followers}
-            />
-          </div>
-          &nbsp;
-          <NavLink to={`/userProfile/${props.userName}`} className={classes.fs15 + " " + classes.minip + " " + classes.noStyle} >
-          <p
-            onClick={(e) =>{e.stopPropagation()}}
-            className={classes.gray + " " + classes.minip + " " + classes.fs15 + " " + classes.pointer + " " +classes.alignTop}
-            data-testid="userName"
-          >
-            @{props.userName}
-          </p>
-          </NavLink>
-          <div onClick={(e) =>{e.stopPropagation()}} className={classes.hoverProfile + " " + classes.bot}>
-            <MiniProfile
-              profilePic = {props.profilePic}
-              name={props.name}
-              userName={props.userName}
-              profileDesciption={props.bio}
-              following={props.following}
-              followers={props.followers}
-            />
-          </div>
-          &nbsp;{!props.isTopTweet && <p className={classes.gray}>.</p>}&nbsp;
-
-          {!props.isTopTweet && <p className={classes.gray + " " + classes.underline + " " + classes.fs15} data-testid="date">
-            {getDateDiff(props.date)}
-          </p>}
-
+        <NavLink
+          to={`/userProfile/${props.userName}`}
+          className={classes.fs15 + " " + classes.minip + " " + classes.noStyle}
+        >
+          <img
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            className={classes.profilePic + " " + classes.minip}
+            alt="profile"
+            src={props.profilePic}
+          ></img>
+        </NavLink>
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          className={classes.hoverProfile + " " + classes.top}
+        >
+          <MiniProfile
+            profilePic={props.profilePic}
+            name={props.name}
+            userName={props.userName}
+            profileDesciption={props.bio}
+            following={props.following}
+            followers={props.followers}
+          />
         </div>
-        {props.isReply && <div className={classes.flex}>
-            <p className={`${classes.gray} ${classes.fs15} ${classes.nom}`}>Replying to </p>
+        <div className={classes.tweet}>
+          <div className={classes.user}>
+            <NavLink
+              to={`/userProfile/${props.userName}`}
+              className={
+                classes.fs15 + " " + classes.minip + " " + classes.noStyle
+              }
+            >
+              <h2
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                data-testid="name"
+                className={
+                  classes.underline +
+                  " " +
+                  classes.fs15 +
+                  " " +
+                  classes.pointer +
+                  " " +
+                  classes.alignTop
+                }
+              >
+                {props.name}{" "}
+                {props.isVerified && (
+                  <CheckCircleIcon className={classes.verifiedIcon} />
+                )}
+              </h2>
+            </NavLink>
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              className={classes.hoverProfile + " " + classes.bot}
+            >
+              <MiniProfile
+                profilePic={props.profilePic}
+                name={props.name}
+                userName={props.userName}
+                profileDesciption={props.bio}
+                following={props.following}
+                followers={props.followers}
+              />
+            </div>
             &nbsp;
-            <p className={`${classes.gray}  ${classes.fs15} ${classes.minip} ${classes.replyat} ${classes.nom}`}>@{props.topUser.userName}</p>
-            <div className={classes.hoverProfile + " " + classes.repmin}>
-            <MiniProfile
-              profilePic = {props.topUser.profilePic}
-              name={props.topUser.name}
-              userName={props.topUser.userName}
-              profileDesciption={props.topUser.bio}
-              following={props.following}
-              followers={props.followers}
-            />
+            <NavLink
+              to={`/userProfile/${props.userName}`}
+              className={
+                classes.fs15 + " " + classes.minip + " " + classes.noStyle
+              }
+            >
+              <p
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className={
+                  classes.gray +
+                  " " +
+                  classes.minip +
+                  " " +
+                  classes.fs15 +
+                  " " +
+                  classes.pointer +
+                  " " +
+                  classes.alignTop
+                }
+                data-testid="userName"
+              >
+                @{props.userName}
+              </p>
+            </NavLink>
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              className={classes.hoverProfile + " " + classes.bot}
+            >
+              <MiniProfile
+                profilePic={props.profilePic}
+                name={props.name}
+                userName={props.userName}
+                profileDesciption={props.bio}
+                following={props.following}
+                followers={props.followers}
+              />
+            </div>
+            &nbsp;{!props.isTopTweet && <p className={classes.gray}>.</p>}&nbsp;
+            {!props.isTopTweet && (
+              <p
+                className={
+                  classes.gray + " " + classes.underline + " " + classes.fs15
+                }
+                data-testid="date"
+              >
+                {getDateDiff(props.date)}
+              </p>
+            )}
           </div>
-          </div>}
-        {/* {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
+          {props.isReply && (
+            <div className={classes.flex}>
+              <p className={`${classes.gray} ${classes.fs15} ${classes.nom}`}>
+                Replying to{" "}
+              </p>
+              &nbsp;
+              <p
+                className={`${classes.gray}  ${classes.fs15} ${classes.minip} ${classes.replyat} ${classes.nom}`}
+              >
+                @{props.topUser.userName}
+              </p>
+              <div className={classes.hoverProfile + " " + classes.repmin}>
+                <MiniProfile
+                  profilePic={props.topUser.profilePic}
+                  name={props.topUser.name}
+                  userName={props.topUser.userName}
+                  profileDesciption={props.topUser.bio}
+                  following={props.following}
+                  followers={props.followers}
+                />
+              </div>
+            </div>
+          )}
+          {/* {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
               <div data-testid="text"  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
         </NavLink>}
         {(props.isTopTweet) && 
           <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>} */}
-          <div data-testid="text" className={classes.fs15 + " " + classes.txt} dangerouslySetInnerHTML={{ __html: tweetText }} >
-           {/* Check if Click is working <div onClick={sp}><a href="https://www.google.com/" target="_blank">https://www.google.com/</a></div> after that is written */}
+          <div
+            data-testid="text"
+            className={classes.fs15 + " " + classes.txt}
+            dangerouslySetInnerHTML={{ __html: tweetText }}
+          >
+            {/* Check if Click is working <div onClick={sp}><a href="https://www.google.com/" target="_blank">https://www.google.com/</a></div> after that is written */}
           </div>
-        {props.img && (
-          <img className={classes.tweetImg} src={props.img} alt=""></img>
-        )}
+          {props.img && (
+            <img className={classes.tweetImg} src={props.img} alt=""></img>
+          )}
 
-        {props.isTopTweet && <div className= {classes.flex + " " + classes.gray  + " " + classes.m10}>
-        <p className={classes.underline + " " + classes.fs15 + " " + classes.pointer }>
-          {`${tweetDate.getHours()}:${tweetDate.getMinutes()} . ${months[tweetDate.getMonth()]} ${tweetDate.getDay()}, ${tweetDate.getFullYear()}`}
-          </p>
-          </div>}
+          {props.isTopTweet && (
+            <div
+              className={classes.flex + " " + classes.gray + " " + classes.m10}
+            >
+              <p
+                className={
+                  classes.underline + " " + classes.fs15 + " " + classes.pointer
+                }
+              >
+                {`${tweetDate.getHours()}:${tweetDate.getMinutes()} . ${
+                  months[tweetDate.getMonth()]
+                } ${tweetDate.getDay()}, ${tweetDate.getFullYear()}`}
+              </p>
+            </div>
+          )}
 
-        {!props.isTopTweet && 
-        <div id="FeedTweetAttributes" className={classes.attributes}>
-          
-          <TweetAtrribute
-            Icon={ChatBubbleOutlineOutlinedIcon}
-            num={props.replies}
-            color="b"
-            tooltip="Reply"
-            onClick={viewReplyModal}
-            tweet = {tweet}
-          />
-          <TweetAtrribute
-            Icon={LoopOutlinedIcon}
-            num={props.retweets}
-            color="g"
-            tooltip="Retweet"
-            isRetweeted = {props.isRetweeted}
-            tweet = {tweet}
-          />
-          <TweetAtrribute
-            Icon={FavoriteBorderOutlinedIcon}
-            FilledIcon={FavoriteIcon}
-            num={props.likes}
-            color="r"
-            tooltip="Like"
-            isLiked = {props.isLiked}
-            tweet = {tweet}
-          />
-          <TweetAtrribute isLiked = {props.isLiked} isRetweeted = {props.isRetweeted} Icon={ShareOutlinedIcon} color="b" tooltip="Share" tweet = {tweet} />
+          {!props.isTopTweet && (
+            <div id="FeedTweetAttributes" className={classes.attributes}>
+              <TweetAtrribute
+                Icon={ChatBubbleOutlineOutlinedIcon}
+                num={props.replies}
+                color="b"
+                tooltip="Reply"
+                onClick={viewReplyModal}
+                tweet={tweet}
+              />
+              <TweetAtrribute
+                Icon={LoopOutlinedIcon}
+                num={props.retweets}
+                color="g"
+                tooltip="Retweet"
+                isRetweeted={props.isRetweeted}
+                tweet={tweet}
+              />
+              <TweetAtrribute
+                Icon={FavoriteBorderOutlinedIcon}
+                FilledIcon={FavoriteIcon}
+                num={props.likes}
+                color="r"
+                tooltip="Like"
+                isLiked={props.isLiked}
+                tweet={tweet}
+              />
+              <TweetAtrribute
+                isLiked={props.isLiked}
+                isRetweeted={props.isRetweeted}
+                Icon={ShareOutlinedIcon}
+                color="b"
+                tooltip="Share"
+                tweet={tweet}
+              />
+            </div>
+          )}
+
+          {props.isTopTweet && (
+            <TopTweetAttributes
+              isLiked={props.isLiked}
+              isRetweeted={props.isRetweeted}
+              tweet={tweet}
+              likes={props.likes}
+              retweets={props.retweets}
+              quoteTweets={props.quotes}
+            />
+          )}
         </div>
-      }
-
-      {props.isTopTweet && <TopTweetAttributes isLiked = {props.isLiked} isRetweeted = {props.isRetweeted} tweet = {tweet} likes = {props.likes} retweets = {props.retweets} quoteTweets = {props.quotes}/>}
+        {/* {!props.showAction && <div></div>} */}
       </div>
-      {/* {!props.showAction && <div></div>} */}
-    </div>
     </div>
   );
 }
