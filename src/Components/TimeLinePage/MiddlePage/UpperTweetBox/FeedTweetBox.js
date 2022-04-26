@@ -93,10 +93,10 @@ export default function FeedTweetBox(props) {
         <div className="feedTweetBox">
           <div className="boxInput">
             <div className="profileImgOpacity">
-              <NavLink to={`userprofile/${loggedUser.username}`}>
+              <NavLink to={`userprofile/${loggedUser ? loggedUser.username : "amrzaki"}`}>
                 <img
                   className="profileImg"
-                  src={loggedUser.profile_image_url}
+                  src={loggedUser ? loggedUser.profile_image_url : defaultMaleProfile}
                   alt="profile"
                 ></img>
               </NavLink>

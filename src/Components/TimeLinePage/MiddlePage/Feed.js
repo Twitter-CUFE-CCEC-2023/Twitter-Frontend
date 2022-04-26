@@ -10,7 +10,7 @@ import { ContactlessOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-export default function Feed() {
+export default function Feed(props) {
   const [users, setUsers] = React.useState([]);
   const [tweets, setTweets] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
@@ -35,7 +35,12 @@ export default function Feed() {
   React.useEffect(() => getTweets(), [pageNumber]);
   const getTweets = async () => {
     setLoading(true);
-    const res = await instance.get(`/home/${pageNumber}/5`);
+    let res;
+    if(!props.testUrl)
+      res = await instance.get(`/home/${pageNumber}/5`);
+    else
+      res = await axios.get(props.testUrl);
+
     const newTweets = res.data.tweets;
     newTweets.forEach((APItweet) => {
       let tweet = {
@@ -106,13 +111,14 @@ export default function Feed() {
       {postingTweet ? <p>tweeting...</p> : <React.Fragment></React.Fragment>}
       {tweets.map((tweet, index) => {
         if (index === tweets.length - 1) {
+          let tid = `tweet-${index}`;
           return (
-            <div ref={lastTweetElementRef} key={index}>
-              <FeedTweet {...tweet} showAction={true} />
+            <div data-testid = {`tweet-${index}`} ref={lastTweetElementRef} key={index}>
+              <FeedTweet  {...tweet} showAction={true} />
             </div>
           );
         } else {
-          return <FeedTweet {...tweet} key={index} showAction={true} />;
+          return <FeedTweet data-testid = {`tweet-${index}`} {...tweet} key={index} showAction={true} />;
         }
       })}
       {isLoading && (

@@ -77,7 +77,6 @@ export default function FeedTweet(props) {
 
   React.useEffect(() => setTweetText(linkify(props.text)), []); 
 
-  let linkIds = 0;
   function linkify(inputText) {
     var replacedText, replacePattern1, replacePattern2, replacePattern3;
 

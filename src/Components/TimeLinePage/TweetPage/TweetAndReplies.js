@@ -13,10 +13,7 @@ import instance from '../../axios';
 import ReactLoading from "react-loading";
 
 
-function TweetAndReplies() {
-  const api = axios.create({
-    baseURL: "https://6262975a005a66e1e3aa1ebb.mockapi.io/",
-  })
+function TweetAndReplies(props) {
 
   let {userId , id} = useParams();
   const [isLoading, setLoading] = React.useState(true);
@@ -26,7 +23,7 @@ function TweetAndReplies() {
   React.useEffect(() => getTweet(), []);
 
   const getTweet = async () => {
-    let TweetAndReplies = await instance.get(`/status/tweet/${id}?include_replies=true`);
+    let TweetAndReplies =props.testUrl ? await axios.get(props.testUrl) : await instance.get(`/status/tweet/${id}?include_replies=true`);
     let maintweet = TweetAndReplies.data.tweet;
     let replies = TweetAndReplies.data.tweet.replies;
 
@@ -101,7 +98,9 @@ function TweetAndReplies() {
         </NavLink>
         <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
       </div>
-      <FeedTweet isTopTweet = {true} {...topTweet}/>
+      <div data-testid="topTweet">
+        <FeedTweet isTopTweet = {true} {...topTweet}/>
+      </div>
       <div className= {classes.tbox} > <FeedTweetBox isReply = {true}/> </div>
       {isLoading && <ReactLoading type={"spin"} color={"#1DA1F2"} height={'4%'} width={'4%'} className={`${classes.loadingIcon}`}  />}
       {replies.map((tweet, index) => {
