@@ -4,6 +4,7 @@
   border-right: 1px solid var(--twitterBorder);
 
   overflow-y: scroll;
+  overflow-x: hidden;
   -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
   scrollbar-width: none; /* Firefox to hide scrollbar*/
   max-width: 598px;

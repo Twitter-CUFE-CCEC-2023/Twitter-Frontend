@@ -9,6 +9,8 @@ function TweetAtrribute(props) {
   const [num, setNum] = React.useState(props.num);
   const [hlLike, setHlLike] = React.useState(false);
 
+  let isMock = localStorage.getItem("isMock") === "true";
+
   React.useEffect(() => {
     if (props.tooltip === "Like" && props.isLiked) {
       setHlLike(true);
@@ -27,14 +29,59 @@ function TweetAtrribute(props) {
           return !prevhlLike;
         });
         if(clicked === classes.clicked){
-          // props.tweet.likes -= 1;
+          if(!isMock){
           instance.delete("/status/unlike", {
             data :{
               id: props.tweet.id
             }})
+          }
+          else{
+            fetch(`http://localhost:3000/home/${props.tweet.id}`, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  likes_count: num - 1,
+                  is_liked: false,
+                  })
+              })
+              fetch(`http://localhost:3000/replies/${props.tweet.id}`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    likes_count: num - 1,
+                    is_liked: false,
+                    })
+                })
+          }
         }else{
-          // props.tweet.likes += 1;
-          instance.post("/status/like", {id: props.tweet.id});
+          if(!isMock)
+            instance.post("/status/like", {id: props.tweet.id});
+          else{
+            fetch(`http://localhost:3000/home/${props.tweet.id}`, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  likes_count: num + 1,
+                  is_liked: true,
+                  })
+              })
+              fetch(`http://localhost:3000/replies/${props.tweet.id}`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    likes_count: num + 1,
+                    is_liked: true,
+                    })
+                })
+          }
         }
         //console.log(props.tweet.likes);
       }
