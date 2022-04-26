@@ -9,19 +9,24 @@
     cursor: default;
 }
 
-.flex{
+.flexContainer{ 
+    display: flex;
+}
+.flex{ 
     display: flex;
 }
 
 .miniButton{
-    margin-left: auto!important;
+    /* margin-left: auto!important; */
     background-color: black!important;
     color: white!important;
     height: 36px!important;
     font-weight: 600 !important;
     border-radius: 25px !important;
-    text-transform: inherit !important;
+    /* text-transform: inherit !important; */
     padding: 5px 15px 5px 15px !important;
+    /* margin: auto !important; */
+    /* transform-duration: 0s !important; */
     
 }
 
@@ -76,4 +81,9 @@
   .underline:hover{
       text-decoration: underline;
   }
-
+  .followButton {
+    margin-left: 5.1em;
+    size: 15em;
+    font-size: 0.8em;
+    height: 1em !important;
+  }

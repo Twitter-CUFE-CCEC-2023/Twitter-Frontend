@@ -9,7 +9,7 @@ import PollOutlinedIcon from "@material-ui/icons/PollOutlined";
 import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
 import DateRangeOutlinedIcon from "@material-ui/icons/DateRangeOutlined";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 import classes from "./FeedTweetBox.module.css";
 // import Modal from "../../../UI/Modal";
 import ImageUploading from "react-images-uploading";
@@ -93,10 +93,18 @@ export default function FeedTweetBox(props) {
         <div className="feedTweetBox">
           <div className="boxInput">
             <div className="profileImgOpacity">
-              <NavLink to={`userprofile/${loggedUser ? loggedUser.username : "amrzaki"}`}>
+              <NavLink
+                to={`userprofile/${
+                  loggedUser ? loggedUser.username : "amrzaki"
+                }`}
+              >
                 <img
                   className="profileImg"
-                  src={loggedUser ? loggedUser.profile_image_url : defaultMaleProfile}
+                  src={
+                    loggedUser
+                      ? loggedUser.profile_image_url
+                      : defaultMaleProfile
+                  }
                   alt="profile"
                 ></img>
               </NavLink>

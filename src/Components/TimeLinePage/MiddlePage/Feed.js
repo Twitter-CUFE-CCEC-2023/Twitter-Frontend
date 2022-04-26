@@ -2,14 +2,14 @@ import React, { useRef, useCallback } from "react";
 import classes from "./Feed.module.css";
 import FeedTweetBox from "./UpperTweetBox/FeedTweetBox";
 import FeedTweet from "./FeedTweet";
-import defaultMaleProfile from "../../../Assets/defaultMaleProfile.jpg";
+// import defaultMaleProfile from "../../../Assets/defaultMaleProfile.jpg";
 import axios from "axios";
 import ReactLoading from "react-loading";
 import instance from "../../axios";
-import { ContactlessOutlined } from "@material-ui/icons";
-import { useHistory } from "react-router-dom";
+// import { ContactlessOutlined } from "@material-ui/icons";
+// import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { data } from "jquery";
+// import { data } from "jquery";
 
 export default function Feed(props) {
   const [users, setUsers] = React.useState([]);
@@ -19,7 +19,6 @@ export default function Feed(props) {
   const [hasMore, setHasMore] = React.useState(true);
   const observer = useRef();
   let isMock = localStorage.getItem("isMock") === "true";
-
 
   const lastTweetElementRef = useCallback(
     (node) => {
@@ -41,17 +40,16 @@ export default function Feed(props) {
     let response;
     let newTweets;
     if (!isMock) {
-      if(!props.testUrl)
+      if (!props.testUrl)
         response = await instance.get(`/home/${pageNumber}/5`);
-      else
-        response = await axios.get(props.testUrl);
-        newTweets = response.data.tweets;
+      else response = await axios.get(props.testUrl);
+      newTweets = response.data.tweets;
     } else {
       await fetch(`http://localhost:3000/home?_page=${pageNumber}&_limit=5`)
-      .then(res => res.json())
-      .then(data => {
-        newTweets = data;
-        })
+        .then((res) => res.json())
+        .then((data) => {
+          newTweets = data;
+        });
     }
     newTweets.forEach((APItweet) => {
       let tweet = {
@@ -124,12 +122,23 @@ export default function Feed(props) {
         if (index === tweets.length - 1) {
           let tid = `tweet-${index}`;
           return (
-            <div data-testid = {`tweet-${index}`} ref={lastTweetElementRef} key={index}>
-              <FeedTweet  {...tweet} showAction={true} />
+            <div
+              data-testid={`tweet-${index}`}
+              ref={lastTweetElementRef}
+              key={index}
+            >
+              <FeedTweet {...tweet} showAction={true} />
             </div>
           );
         } else {
-          return <FeedTweet data-testid = {`tweet-${index}`} {...tweet} key={index} showAction={true} />;
+          return (
+            <FeedTweet
+              data-testid={`tweet-${index}`}
+              {...tweet}
+              key={index}
+              showAction={true}
+            />
+          );
         }
       })}
       {isLoading && (
