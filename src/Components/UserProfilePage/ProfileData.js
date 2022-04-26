@@ -27,15 +27,11 @@ function ProfileData() {
   const pathlocation = useLocation();
   let userInPath = pathlocation.pathname.split("/")[2];
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
-  let currentuserName;
-  if (currentuser) {
-    currentuserName = currentuser.username;
-  }
-  // console.log("current user nameeeeeeeeeeeeeeeee", currentuserName);
+  const currentuserName = currentuser.username;
+  const [user, setUser] = useState({});
   const location = useLocation();
 
   let { userName } = useParams();
-  console.log(userName);
 
   const [tabType, setTabType] = useState("Tweets");
   const [isLoading, setLoading] = useState(true);
@@ -57,8 +53,6 @@ function ProfileData() {
     },
     [isLoading, hasMore]
   );
-
-  console.log(userName);
 
   const changeTypeHandeler = (type) => {
     setTabType(type);
@@ -90,8 +84,6 @@ function ProfileData() {
         }
       });
     const currentUser = await instance.get(`/info/${userName}`);
-    console.log("userTweets", tweets);
-
     let userTweets = tweets.data.tweets;
     let currentUserTweets = currentUser.data.user;
     userTweets.forEach((APItweet) => {
@@ -118,6 +110,17 @@ function ProfileData() {
         return [...prevTweets, tweet];
       });
     });
+    setUser({
+      name: currentUserTweets.name, //user.name,
+      profilePic: currentUserTweets.profile_image_url,
+      userName: currentUserTweets.username,
+      email: currentUserTweets.email,
+      isVerified: currentUserTweets.isVerified,
+      bio: currentUserTweets.bio,
+      followers: currentUserTweets.followers,
+      following: currentUserTweets.following,
+    });
+    console.log(user);
     setHasMore(userTweets.length === 3);
     setLoading(false);
     console.log(location.pathname);
@@ -133,7 +136,11 @@ function ProfileData() {
         <div className={`${classes.profileImageContainer} `}>
           <img
             className={`${classes.profileImage} img-fluid`}
-            src="https://pbs.twimg.com/profile_images/1492532221110104067/_3ozwoyh_400x400.jpg"
+            src={`${
+              user.profilePic
+                ? user.profilePic
+                : "https://pbs.twimg.com/profile_images/1190121922249576449/iqjUurpr_400x400.jpg"
+            }`}
             alt=""
           />
         </div>
@@ -145,12 +152,14 @@ function ProfileData() {
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>
         <ProfileInfo
-          username="عمرو أكا زيكا"
-          userEmail="@Amr_Zaki2000"
-          userBio="Al Ahly"
+          username={user.userName}
+          userEmail={user.email}
+          userBio={user.bio}
           birthMonth="October"
           birthDay={17}
           birthYear={2000}
+          followers_count={user.followers}
+          following_count={user.following}
         ></ProfileInfo>
       </div>
       <div className={`row`}>
