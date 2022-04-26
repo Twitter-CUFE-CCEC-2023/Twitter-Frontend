@@ -26,7 +26,6 @@ import SelectMore from "./SelectMore/SelectMore";
 const LeftSideBar = () => {
   const [moreSelected, setMoreSelected] = useState(false);
   const currentuser =JSON.parse(localStorage.getItem("UserInfo")); 
-  console.log(currentuser.username);
   const pathname = window.location.pathname.toLowerCase();
 
   const [pageActive, setPageActive] = React.useState(

@@ -21,10 +21,10 @@ function SingleNotification(props) {
             <div className="col-1">
               <BlockIcon className={`${classes.noteicon} ${nottype}`} />
             </div>
-            <div className="col-8 pt-3">
+            <div className="col-8 pt-3 mb-2">
               <p
                 className={classes.notedescription}
-                style={{ marginLeft: "0.25em" }}
+                style={{ marginLeft: "0.25em", marginTop: "-0.2em" }}
               >
                 <strong>{description}</strong>
               </p>
@@ -38,7 +38,7 @@ function SingleNotification(props) {
     description = "New tweet notification for ";
     return (
       <NavLink
-        to={`/${props.uid}/status/${props.tweetID}`}
+        to={`/${props.personID}/status/${props.tweetID}`}
         className={classes.link}
       >
         <div className={classes.notification}>
@@ -57,7 +57,7 @@ function SingleNotification(props) {
                 ></img>
               </div>
             </div>
-            <div className="row mt-3">
+            <div className="row mt-2">
               <p className={classes.notedescription}>
                 {description}
                 <span>
@@ -91,7 +91,7 @@ function SingleNotification(props) {
                 ></img>
               </div>
             </div>
-            <div className="row mt-3">
+            <div className="row mt-2">
               <p className={classes.notedescription}>
                 <span>
                   <strong>{props.Person} </strong>
@@ -125,7 +125,7 @@ function SingleNotification(props) {
                 ></img>
               </div>
             </div>
-            <div className="row mt-3">
+            <div className="row mt-2">
               <p className={classes.notedescription}>
                 <span>
                   <strong>{props.Person} </strong>
@@ -141,7 +141,7 @@ function SingleNotification(props) {
     nottype = classes.follow;
     description = "followed you";
     return (
-      <NavLink to={`/userProfile/${props.person}`} className={classes.link}>
+      <NavLink to={`/userProfile/${props.personID}`} className={classes.link}>
         <div className={classes.notification}>
           <div className="container">
             <div className="row pt-2">
@@ -156,7 +156,7 @@ function SingleNotification(props) {
                 ></img>
               </div>
             </div>
-            <div className="row mt-3">
+            <div className="row mt-2">
               <p className={classes.notedescription}>
                 <span>
                   <strong>{props.Person} </strong>

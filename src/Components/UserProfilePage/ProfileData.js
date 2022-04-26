@@ -24,12 +24,14 @@ function ProfileData() {
   const api = axios.create({
     baseURL: "https://6262975a005a66e1e3aa1ebb.mockapi.io/",
   });
-
+  const pathlocation = useLocation();
+  let userInPath = pathlocation.pathname.split("/")[2];
+    const currentuser =JSON.parse(localStorage.getItem("UserInfo"));
+  const currentuserName=currentuser.username;
+   console.log("current user nameeeeeeeeeeeeeeeee",currentuserName);
   const location = useLocation();
   
   let {userName} = useParams(); 
-  //location.pathname.split("/")[2];
-  //userName = userName.split(":")[1];
   console.log(userName);
 
   const [tabType, setTabType] = useState("Tweets");
@@ -129,7 +131,7 @@ function ProfileData() {
         </div>
       </div>
       <div className={`${classes.profileActionsRow}  `}>
-        <ProfileActions isMyProfile={false}></ProfileActions>
+        <ProfileActions isMyProfile={currentuserName===userInPath?true:false}></ProfileActions>
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>
         <ProfileInfo
