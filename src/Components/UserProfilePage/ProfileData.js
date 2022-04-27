@@ -41,6 +41,7 @@ function ProfileData() {
   const [tweets, setTweets] = useState([]);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
+  let isMock = localStorage.getItem("isMock") === "true";
 
   const observer = useRef();
   const lastTweetElementRef = useCallback(
@@ -67,28 +68,49 @@ function ProfileData() {
 
   const getTweets = async () => {
     setLoading(true);
-
-    const tweets = await instance
-      .get(
-        `/status/tweets/list/${userName}/${pageNumber}/3?include_replies=true`
+    let userTweets;
+    let currentUserTweets;
+    //get user tweets from api
+    if (!isMock) {
+      const tweets = await instance
+        .get(
+          `/status/tweets/list/${userName}/${pageNumber}/3?include_replies=true`
+        )
+        .catch(function (error) {
+          if (error.response) {
+            // Request made and server responded
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.log(error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log("Error", error.message);
+          }
+        });
+      const currentUser = await instance.get(`/info/${userName}`);
+      userTweets = tweets.data.tweets;
+      currentUserTweets = currentUser.data.user;
+    }
+    //get user tweets from mock api
+    else {
+      await fetch(
+        `http://localhost:3000/usertweets/${userName}?_page=${pageNumber}&_limit=5`
       )
-      .catch(function (error) {
-        if (error.response) {
-          // Request made and server responded
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.log(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
-        }
-      });
-    const currentUser = await instance.get(`/info/${userName}`);
-    let userTweets = tweets.data.tweets;
-    let currentUserTweets = currentUser.data.user;
+        .then((res) => res.json())
+        .then((data) => {
+          userTweets = data.tweets;
+          console.log('userTweets', data);
+        });
+        
+      await fetch(`http://localhost:3000/users/${userName}`)
+        .then((res) => res.json())
+        .then((data) => {
+          currentUserTweets = data;
+        });
+    }
     userTweets.forEach((APItweet) => {
       let tweet = {
         name: currentUserTweets.name, //user.name,
