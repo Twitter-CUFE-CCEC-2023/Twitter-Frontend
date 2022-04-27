@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import axios from "axios";
 import instance from "../../axios";
 import ReactLoading from "react-loading";
+import axios from "axios";
 
 function AllNotifications(props) {
   const [isLoading, setLoading] = useState(true);
@@ -44,7 +45,7 @@ function AllNotifications(props) {
       userNotifications = notes.data.notifications;}
       else {
         notes = await axios.get(props.testUrl);
-        userNotifications = notes.data;
+        userNotifications = notes.data.notifications;
       }
     } else {
       await fetch(
@@ -62,7 +63,7 @@ function AllNotifications(props) {
         type: notes.notification_type,
         profilePicture: notes.related_user.profile_image_url,
         //tweetID: notes.tweet.id,
-        uid: currentUser.username,
+        uid: currentUser? currentUser.username : "amrzaki",
       };
       if (
         notes.notification_type === "Like" ||
