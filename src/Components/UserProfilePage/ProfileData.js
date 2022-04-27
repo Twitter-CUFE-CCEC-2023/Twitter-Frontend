@@ -20,7 +20,7 @@ import axios from "axios";
 import instance from "../axios";
 import { useParams } from "react-router-dom";
 
-function ProfileData() {
+function ProfileData(props) {
   const api = axios.create({
     baseURL: "https://6262975a005a66e1e3aa1ebb.mockapi.io/",
   });
@@ -70,29 +70,35 @@ function ProfileData() {
     setLoading(true);
     let userTweets;
     let currentUserTweets;
+    let currentUser;
     //get user tweets from api
     if (!isMock) {
-      const tweets = await instance
-        .get(
-          `/status/tweets/list/${userName}/${pageNumber}/3?include_replies=true`
-        )
-        .catch(function (error) {
-          if (error.response) {
-            // Request made and server responded
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            // The request was made but no response was received
-            console.log(error.request);
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log("Error", error.message);
-          }
-        });
-      const currentUser = await instance.get(`/info/${userName}`);
-      userTweets = tweets.data.tweets;
-      currentUserTweets = currentUser.data.user;
+      if (!props.testUrl) {
+        const tweets = await instance
+          .get(`/status/tweets/list/${userName}/${pageNumber}/3`)
+          .catch(function (error) {
+            if (error.response) {
+              // Request made and server responded
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              // The request was made but no response was received
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log("Error", error.message);
+            }
+          });
+        currentUser = await instance.get(`/info/${userName}`);
+        userTweets = tweets.data.tweets;
+        currentUserTweets = currentUser.data.user;
+      } else {
+        const tweets = await axios.get(props.testUrl);
+        userTweets = tweets.data.tweets;
+      }
+     
+     
     }
     //get user tweets from mock api
     else {
@@ -102,9 +108,9 @@ function ProfileData() {
         .then((res) => res.json())
         .then((data) => {
           userTweets = data.tweets;
-          console.log('userTweets', data);
+          console.log("userTweets", data);
         });
-        
+
       await fetch(`http://localhost:3000/users/${userName}`)
         .then((res) => res.json())
         .then((data) => {
@@ -112,6 +118,17 @@ function ProfileData() {
         });
     }
     userTweets.forEach((APItweet) => {
+      if(props.testUrl){
+        currentUserTweets={
+          username:"userName",
+          name:"userName",
+          isVerified:true,
+          profileImage:"https://pbs.twimg.com/profile_images/1209858989998693888/zHXx-qQl_400x400.jpg",
+          bio:"biooo",
+          followers:0,
+          following:0,
+        }
+      }
       let tweet = {
         name: currentUserTweets.name, //user.name,
         profilePic: currentUserTweets.profile_image_url,
@@ -200,7 +217,12 @@ function ProfileData() {
               </div>
             );
           } else {
-            return <FeedTweet {...tweet} key={index} showAction={true} />;
+            return (
+              <div data-testid={`${index}`}>
+                {" "}
+                <FeedTweet {...tweet} key={index} showAction={true} />{" "}
+              </div>
+            );
           }
         })}
         {isLoading && (

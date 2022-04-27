@@ -36,7 +36,7 @@ function App() {
   const loginCtx = useContext(LoginContext);
   // console.log("Login " + loginCtx.isLoggedIn);
   // console.log("Admin " + loginCtx.isAdmin);
-  localStorage.setItem("isMock", "false");
+  localStorage.setItem("isMock", "true");
   // const log = localStorage.getItem("login");
   // console.log("Login = " + log);
 

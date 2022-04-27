@@ -30,6 +30,7 @@ function FollowingFollowersPage() {
   const [hasMoreFollowing, setHasMoreFollowing] = React.useState(true);
   const location = useLocation();
   let { userName } = useParams();
+  let isMock = localStorage.getItem("isMock") === "true";
   const observerFollowers = useRef();
   const observerFollowing = useRef();
 
@@ -71,11 +72,13 @@ function FollowingFollowersPage() {
   useEffect(() => {
     setFollowers([]);
     setFollowing([]);
-  }, [ type]);
+  }, [type]);
 
   const getUsers = async () => {
     setLoading(true);
     if (type === "followers") {
+      let userFollowers
+      if(!isMock){
       const res = await instance
         .get(`/follower/list/${userName}/${pageNumberFollowers}/3`)
         .catch(function (error) {
@@ -90,7 +93,16 @@ function FollowingFollowersPage() {
           }
         });
       console.log(res.data);
-      let userFollowers = res.data.followers;
+      userFollowers = res.data.followers;
+      }else{
+        await fetch(
+          `http://localhost:3000/followerslist/${userName}?_page=${pageNumberFollowers}&_limit=5`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            userFollowers = data.followers;
+          });
+      }
       userFollowers.forEach((APIfollower) => {
         let follower = {
           name: APIfollower.name,
@@ -110,6 +122,8 @@ function FollowingFollowersPage() {
       setLoading(false);
     }
     if (type === "following") {
+      let userFollowings 
+      if(!isMock){
       const res = await instance
         .get(`/following/list/${userName}/${pageNumberFollowing}/3`)
         .catch(function (error) {
@@ -123,9 +137,18 @@ function FollowingFollowersPage() {
             console.log("Error", error.message);
           }
         });
-      console.log("following",res.data);
-      let userFollowing = res.data.followings;
-      userFollowing.forEach((APIfollowing) => {
+      console.log("following", res.data);
+      userFollowings = res.data.followings;
+      }else{
+        await fetch(
+          `http://localhost:3000/followingslist/${userName}?_page=${pageNumberFollowers}&_limit=5`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            userFollowings = data.followings;
+          });
+      }
+      userFollowings.forEach((APIfollowing) => {
         let followingUser = {
           name: APIfollowing.name,
           profilePic: APIfollowing.profile_image_url,
@@ -139,7 +162,7 @@ function FollowingFollowersPage() {
           return [...prevFollowing, followingUser];
         });
       });
-      setHasMoreFollowing(userFollowing.length === 3);
+      setHasMoreFollowing(userFollowings.length === 3);
       setLoading(false);
     }
   };
@@ -214,9 +237,9 @@ function FollowingFollowersPage() {
                   </div>
                 );
               } else {
-                return 
+                return;
                 <div>
-                <User {...follower} key={index} showAction={true} />
+                  <User {...follower} key={index} showAction={true} />
                 </div>;
               }
             })}
@@ -225,13 +248,22 @@ function FollowingFollowersPage() {
               if (index === following.length - 1) {
                 return (
                   <div ref={lastTweetElementRefFollowing} key={index}>
-                    <User {...followingUser} isFollowing={true}  showAction={true}></User>{" "}
+                    <User
+                      {...followingUser}
+                      isFollowing={true}
+                      showAction={true}
+                    ></User>{" "}
                   </div>
                 );
               } else {
                 return (
                   <div>
-                  <User {...followingUser} isFollowing={true} key={index} showAction={true} />
+                    <User
+                      {...followingUser}
+                      isFollowing={true}
+                      key={index}
+                      showAction={true}
+                    />
                   </div>
                 );
               }
