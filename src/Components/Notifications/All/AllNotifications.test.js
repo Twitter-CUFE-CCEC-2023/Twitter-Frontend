@@ -9,7 +9,6 @@ import AllNotifications from "./AllNotifications";
 import { BrowserRouter as Router } from "react-router-dom";
 import mockAxios from "axios";
 import { setupServer } from "msw/node";
-import SingleNotification from "./SingleNotification";
 
 let notifications = [
   {
@@ -84,7 +83,7 @@ test("the API works correctly", async () => {
     </Router>
   );
 
-  const resolvedNotification = await waitFor(() => getByTestId("0"));
+  const resolvedNotification = await waitFor(() => getByTestId('0'));
   expect(resolvedNotification).toHaveTextContent(
     notifications[0].related_user.name
   );

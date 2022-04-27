@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import instance from "../../axios";
 import ReactLoading from "react-loading";
 
-function AllNotifications() {
+function AllNotifications(props) {
   const [isLoading, setLoading] = useState(true);
   const [notifications, setNotifications] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
@@ -39,8 +39,13 @@ function AllNotifications() {
     let notes;
     let userNotifications;
     if (!isMock) {
-      notes = await instance.get(`/notifications/list/${pageNumber}/2`);
-      userNotifications = notes.data.notifications;
+      if (!props.testUrl)
+      {notes = await instance.get(`/notifications/list/${pageNumber}/2`);
+      userNotifications = notes.data.notifications;}
+      else {
+        notes = await axios.get(props.testUrl);
+        userNotifications = notes.data;
+      }
     } else {
       await fetch(
         `http://localhost:3000/notifications?_page=${pageNumber}&_limit=2`
@@ -87,18 +92,20 @@ function AllNotifications() {
       /> */}
       {notifications.map((notification, index) => {
         if (index === notifications.length - 1) {
+          let tid = `${index}`;
           return (
             <div
               ref={lastNotificationElementRef}
               key={index}
-              data-testid={index}
+              data-testid={`${index}`}
             >
               <SingleNotification {...notification} showAction={true} />
             </div>
           );
         } else {
+          let tid = `${index}`;
           return (
-            <div data-testid={index}>
+            <div data-testid={`${index}`}>
               <SingleNotification
                 {...notification}
                 key={index}
