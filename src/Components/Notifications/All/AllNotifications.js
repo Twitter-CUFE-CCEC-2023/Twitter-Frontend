@@ -88,17 +88,23 @@ function AllNotifications() {
       {notifications.map((notification, index) => {
         if (index === notifications.length - 1) {
           return (
-            <div ref={lastNotificationElementRef} key={index}>
+            <div
+              ref={lastNotificationElementRef}
+              key={index}
+              data-testid={index}
+            >
               <SingleNotification {...notification} showAction={true} />
             </div>
           );
         } else {
           return (
-            <SingleNotification
-              {...notification}
-              key={index}
-              showAction={true}
-            />
+            <div data-testid={index}>
+              <SingleNotification
+                {...notification}
+                key={index}
+                showAction={true}
+              />
+            </div>
           );
         }
       })}
