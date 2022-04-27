@@ -289,14 +289,14 @@ export default function FeedTweet(props) {
               <p
                 className={`${classes.gray}  ${classes.fs15} ${classes.minip} ${classes.replyat} ${classes.nom}`}
               >
-                @{props.topUser.userName}
+                @{props.topUser ? props.topUser.userName : ""}
               </p>
               <div className={classes.hoverProfile + " " + classes.repmin}>
                 <MiniProfile
-                  profilePic={props.topUser.profilePic}
-                  name={props.topUser.name}
-                  userName={props.topUser.userName}
-                  profileDesciption={props.topUser.bio}
+                  profilePic={props.topUser ?props.topUser.profilePic : ""}
+                  name={props.topUser ?props.topUser.name : ""}
+                  userName={props.topUser ?props.topUser.userName : ""}
+                  profileDesciption={props.topUser ?props.topUser.bio : ""}
                   following={props.following}
                   followers={props.followers}
                 />

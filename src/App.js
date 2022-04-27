@@ -34,8 +34,8 @@ import MainTweetPage from "./Components/TimeLinePage/TweetPage/MainTweetPage";
 
 function App() {
   const loginCtx = useContext(LoginContext);
-  console.log("Login " + loginCtx.isLoggedIn);
-  console.log("Admin " + loginCtx.isAdmin);
+  // console.log("Login " + loginCtx.isLoggedIn);
+  // console.log("Admin " + loginCtx.isAdmin);
   localStorage.setItem("isMock", "false");
   // const log = localStorage.getItem("login");
   // console.log("Login = " + log);
