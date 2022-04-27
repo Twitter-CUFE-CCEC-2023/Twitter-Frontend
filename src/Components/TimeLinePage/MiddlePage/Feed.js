@@ -14,6 +14,7 @@ import { useState } from "react";
 export default function Feed(props) {
   const [users, setUsers] = React.useState([]);
   const [tweets, setTweets] = React.useState([]);
+  const [followingList, setFollowingList] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
