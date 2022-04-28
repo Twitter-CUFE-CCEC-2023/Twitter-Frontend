@@ -119,13 +119,13 @@ function TopTweetAttributes(props) {
             &nbsp;&nbsp;
             <p className={classes.fs15 + " " + classes.ul}><span className={classes.bold}>{likes}</span> <span className={classes.gray}>Likes</span></p>
         </div>
-        <div className={classes.flex}>
+        {!props.isShowPhotos && <div className={classes.flex}>
             <ChatBubbleOutlineOutlinedIcon className={`${classes.centre} ${classes.attIcon} ${classes.b}`}/>
             <div onClick={clickRet} className={` ${classes.centre} `}><LoopOutlinedIcon className={`${classes.attIcon} ${classes.g} ${hlRet && classes.clicked}`}/></div>
             {!hlLike && <div className={classes.centre} onClick={clickLike}> <FavoriteBorderOutlinedIcon className={`${classes.attIcon} ${classes.r}`}/> </div>}
             {hlLike && <div className={classes.centre} onClick={clickLike}> <FavoriteIcon className={`${classes.attIcon} ${classes.r} ${classes.clicked}`}/> </div>}
             <ShareOutlinedIcon className={`${classes.centre} ${classes.attIcon} ${classes.b}`}/>
-        </div>
+        </div>}
     </div>
   )
 }

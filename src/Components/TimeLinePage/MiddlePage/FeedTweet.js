@@ -14,6 +14,7 @@ import { NavLink } from "react-router-dom";
 import TopTweetAttributes from "./TopTweetAttributes";
 // import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import ImageGrid from "./ImageGrid";
 // import { LinkSharp } from "@material-ui/icons";
 // import { react } from "fontawesome";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
@@ -116,7 +117,6 @@ export default function FeedTweet(props) {
     //console.log(replacedText);
     return replacedText;
   }
-
   React.useEffect(() => {
     // console.log("changed");
     let links = document.getElementsByName("link");
@@ -139,7 +139,11 @@ export default function FeedTweet(props) {
 
   let history = useHistory();
   function handleClick(e) {
-    history.push(`/${props.userName}/status/${props.tweetId}`);
+    if(!props.isTopTweet)
+    {
+      history.push(`/${props.userName}/status/${props.tweetId}`);
+      window.location.reload();
+    }
   }
 
   return (
@@ -154,22 +158,24 @@ export default function FeedTweet(props) {
           data={props}
         ></FeedTweetReplyModal>
       )} */}
-        <NavLink
+        {/* <NavLink
           to={`/userProfile/${props.userName}`}
-          className={classes.fs15 + " " + classes.minip + " " + classes.noStyle}
-        >
+          className={classes.fs15  + " " + classes.noStyle}
+        > */}
           <img
             onClick={(e) => {
               e.stopPropagation();
+              history.push(`/userProfile/${props.userName}`);
+              window.location.reload();
             }}
             className={classes.profilePic + " " + classes.minip}
             alt="profile"
             src={props.profilePic}
           ></img>
-        </NavLink>
         <div
           onClick={(e) => {
             e.stopPropagation();
+            e.preventDefault();
           }}
           className={classes.hoverProfile + " " + classes.top}
         >
@@ -182,6 +188,8 @@ export default function FeedTweet(props) {
             followers={props.followers}
           />
         </div>
+        {/* </NavLink> */}
+
         <div className={classes.tweet}>
           <div className={classes.user}>
             <NavLink
@@ -303,22 +311,16 @@ export default function FeedTweet(props) {
               </div>
             </div>
           )}
-          {/* {(!props.isTopTweet) && <NavLink to = {`/${props.userName}/status/${props.tweetId}`} className={classes.fs15 + " " + classes.noStyle}>
-              <div data-testid="text"  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>
-        </NavLink>}
-        {(props.isTopTweet) && 
-          <div data-testid="text" className={classes.fs15}  dangerouslySetInnerHTML={{ __html: URLReplacer(props.text) }}></div>} */}
           <div
             data-testid="text"
             className={classes.fs15 + " " + classes.txt}
             dangerouslySetInnerHTML={{ __html: tweetText }}
           >
-            {/* Check if Click is working <div onClick={sp}><a href="https://www.google.com/" target="_blank">https://www.google.com/</a></div> after that is written */}
           </div>
-          {props.img && (
-            <img className={classes.tweetImg} src={props.img} alt=""></img>
+          {props.media && !props.isShowPhotos && props.media.length > 0 && (
+            <ImageGrid media = {props.media} userName = {props.userName} tweetId = {props.tweetId}/>
           )}
-
+          
           {props.isTopTweet && (
             <div
               className={classes.flex + " " + classes.gray + " " + classes.m10}
@@ -381,6 +383,7 @@ export default function FeedTweet(props) {
               likes={props.likes}
               retweets={props.retweets}
               quoteTweets={props.quotes}
+              isShowPhotos = {props.isShowPhotos}
             />
           )}
         </div>

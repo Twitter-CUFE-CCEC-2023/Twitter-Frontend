@@ -2,7 +2,7 @@
   flex: auto;
   margin-top: 0;
   border-right: 1px solid var(--twitterBorder);
-
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/
@@ -20,10 +20,12 @@
   top: 0;
   z-index: 2;
   margin-top: 0;
+  font-size: 20px;
   padding: 10px;
 }
 
 .loadingIcon{
+  
   margin-left: 50%;
   margin-top: 5%;
 }

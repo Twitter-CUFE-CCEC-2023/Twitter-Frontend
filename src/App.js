@@ -29,6 +29,7 @@ import Tweets from "./Components/AdminPage/SideBarTabs/Tweets";
 import Retweets from "./Components/AdminPage/SideBarTabs/Retweets";
 import Statistics from "./Components/AdminPage/SideBarTabs/Statistics";
 import MainTweetPage from "./Components/TimeLinePage/TweetPage/MainTweetPage";
+import PhotosPage from "./Components/TimeLinePage/ViewPhotosPage/PhotosPage";
 
 // ctrl k + ctrl shift s => to save without formatting
 
@@ -58,6 +59,7 @@ function App() {
 
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/home" component={Home} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/:userId/status/:id" component={MainTweetPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/status/:id/photo/:photoNum" component={PhotosPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/notifications" component={AllNotificationsPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/mentionnotifications" component={MentionNotificationsPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/settings" component={Settings} />}

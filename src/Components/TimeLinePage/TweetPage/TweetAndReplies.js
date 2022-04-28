@@ -17,12 +17,7 @@ function TweetAndReplies(props) {
   const [isLoading, setLoading] = React.useState(true);
   const [topTweet, setTopTweet] = React.useState([]);
   const [replies, setReplies] = React.useState([]);
-  const [topUser, setTopUser] = React.useState({
-    name: "",
-    userName: "",
-    profilePic: "",
-    bio: "",
-  });
+  const [topUser, setTopUser] = React.useState(null);
 
   let isMock = localStorage.getItem("isMock") === "true";
 
@@ -46,6 +41,7 @@ function TweetAndReplies(props) {
         });
     }
 
+
     let tweet = {
       name: maintweet.user.name,
       profilePic: maintweet.user.profile_image_url,
@@ -64,9 +60,18 @@ function TweetAndReplies(props) {
       isLiked: maintweet.is_liked,
       isRetweeted: maintweet.is_retweeted,
       isReply: maintweet.is_reply,
+      media : maintweet.media,
     };
-
-    let repl = replies.map(async (reply) => {
+    let tu ={
+      name: maintweet.user.name,
+      profilePic: maintweet.user.profile_image_url,
+      userName: maintweet.user.username,
+      isVerified: maintweet.user.isVerified,
+      bio: maintweet.user.bio,
+      followers: maintweet.user.followers_count,
+      following: maintweet.user.following_count,
+    }
+    let repl = replies.map( (reply) => {
       return {
         name: reply.user.name,
         profilePic: reply.user.profile_image_url,
@@ -85,13 +90,17 @@ function TweetAndReplies(props) {
         isLiked: reply.is_liked,
         isRetweeted: reply.is_retweeted,
         isReply: reply.is_reply,
+        media : reply.media,
       };
     });
 
     setTopTweet(tweet);
+    setTopUser(tu);
     setReplies(repl);
     setLoading(false);
   };
+
+  //console.log(replies);
 
   //let history = useHistory();
 
@@ -126,7 +135,7 @@ function TweetAndReplies(props) {
         <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
       </div>
       <div data-testid="topTweet">
-        <FeedTweet isTopTweet={true} {...topTweet} />
+        <FeedTweet isShowPhotos = {props.isShowPhotos} isTopTweet={true} {...topTweet} />
       </div>
       <div className={classes.tbox}>
         {" "}

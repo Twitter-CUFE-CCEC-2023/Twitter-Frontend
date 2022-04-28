@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className={classes.timeLine}>
       <LeftSideBar />
-      <Feed />
+      <Feed/>
       <RightSideBar />
     </div>
   );

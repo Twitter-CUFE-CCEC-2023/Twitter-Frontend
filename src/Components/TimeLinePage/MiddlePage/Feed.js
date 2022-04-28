@@ -11,6 +11,7 @@ import instance from "../../axios";
 import { useState } from "react";
 // import { data } from "jquery";
 
+
 export default function Feed(props) {
   const [users, setUsers] = React.useState([]);
   const [tweets, setTweets] = React.useState([]);
@@ -71,6 +72,7 @@ export default function Feed(props) {
         isLiked: APItweet.is_liked,
         isRetweeted: APItweet.is_retweeted,
         isReply: APItweet.is_reply,
+        media : APItweet.media
       };
       //console.log(tweet);
       setTweets((prevTweets) => {
@@ -121,7 +123,6 @@ export default function Feed(props) {
       {postingTweet ? <p>tweeting...</p> : <React.Fragment></React.Fragment>}
       {tweets.map((tweet, index) => {
         if (index === tweets.length - 1) {
-          let tid = `tweet-${index}`;
           return (
             <div
               data-testid={`tweet-${index}`}
