@@ -32,7 +32,7 @@ function AccountButton() {
           src={loggedUser.profile_image_url}
           className={classes.profilePic}
         />
-        <div>
+        <div className={classes.info}>
           <p className={classes.name}>{loggedUser.name}</p>
           <p className={classes.username}>@{loggedUser.username}</p>
         </div>
