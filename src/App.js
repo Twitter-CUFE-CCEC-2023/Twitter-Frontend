@@ -59,7 +59,7 @@ function App() {
 
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/home" component={Home} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/:userId/status/:id" component={MainTweetPage} />}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/status/:id/photo/:photoNum" component={PhotosPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/photos/status/:id/photo/:photoNum" component={PhotosPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/notifications" component={AllNotificationsPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/mentionnotifications" component={MentionNotificationsPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/settings" component={Settings} />}

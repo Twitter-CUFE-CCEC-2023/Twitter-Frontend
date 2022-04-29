@@ -14,6 +14,7 @@ import ReactLoading from "react-loading";
 
 function TweetAndReplies(props) {
   let { userId, id } = useParams();
+  if(props.isShowPhotos) id = window.location.pathname.split("/")[3];
   const [isLoading, setLoading] = React.useState(true);
   const [topTweet, setTopTweet] = React.useState([]);
   const [replies, setReplies] = React.useState([]);
@@ -21,7 +22,7 @@ function TweetAndReplies(props) {
 
   let isMock = localStorage.getItem("isMock") === "true";
 
-  React.useEffect(() => getTweet(), []);
+  React.useEffect(() => getTweet(), [props.increment]);
 
   const getTweet = async () => {
     let maintweet;
@@ -107,12 +108,12 @@ function TweetAndReplies(props) {
   if (isLoading) {
     return (
       <div className={classes.TweetAndReplies}>
-        <div className={classes.tweetHeader}>
+        {!props.isShowPhotos && <div className={classes.tweetHeader}>
           <NavLink className={classes.nlink} to="/home">
             <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
           </NavLink>
           <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
-        </div>
+        </div>}
         {isLoading && (
           <ReactLoading
             type={"spin"}
@@ -128,14 +129,14 @@ function TweetAndReplies(props) {
 
   return (
     <div className={classes.TweetAndReplies}>
-      <div className={classes.tweetHeader}>
+      {!props.isShowPhotos && <div className={classes.tweetHeader}>
         <NavLink className={classes.nlink} to="/home">
           <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
         </NavLink>
         <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
-      </div>
+      </div>}
       <div data-testid="topTweet">
-        <FeedTweet isShowPhotos = {props.isShowPhotos} isTopTweet={true} {...topTweet} />
+        <FeedTweet isShowPhotos = {props.isShowPhotos} isTopTweet={true} {...topTweet} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement}/>
       </div>
       <div className={classes.tbox}>
         {" "}
@@ -158,6 +159,8 @@ function TweetAndReplies(props) {
             topUser={topUser}
             showAction={true}
             key={index}
+            setPhotosActive = {props.setPhotosActive}
+            setIncrement = {props.setIncrement}
           />
         );
       })}

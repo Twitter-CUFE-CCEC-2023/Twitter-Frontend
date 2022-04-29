@@ -10,6 +10,9 @@ function ImageGrid(props) {
     let cols = Math.floor(props.media.length > 2 ? 2 : props.media.length);
     let three = ['A','B','C'];
 
+    React.useEffect(() => {
+        localStorage.setItem("photosActive", "false");
+    }, []);
 
 
     function getBorderRadius(index){
@@ -72,7 +75,6 @@ function ImageGrid(props) {
         });
     }
 
-    let history = useHistory();
 
 
     return (
@@ -80,8 +82,9 @@ function ImageGrid(props) {
             {props.media.map((media, index) => {
                 return (
                         <img key={index} style = {imageStyle(rows,index)} src={media} alt={media} 
-                        onClick = {() => {history.push(`/status/${props.tweetId}/photo/${index + 1}`);
-                        window.location.reload();}} />
+                        onClick = {() =>     {window.history.pushState("", "", `/photos/status/${props.tweetId}/photo/${index + 1}`);
+                        props.setPhotosActive(true);
+                        props.setIncrement(prev => prev + 1)}} />
                 );
             })}
         </div>

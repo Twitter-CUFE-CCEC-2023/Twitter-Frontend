@@ -19,7 +19,7 @@ import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import { useHistory } from "react-router-dom";
 
-function PhotosPage() {
+function PhotosPage(props) {
   const [replyModal, setReplyModal] = useState(false);
   function viewReplyModal() {
     setReplyModal(true);
@@ -27,16 +27,23 @@ function PhotosPage() {
   const [photos, setPhotos] = useState(null);
   let isMock = localStorage.getItem("isMock") === "true";
   const [isLoading, setLoading] = React.useState(true);
-  let { userName, id, photoNum } = useParams();
-  const [currentPhoto, setCurrentPhoto] = useState(parseInt(photoNum));
+  let id;
+  let photoNum ;
+  const [currentPhoto, setCurrentPhoto] = useState(null);
   const [photosTweet, setPhotosTweet] = useState(null);
   const [sendTweet, setSendTweet] = useState(null);
   const [hidden, setHidden] = useState(false);
+
+
+
   React.useEffect(() => {
     getTweet();
-  }, []);
+  }, [props.increment]);
   let tweet;
   async function getTweet() {
+    id = window.location.pathname.split("/")[3]; 
+    photoNum = parseInt(window.location.pathname.split("/")[5]);
+    setCurrentPhoto(photoNum);
     setLoading(true);
     if (!isMock) {
       const res = await instance.get(`/status/tweet/${id}`);
@@ -84,14 +91,13 @@ function PhotosPage() {
             }
         }
     }
-    let history = useHistory();
   return (
     <div className={`${classes.flex} ${classes.photosPage}`} onKeyDown = {keyPress} tabIndex = "2">
       <div className={`${classes.photo}`}>
         {photos && (
           <div className={classes.flex}>
-            <div>
-                <div className={`${classes.doubleArrow} ${classes.left}`} onClick ={() => {history.push("/home")}}> <CloseIcon/> </div>
+            <div className={classes.zind}>
+                <div className={`${classes.doubleArrow} ${classes.left}`} onClick ={() => {window.history.pushState("", "", `${props.prevPath}`); props.setPhotosActive(false); }}> <CloseIcon/> </div>
                 {currentPhoto > 1 && (
                 <div
                     className={`${classes.arrow} ${classes.back} ${classes.left}`}
@@ -167,7 +173,7 @@ function PhotosPage() {
         )}
       </div>
       <div className={`${classes.tweetsAndReplies} ${hidden && classes.none}`}>
-        <TweetAndReplies isShowPhotos={true} />
+        <TweetAndReplies isShowPhotos={true} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement} increment = {props.increment}/>
       </div>
       {isLoading && (
         <ReactLoading

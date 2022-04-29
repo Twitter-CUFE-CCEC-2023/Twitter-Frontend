@@ -15,6 +15,7 @@ import TopTweetAttributes from "./TopTweetAttributes";
 // import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ImageGrid from "./ImageGrid";
+import PhotosPage from "../ViewPhotosPage/PhotosPage";
 // import { LinkSharp } from "@material-ui/icons";
 // import { react } from "fontawesome";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
@@ -137,6 +138,8 @@ export default function FeedTweet(props) {
     userId: props.userId,
   };
 
+  const [activePhotos, setActivePhotos] = useState(false);
+
   let history = useHistory();
   function handleClick(e) {
     if(!props.isTopTweet)
@@ -146,8 +149,11 @@ export default function FeedTweet(props) {
     }
   }
 
+  
+
   return (
     <div onClick={handleClick} className={classes.FeedTweet}>
+      {/* {!props.isShowPhotos && activePhotos && <PhotosPage className={classes.absolute}/>} */}
       <div
         id={`Tweet${props.tweetId}`}
         className={props.isTopTweet ? classes.topTweet : classes.feedTweet}
@@ -318,7 +324,7 @@ export default function FeedTweet(props) {
           >
           </div>
           {props.media && !props.isShowPhotos && props.media.length > 0 && (
-            <ImageGrid media = {props.media} userName = {props.userName} tweetId = {props.tweetId}/>
+            <ImageGrid media = {props.media} userName = {props.userName} tweetId = {props.tweetId} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement}/>
           )}
           
           {props.isTopTweet && (

@@ -129,7 +129,7 @@ export default function Feed(props) {
               ref={lastTweetElementRef}
               key={index}
             >
-              <FeedTweet {...tweet} showAction={true} />
+              <FeedTweet {...tweet} showAction={true} key = {index} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement}/>
             </div>
           );
         } else {
@@ -139,6 +139,8 @@ export default function Feed(props) {
               {...tweet}
               key={index}
               showAction={true}
+              setPhotosActive = {props.setPhotosActive}
+              setIncrement = {props.setIncrement}
             />
           );
         }
