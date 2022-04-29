@@ -1067,7 +1067,9 @@
       "is_reply": false,
       "quote_comment": null,
       "mentions": [],
-      "media": [],
+      "media": [
+        "https://pbs.twimg.com/media/FRbtqCWXwAMShGB?format=jpg&name=900x900"
+      ],
       "created_at": "2022-04-25T11:33:38.959Z"
     },
     {
@@ -1785,7 +1787,9 @@
       "is_reply": false,
       "quote_comment": null,
       "mentions": [],
-      "media": [],
+      "media": [
+        "https://pbs.twimg.com/media/FRbtqCWXwAMShGB?format=jpg&name=900x900"
+      ],
       "created_at": "2022-04-25T11:33:38.959Z",
       "replies": [
         {
@@ -1850,11 +1854,11 @@
         "isBanned": false,
         "isVerified": true
       },
-      "likes_count": 0,
+      "likes_count": 1,
       "retweets_count": 0,
       "replies_count": 0,
       "quotes_count": 0,
-      "is_liked": false,
+      "is_liked": true,
       "is_retweeted": false,
       "is_quoted": false,
       "is_reply": false,

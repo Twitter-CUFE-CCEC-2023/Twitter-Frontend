@@ -21,6 +21,8 @@ function TweetAtrribute(props) {
     }
   }, []);
 
+  const white = props.textColor && props.textColor === "white" ? classes.white : "";
+
   //console.log(props.tweet);
   function click() {
     if (props.tooltip === "Like" || props.tooltip === "Retweet") {
@@ -111,7 +113,7 @@ function TweetAtrribute(props) {
 
   return (
     <div
-      className={`${classes.tweetAtrribute} ${classes[props.color]} ${clicked}`}
+      className={`${classes.tweetAtrribute} ${classes[props.color]} ${clicked} ${white}`}
       onClick={(e) => {
         e.stopPropagation();
       }}
