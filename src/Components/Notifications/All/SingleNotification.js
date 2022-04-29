@@ -139,7 +139,7 @@ function SingleNotification(props) {
     );
   } else if (props.type === "Follow") {
     nottype = classes.follow;
-    description = "followed you";
+    description = "started following you";
     return (
       <NavLink to={`/userProfile/${props.personID}`} className={classes.link}>
         <div className={classes.notification}>
@@ -168,6 +168,7 @@ function SingleNotification(props) {
         </div>
       </NavLink>
     );
+  } else if (props.type === "Reply") {
   }
 }
 export default SingleNotification;

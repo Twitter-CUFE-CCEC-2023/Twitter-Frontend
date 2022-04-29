@@ -17,6 +17,24 @@
   object-fit: cover;
 }
 
+@media screen and (min-width: 280px) and (max-width: 721.6px) {
+  .profilePic {
+    margin-left: 1em;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 721.6px) {
+  .notedescription {
+    margin-left: 3.4em !important;
+  }
+}
+
+@media screen and (min-width: 280px) and (max-width: 280px) {
+  .notedescription {
+    margin-left: 2.5em !important;
+  }
+}
+
 .profilePic:hover {
   opacity: 0.6;
 }
