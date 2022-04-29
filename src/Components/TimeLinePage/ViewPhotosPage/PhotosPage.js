@@ -7,6 +7,8 @@ import ReactLoading from "react-loading";
 import TweetAndReplies from "../TweetPage/TweetAndReplies";
 import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
 import ArrowForwardOutlinedIcon from "@material-ui/icons/ArrowForwardOutlined";
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import CloseIcon from '@material-ui/icons/Close';
 import TweetAtrribute from "../MiddlePage/TweetAtrribute";
 
 import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
@@ -15,6 +17,7 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import { useHistory } from "react-router-dom";
 
 function PhotosPage() {
   const [replyModal, setReplyModal] = useState(false);
@@ -28,6 +31,7 @@ function PhotosPage() {
   const [currentPhoto, setCurrentPhoto] = useState(parseInt(photoNum));
   const [photosTweet, setPhotosTweet] = useState(null);
   const [sendTweet, setSendTweet] = useState(null);
+  const [hidden, setHidden] = useState(false);
   React.useEffect(() => {
     getTweet();
   }, []);
@@ -69,50 +73,56 @@ function PhotosPage() {
   }
 
   function keyPress(e){
-      console.log(e.keyCode);
       if(e.keyCode === 37){
-        if(currentPhoto > 0){
+        if(currentPhoto > 1){
           setCurrentPhoto(currentPhoto - 1);
         }
       }
     if(e.keyCode === 39){
-        if(currentPhoto < photos.length - 1){
+        if(currentPhoto < photos.length){
             setCurrentPhoto(currentPhoto + 1);
             }
         }
     }
-
+    let history = useHistory();
   return (
-    <div className={`${classes.flex} ${classes.photosPage}`} onKeyPress = {keyPress} tabIndex = "2">
+    <div className={`${classes.flex} ${classes.photosPage}`} onKeyDown = {keyPress} tabIndex = "2">
       <div className={`${classes.photo}`}>
         {photos && (
           <div className={classes.flex}>
-            {currentPhoto > 1 && (
-              <div
-                className={`${classes.arrow} ${classes.back}`}
-                onClick={() => {
-                  setCurrentPhoto((prevNum) => prevNum - 1);
-                }}
-              >
-                <ArrowBackOutlinedIcon />
-              </div>
-            )}
+            <div>
+                <div className={`${classes.doubleArrow} ${classes.left}`} onClick ={() => {history.push("/home")}}> <CloseIcon/> </div>
+                {currentPhoto > 1 && (
+                <div
+                    className={`${classes.arrow} ${classes.back} ${classes.left}`}
+                    onClick={() => {
+                    setCurrentPhoto((prevNum) => prevNum - 1);
+                    }}
+                >
+                    <ArrowBackOutlinedIcon />
+                </div>
+                )}
+            </div>
             <img
               className={classes.image}
               src={photos[currentPhoto - 1]}
               alt=""
             />
+            <div>
+            <div className={`${classes.doubleArrow} ${hidden && classes.rotate} ${classes.push}`} onClick ={() => {setHidden(prev => !prev)}}> <DoubleArrowIcon/> </div>
+
             {currentPhoto < photos.length && (
               <div
                 className={`${classes.arrow} ${classes.forward}`}
                 onClick={() => {
                   setCurrentPhoto((prevNum) => prevNum + 1);
-                }}
-              >
+                }}>
                 <ArrowForwardOutlinedIcon />
               </div>
             )}
+            </div>
           </div>
+          
         )}
         {photosTweet && (
           <div id="FeedTweetAttributes" className={classes.attributes}>
@@ -156,7 +166,7 @@ function PhotosPage() {
           </div>
         )}
       </div>
-      <div className={classes.tweetsAndReplies}>
+      <div className={`${classes.tweetsAndReplies} ${hidden && classes.none}`}>
         <TweetAndReplies isShowPhotos={true} />
       </div>
       {isLoading && (
