@@ -13,7 +13,7 @@ function AllNotifications(props) {
   const [notifications, setNotifications] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  let isMock = localStorage.getItem("isMock") === "true";
+  let isMock = localStorage.getItem("isMock") === "false";
 
   const observer = useRef();
   const lastNotificationElementRef = useCallback(
@@ -40,16 +40,17 @@ function AllNotifications(props) {
     let notes;
     let userNotifications;
     if (!isMock) {
-      if (!props.testUrl)
-      {notes = await instance.get(`/notifications/list/${pageNumber}/2`);
-      userNotifications = notes.data.notifications;}
-      else {
+      if (!props.testUrl) {
+        notes = await instance.get(`/notifications/list/${pageNumber}/5`);
+        console.log("notes", notes);
+        userNotifications = notes.data.notifications;
+      } else {
         notes = await axios.get(props.testUrl);
         userNotifications = notes.data.notifications;
       }
     } else {
       await fetch(
-        `http://localhost:3000/notifications?_page=${pageNumber}&_limit=2`
+        `http://localhost:3000/notifications?_page=${pageNumber}&_limit=5`
       )
         .then((res) => res.json())
         .then((notes) => {
@@ -63,12 +64,12 @@ function AllNotifications(props) {
         type: notes.notification_type,
         profilePicture: notes.related_user.profile_image_url,
         //tweetID: notes.tweet.id,
-        uid: currentUser? currentUser.username : "amrzaki",
+        uid: currentUser ? currentUser.username : "amrzaki",
       };
       if (
-        notes.notification_type === "Like" ||
-        notes.notification_type === "Retweet" ||
-        notes.notification_type === "Following Tweet"
+        userNotifications.notification_type === "Like" ||
+        userNotifications.notification_type === "Retweet" ||
+        userNotifications.notification_type === "Following Tweet"
       ) {
         notification = {
           ...notification,
@@ -80,7 +81,7 @@ function AllNotifications(props) {
       });
     });
     setLoading(false);
-    setHasMore(userNotifications.length === 2);
+    setHasMore(userNotifications.length === 5);
   };
 
   return (

@@ -6,10 +6,10 @@ function NotificationsNavBar(props) {
   return (
     <div className="">
       <div className="row">
-        <div className="col-10 text-left">
+        <div className="col-8 text-left">
           <h2 className={classes.notificationsHeader}>Notifications</h2>
         </div>
-        <div className="col-2 text-right">
+        <div className="col-4 text-right">
           <a href="/settings">
             <SettingsOutlinedIcon className={classes.setIcon} />
           </a>
