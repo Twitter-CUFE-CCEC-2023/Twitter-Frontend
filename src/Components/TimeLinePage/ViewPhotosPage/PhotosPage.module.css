@@ -2,6 +2,11 @@
     display: flex;
 }
 
+.photosPage{
+    background-color: rgba(65, 65, 65, 0.6);
+    height: 100vh;
+}
+
 .photo{
     width: 100%;
     height: 100%;
@@ -14,7 +19,7 @@
 
 .image{
     height: 93vh;
-    width: 95%;
+    width: 92%;
     object-fit: contain;
     margin: auto;
 }
@@ -23,38 +28,40 @@
     width: 500px;
     height: 100vh;
     border-left: 1px solid var(--twitterBorder);
+    background-color: white !important;
 }
 
 .arrow{
     position: relative;
     cursor: pointer;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 4px;
+    border-radius: 50%;
+    transition: 0.6s background-color;
 }
 
 .arrow:hover{
-    background-color: var(--tweetHover);
-    border-radius: 50%;
+    background-color: gray;
 }
 
 .forward{
-    margin-right: 10px;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 10px;
+    position: absolute;
+    top: 44%;
 }
 
 .back{
-    margin-left: 15px;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 10px;
+    position: absolute;
+    top: 44%;
 }
 
 .attributes{
-    position: absolute;
+    position: relative;
     display: flex;
-    width: 40%;
-    left: 25%;
-    bottom: 2%;
+    width: 45%;
+    margin-left: 32%;
+    margin-right: auto;
 }
 
 .loadingIcon{
@@ -62,6 +69,34 @@
     left: 44%;
     top: 42%;
 
+}
+
+.left{
+    left: 5px;
+}
+
+.doubleArrow{
+    position: relative;
+    color: white;
+    border-radius: 50%;
+    margin-top: 2px;
+    padding: 0 5px 5px 5px;
+    cursor: pointer;
+}
+.push{
+    margin-left: 3px !important ;
+}
+
+.doubleArrow:hover{
+    background-color: gray;
+}
+
+.none{
+    display: none;
+}
+
+.rotate{
+    transform: rotate(180deg);
 }
 
 @media only screen and (max-width: 950px) {
