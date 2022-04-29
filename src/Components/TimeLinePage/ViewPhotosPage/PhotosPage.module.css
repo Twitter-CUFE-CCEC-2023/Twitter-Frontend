@@ -3,7 +3,8 @@
 }
 
 .photosPage{
-    background-color: rgb(73, 47, 46,0.8);
+    z-index: 10;
+    background-color: rgba(65, 65, 65, 0.6);
 }
 
 .photo{

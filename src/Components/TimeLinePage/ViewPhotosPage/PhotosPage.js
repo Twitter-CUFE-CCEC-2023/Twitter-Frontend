@@ -68,8 +68,22 @@ function PhotosPage() {
     setLoading(false);
   }
 
+  function keyPress(e){
+      console.log(e.keyCode);
+      if(e.keyCode === 37){
+        if(currentPhoto > 0){
+          setCurrentPhoto(currentPhoto - 1);
+        }
+      }
+    if(e.keyCode === 39){
+        if(currentPhoto < photos.length - 1){
+            setCurrentPhoto(currentPhoto + 1);
+            }
+        }
+    }
+
   return (
-    <div className={`${classes.flex} ${classes.photosPage}`}>
+    <div className={`${classes.flex} ${classes.photosPage}`} onKeyPress = {keyPress} tabIndex = "2">
       <div className={`${classes.photo}`}>
         {photos && (
           <div className={classes.flex}>
@@ -93,10 +107,6 @@ function PhotosPage() {
                 className={`${classes.arrow} ${classes.forward}`}
                 onClick={() => {
                   setCurrentPhoto((prevNum) => prevNum + 1);
-                }}
-                onKeyPress={(e) => {
-                  if (e.key === "ArrowRight")
-                    setCurrentPhoto((prevNum) => prevNum + 1);
                 }}
               >
                 <ArrowForwardOutlinedIcon />
