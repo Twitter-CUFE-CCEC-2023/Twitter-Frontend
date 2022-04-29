@@ -37,10 +37,22 @@
 
 .setIcon {
   font-size: 1.3em !important;
-  margin: 10px 0 0 14px;
+  margin-top: 0.25em;
+  margin-left: 4.5em;
   padding: 5px;
   cursor: pointer;
   color: grey;
+}
+
+@media screen and (min-width: 360px) and (max-width: 721.6px) {
+  .setIcon {
+    margin-left: 2.2em;
+  }
+}
+@media screen and (min-width: 280px) and (max-width: 280px) {
+  .setIcon {
+    margin-left: 1.5em;
+  }
 }
 .setIcon:hover {
   background-color: var(--twitterHoverBlue);
