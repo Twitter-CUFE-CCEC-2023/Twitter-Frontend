@@ -1,0 +1,73 @@
+.accountButton{
+    margin-top: 100%;
+    cursor: pointer;
+    padding: 10px 0 10px 18px;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.accountButton:hover{
+    background-color: var(--twitterGrayHighligh);
+    border-radius: 50px;
+}
+
+.profilePic{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.name{
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 0 0 10px;
+}
+
+.username{
+    font-size: 15px;
+    color: gray;
+    margin: -5px 0 0 10px;
+}
+
+.more{
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.done{
+    margin: 0 10px 0 90px;
+    color: var(--twitterBlue);
+}
+
+.list{
+    position: absolute;
+    bottom: 10%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 12px 0;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.listHeader{
+    padding: 16px;
+    border-bottom: 1px solid var(--twitterBorder);
+}
+
+.listItem{
+    padding: 16px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 0;
+}
+
+.listItem:hover{
+    background-color: var(--twitterGrayHighligh);
+}
+
+.hidden{
+    display: none;
+}

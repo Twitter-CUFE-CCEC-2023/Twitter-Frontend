@@ -107,4 +107,13 @@
     .tweetsAndReplies{
       display: none;
     }
+    .doubleArrow{
+        visibility: hidden;
+    }
+    .photosPage{
+        width: 110%;
+    }
+    .forward{
+        right: 10%;
+    }
   }

@@ -20,6 +20,7 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MoreOutlinedIcon from "@material-ui/icons/MoreOutlined";
+import AccountButton from "./AccountButton";
 
 import SelectMore from "./SelectMore/SelectMore";
 
@@ -159,6 +160,8 @@ const LeftSideBar = () => {
       {/* need to add the functionality of more */}
       <div className={classes.phoneInvis}>
         <TweetButton />
+        
+        <AccountButton/>
       </div>
     </div>
   );
