@@ -56,16 +56,20 @@ function MiniProfile(props) {
         data-testid = "followingmp"
         >
           <span className={classes.bold}>{props.following}</span>{" "}
-          <span className={classes.gray}>
-            Following
-          </span>
+          <NavLink className={`noDecoration ${classes.fs15}`} to={`/following/${props.userName}`}>
+            <span className={classes.gray}>
+              Following
+            </span>
+          </NavLink>
         </p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <p className={classes.normalText + " " + classes.underline + " " + classes.pointer}
         data-testid = "followersmp"
         >
           <span className={classes.bold}>{props.followers}</span>{" "}
+          <NavLink className={`noDecoration ${classes.fs15}`} to={`/followers/${props.userName}`}>
           <span className={classes.gray}>Followers</span>
+          </NavLink>
         </p>
       </div>
     </div>

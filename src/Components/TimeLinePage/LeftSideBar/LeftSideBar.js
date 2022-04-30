@@ -23,6 +23,7 @@ import MoreOutlinedIcon from "@material-ui/icons/MoreOutlined";
 import AccountButton from "./AccountButton";
 
 import SelectMore from "./SelectMore/SelectMore";
+import MoreButton from "./MoreButton";
 
 const LeftSideBar = () => {
   const [moreSelected, setMoreSelected] = useState(false);
@@ -60,7 +61,7 @@ const LeftSideBar = () => {
       {!moreSelected && (
         <div className={classes.twitterIcon}>
           {" "}
-          <TwitterIcon />{" "}
+          <TwitterIcon className={classes.iconTest}/>{" "}
         </div>
       )}
       {!moreSelected && (
@@ -144,7 +145,9 @@ const LeftSideBar = () => {
           />
         </div>
       )}
-      {!moreSelected && (
+
+      <MoreButton />
+      {/* {!moreSelected && (
         <div
           className={`${classesLeftButton.leftButton} ${classes.phoneInvis}`}
         >
@@ -156,7 +159,7 @@ const LeftSideBar = () => {
             More
           </p>
         </div>
-      )}{" "}
+      )}{" "} */}
       {/* need to add the functionality of more */}
       <div className={classes.phoneInvis}>
         <TweetButton />
