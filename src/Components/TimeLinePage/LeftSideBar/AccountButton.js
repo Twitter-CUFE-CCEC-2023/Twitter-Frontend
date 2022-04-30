@@ -27,7 +27,6 @@ function AccountButton() {
 
   function logOut() {
     loginCtx.logout();
-    // console.log("logout");
   }
 
   return (
