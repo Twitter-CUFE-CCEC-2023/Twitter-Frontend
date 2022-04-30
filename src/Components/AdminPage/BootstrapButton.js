@@ -35,6 +35,9 @@ const BootstrapButton = withStyles({
       backgroundColor: "#3b4fbf",
       borderColor: "#3b4fbf",
     },
+    "@media (max-width: 700px)": {
+      width: "90px",
+    },
   },
 })(Button);
 

@@ -35,9 +35,10 @@ import PhotosPage from "./Components/TimeLinePage/ViewPhotosPage/PhotosPage";
 
 function App() {
   const loginCtx = useContext(LoginContext);
+  const isAdmin = localStorage.getItem("admin");
   // console.log("Login " + loginCtx.isLoggedIn);
   // console.log("Admin " + loginCtx.isAdmin);
-  localStorage.setItem("isMock", "true");
+  localStorage.setItem("isMock", "false");
   // const log = localStorage.getItem("login");
   // console.log("Login = " + log);
 

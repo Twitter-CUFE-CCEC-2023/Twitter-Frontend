@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import TableCell from "@material-ui/core/TableCell";
@@ -6,7 +6,8 @@ import TableRow from "@material-ui/core/TableRow";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
-import BootstrapButton from "../../BootstrapButton";
+import BootstrapButton from "../../../BootstrapButton";
+import BanModal from "../Modal/BanModal";
 
 const useRowStyles = makeStyles({
   root: {
@@ -20,13 +21,22 @@ const UserNameRow = (props) => {
   const classes = useRowStyles();
 
   const [ban, setBan] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
-  const handleBan = () => {
-    setBan(!ban);
+  const closeModal = (value) => {
+    setTimeout(() => {
+      setOpenModal(value);
+    }, 100);
+    // setBan(false);
+  };
+
+  const handleBanModal = () => {
+    setBan(true);
+    setOpenModal(true);
   };
 
   return (
-    <TableRow className={`${classes.root} ${props.class}`}>
+    <TableRow className={`${classes.root}`}>
       <TableCell>
         <IconButton
           aria-label="expand row"
@@ -45,10 +55,19 @@ const UserNameRow = (props) => {
           color="primary"
           disableRipple
           className={classes.margin}
-          onClick={handleBan}
+          onClick={handleBanModal}
         >
-          {!ban && <span>ban</span>}
-          {ban && <span>unban</span>}
+          {!props.ban && <span>ban</span>}
+          {props.ban && <span>unban</span>}
+          {/* {!ban && <span>ban</span>}
+          {ban && <span>unban</span>} */}
+          {openModal && (
+            <BanModal
+              setOpenModalValue={closeModal}
+              open={openModal}
+              userId={props.userId}
+            />
+          )}
         </BootstrapButton>
       </TableCell>
     </TableRow>

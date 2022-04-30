@@ -20,12 +20,13 @@ const calculateRemainingTime = (expirationTime) => {
 
 const retrieveStoredToken = () => {
   const storedToken = localStorage.getItem("token");
+  const storedAdmin = localStorage.getItem("admin");
   const storedExpirationDate = localStorage.getItem("expirationTime");
-
   const remainingTime = calculateRemainingTime(storedExpirationDate);
 
   if (remainingTime <= 3600) {
     localStorage.removeItem("token");
+    localStorage.removeItem("admin");
     localStorage.removeItem("expirationTime");
     return null;
   }
@@ -33,6 +34,7 @@ const retrieveStoredToken = () => {
   return {
     token: storedToken,
     duration: remainingTime,
+    admin: storedAdmin,
   };
 };
 
@@ -40,18 +42,22 @@ export const LoginContextProvider = (props) => {
   const tokenData = retrieveStoredToken();
 
   let initialToken;
+  let initalAdmin;
   if (tokenData) {
     initialToken = tokenData.token;
+    initalAdmin = tokenData.admin;
   }
 
   const [token, setToken] = useState(initialToken);
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(initalAdmin);
   const loginState = !!token;
+  const adminState = admin;
 
   const logoutHandler = () => {
     setToken(null);
     setAdmin(false);
     localStorage.removeItem("token");
+    localStorage.removeItem("admin");
     localStorage.removeItem("expirationTime");
     if (logoutTimer) {
       clearTimeout(logoutTimer);
@@ -59,10 +65,11 @@ export const LoginContextProvider = (props) => {
   };
 
   const loginHandler = (admin, token, expirationTime) => {
-    console.log("Login is called");
+    // console.log("Login is called");
     setToken(token);
     setAdmin(admin);
     localStorage.setItem("token", token);
+    localStorage.setItem("admin", admin);
     localStorage.setItem("expirationTime", expirationTime);
     // const remainingTime = calculateRemainingTime(expirationTime);
     // logoutTimer = setTimeout(logoutHandler, remainingTime);
@@ -78,7 +85,7 @@ export const LoginContextProvider = (props) => {
   const contextValue = {
     token: token,
     isLoggedIn: loginState,
-    isAdmin: admin,
+    isAdmin: adminState,
     login: loginHandler,
     logout: logoutHandler,
   };

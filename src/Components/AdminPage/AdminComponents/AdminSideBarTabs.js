@@ -37,11 +37,11 @@ const Tabs = [
     icon: <PieChartRoundedIcon />,
     url: "/admin-statistics",
   },
-  {
-    title: "Logout",
-    icon: <ExitToAppRoundedIcon />,
-    url: "/",
-  },
+  // {
+  //   title: "Logout",
+  //   icon: <ExitToAppRoundedIcon />,
+  //   url: "/",
+  // },
 ];
 
 export default Tabs;
