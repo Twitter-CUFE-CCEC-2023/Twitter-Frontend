@@ -42,4 +42,8 @@
     text-align: center;
     color: white;
   }
+
+  .text{
+    display: none;
+  }
 }

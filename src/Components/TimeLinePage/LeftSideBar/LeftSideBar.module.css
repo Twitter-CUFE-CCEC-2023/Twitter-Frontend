@@ -20,7 +20,7 @@
 }
 
 .iconTest{
-    font-size: 34px;
+    font-size: 34px !important;
 }
 
 .twitterIcon:hover{
