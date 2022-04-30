@@ -1,6 +1,6 @@
 
 .onPage{
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 .navLink{
     text-decoration: none !important;
@@ -15,6 +15,7 @@
     font-size: 20px;
     padding: 12px;
     margin: 6px;
+    font-weight: 350;
 }
 
 .title{

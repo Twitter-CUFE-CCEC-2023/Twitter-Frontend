@@ -13,6 +13,7 @@ function AccountButton() {
 
   function hide(event) {
     var isClickInsideElement;
+
     let elements = document.getElementsByName("accountListItem");
     for (var i = 0; i < elements.length; i++) {
       isClickInsideElement = elements[i].contains(event.target);
