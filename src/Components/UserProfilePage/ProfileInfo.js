@@ -11,7 +11,7 @@ function ProfileInfo(props) {
   return (
     <Fragment>
       <div>
-        <h6 className={`${classes.username} mb-0`}>{props.username}</h6>
+        <h6 className={`${classes.username} mb-0`}>{props.name}</h6>
         <p className={`${classes.email} mt-0 mb-0 `}>{props.userEmail}</p>
       </div>
       <div>
@@ -38,8 +38,8 @@ function ProfileInfo(props) {
       </div>
 
       <div className={`${classes.followesRow}row  mt-2 no-gutters`}>
-        <FollowingButton followingNum={1} />
-        <FollowersButton followersNum={1} />
+        <FollowingButton followingNum={props.followers_count} />
+        <FollowersButton followersNum={props.following_count} />
       </div>
     </Fragment>
   );

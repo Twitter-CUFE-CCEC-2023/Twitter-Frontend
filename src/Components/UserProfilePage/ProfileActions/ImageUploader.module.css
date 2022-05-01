@@ -22,3 +22,22 @@
     cursor: pointer;
     font-size: 30px !important;
   }
+
+  @media screen and (max-width: 705px) {
+
+    .coverEditor{
+      top:7rem !important;
+      /* right: 1.8rem; */
+      /* z-index: 1800 !important; */
+      position: absolute;
+    }
+  }
+  @media screen and (max-width: 705px) {
+
+    .coverEditor{
+      top:3.5rem !important;
+      /* right: 1.8rem; */
+      /* z-index: 1800 !important; */
+      position: absolute;
+    }
+  }

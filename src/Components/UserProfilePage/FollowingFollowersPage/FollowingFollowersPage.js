@@ -21,6 +21,7 @@ function FollowingFollowersPage() {
   const [followingSelected, setFollowingSelected] = useState(
     type === "following" ? true : false
   );
+  const [user, setUser] = useState({});
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -76,6 +77,17 @@ function FollowingFollowersPage() {
 
   const getUsers = async () => {
     setLoading(true);
+    //get user info from database
+    if(!isMock){
+      const res = await instance.get(`/info/${userName}`);
+      const userInfo=res.data.user;
+      setUser(userInfo);
+      
+    }
+    //get user info from mock
+    else{
+
+    }
     if (type === "followers") {
       let userFollowers
       if(!isMock){
@@ -189,7 +201,7 @@ function FollowingFollowersPage() {
       <LeftSideBar />
       <div className={classes.followingFollowersContainer}>
         <div className={`${classes.header} row`}>
-          <ProfileHeader className={`${classes.infoHeader}`}></ProfileHeader>
+          <ProfileHeader className={`${classes.infoHeader} `} name={user.name} username={user.username}></ProfileHeader>
 
           <div className={`${classes.headerTabs}`}>
             <NavLink

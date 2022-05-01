@@ -158,6 +158,12 @@
     height: 100% !important;
     padding: 0;
   }
+  .cropUploader{
+    top:-1rem !important;
+    /* right: 1.8rem; */
+    /* z-index: 1800 !important; */
+    position: absolute;
+  }
 }
 @media screen and (min-width: 705px) {
   .modalDialog {
