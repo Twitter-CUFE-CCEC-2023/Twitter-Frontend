@@ -22,7 +22,6 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MoreOutlinedIcon from "@material-ui/icons/MoreOutlined";
 import AccountButton from "./AccountButton";
 
-import SelectMore from "./SelectMore/SelectMore";
 import MoreButton from "./MoreButton";
 
 const LeftSideBar = () => {
@@ -57,11 +56,10 @@ const LeftSideBar = () => {
 
   return (
     <div className={classes.leftSideBar}>
-      {moreSelected && <SelectMore />}
       {!moreSelected && (
         <div className={classes.twitterIcon}>
           {" "}
-          <TwitterIcon className={classes.iconTest}/>{" "}
+          <TwitterIcon className={classes.iconTest} />{" "}
         </div>
       )}
       {!moreSelected && (
@@ -145,7 +143,6 @@ const LeftSideBar = () => {
           />
         </div>
       )}
-
       <MoreButton />
       {/* {!moreSelected && (
         <div
@@ -163,8 +160,8 @@ const LeftSideBar = () => {
       {/* need to add the functionality of more */}
       <div className={classes.phoneInvis}>
         <TweetButton />
-        
-        <AccountButton/>
+
+        <AccountButton />
       </div>
     </div>
   );

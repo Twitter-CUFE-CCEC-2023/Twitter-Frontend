@@ -35,22 +35,15 @@ import PhotosPage from "./Components/TimeLinePage/ViewPhotosPage/PhotosPage";
 
 function App() {
   const loginCtx = useContext(LoginContext);
-  // const isAdmin = localStorage.getItem("admin");
-  console.log("Admin " + loginCtx.isAdmin);
-  console.log("Login " + loginCtx.isLoggedIn);
-  const ans = loginCtx.isLoggedIn && !loginCtx.isAdmin;
-  const ans2 = loginCtx.isLoggedIn && loginCtx.isAdmin;
-  console.log("User Can Login " + ans);
-  console.log("Admin Can Login " + ans2);
 
-  // console.log("Login " + loginCtx.isLoggedIn);
   // console.log("Admin " + loginCtx.isAdmin);
-  localStorage.setItem("isMock", "false");
-  // const log = localStorage.getItem("login");
-  // console.log("Login = " + log);
+  // console.log("Login " + loginCtx.isLoggedIn);
+  // const ans = loginCtx.isLoggedIn && !loginCtx.isAdmin;
+  // const ans2 = loginCtx.isLoggedIn && loginCtx.isAdmin;
+  // console.log("User Can Login " + ans);
+  // console.log("Admin Can Login " + ans2);
 
-  // const log2 = JSON.parse(localStorage.getItem("UserInfo"));
-  // console.log(log2.username);
+  localStorage.setItem("isMock", "false");
 
   return (
     <div>
@@ -68,17 +61,27 @@ function App() {
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/home" component={Home} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/:userId/status/:id" component={MainTweetPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/photos/status/:id/photo/:photoNum" component={PhotosPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/explore" component={UnderConstructionPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/notifications" component={AllNotificationsPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/mentionnotifications" component={MentionNotificationsPage} />}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/settings" component={Settings} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/messages" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/i/bookmarks" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/profileName/lists" component={UnderConstructionPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/userprofile/:userName" component={UserProfile} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/following/:userName" component={FollowingFollowersPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/followers/:userName" component={FollowingFollowersPage} />}
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/crop" component={ImageCropper} />}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/explore" component={UnderConstructionPage} />}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/messages" component={UnderConstructionPage} />}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/i/bookmarks" component={UnderConstructionPage} />}
-          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/profileName/lists" component={UnderConstructionPage} />}
+
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/:userName/topics" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/i/moment_maker" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/i/newsletters" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/i/flow/convert_to_professional" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/twitter-ads" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/analytics" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/settings" component={Settings} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/help-center" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/i/display" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && !loginCtx.isAdmin && <Route path="/i/keyboard-shortcuts" component={UnderConstructionPage} />}
 
           {loginCtx.isLoggedIn && loginCtx.isAdmin && <Route path="/admin" component={Admin} />}
           {loginCtx.isLoggedIn && loginCtx.isAdmin && <Route path="/admin-userslist" component={UsersList} />}
