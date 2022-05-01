@@ -1,7 +1,6 @@
 import React, {
   useState,
   useEffect,
-  // Fragment,
   useRef,
   useCallback,
 } from "react";
@@ -9,7 +8,6 @@ import { useLocation } from "react-router-dom";
 import classes from "./ProfileData.module.css";
 import ProfileHeader from "./ProfileHeader";
 import CoverPhoto from "./CoverPhoto";
-import coverimage from "../../Assets/new-york-city.jpg";
 import ProfileActions from "./ProfileActions/ProfileActions.js";
 import ProfileInfo from "./ProfileInfo";
 import ProfileTabs from "./ProfileTabs/ProfileTabs";
@@ -28,21 +26,21 @@ function ProfileData(props) {
   let userInPath = pathlocation.pathname.split("/")[2];
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
   let currentuserName;
+  const location = useLocation();
+  let { userName } = useParams();
+
   if (currentuser) {
     currentuserName = currentuser.username;
   }
+
   const [user, setUser] = useState({});
-  const location = useLocation();
-
-  let { userName } = useParams();
-
   const [tabType, setTabType] = useState("Tweets");
   const [isLoading, setLoading] = useState(true);
   const [tweets, setTweets] = useState([]);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
   let isMock = localStorage.getItem("isMock") === "true";
-
+  let userTweets;
   const observer = useRef();
   const lastTweetElementRef = useCallback(
     (node) => {
@@ -65,17 +63,22 @@ function ProfileData(props) {
   useEffect(() => {
     getTweets();
   }, [pageNumber]);
+  
+  useEffect(() => {
+    userTweets=[];
+    getTweets();
+  }, [userName]);
 
   const getTweets = async () => {
     setLoading(true);
-    let userTweets;
+    
     let currentUserTweets;
     let currentUser;
     //get user tweets from api
     if (!isMock) {
       if (!props.testUrl) {
         const tweets = await instance
-          .get(`/status/tweets/list/${userName}/${pageNumber}/3`)
+          .get(`/status/tweets/list/${userName}/${userTweets ? pageNumber : '1'}/3`)
           .catch(function (error) {
             if (error.response) {
               // Request made and server responded
@@ -135,8 +138,8 @@ function ProfileData(props) {
         userName: currentUserTweets.username,
         isVerified: currentUserTweets.isVerified,
         bio: currentUserTweets.bio,
-        followers: currentUserTweets.followers_count,
-        following: currentUserTweets.following_count,
+        followers_count: currentUserTweets.followers_count,
+        following_count: currentUserTweets.following_count,
         text: APItweet.content,
         tweetId: APItweet.id,
         date: APItweet.created_at,
@@ -152,36 +155,38 @@ function ProfileData(props) {
         return [...prevTweets, tweet];
       });
     });
+    console.log("currentUserTweets", currentUserTweets);
     setUser({
       name: currentUserTweets.name, //user.name,
       profilePic: currentUserTweets.profile_image_url,
+      coverimage: currentUserTweets.cover_image_url,
       userName: currentUserTweets.username,
       email: currentUserTweets.email,
       isVerified: currentUserTweets.isVerified,
       bio: currentUserTweets.bio,
-      followers: currentUserTweets.followers,
-      following: currentUserTweets.following,
+      followers_count: currentUserTweets.followers_count,
+      following_count: currentUserTweets.following_count,
+      tweets_count: currentUserTweets.tweets_count,
     });
-    console.log(user);
+    
     setHasMore(userTweets.length === 3);
     setLoading(false);
-    console.log(location.pathname);
   };
 
   return (
     <div className={`${classes.profileDataContainer} `}>
       <div className={`${classes.header} row`}>
-        <ProfileHeader></ProfileHeader>
+        <ProfileHeader profilePic={user.profilePic} name={user.name} username={user.username} tweets_count={user.tweets_count}></ProfileHeader>
       </div>
       <div className={`${classes.coverPhoto}  row `}>
-        <CoverPhoto coverImage={coverimage}></CoverPhoto>
+        <CoverPhoto coverImage={user.coverimage? user.coverimage:"https://jannaschreier.files.wordpress.com/2012/03/website-header-blue-grey-background.jpg"}></CoverPhoto>
         <div className={`${classes.profileImageContainer} `}>
           <img
             className={`${classes.profileImage} img-fluid`}
             src={`${
               user.profilePic
                 ? user.profilePic
-                : "https://pbs.twimg.com/profile_images/1190121922249576449/iqjUurpr_400x400.jpg"
+                : "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
             }`}
             alt=""
           />
@@ -194,14 +199,14 @@ function ProfileData(props) {
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>
         <ProfileInfo
-          username={user.userName}
+          name={user.name}
           userEmail={user.email}
           userBio={user.bio}
           birthMonth="October"
           birthDay={17}
           birthYear={2000}
-          followers_count={user.followers}
-          following_count={user.following}
+          followers_count={user.followers_count}
+          following_count={user.following_count}
         ></ProfileInfo>
       </div>
       <div className={`row`}>

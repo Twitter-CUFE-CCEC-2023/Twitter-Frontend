@@ -1,21 +1,24 @@
-.header{
-    position: sticky;
-    background-color: rgb(255, 255, 255, 0.97);
-    top: 0;
-    z-index: 2;
-    margin-top: 0;
-    padding: 10px;
+.header {
+  position: sticky;
+  background-color: rgb(255, 255, 255, 0.97);
+  top: 0;
+  z-index: 2;
+  margin-top: 0;
+  padding: 10px;
 }
-.username{
-font-size: 0.8em;
+.username {
+  font-size: 0.9em;
+  /* --bs-gutter-x: none; */
 }
-.tweetsNumber{
-    padding-left: 0px;
-    margin-left: 0px;
-    font-size: 0.5em;
-    
+.tweetsNumber {
+  padding-left: 0px;
+  font-size: 0.5em;
 }
-.arrowRow{
-    padding-right: 0;
-    margin-left: 1px;
+.arrowRow {
+  padding-right: 0;
+  margin-left: 1px;
+  color: black !important;
+}
+.arrow{
+    color: black !important;
 }
