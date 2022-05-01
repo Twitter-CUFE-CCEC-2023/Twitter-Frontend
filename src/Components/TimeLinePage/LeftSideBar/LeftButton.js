@@ -5,10 +5,11 @@ import { useHistory } from "react-router-dom";
 
 export default function LeftButton(props) {
 
+  let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
   let history = useHistory();
   function reloadProfile(){
     if(props.title === "Profile"){
-      history.push("/userProfile/amrzaki");
+      history.push(`/userProfile/${loggedUser.username}`);
       window.location.reload();
     }
   }
