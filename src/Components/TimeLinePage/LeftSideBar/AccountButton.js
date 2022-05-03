@@ -3,11 +3,12 @@ import classes from "./AccountButton.module.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import DoneIcon from "@material-ui/icons/Done";
 
-import { LoginContext } from "../../../login-context";
+import LogoutModal from "./LogoutModal";
 
 function AccountButton() {
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
   const [hidden, setHidden] = React.useState(true);
+  const [showLogout, setShowLogout] = React.useState(false);
 
   document.body.addEventListener("click", hide, true);
 
@@ -24,18 +25,13 @@ function AccountButton() {
     setHidden(true);
   }
 
-  const loginCtx = useContext(LoginContext);
-
-  function logOut() {
-    loginCtx.logout();
-  }
-
   return (
     <div>
       <div
         className={`${classes.flex} ${classes.accountButton}`}
         onClick={() => setHidden((prev) => !prev)}
       >
+
         <img
           src={loggedUser.profile_image_url}
           className={classes.profilePic}
@@ -68,10 +64,11 @@ function AccountButton() {
         <p name="accountListItem" className={classes.listItem}>
           Add an existing account
         </p>
-        <p name="accountListItem" className={classes.listItem} onClick={logOut}>
+        <p name="accountListItem" className={classes.listItem} onClick={() => setShowLogout(true)}>
           Log out @{loggedUser.username}
         </p>
       </div>
+      {showLogout && <LogoutModal setShowLogout = {setShowLogout}/>}
     </div>
   );
 }
