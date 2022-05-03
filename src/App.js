@@ -36,12 +36,12 @@ import PhotosPage from "./Components/TimeLinePage/ViewPhotosPage/PhotosPage";
 function App() {
   const loginCtx = useContext(LoginContext);
 
-  // console.log("Admin " + loginCtx.isAdmin);
-  // console.log("Login " + loginCtx.isLoggedIn);
-  // const ans = loginCtx.isLoggedIn && !loginCtx.isAdmin;
-  // const ans2 = loginCtx.isLoggedIn && loginCtx.isAdmin;
-  // console.log("User Can Login " + ans);
-  // console.log("Admin Can Login " + ans2);
+  console.log("Admin " + loginCtx.isAdmin);
+  console.log("Login " + loginCtx.isLoggedIn);
+  const ans = loginCtx.isLoggedIn && !loginCtx.isAdmin;
+  const ans2 = loginCtx.isLoggedIn && loginCtx.isAdmin;
+  console.log("User Can Login " + ans);
+  console.log("Admin Can Login " + ans2);
 
   localStorage.setItem("isMock", "false");
 

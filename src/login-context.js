@@ -223,18 +223,21 @@ const calculateRemainingTime = (expirationTime) => {
 const retrieveStoredToken = () => {
   const storedToken = localStorage.getItem("token");
   const storedExpirationDate = localStorage.getItem("expirationTime");
+  // const storedAdmin = localStorage.getItem("admin");
 
   const remainingTime = calculateRemainingTime(storedExpirationDate);
 
-  if (remainingTime <= 3600) {
+  if (remainingTime <= 0) {
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
+    localStorage.removeItem("admin");
     return null;
   }
 
   return {
     token: storedToken,
     duration: remainingTime,
+    // admin: storedAdmin,
   };
 };
 
@@ -242,8 +245,10 @@ export const LoginContextProvider = (props) => {
   const tokenData = retrieveStoredToken();
 
   let initialToken;
+  // let initialAdmin;
   if (tokenData) {
     initialToken = tokenData.token;
+    // initialAdmin = tokenData.admin;
   }
 
   const [token, setToken] = useState(initialToken);
@@ -255,6 +260,7 @@ export const LoginContextProvider = (props) => {
     setAdmin(false);
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
+    localStorage.removeItem("admin");
     if (logoutTimer) {
       clearTimeout(logoutTimer);
     }
@@ -266,16 +272,17 @@ export const LoginContextProvider = (props) => {
     setAdmin(admin);
     localStorage.setItem("token", token);
     localStorage.setItem("expirationTime", expirationTime);
-    // const remainingTime = calculateRemainingTime(expirationTime);
-    // logoutTimer = setTimeout(logoutHandler, remainingTime);
+    localStorage.setItem("admin", admin);
+    const remainingTime = calculateRemainingTime(expirationTime);
+    logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
 
-  // useEffect(() => {
-  //   if (tokenData) {
-  //     // console.log(tokenData.duration);
-  //     logoutTimer = setTimeout(logoutHandler, tokenData.duration);
-  //   }
-  // }, [tokenData, logoutHandler]);
+  useEffect(() => {
+    if (tokenData) {
+      console.log(tokenData.duration);
+      logoutTimer = setTimeout(logoutHandler, tokenData.duration);
+    }
+  }, [tokenData, logoutHandler]);
 
   const contextValue = {
     token: token,

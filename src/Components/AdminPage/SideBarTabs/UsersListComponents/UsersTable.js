@@ -6,7 +6,6 @@ import Paper from "@material-ui/core/Paper";
 import TablePagination from "@material-ui/core/TablePagination";
 
 import classess from "./UsersTable.module.css";
-// import BackgroundPaper from "../../BackgroundPaper";
 import LoadingSpinner from "../../../ExtraPages/LoadingSpinner";
 import Header from "./Rows/Header";
 import UserRow from "./Rows/UserRow";

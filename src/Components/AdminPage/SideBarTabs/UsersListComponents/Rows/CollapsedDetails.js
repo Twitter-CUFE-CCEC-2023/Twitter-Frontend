@@ -43,7 +43,7 @@ const CollapsedDetails = (props) => {
             Details
           </Typography>
 
-          <Paper className={classess.paper}>
+          <Paper elevation={3} className={classess.paper}>
             <TableContainer style={{ marginBottom: "10px" }}>
               <Table aria-label="simple table">
                 <TableBody>
