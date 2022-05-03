@@ -32,7 +32,7 @@ function PhotosPage(props) {
   const [currentPhoto, setCurrentPhoto] = useState(null);
   const [photosTweet, setPhotosTweet] = useState(null);
   const [sendTweet, setSendTweet] = useState(null);
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(localStorage.getItem("photosHidden") === "true");
 
 
 
@@ -92,20 +92,21 @@ function PhotosPage(props) {
         }
     }
   return (
-    <div className={`${classes.flex} ${classes.photosPage}`} onKeyDown = {keyPress} tabIndex = "2">
-      <div className={`${classes.photo}`}>
+    <div className={`${classes.flex} ${classes.photosPage}`} onKeyDown = {keyPress} tabIndex = "2" onClick ={() => {window.history.pushState("", "", `${props.prevPath}`); props.setPhotosActive(false); }}>
+      <div className={`${classes.photo}`} >
         {photos && (
           <div className={classes.flex}>
-            <div className={classes.zind}>
-                <div className={`${classes.doubleArrow} ${classes.left}`} onClick ={() => {window.history.pushState("", "", `${props.prevPath}`); props.setPhotosActive(false); }}> <CloseIcon/> </div>
+            <div className={classes.leftArrows}>
+                <div className={`${classes.doubleArrow} ${classes.left}`} onClick ={() => {window.history.pushState("", "", `${props.prevPath}`); props.setPhotosActive(false); }}> <CloseIcon className={classes.icon}/> </div>
                 {currentPhoto > 1 && (
                 <div
                     className={`${classes.arrow} ${classes.back} ${classes.left}`}
-                    onClick={() => {
-                    setCurrentPhoto((prevNum) => prevNum - 1);
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentPhoto((prevNum) => prevNum - 1);
                     }}
                 >
-                    <ArrowBackOutlinedIcon />
+                    <ArrowBackOutlinedIcon className={classes.icon}/>
                 </div>
                 )}
             </div>
@@ -113,17 +114,23 @@ function PhotosPage(props) {
               className={classes.image}
               src={photos[currentPhoto - 1]}
               alt=""
+              onClick = {(e) => e.stopPropagation()}
             />
-            <div>
-            <div className={`${classes.doubleArrow} ${hidden && classes.rotate} ${classes.push}`} onClick ={() => {setHidden(prev => !prev)}}> <DoubleArrowIcon/> </div>
+            <div className={`${!hidden && classes.rightArrows} ${hidden && classes.rightHidden}`}>
+            <div className={`${classes.doubleArrow} ${hidden && classes.rotate} ${classes.push}`} 
+            onClick ={(e) => {
+              e.stopPropagation();
+              setHidden(prev => !prev); 
+              localStorage.setItem("photosHidden",hidden ? "false" : "true")}}> <DoubleArrowIcon className={classes.icon}/> </div>
 
             {currentPhoto < photos.length && (
               <div
                 className={`${classes.arrow} ${classes.forward}`}
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setCurrentPhoto((prevNum) => prevNum + 1);
                 }}>
-                <ArrowForwardOutlinedIcon />
+                <ArrowForwardOutlinedIcon className={classes.icon}/>
               </div>
             )}
             </div>
@@ -172,7 +179,7 @@ function PhotosPage(props) {
           </div>
         )}
       </div>
-      <div className={`${classes.tweetsAndReplies} ${hidden && classes.none}`}>
+      <div className={`${classes.tweetsAndReplies} ${hidden && classes.none}`} onClick = {(e) => e.stopPropagation()}>
         <TweetAndReplies isShowPhotos={true} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement} increment = {props.increment}/>
       </div>
       {isLoading && (

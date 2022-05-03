@@ -107,7 +107,7 @@ function TweetAndReplies(props) {
 
   if (isLoading) {
     return (
-      <div className={classes.TweetAndReplies}>
+      <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
         {!props.isShowPhotos && <div className={classes.tweetHeader}>
           <NavLink className={classes.nlink} to="/home">
             <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
@@ -128,7 +128,7 @@ function TweetAndReplies(props) {
   }
 
   return (
-    <div className={classes.TweetAndReplies}>
+    <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
       {!props.isShowPhotos && <div className={classes.tweetHeader}>
         <NavLink className={classes.nlink} to="/home">
           <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />

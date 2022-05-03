@@ -38,10 +38,11 @@ const LeftSideBar = () => {
       ["messages", pathname === "messages"],
       ["bookmarks", pathname === "i/bookmarks"],
       ["lists", pathname === "profileName/lists"],
-      ["userprofile", pathname === "userprofile"],
+      ["userprofile", pathname.includes("userprofile")],
       ["more", pathname === "more"],
     ])
   );
+
 
   useEffect(() => {
     setPageActive((prevPageActive) => {

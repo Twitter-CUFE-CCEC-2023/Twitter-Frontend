@@ -7,7 +7,8 @@
 .photosPage{
     background-color: rgba(65, 65, 65, 0.7);
     height: 100vh;
-    position: absolute;
+    position: fixed;
+    z-index: 1001;
 }
 
 .photo{
@@ -17,19 +18,18 @@
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
-    margin-right: 10px;
     
 }
 
 .image{
     height: 93vh;
-    width: 92%;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     object-fit: contain;
-    margin: auto;
 }
 
 .tweetsAndReplies{
-    width: 500px;
     height: 100vh;
     border-left: 1px solid var(--twitterBorder);
     background-color: white !important;
@@ -52,12 +52,12 @@
 
 .forward{
     position: absolute;
-    top: 44%;
+    top: 43vh;
 }
 
 .back{
     position: absolute;
-    top: 44%;
+    top: 43vh;
 }
 
 .attributes{
@@ -103,6 +103,24 @@
     transform: rotate(180deg);
 }
 
+.rightArrows{
+    position: absolute;
+    right: 355px;
+}
+
+.rightHidden{
+    position: absolute;
+    right: 0;
+}
+
+.leftArrows{
+    position: absolute;
+}
+
+.icon{
+    font-size: 28px !important;
+}
+
 @media only screen and (max-width: 950px) {
     .tweetsAndReplies{
       display: none;
@@ -110,10 +128,15 @@
     .push{
         visibility: hidden;
     }
-    .photosPage{
+    /* .photosPage{
         width: 110%;
-    }
+    } */
     .forward{
         right: 10%;
+    }
+
+    .rightArrows{
+        position: absolute;
+        right: 10px;
     }
   }
