@@ -76,11 +76,7 @@ const UsersTable = () => {
                   )
                 : users
               ).map((row, index) => {
-                if (index % 2 !== 0) {
-                  return <UserRow key={index} row={row} />;
-                } else {
-                  return <UserRow key={index} row={row} />;
-                }
+                return <UserRow key={index} row={row} id={index} />;
               })}
             </TableBody>
           </Table>

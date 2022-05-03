@@ -20,6 +20,7 @@ const UserRow = (props) => {
         handleOpen={handleOpen}
         class={props.class}
         userId={row._id}
+        id={props.id}
       />
       <CollapsedDetails open={open} user={row} />
     </React.Fragment>
