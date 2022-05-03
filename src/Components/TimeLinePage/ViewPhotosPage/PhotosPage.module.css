@@ -23,7 +23,8 @@
 
 .image{
     height: 93vh;
-    width: fit-content;
+    width:auto;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
     object-fit: contain;
