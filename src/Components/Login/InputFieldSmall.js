@@ -66,8 +66,20 @@ const InputField = (props) => {
     };
   }, [enteredValue, props.itemName]);
 
+  const handleKeyPress = (event) => {
+    event.preventDefault();
+    if (event.key === "Enter") {
+      const username = JSON.parse(localStorage.getItem("userEmailOrName"));
+      if (username === "") {
+        props.handleButtonClick(false);
+      } else {
+        props.handleButtonClick(true);
+      }
+    }
+  };
+
   return (
-    <form>
+    <form onKeyPress={handleKeyPress}>
       <CssTextField
         disabled={props.disable}
         label={props.label}

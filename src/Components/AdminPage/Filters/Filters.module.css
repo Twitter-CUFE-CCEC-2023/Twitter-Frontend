@@ -7,13 +7,6 @@
   color: #3f51b5;
 }
 
-.container {
-  height: 73vh;
-  margin: 3% 10%;
-  padding: 2%;
-  position: relative;
-}
-
 .filtersWrapper {
   display: flex;
   flex-wrap: wrap;
@@ -55,11 +48,6 @@
   .instructions {
     font-size: 110%;
     margin-bottom: 5%;
-  }
-
-  .container {
-    height: 85vh;
-    margin: 2%;
   }
 
   .buttonsGroup {

@@ -6,6 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import TablePagination from "@material-ui/core/TablePagination";
 
 import classess from "./UsersTable.module.css";
+// import BackgroundPaper from "../../BackgroundPaper";
 import LoadingSpinner from "../../../ExtraPages/LoadingSpinner";
 import Header from "./Rows/Header";
 import UserRow from "./Rows/UserRow";
@@ -57,7 +58,7 @@ const UsersTable = () => {
       <TableContainer className={classess.container}>
         {isLoading && (
           <TableBody>
-            <LoadingSpinner style={{ height: "70vh", width: "55vw" }} />
+            <LoadingSpinner className={classess.spinner} />
           </TableBody>
         )}
 
@@ -77,9 +78,7 @@ const UsersTable = () => {
                 : users
               ).map((row, index) => {
                 if (index % 2 !== 0) {
-                  return (
-                    <UserRow key={index} row={row} class={classess.even} />
-                  );
+                  return <UserRow key={index} row={row} />;
                 } else {
                   return <UserRow key={index} row={row} />;
                 }

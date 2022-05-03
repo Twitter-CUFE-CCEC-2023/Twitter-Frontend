@@ -31,8 +31,9 @@
   }
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1024px) {
+@media only screen and (width: 1024px) and (height: 600px) {
   .header {
+    margin-top: 10%;
     position: fixed;
     width: 600px;
     height: 68px;
@@ -42,7 +43,7 @@
   }
 }
 
-@media only screen and (min-width: 0) and (max-width: 300px) {
+/* @media only screen and (min-width: 0) and (max-width: 300px) {
   .header {
     position: fixed;
     width: 350px;
@@ -50,4 +51,4 @@
     top: 0%;
     background-color: white;
   }
-}
+} */

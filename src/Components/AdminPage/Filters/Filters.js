@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
-import Paper from "@material-ui/core/Paper";
-
 import FilterDates from "./FilterDates";
 import FilterGender from "./FilterGender";
 import FilterRegion from "./FilterRegion";
+import BackgroundPaper from "../BackgroundPaper";
 import classes from "./Filters.module.css";
 import BootstrapButton from "../BootstrapButton";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
@@ -51,7 +50,7 @@ function Filters() {
   };
 
   return (
-    <Paper className={classes.container}>
+    <BackgroundPaper>
       <h1 className={classes.instructions}>
         Please select the filters you want to apply
       </h1>
@@ -92,7 +91,7 @@ function Filters() {
           {submitFilters && <CheckRoundedIcon />}
         </BootstrapButton>
       </div>
-    </Paper>
+    </BackgroundPaper>
   );
 }
 

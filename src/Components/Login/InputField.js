@@ -7,7 +7,7 @@ const useStylesReddit = makeStyles(() => ({
     "& label.MuiFocused ": {
       color: "red",
     },
-    width: "438px",
+    width: "440px",
     border: "1px solid rgb(207, 217, 222)",
     overflow: "hidden",
     borderRadius: 4,
@@ -19,6 +19,9 @@ const useStylesReddit = makeStyles(() => ({
       backgroundColor: "#fff",
       border: "2px solid",
       borderColor: "var(--twitterBlue)",
+    },
+    "@media (max-width: 700px)": {
+      width: "79vw",
     },
   },
   focused: {},
@@ -58,7 +61,9 @@ const InputField = (props) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      localStorage.setItem(props.itemName, JSON.stringify(enteredValue));
+      if (props.itemName) {
+        localStorage.setItem(props.itemName, JSON.stringify(enteredValue));
+      }
       props.passData(enteredValue);
     }, 100);
     return () => {
@@ -66,8 +71,20 @@ const InputField = (props) => {
     };
   }, [enteredValue, props.itemName]);
 
+  const handleKeyPress = (event) => {
+    event.preventDefault();
+    if (event.key === "Enter") {
+      const username = JSON.parse(localStorage.getItem("userEmailOrName"));
+      if (username === "") {
+        props.handleButtonClick(false);
+      } else {
+        props.handleButtonClick(true);
+      }
+    }
+  };
+
   return (
-    <form>
+    <form onKeyPress={handleKeyPress}>
       <CssTextField
         disabled={props.disable}
         label={props.label}

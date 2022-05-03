@@ -1,0 +1,13 @@
+.container {
+  height: 73vh;
+  margin: 3% 10%;
+  padding: 2%;
+  position: relative;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 800px) {
+  .container {
+    height: 85vh;
+    margin: 2%;
+  }
+}

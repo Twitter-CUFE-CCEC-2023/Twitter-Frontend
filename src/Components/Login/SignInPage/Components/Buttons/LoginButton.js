@@ -14,7 +14,7 @@ const LoginButton = (props) => {
     props.handleLoadingfn(true);
 
     const username = JSON.parse(localStorage.getItem("userEmailOrName"));
-    const password = JSON.parse(localStorage.getItem("userPassword"));
+    const password = props.data;
 
     if (localStorage.getItem("isMock") !== "true") {
       // Backend request
@@ -29,12 +29,20 @@ const LoginButton = (props) => {
               "UserInfo",
               JSON.stringify(response.data.user)
             );
-            localStorage.removeItem("userPassword");
+            localStorage.removeItem("userEmailOrName");
             if (response.data.user.role === "User") {
-              loginCtx.login(false, response.data.access_token, 360000);
+              loginCtx.login(
+                false,
+                response.data.access_token,
+                response.data.token_expiration_date
+              );
               history.push("/home");
             } else if (response.data.user.role === "Admin") {
-              loginCtx.login(true, response.data.access_token, 360000);
+              loginCtx.login(
+                true,
+                response.data.access_token,
+                response.data.token_expiration_date
+              );
               history.push("/admin");
             }
           } else {
