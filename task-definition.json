@@ -16,7 +16,7 @@
         {
           "hostPort": 443,
           "protocol": "tcp",
-          "containerPort": 443
+          "containerPort": 80
         }
       ],
       "command": null,
@@ -56,25 +56,19 @@
   ],
   "placementConstraints": [],
   "memory": "128",
-  "taskRoleArn": "arn:aws:iam::430017309159:role/ecsTaskExecutionRole",
+  "taskRoleArn": null,
   "compatibilities": [
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:430017309159:task-definition/DeploymentContainerFrontendSSL:1",
-  "family": "DeploymentContainerFrontendSSL",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:430017309159:task-definition/DPFRONTSSL:1",
+  "family": "DPFRONTSSL",
   "requiresAttributes": [
     {
       "targetId": null,
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
     }
   ],
   "pidMode": null,
