@@ -40,7 +40,7 @@ const Mail = (props) => {
                 <InputField
                     label="Name"
                     disable={false}
-                    itemName="UserName"
+                    itemName="Name"
                     maxLength={50}
                 />
             </div>
@@ -51,7 +51,7 @@ const Mail = (props) => {
             <InputField
                 label="Email address"
                 disable={false}
-                itemName="Name"
+                itemName="Email"
                 maxLength={50}
             />
             </div>
@@ -71,7 +71,9 @@ const Mail = (props) => {
                 <Day />
             </div>
             {/* <div className={classes.button}> */}
+            <div className={classes.NextButton}>
             <NextButtonUp handleButtonClick={handleClick} />
+            </div>
             {/* </div> */}
         </div>
         //     </div>

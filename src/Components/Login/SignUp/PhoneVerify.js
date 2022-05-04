@@ -5,7 +5,6 @@ import ClearIcon from "@material-ui/icons/Clear";
 import NextButton from "../Buttons/NextButton";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignUpBackground from "./MailBack";
-import Day from "./DayTest"
 
 const PhoneVerify = () => {
     return (

@@ -1,15 +1,15 @@
 import React from "react";
 import classes from "./NextButtonUp.module.css";
 
-const NextButton = (props) => {
+const NextButtonUp = (props) => {
   const handleClick = () => {
-    const name = JSON.parse(localStorage.getItem("UserName"));
+    const name = JSON.parse(localStorage.getItem("Name"));
     if (name === "") {
       props.handleButtonClick(false);
     } else {
       props.handleButtonClick(true);
     }
-    const email = JSON.parse(localStorage.getItem("Name"));
+    const email = JSON.parse(localStorage.getItem("Email"));
     if (email === "") {
       props.handleButtonClick(false);
     } else {
@@ -27,4 +27,4 @@ const NextButton = (props) => {
   );
 };
 
-export default NextButton;
+export default NextButtonUp;

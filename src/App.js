@@ -21,6 +21,7 @@ import UserProfile from "./Components/UserProfilePage/UserProfile";
 import ImageCropper from "./Components/UserProfilePage/ProfileActions/ImageCropper";
 import FollowingFollowersPage from "./Components/UserProfilePage/FollowingFollowersPage/FollowingFollowersPage";
 import UnderConstructionPage from "./Components/ExtraPages/UnderConstructionPage";
+import SignUpPagePhone from "./Components/Login/SignUp/SignUpPagePhone"
 
 import Admin from "./Components/AdminPage/Admin";
 import UsersList from "./Components/AdminPage/SideBarTabs/UsersList";
@@ -51,7 +52,7 @@ function App() {
           <Route path="/SignIn" component={SignInPage} />
 
           <Route path="/Mail" component={Mail} />
-          <Route path="/Phone" component={Phone} />
+          <Route path="/Phone" component={SignUpPagePhone} />
           <Route path="/phoneVerify" component={PhoneVerify} />
           <Route path="/TrackOption" component={TrackOption} />
           <Route path="/AddPhone" component={AddPhone} />

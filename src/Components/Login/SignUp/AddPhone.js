@@ -1,5 +1,5 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import classes from "./AddPhone.module.css";
 import ClearIcon from "@material-ui/icons/Clear";
 import EmailSignUpNext from "../Buttons/EmailSignUpNext"
@@ -10,9 +10,22 @@ import PhoneNumber from "./PhoneNumber"
 import PhonePrivacyPolicy from "./PhonePrivacyPolicy";
 import SkipButton from "../Buttons/SkipButton"
 import PhoneVerifyNext from "../Buttons/PhoneVerifyNext"
+import Next from "./Buttons/PhoneOptionNext"
+import InputField from "../InputField";
 
-const Mail = () => {
+const Mail = (props) => {
+    const [alert, setAlert] = useState(true);
 
+    const handleClick = (val) => {
+        props.handleButtonClick(val);
+        setAlert(val);
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setAlert(true);
+        }, 5000);
+    }, [alert]);
     return (
         <SignUpBackground>
             <img
@@ -34,8 +47,12 @@ const Mail = () => {
             </div>
             <div className={classes.container}>
             <PhoneNumber />
-            
-            <input type="text" className={classes.input} placeholder="Your Phone Number " />
+                <InputField
+                    label="Your Phone Number"
+                    disable={false}
+                    itemName="PhoneNumber"
+                    maxLength={50}
+                />
             
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
@@ -51,7 +68,7 @@ const Mail = () => {
                 </div>
                     <div className={classes.containerHalf}>
                         <SkipButton />
-                        <PhoneVerifyNext />
+                    <Next handleButtonClick={handleClick}/>
                     </div>
             
             </div>

@@ -8,7 +8,7 @@ import AddPhoneNext from "../Buttons/AddPhoneNext"
 
 const TrackOption = () => {
     return (
-        <SignUpBackground>
+        <div>
             <NavLink to="/" className={classes.closeIcon}>
                 <ClearIcon />
             </NavLink>
@@ -42,7 +42,7 @@ const TrackOption = () => {
 
 
 
-        </SignUpBackground>
+        </div>
     );
 };
 
