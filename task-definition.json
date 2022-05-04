@@ -16,7 +16,7 @@
         {
           "hostPort": 443,
           "protocol": "tcp",
-          "containerPort": 80
+          "containerPort": 443
         }
       ],
       "command": null,
@@ -34,7 +34,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "430017309159.dkr.ecr.us-east-1.amazonaws.com/frontend",
+      "image": "231860476938.dkr.ecr.us-east-1.amazonaws.com/frontend",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -61,8 +61,8 @@
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:430017309159:task-definition/DPFRONTSSL:1",
-  "family": "DPFRONTSSL",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:231860476938:task-definition/DeploymentContainerFrontend:1",
+  "family": "DeploymentContainerFrontend",
   "requiresAttributes": [
     {
       "targetId": null,
