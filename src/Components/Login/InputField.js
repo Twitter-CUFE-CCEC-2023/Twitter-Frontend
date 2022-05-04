@@ -84,7 +84,8 @@ const InputField = (props) => {
   };
 
   return (
-    <form onKeyPress={handleKeyPress}>
+    // <form onKeyPress={handleKeyPress}>
+    <form>
       <CssTextField
         disabled={props.disable}
         label={props.label}

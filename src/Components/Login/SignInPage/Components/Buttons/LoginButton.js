@@ -24,12 +24,14 @@ const LoginButton = (props) => {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {
+          console.log(response);
           if (response.statusText === "OK") {
             localStorage.setItem(
               "UserInfo",
               JSON.stringify(response.data.user)
             );
-            localStorage.removeItem("userEmailOrName");
+            // console.log("role" + response.data.user.role);
+            // localStorage.removeItem("userEmailOrName");
             if (response.data.user.role === "User") {
               loginCtx.login(
                 false,
