@@ -85,11 +85,8 @@ export default function Feed(props) {
   };
 
   const subscribeNotifications = async () => {
-
-    let sw = await navigator.serviceWorker.register("./sw.js");
-    console.log(sw);
-    const response = await instance.get("/subscription").catch( async (err) => {
-    const serviceWorker = await navigator.serviceWorker.ready;
+    const response = await instance.get("/subscription").catch(async (err) => {
+      const serviceWorker = await navigator.serviceWorker.ready;
       const vapidKey = await instance.get("/vapid-key");
       const options = {
         userVisibleOnly: true,
