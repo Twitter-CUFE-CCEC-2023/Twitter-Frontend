@@ -25,9 +25,10 @@ function ProfileData(props) {
   const pathlocation = useLocation();
   let userInPath = pathlocation.pathname.split("/")[2];
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
-  let currentuserName;
+  let currentuserName=currentuser.username;
   const location = useLocation();
   let { userName } = useParams();
+  console.log(userInPath, "userInPath",currentuserName, "currentuserName");
 
   if (currentuser) {
     currentuserName = currentuser.username;
@@ -64,10 +65,7 @@ function ProfileData(props) {
     getTweets();
   }, [pageNumber]);
   
-  useEffect(() => {
-    userTweets=[];
-    getTweets();
-  }, [userName]);
+  
 
   const getTweets = async () => {
     setLoading(true);
@@ -78,7 +76,7 @@ function ProfileData(props) {
     if (!isMock) {
       if (!props.testUrl) {
         const tweets = await instance
-          .get(`/status/tweets/list/${userName}/${userTweets ? pageNumber : '1'}/3`)
+          .get(`/status/tweets/list/${userName}/${pageNumber}/3`)
           .catch(function (error) {
             if (error.response) {
               // Request made and server responded

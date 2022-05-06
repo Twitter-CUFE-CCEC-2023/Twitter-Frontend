@@ -1,7 +1,7 @@
 .coverEditor {
     position: absolute;
     left: 45%;
-    top: 20%;
+    top: 15%;
     border-radius: 50%;
     border-width: 2px;
     color: white;
@@ -10,34 +10,27 @@
     font-size: 30px !important;
     z-index: 1000;
   }
-  
-  .photoEditor {
+  .profileEditor{
     position: absolute;
-    left: 33%;
-    top: 9%;
+    left: 11%;
+    top: 6.5em;
     border-radius: 50%;
     border-width: 2px;
     color: white;
-    background-color: #5b5353;
+    background-color: #535151;
     cursor: pointer;
     font-size: 30px !important;
+    z-index: 1000;
   }
 
   @media screen and (max-width: 705px) {
 
     .coverEditor{
-      top:7rem !important;
-      /* right: 1.8rem; */
-      /* z-index: 1800 !important; */
+      top:14.5vw !important;
       position: absolute;
     }
-  }
-  @media screen and (max-width: 705px) {
-
-    .coverEditor{
-      top:3.5rem !important;
-      /* right: 1.8rem; */
-      /* z-index: 1800 !important; */
-      position: absolute;
+    .profileEditor{
+      top: 34.5vw;
+      left: 12vw;
     }
   }

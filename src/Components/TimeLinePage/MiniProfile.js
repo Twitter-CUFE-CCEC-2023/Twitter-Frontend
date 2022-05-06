@@ -30,6 +30,7 @@ function MiniProfile(props) {
           isFollowing={props.isFollowing}
           onFollow={onFollow}
           className={classes.miniButton}
+          username={props.userName}
         ></FollowButton>
         </div>
       </div>

@@ -38,8 +38,8 @@ function ProfileInfo(props) {
       </div>
 
       <div className={`${classes.followesRow}row  mt-2 no-gutters`}>
-        <FollowingButton followingNum={props.followers_count} />
-        <FollowersButton followersNum={props.following_count} />
+        <FollowingButton followingNum={props.following_count} />
+        <FollowersButton followersNum={props.followers_count} />
       </div>
     </Fragment>
   );

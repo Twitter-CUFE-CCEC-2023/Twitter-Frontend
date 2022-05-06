@@ -6,15 +6,75 @@ import coverphoto from "../../../Assets/new-york-city.jpg";
 import InputBox from "./InputBox";
 import CameraEnhanceOutlinedIcon from "@mui/icons-material/CameraEnhanceOutlined";
 import ImageUploader from "./ImageUploader";
+import instance from "../../axios";
 
 function EditProfileButton() {
-  const [croppedCoverPhoto, setCroppedCoverPhoto] = useState(coverphoto);
-  const editCover=(editedcover)=>{
+  const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
+  const [croppedCoverPhoto, setCroppedCoverPhoto] = useState(
+    currentuser.cover_image_url
+      ? currentuser.cover_image_url
+      : "https://jannaschreier.files.wordpress.com/2012/03/website-header-blue-grey-background.jpg"
+  );
+  const [croppedProfilePhoto, setCroppedProfilePhoto] = useState(
+    currentuser.profile_image_url
+  );
+  const [name, setName] = useState(currentuser.name);
+  const [bio, setBio] = useState(currentuser.bio);
+  const [website, setWebsite] = useState(currentuser.website);
+  const [location, setLocation] = useState(currentuser.location);
+
+  const editCover = (editedcover) => {
     setCroppedCoverPhoto(editedcover);
+  };
+  const editProfilePhoto = (editedprofile) => {
+    setCroppedProfilePhoto(editedprofile);
+  };
+  console.log('croppedProfilePhoto', croppedProfilePhoto)
+  const resetModal = () => {
+    setCroppedCoverPhoto(
+      currentuser.cover_image_url
+        ? currentuser.cover_image_url
+        : "https://jannaschreier.files.wordpress.com/2012/03/website-header-blue-grey-background.jpg"
+    );
+    setCroppedProfilePhoto(
+      currentuser.profile_image_url
+        ? currentuser.profile_image_url
+        : "https://pbs.twimg.com/profile_images/1492532221110104067/_3ozwoyh_400x400.jpg"
+    );
+  };
+  const onSaveEdits = () => {
+    instance
+      .put("/user/update-profile", {
+        "name": name,
+        "bio": bio,
+        "website": website,
+        "location": location,
+        "profile_image_url": croppedProfilePhoto,
+      })
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+        //set local storage
+        localStorage.setItem("UserInfo", JSON.stringify(res.data.user));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-  const resetModal=()=>{
-    setCroppedCoverPhoto(coverphoto);
+  const changeNameVal=(value)=>{
+    setName(value);
+    console.log(value);
   }
+  const changeBioVal=(value)=>{
+    setBio(value);
+  }
+  const changeWebsiteVal=(value)=>{
+    setWebsite(value);
+  }
+  const changeLocationVal=(value)=>{
+    setLocation(value);
+  }
+
   return (
     <Fragment>
       <button
@@ -30,9 +90,7 @@ function EditProfileButton() {
         id="myModal"
       >
         <div className={`${classes.modalDialog} modal-dialog `}>
-    
           <div className={`${classes.modalContent} modal-content p-0`}>
-          
             <div className={`${classes.modalHeader} modal-header pb-3 pt-2 `}>
               <CloseIcon
                 className={`${classes.closeIcon} ps-0  me-4`}
@@ -48,37 +106,75 @@ function EditProfileButton() {
                 type="button"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                onClick={onSaveEdits}
               >
                 Save
               </button>
             </div>
-            
+
             <div className={`${classes.modalBody} modal-body py-0 px-1`}>
-            
-            <ImageUploader className={classes.cropUploader} editCover={editCover} croppedCoverPhoto={croppedCoverPhoto}></ImageUploader>
-              <div className={`${classes.coverPhotoEdit}`}>
-                <img src={croppedCoverPhoto} alt="" className={` img-fluid py-0`} />
-                
+              <ImageUploader
+                profileOrCover="cover"
+                className={classes.coverCropUploader}
+                editPhoto={editCover}
+                croppedPhoto={croppedCoverPhoto}
+              ></ImageUploader>
+              <ImageUploader
+                profileOrCover="profile"
+                className={classes.profileCropUploader}
+                editPhoto={editProfilePhoto}
+                croppedPhoto={croppedProfilePhoto}
+              ></ImageUploader>
+              <div className={`${classes.coverPhotoEdit} row`}>
+                <img
+                  width="596"
+                  height="198"
+                  src={croppedCoverPhoto}
+                  alt=""
+                  className={`${classes.coverImage} img-fluid py-0`}
+                />
+
                 <div className={`${classes.profileImageContainer}`}>
                   <img
                     className={`${classes.profilePhotoEdit} img-fluid`}
-                    src="https://pbs.twimg.com/profile_images/1492532221110104067/_3ozwoyh_400x400.jpg"
+                    src={croppedProfilePhoto}
                     alt=""
                   />
-                  
-                  <CameraEnhanceOutlinedIcon
-                    className={`${classes.photoEditor}`}
-                  />
-                  
                 </div>
-               
               </div>
-              
+
               <form action="">
-                <InputBox inputName="Name" inputValue="عمرو اكا زيكا"></InputBox>
-                <InputBox inputName="Bio" inputValue="Al Ahly"></InputBox>
-                <InputBox inputName="Location" inputValue=""></InputBox>
-                <InputBox inputName="Website" inputValue=""></InputBox>
+                <InputBox
+                  inputName="Name"
+                  inputValue={currentuser.name}
+                  onChangeVal={changeNameVal}
+                ></InputBox>
+                <InputBox
+                  inputName="Bio"
+                  inputValue={currentuser.bio}
+                  onChangeVal={changeBioVal}
+                ></InputBox>
+                <InputBox
+                  inputName="Location"
+                  inputValue={currentuser.location}
+                  onChangeVal={changeLocationVal}
+                ></InputBox>
+                <InputBox
+                  inputName="Website"
+                  inputValue={currentuser.website}
+                  onChangeVal={changeWebsiteVal}
+                ></InputBox>
+                <label for="birthday" className={`${classes.birthdayLabel}`}>
+                  Birth date:
+                </label>
+                <br />
+                <input
+                  type="date"
+                  id="birthday"
+                  name="birthday"
+                  max="2012-01-01"
+                  className={`${classes.birthdayInput}`}
+                ></input>
               </form>
             </div>
             <div className="modal-footer"></div>
