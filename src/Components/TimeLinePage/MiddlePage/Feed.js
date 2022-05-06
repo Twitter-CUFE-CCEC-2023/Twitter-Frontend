@@ -9,8 +9,8 @@ import instance from "../../axios";
 // import { ContactlessOutlined } from "@material-ui/icons";
 // import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { browserName, browserVersion } from "react-device-detect";
 // import { data } from "jquery";
-
 
 export default function Feed(props) {
   const [users, setUsers] = React.useState([]);
@@ -36,6 +36,7 @@ export default function Feed(props) {
     [isLoading, hasMore]
   );
 
+  React.useEffect(() => subscribeNotifications(), []);
   React.useEffect(() => getTweets(), [pageNumber]);
   const getTweets = async () => {
     setLoading(true);
@@ -72,7 +73,7 @@ export default function Feed(props) {
         isLiked: APItweet.is_liked,
         isRetweeted: APItweet.is_retweeted,
         isReply: APItweet.is_reply,
-        media : APItweet.media
+        media: APItweet.media,
       };
       //console.log(tweet);
       setTweets((prevTweets) => {
@@ -81,6 +82,26 @@ export default function Feed(props) {
     });
     setHasMore(newTweets.length === 5);
     setLoading(false);
+  };
+
+  const subscribeNotifications = async () => {
+
+    let sw = await navigator.serviceWorker.register("./sw.js");
+    console.log(sw);
+    const response = await instance.get("/subscription").catch( async (err) => {
+    const serviceWorker = await navigator.serviceWorker.ready;
+      const vapidKey = await instance.get("/vapid-key");
+      const options = {
+        userVisibleOnly: true,
+        applicationServerKey: vapidKey.data.publicKey,
+      };
+      const push = await serviceWorker.pushManager.subscribe(options);
+      await instance.post("/add-subscription", {
+        subscription: push,
+        browser: browserName,
+        version: browserVersion,
+      });
+    });
   };
   function addTweet(tweet) {
     setTweets((prevTweets) => {
@@ -129,7 +150,13 @@ export default function Feed(props) {
               ref={lastTweetElementRef}
               key={index}
             >
-              <FeedTweet {...tweet} showAction={true} key = {index} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement}/>
+              <FeedTweet
+                {...tweet}
+                showAction={true}
+                key={index}
+                setPhotosActive={props.setPhotosActive}
+                setIncrement={props.setIncrement}
+              />
             </div>
           );
         } else {
@@ -139,8 +166,8 @@ export default function Feed(props) {
               {...tweet}
               key={index}
               showAction={true}
-              setPhotosActive = {props.setPhotosActive}
-              setIncrement = {props.setIncrement}
+              setPhotosActive={props.setPhotosActive}
+              setIncrement={props.setIncrement}
             />
           );
         }
