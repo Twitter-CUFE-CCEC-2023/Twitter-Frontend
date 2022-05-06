@@ -25,7 +25,7 @@ const LoginButton = (props) => {
         })
         .then((response) => {
           console.log(response);
-          if (response.statusText === "OK") {
+          if (response.status === 200) {
             localStorage.setItem(
               "UserInfo",
               JSON.stringify(response.data.user)
@@ -53,6 +53,7 @@ const LoginButton = (props) => {
           props.handleLoadingfn(false);
         })
         .catch((err) => {
+          console.log(err);
           props.handleLoadingfn(false);
           if (err.response.status === 401) {
             props.handleLoginClickfn(false);
