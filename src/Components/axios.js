@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://backendlb-719190234.us-east-1.elb.amazonaws.com",
+  baseURL: "https://backlb.twittercloneteamone.tk",
   headers: {
     "Access-Control-Allow-Credentials": true,
     "Access-Control-Allow-Origin": "*",

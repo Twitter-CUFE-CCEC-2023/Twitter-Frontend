@@ -80,8 +80,6 @@ const UserNameRow = (props) => {
         >
           {!props.ban && <span>ban</span>}
           {props.ban && <span>unban</span>}
-          {/* {!ban && <span>ban</span>}
-          {ban && <span>unban</span>} */}
           {openModal && (
             <BanModal
               setOpenModalValue={closeModal}
