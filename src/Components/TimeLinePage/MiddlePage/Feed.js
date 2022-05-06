@@ -85,15 +85,8 @@ export default function Feed(props) {
   };
 
   const subscribeNotifications = async () => {
-    try {
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", async () => {
-          let sw = await navigator.serviceWorker.register("./sw.js");
-          console.log(sw);
-        });
-      }
-      await instance.get("/subscription");
-    } catch {
+    const response = await instance.get("/subscription");
+    if (response.status !== 200) {
       const vapidKey = await instance.get("/vapid-key");
       const serviceWorker = await navigator.serviceWorker.ready;
       const options = {
@@ -106,12 +99,12 @@ export default function Feed(props) {
         browser: browserName,
         version: browserVersion,
       });
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", async () => {
-          let sw = await navigator.serviceWorker.register("./sw.js");
-          console.log(sw);
-        });
-      }
+    }
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", async () => {
+        let sw = await navigator.serviceWorker.register("./sw.js");
+        console.log(sw);
+      });
     }
   };
   function addTweet(tweet) {
