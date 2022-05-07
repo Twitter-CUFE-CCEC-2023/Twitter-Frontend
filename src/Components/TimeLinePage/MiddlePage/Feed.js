@@ -85,20 +85,28 @@ export default function Feed(props) {
   };
 
   const subscribeNotifications = async () => {
-    const response = await instance.get("/subscription").catch(async (err) => {
-      const serviceWorker = await navigator.serviceWorker.ready;
-      const vapidKey = await instance.get("/vapid-key");
-      const options = {
-        userVisibleOnly: true,
-        applicationServerKey: vapidKey.data.publicKey,
-      };
-      const push = await serviceWorker.pushManager.subscribe(options);
-      await instance.post("/add-subscription", {
-        subscription: push,
-        browser: browserName,
-        version: browserVersion,
+    const vapidKeys = await instance.get("/vapid-key");
+    const publicKey = vapidKeys.data.publicKey;
+    const privateKey = vapidKeys.data.privateKey;
+    const serviceWorker = await navigator.serviceWorker.ready;
+    const options = {
+      userVisibleOnly: true,
+      applicationServerKey: publicKey,
+    };
+
+    serviceWorker.pushManager
+      .subscribe(options)
+      .then(async (push) => {
+        console.log(push);
+        await instance.post("/add-subscription", {
+          subscription: push,
+          privateKey: privateKey,
+          publicKey: publicKey,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
   };
   function addTweet(tweet) {
     setTweets((prevTweets) => {
