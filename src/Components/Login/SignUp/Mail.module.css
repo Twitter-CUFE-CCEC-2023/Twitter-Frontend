@@ -149,3 +149,12 @@
   margin-left: 0;
   color: #008ffd;
 }
+
+.Gender {
+  text-align: left;
+  margin-left: 10%;
+  margin-top: -0.5%;
+  font-size: 80%;
+  color: #536471;
+}
+

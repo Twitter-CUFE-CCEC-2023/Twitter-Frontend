@@ -5,7 +5,6 @@ import ClearIcon from "@material-ui/icons/Clear";
 import NextButtonUp from "./Buttons/NextButtonUp"
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignUpBackground from "./MailBack";
-import Day from "./DayTest"
 import InputField from "../InputField";
 
 
@@ -23,7 +22,7 @@ const Mail = (props) => {
         }, 5000);
     }, [alert]);
     return (
-        <div>
+        <SignUpBackground>
             <img
                 className={classes.twitterBluelogo}
                 src={twitterBlueLogo}
@@ -41,6 +40,7 @@ const Mail = (props) => {
                     label="Password"
                     disable={false}
                     itemName="Password"
+                    type="password"
                     maxLength={50}
                 />
             </div>
@@ -51,7 +51,7 @@ const Mail = (props) => {
             </div>
             {/* </div> */}
 
-        </div>
+        </SignUpBackground>
     );
 };
 

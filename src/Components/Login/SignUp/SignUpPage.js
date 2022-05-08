@@ -24,7 +24,7 @@ const SignUpPage = () => {
         <SignUpBackground>
             {!nextClicked && <Mail handleButtonClick={handleClick} />}
             {nextClicked && !nextClicked3 && <TrackOption handleButtonClick={handleClick3}/>}
-            {nextClicked && nextClicked3 && <AddPhone handle={()=>{console.log("hello")}}  />}
+            {nextClicked && nextClicked3 && <AddPhone handleButtonClick={handleClick4}  />}
             {nextClicked && nextClicked3 && !nextClicked4 && <Verify handleButtonClick={handleClick}/>}
             {nextClicked && nextClicked3 && nextClicked4 && <Password handleButtonClick={handleClick} />}
         </SignUpBackground>

@@ -5,8 +5,11 @@ import ClearIcon from "@material-ui/icons/Clear";
 import NextButtonUp from "./Buttons/NextButtonUp"
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignUpBackground from "./MailBack";
-import Day from "./DayTest"
+import DateOfBirth from "./DateOfBirth"
 import InputField from "../InputField";
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 
 const Mail = (props) => {
@@ -79,6 +82,17 @@ const Mail = (props) => {
                     Use phone instead
                 </div>
             </NavLink>
+            <div className={classes.Gender}>
+            <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="grouped-native-select">Gender</InputLabel>
+                <Select native defaultValue="00" id="grouped-native-select">
+                    <option aria-label="None" value="" />
+                    <option value="01">Male</option>
+                    <option value="02">Female</option>
+                </Select>
+            </FormControl>
+            </div>
+            <p></p>
             <div className={classes.DateOfBirth} style={{ fontWeight: "bold" }}>
                 Date of birth{" "}
             </div>
@@ -86,7 +100,7 @@ const Mail = (props) => {
                 This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.
             </div>
             <div className={classes.Minor3}>
-                <Day />
+                <DateOfBirth />
             </div>
 
             {/* <div className={classes.button}> */}

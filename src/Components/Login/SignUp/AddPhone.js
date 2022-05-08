@@ -5,7 +5,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import EmailSignUpNext from "../Buttons/EmailSignUpNext"
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignUpBackground from "./MailBack";
-import Day from "./DayTest"
+
 import PhoneNumber from "./PhoneNumber"
 import PhonePrivacyPolicy from "./PhonePrivacyPolicy";
 import SkipButton from "../Buttons/SkipButton"
@@ -13,7 +13,7 @@ import PhoneVerifyNext from "../Buttons/PhoneVerifyNext"
 import PhoneOptionNext from "./Buttons/PhoneOptionNext"
 import InputField from "../InputField";
 
-const Mail = (props) => {
+const AddPhone = (props) => {
     const [alert, setAlert] = useState(true);
 
     const handleClick = (val) => {
@@ -75,4 +75,4 @@ const Mail = (props) => {
     );
 };
 
-export default Mail;
+export default AddPhone;

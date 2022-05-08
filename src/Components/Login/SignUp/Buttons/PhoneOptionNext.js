@@ -1,22 +1,17 @@
 import React, { useContext } from "react";
 import classes from "./PhoneOptionNext.module.css";
 import axios from "../../../axios";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const PhoneOptionNext = (props) => {
   const handleClick = () => {
     const Number = JSON.parse(localStorage.getItem("PhoneNumber"));
     props.handleButtonClick(true);
-    // const Code = JSON.parse(localStorage.getItem("PhoneCode"));
-    // if (Code === "") {
-    //   props.handleButtonClick(false);
-    // } else {
-    //   props.handleButtonClick(true);
-    // }
-    let verification = {  };
-    axios
-      .put("/auth/verify-credentials", verification, {
-        headers: { "Content-Type": "application/json" },
-      })
+    // let verification = {  };
+    // axios
+    //   .put("/auth/verify-credentials", verification, {
+    //     headers: { "Content-Type": "application/json" },
+    //   })
   };
 
   return (

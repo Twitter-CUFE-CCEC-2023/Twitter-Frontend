@@ -5,7 +5,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import NextButton from "../Buttons/NextButton";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignUpBackground from "./MailBack";
-import Day from "./DayTest"
+import DateOfBirth from "./DateOfBirth"
 import PhoneVerifyNext from "../Buttons/PhoneVerifyNext"
 import InputField from "../InputField";
 
@@ -48,7 +48,7 @@ const Phone = () => {
                 <div className={classes.Minor3}>
                     This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.
                 </div>
-                <Day />
+                <DateOfBirth />
                 <PhoneVerifyNext />
             </div>
         </div>
