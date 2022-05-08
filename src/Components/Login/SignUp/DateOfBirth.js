@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -13,8 +13,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function GroupedSelect() {
+    const [month, setmonth] = useState()
     const classes = useStyles();
     const Monthchanged = (value) => {
+        setmonth(value.target.value)
         console.log(value.target.value);
     }
     const Daychanged = (value) => {

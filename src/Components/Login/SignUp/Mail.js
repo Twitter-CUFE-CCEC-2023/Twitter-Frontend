@@ -14,6 +14,7 @@ import Select from '@material-ui/core/Select';
 
 const Mail = (props) => {
     const [alert, setAlert] = useState(true);
+    const [emailcheck, setemail] = useState(true);
     const [day, setDay] = useState(true);
     const [month, setMonth] = useState(true);
     const [year, setYear] = useState(true);
@@ -30,6 +31,11 @@ const Mail = (props) => {
     }, [alert]);
     useEffect(() => {
         setTimeout(() => {
+            setemail(true);
+        }, 5000);
+    }, [emailcheck]);
+    useEffect(() => {
+        setTimeout(() => {
             setDay(true);
         }, 5000);
     }, [day]);
@@ -43,6 +49,9 @@ const Mail = (props) => {
             setYear(true);
         }, 5000);
     }, [year]);
+    const Genderchanged = (value) => {
+        console.log(value.target.value);
+    }
     return (
         <div>
             <img
@@ -85,10 +94,10 @@ const Mail = (props) => {
             <div className={classes.Gender}>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-native-select">Gender</InputLabel>
-                <Select native defaultValue="00" id="grouped-native-select">
+                <Select onChange={Genderchanged} native defaultValue="00" id="grouped-native-select" itemname="Gender">
                     <option aria-label="None" value="" />
-                    <option value="01">Male</option>
-                    <option value="02">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                 </Select>
             </FormControl>
             </div>

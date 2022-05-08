@@ -5,13 +5,9 @@ import { NavLink } from "react-router-dom";
 const ButtonSignUp = (props) => {
     return (
         <div className={classes.container}>
-
-            <NavLink to="/AddPhone" className={classes.navLink}>
-                <div className={classes.buttonSignUp}>
-
-                    <p className={classes.content}>Next</p>
-                </div>
-            </NavLink>
+            <div className={classes.buttonSignUp}>
+                <p className={classes.content} onClick={props.handleButtonClick}>Next</p>
+            </div>
         </div>
     );
 };

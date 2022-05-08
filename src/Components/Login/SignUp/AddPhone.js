@@ -15,8 +15,9 @@ import InputField from "../InputField";
 
 const AddPhone = (props) => {
     const [alert, setAlert] = useState(true);
-
+    
     const handleClick = (val) => {
+
         props.handleButtonClick(val);
         setAlert(val);
     };
@@ -27,7 +28,7 @@ const AddPhone = (props) => {
         }, 5000);
     }, [alert]);
     return (
-        <SignUpBackground>
+        <div>
             <img
                 className={classes.twitterBluelogo}
                 src={twitterBlueLogo}
@@ -71,7 +72,7 @@ const AddPhone = (props) => {
                     </div>
             
             </div>
-        </SignUpBackground>
+        </div>
     );
 };
 
