@@ -10,14 +10,14 @@ import PhoneNumber from "./PhoneNumber"
 import PhonePrivacyPolicy from "./PhonePrivacyPolicy";
 import SkipButton from "../Buttons/SkipButton"
 import PhoneVerifyNext from "../Buttons/PhoneVerifyNext"
-import Next from "./Buttons/PhoneOptionNext"
+import PhoneOptionNext from "./Buttons/PhoneOptionNext"
 import InputField from "../InputField";
 
 const Mail = (props) => {
     const [alert, setAlert] = useState(true);
 
     const handleClick = (val) => {
-        props.handle(val);
+        props.handleButtonClick(val);
         setAlert(val);
     };
 
@@ -67,7 +67,7 @@ const Mail = (props) => {
                     </label>
                 </div>
                     <div className={classes.NextButton}>
-                        <Next handleButtonClick={handleClick}/>
+                    <PhoneOptionNext handleButtonClick={handleClick}/>
                     </div>
             
             </div>

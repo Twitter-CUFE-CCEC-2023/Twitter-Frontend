@@ -11,7 +11,7 @@ import InputField from "../InputField";
 
 const Phone = () => {
     return (
-        <SignUpBackground>
+        <div>
             <img
                 className={classes.twitterBluelogo}
                 src={twitterBlueLogo}
@@ -51,7 +51,7 @@ const Phone = () => {
                 <Day />
                 <PhoneVerifyNext />
             </div>
-        </SignUpBackground>
+        </div>
     );
 };
 

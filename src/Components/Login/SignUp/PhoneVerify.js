@@ -38,7 +38,7 @@ const PhoneVerify = () => {
                     maxLength={50}
                 />
                 <div className={classes.Minor4}>
-                    <NavLink to="" >
+                    <NavLink to="/Password" >
                         Didn't receive email?
                     </NavLink>
                 </div>

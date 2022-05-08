@@ -12,6 +12,7 @@ import Phone from "./Components/Login/SignUp/Phone";
 import PhoneVerify from "./Components/Login/SignUp/PhoneVerify";
 import TrackOption from "./Components/Login/SignUp/TrackOption";
 import AddPhone from "./Components/Login/SignUp/AddPhone";
+import Password from "./Components/Login/SignUp/Password";
 
 import Home from "./Components/TimeLinePage/Home";
 import AllNotificationsPage from "./Components/Notifications/AllNotificationsPage";
@@ -56,6 +57,7 @@ function App() {
           <Route path="/phoneVerify" component={PhoneVerify} />
           <Route path="/TrackOption" component={TrackOption} />
           <Route path="/AddPhone" component={AddPhone} />
+          <Route path="/Password" component={Password} />
 
           {loginCtx.isLoggedIn && !loginCtx.isAdmin && (
             <Route path="/home" component={Home} />

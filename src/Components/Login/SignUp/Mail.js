@@ -88,14 +88,14 @@ const Mail = (props) => {
             <div className={classes.Minor3}>
                 <Day />
             </div>
+
             {/* <div className={classes.button}> */}
             <div className={classes.NextButton}>
             <NextButtonUp handleButtonClick={handleClick} />
             </div>
             {/* </div> */}
+            
         </div>
-        //     </div>
-        // </div>
     );
 };
 
