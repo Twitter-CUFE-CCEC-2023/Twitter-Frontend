@@ -17,7 +17,7 @@ const Mail = (props) => {
     const [alert, setAlert] = useState(true);
 
     const handleClick = (val) => {
-        props.handleButtonClick(val);
+        props.handle(val);
         setAlert(val);
     };
 
@@ -66,9 +66,8 @@ const Mail = (props) => {
                         <PhonePrivacyPolicy />
                     </label>
                 </div>
-                    <div className={classes.containerHalf}>
-                        <SkipButton />
-                    <Next handleButtonClick={handleClick}/>
+                    <div className={classes.NextButton}>
+                        <Next handleButtonClick={handleClick}/>
                     </div>
             
             </div>

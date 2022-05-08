@@ -39,7 +39,7 @@ const Phone = () => {
                 />
                 <NavLink to="/Mail" className={classes.navLink}>
                     <div className={classes.Use}>
-                        <p className={classes.content}>Use Email instead</p>
+                        <p className={classes.content}>Use email instead</p>
                     </div>
                 </NavLink>
                 <div className={classes.DateOfBirth} style={{ fontWeight: "bold" }}>

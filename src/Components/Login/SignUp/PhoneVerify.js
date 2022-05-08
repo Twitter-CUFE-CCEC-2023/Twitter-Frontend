@@ -5,6 +5,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import NextButton from "../Buttons/NextButton";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignUpBackground from "./MailBack";
+import InputField from "../InputField";
 
 const PhoneVerify = () => {
     return (
@@ -30,9 +31,14 @@ const PhoneVerify = () => {
                 <div className={classes.Minor3}>
                     Enter it below to verify your email.
                 </div>
-                <input type="text" className={classes.input} placeholder="Verification Code" />
+                <InputField
+                    label="Verification Code"
+                    disable={false}
+                    itemName="VerificationCode"
+                    maxLength={50}
+                />
                 <div className={classes.Minor4}>
-                    <NavLink to="/" >
+                    <NavLink to="" >
                         Didn't receive email?
                     </NavLink>
                 </div>

@@ -11,17 +11,35 @@ import InputField from "../InputField";
 
 const Mail = (props) => {
     const [alert, setAlert] = useState(true);
+    const [day, setDay] = useState(true);
+    const [month, setMonth] = useState(true);
+    const [year, setYear] = useState(true);
 
     const handleClick = (val) => {
         props.handleButtonClick(val);
         setAlert(val);
     };
-
+    //Use above for day month and year to gain their value
     useEffect(() => {
         setTimeout(() => {
             setAlert(true);
         }, 5000);
     }, [alert]);
+    useEffect(() => {
+        setTimeout(() => {
+            setDay(true);
+        }, 5000);
+    }, [day]);
+    useEffect(() => {
+        setTimeout(() => {
+            setMonth(true);
+        }, 5000);
+    }, [month]);
+    useEffect(() => {
+        setTimeout(() => {
+            setYear(true);
+        }, 5000);
+    }, [year]);
     return (
         <div>
             <img
@@ -58,7 +76,7 @@ const Mail = (props) => {
 
             <NavLink to="/Phone">
                 <div className={classes.content2}>
-                    Use phone number instead
+                    Use phone instead
                 </div>
             </NavLink>
             <div className={classes.DateOfBirth} style={{ fontWeight: "bold" }}>

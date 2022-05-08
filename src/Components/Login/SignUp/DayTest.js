@@ -11,14 +11,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 export default function GroupedSelect() {
     const classes = useStyles();
-
+    const Monthchanged = (value) => {
+        console.log(value.target.value);
+    }
+    const Daychanged = (value) => {
+        console.log(value.target.value);
+    }
+    const Yearchanged = (value) => {
+        console.log(value.target.value);
+    }
     return (
         <div>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-native-select">Month</InputLabel>
-                <Select native defaultValue="" id="grouped-native-select">
+                <Select onChange={Monthchanged} native defaultValue="03" id="grouped-native-select">
                     <option aria-label="None" value="" />
                     <option value="01">January</option>
                     <option value="02">February</option>
@@ -36,7 +45,7 @@ export default function GroupedSelect() {
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-select">Day</InputLabel>
-                <Select native defaultValue="" id="grouped-native-select">
+                <Select onChange={Daychanged} native defaultValue="" id="grouped-native-select">
                     <option aria-label="None" value="" />
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -73,7 +82,7 @@ export default function GroupedSelect() {
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-select">Year</InputLabel>
-                <Select native defaultValue="" id="grouped-native-select">
+                <Select onChange={Yearchanged} native defaultValue="" id="grouped-native-select">
                     <option aria-label="None" value="" />
                     <option value="01">1980</option>
                     <option value="02">1981</option>
