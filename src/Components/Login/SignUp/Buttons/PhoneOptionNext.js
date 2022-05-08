@@ -6,7 +6,9 @@ import { propTypes } from "react-bootstrap/esm/Image";
 const PhoneOptionNext = (props) => {
   const handleClick = () => {
     const Number = JSON.parse(localStorage.getItem("PhoneNumber"));
-    props.handleButtonClick(true);
+    if(true){
+      props.handleButtonClick(true);
+    }
     // let verification = {  };
     // axios
     //   .put("/auth/verify-credentials", verification, {
