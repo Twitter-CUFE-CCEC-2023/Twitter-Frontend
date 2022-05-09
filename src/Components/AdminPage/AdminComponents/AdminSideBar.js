@@ -88,7 +88,7 @@ const AdminSideBar = () => {
                 color: "rgba(0, 0, 0, 0.8)",
               }}
             >
-              <p onClick={handleLogout}>
+              <div onClick={handleLogout}>
                 <ListItem button key={"logout"}>
                   <ListItemIcon style={{ minWidth: 0, marginRight: "15px" }}>
                     <ExitToAppRoundedIcon />
@@ -98,7 +98,7 @@ const AdminSideBar = () => {
                     primary="Logout"
                   />
                 </ListItem>
-              </p>
+              </div>
             </NavLink>
             <Divider />
           </List>

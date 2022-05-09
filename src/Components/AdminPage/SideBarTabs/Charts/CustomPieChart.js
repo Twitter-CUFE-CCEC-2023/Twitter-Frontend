@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Chart.module.css";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 
@@ -103,10 +103,14 @@ const CustomPieChart = (props) => {
     setActiveIndex(index);
   };
 
+  useEffect(() => {
+    console.log("screen", window.innerWidth);
+  }, [window.innerWidth]);
+
   return (
     <div className={classes.chartContainer}>
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={400} height={400}>
+        <PieChart width={200} height={200}>
           <Pie
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
@@ -117,6 +121,8 @@ const CustomPieChart = (props) => {
             label={renderCustomizedLabel}
             innerRadius={100}
             outerRadius={120}
+            // innerRadius={window.innerWidth > 900 ? 100 : 60}
+            // outerRadius={window.innerWidth > 900 ? 120 : 80}
             fill="#8884d8"
             dataKey="value"
             onMouseEnter={onPieEnter}

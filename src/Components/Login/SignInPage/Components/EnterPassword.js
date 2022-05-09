@@ -62,6 +62,8 @@ const EnterPassword = () => {
                 label="Password"
                 passData={forwardPassword}
                 maxLength={20}
+                handleButtonClick={handleLoginClick}
+                handleLoadingfn={handleLoading}
               />
               <p className={classes.forgetPassword}>Forgot Password?</p>
 

@@ -2,10 +2,12 @@
   height: 66vh;
 }
 
-.spinner {
+/* .spinner {
   height: 66vh;
-  width: 55vw;
-}
+  width: 65vw;
+
+  height: 40vh;
+} */
 
 .paper {
   height: 73vh;
@@ -32,3 +34,9 @@
     width: 75vw;
   } */
 }
+
+/* @media only screen and (width: 280) {
+  .paper {
+    height: 130vh;
+  }
+} */

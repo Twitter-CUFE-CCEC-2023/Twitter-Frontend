@@ -223,7 +223,7 @@ const calculateRemainingTime = (expirationTime) => {
 const retrieveStoredToken = () => {
   const storedToken = localStorage.getItem("token");
   const storedExpirationDate = localStorage.getItem("expirationTime");
-  // const storedAdmin = localStorage.getItem("admin");
+  const storedAdmin = localStorage.getItem("admin");
 
   const remainingTime = calculateRemainingTime(storedExpirationDate);
 
@@ -237,7 +237,7 @@ const retrieveStoredToken = () => {
   return {
     token: storedToken,
     duration: remainingTime,
-    // admin: storedAdmin,
+    admin: storedAdmin,
   };
 };
 
@@ -245,10 +245,10 @@ export const LoginContextProvider = (props) => {
   const tokenData = retrieveStoredToken();
 
   let initialToken;
-  // let initialAdmin;
+  let initialAdmin;
   if (tokenData) {
     initialToken = tokenData.token;
-    // initialAdmin = tokenData.admin;
+    initialAdmin = tokenData.admin;
   }
 
   const [token, setToken] = useState(initialToken);

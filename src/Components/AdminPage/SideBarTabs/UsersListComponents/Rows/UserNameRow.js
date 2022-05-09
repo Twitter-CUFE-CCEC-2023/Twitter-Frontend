@@ -9,6 +9,7 @@ import Avatar from "@material-ui/core/Avatar";
 
 import BootstrapButton from "../../../BootstrapButton";
 import BanModal from "../Modal/BanModal";
+import UnBanModal from "../Modal/UnBanModal";
 
 const COLORS = [
   "#0088FE",
@@ -32,19 +33,36 @@ const useRowStyles = makeStyles({
 const UserNameRow = (props) => {
   const classes = useRowStyles();
 
-  const [ban, setBan] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const [ban, setBan] = useState(props.ban);
+  const [openModalBan, setOpenModalBan] = useState(false);
+  const [openModalUnban, setOpenModalUnban] = useState(false);
 
-  const closeModal = (value) => {
+  const closeModalBan = (value) => {
     setTimeout(() => {
-      setOpenModal(value);
+      setOpenModalBan(value);
     }, 100);
-    // setBan(false);
+  };
+
+  const closeModalUnban = (value) => {
+    setTimeout(() => {
+      setOpenModalUnban(value);
+    }, 100);
   };
 
   const handleBanModal = () => {
-    setBan(true);
-    setOpenModal(true);
+    if (!ban) {
+      setOpenModalBan(true);
+    } else {
+      setOpenModalUnban(true);
+    }
+  };
+
+  const handleBanSuccess = (val) => {
+    setTimeout(() => {
+      setBan(val);
+      setOpenModalBan(false);
+      setOpenModalUnban(false);
+    }, 1000);
   };
 
   return (
@@ -78,13 +96,22 @@ const UserNameRow = (props) => {
           className={classes.margin}
           onClick={handleBanModal}
         >
-          {!props.ban && <span>ban</span>}
-          {props.ban && <span>unban</span>}
-          {openModal && (
+          {!ban && <span>ban</span>}
+          {ban && <span>unban</span>}
+          {openModalBan && !ban && (
             <BanModal
-              setOpenModalValue={closeModal}
-              open={openModal}
+              setOpenModalValue={closeModalBan}
+              open={openModalBan}
               userId={props.userId}
+              handleBanSuccessFn={handleBanSuccess}
+            />
+          )}
+          {openModalUnban && ban && (
+            <UnBanModal
+              setOpenModalValue={closeModalUnban}
+              open={openModalUnban}
+              userId={props.userId}
+              handleBanSuccessFn={handleBanSuccess}
             />
           )}
         </BootstrapButton>

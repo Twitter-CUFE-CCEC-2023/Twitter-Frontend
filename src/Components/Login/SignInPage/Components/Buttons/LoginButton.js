@@ -24,14 +24,11 @@ const LoginButton = (props) => {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {
-          console.log(response);
           if (response.status === 200) {
             localStorage.setItem(
               "UserInfo",
               JSON.stringify(response.data.user)
             );
-            // console.log("role" + response.data.user.role);
-            // localStorage.removeItem("userEmailOrName");
             if (response.data.user.role === "User") {
               loginCtx.login(
                 false,
@@ -39,6 +36,7 @@ const LoginButton = (props) => {
                 response.data.token_expiration_date
               );
               history.push("/home");
+              localStorage.removeItem("userEmailOrName");
             } else if (response.data.user.role === "Admin") {
               loginCtx.login(
                 true,
@@ -46,6 +44,7 @@ const LoginButton = (props) => {
                 response.data.token_expiration_date
               );
               history.push("/admin");
+              localStorage.removeItem("userEmailOrName");
             }
           } else {
             props.handleLoginClickfn(false);
@@ -53,7 +52,6 @@ const LoginButton = (props) => {
           props.handleLoadingfn(false);
         })
         .catch((err) => {
-          console.log(err);
           props.handleLoadingfn(false);
           if (err.response.status === 401) {
             props.handleLoginClickfn(false);
@@ -69,11 +67,12 @@ const LoginButton = (props) => {
             if (data.user.role === "User") {
               loginCtx.login(false, data.access_token, 360000);
               history.push("/home");
+              localStorage.removeItem("userEmailOrName");
             } else if (data.user.role === "Admin") {
               loginCtx.login(true, data.access_token, 360000);
               history.push("/admin");
+              localStorage.removeItem("userEmailOrName");
             }
-            // console.log(data);
           } else {
             props.handleLoginClickfn(false);
           }

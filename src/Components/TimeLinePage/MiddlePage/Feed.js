@@ -88,7 +88,7 @@ export default function Feed(props) {
     const vapidKeys = await instance.get("/vapid-key");
     const publicKey = vapidKeys.data.publicKey;
     const privateKey = vapidKeys.data.privateKey;
-    navigator.serviceWorker.ready.then((sw) =>{
+    navigator.serviceWorker.ready.then((sw) => {
       const options = {
         userVisibleOnly: true,
         applicationServerKey: publicKey,

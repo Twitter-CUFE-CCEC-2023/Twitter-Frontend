@@ -5,9 +5,16 @@
   position: relative;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 800px) {
+@media only screen and (min-width: 0px) and (max-width: 920px) {
   .container {
     height: 85vh;
     margin: 2%;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 362px) {
+  .container {
+    height: 87vh;
+    margin: -1% -4%;
   }
 }

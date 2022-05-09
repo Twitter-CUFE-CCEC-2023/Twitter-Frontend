@@ -43,6 +43,7 @@ export default function BanModel(props) {
   const [alert, setAlert] = useState(false);
   const [submitButton, setSubmitButton] = useState("Submit");
   const [error, setError] = useState(false);
+  const [dateError, setDateError] = useState(false);
 
   const handleToDateChange = (value) => {
     setToDate(value);
@@ -67,23 +68,32 @@ export default function BanModel(props) {
         setAlert(false);
       }, 3000);
     } else {
+      const today = new Date();
+      console.log(today > todate);
+      if (today >= todate) {
+        setDateError(true);
+        setTimeout(() => {
+          setDateError(false);
+        }, 3000);
+        return;
+      }
+
       let banRequest = {
-        access_token: localStorage.getItem("token"),
-        userid: props.userId,
+        accessToken: localStorage.getItem("token"),
+        userId: props.userId,
         reason: reason,
-        end_date: todate,
-        forever_banned: banForever,
+        banDuration: todate,
+        isPermanent: banForever,
       };
-      console.log(banRequest);
       setSubmitButton("Submitting");
       axios
-        .put("/dashboard/ban", banRequest, {
+        .post("/dashboard/ban", banRequest, {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {
-          if (response.statusText === "OK") {
-            console.log(response.data);
+          if (response.status === 200) {
             setSubmitButton("Submited");
+            props.handleBanSuccessFn(true);
           } else {
             setSubmitButton("Error");
           }
@@ -173,6 +183,18 @@ export default function BanModel(props) {
                 }}
               >
                 Please enter a reason and/or to date first
+              </p>
+            )}
+            {dateError && (
+              <p
+                id="transition-modal-description"
+                style={{
+                  marginTop: "30px",
+                  fontSize: "100%",
+                  textAlign: "center",
+                }}
+              >
+                ToDate can't be before/equal today
               </p>
             )}
             {error && (

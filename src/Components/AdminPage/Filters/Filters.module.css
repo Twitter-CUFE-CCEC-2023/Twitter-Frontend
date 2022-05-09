@@ -1,7 +1,6 @@
-/* .gender {
-  margin-left: 2%;
-  display: inline-block;
-} */
+.gender {
+  margin-left: 5%;
+}
 
 .color {
   color: #3f51b5;
@@ -25,23 +24,20 @@
   color: rgba(0, 0, 0, 0.54);
 }
 
-/* .submitButton {
-  position: absolute;
-  right: 1%;
-  bottom: 1%;
-}
-
 .clearFiltersButton {
-  position: absolute;
-  right: 12%;
-  bottom: 1%;
-  width: 150px;
-} */
+  width: 140px;
+  margin-bottom: 5px;
+}
 
 .buttonsGroup {
   position: absolute;
-  right: 1%;
+  right: 3%;
   bottom: 2%;
+
+  display: flex;
+  /* border: 1px solid violet; */
+  /* height: 50px; */
+  /* width: 50%; */
 }
 
 @media only screen and (min-width: 0px) and (max-width: 800px) {
@@ -49,9 +45,24 @@
     font-size: 110%;
     margin-bottom: 5%;
   }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+  .buttonsGroup {
+    right: 0%;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 380px) {
+  .clearFiltersButton {
+    width: 120px;
+    /* margin-bottom: 3px; */
+  }
 
   .buttonsGroup {
-    right: 2%;
-    bottom: 2%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

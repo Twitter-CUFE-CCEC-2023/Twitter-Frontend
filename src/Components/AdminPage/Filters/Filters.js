@@ -11,7 +11,7 @@ import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 function Filters() {
   const [fromdate, setFromDate] = useState(new Date());
   const [todate, setToDate] = useState(new Date());
-  const [gender, setGender] = useState("male");
+  const [gender, setGender] = useState("Male");
   const [regions, setRegions] = useState([]);
 
   const [submitFilters, setSubmitFilters] = useState(false);
@@ -30,11 +30,14 @@ function Filters() {
   };
 
   const handleSubmissiom = () => {
-    window.localStorage.setItem(`filter-From-date`, fromdate);
-    window.localStorage.setItem(`filter-To-date`, todate);
-    window.localStorage.setItem(`filter-gender`, gender);
-    window.localStorage.setItem(`filter-regions`, regions);
+    localStorage.setItem(`filter-From-date`, fromdate);
+    localStorage.setItem(`filter-To-date`, todate);
+    localStorage.setItem(`filter-gender`, gender);
+    localStorage.setItem(`filter-regions`, regions);
     setSubmitFilters(true);
+    setTimeout(() => {
+      setSubmitFilters(false);
+    }, 2000);
   };
 
   const handleClearFilters = () => {
@@ -43,10 +46,10 @@ function Filters() {
     setGender("male");
     setRegions([]);
     setSubmitFilters(false);
-    window.localStorage.removeItem(`filter-To-date`);
-    window.localStorage.removeItem(`filter-From-date`);
-    window.localStorage.removeItem(`filter-gender`);
-    window.localStorage.removeItem(`filter-regions`);
+    localStorage.removeItem(`filter-To-date`);
+    localStorage.removeItem(`filter-From-date`);
+    localStorage.removeItem(`filter-gender`);
+    localStorage.removeItem(`filter-regions`);
   };
 
   return (
@@ -69,27 +72,31 @@ function Filters() {
         <FilterRegion regions={regions} handleChange={handleRegionsChange} />
       </div>
       <div className={classes.buttonsGroup}>
-        <BootstrapButton
-          variant="contained"
-          color="primary"
-          disableRipple
-          className={classes.clearFiltersButton}
-          onClick={handleClearFilters}
-        >
-          Clear filters
-        </BootstrapButton>{" "}
-        <BootstrapButton
-          variant="contained"
-          color="primary"
-          data-testid="submitButton"
-          disableRipple
-          className={classes.submitButton}
-          onClick={handleSubmissiom}
-        >
-          {!submitFilters && "Submit"}
-          {submitFilters && "Submited"}
-          {submitFilters && <CheckRoundedIcon />}
-        </BootstrapButton>
+        <div className={classes.clearFiltersButton}>
+          <BootstrapButton
+            variant="contained"
+            color="primary"
+            disableRipple
+            // className={classes.clearFiltersButton}
+            onClick={handleClearFilters}
+          >
+            Clear filters
+          </BootstrapButton>
+        </div>
+        <div className={classes.submitButton}>
+          <BootstrapButton
+            variant="contained"
+            color="primary"
+            data-testid="submitButton"
+            disableRipple
+            // className={classes.submitButton}
+            onClick={handleSubmissiom}
+          >
+            {!submitFilters && "Submit"}
+            {submitFilters && "Submited"}
+            {submitFilters && <CheckRoundedIcon />}
+          </BootstrapButton>
+        </div>
       </div>
     </BackgroundPaper>
   );

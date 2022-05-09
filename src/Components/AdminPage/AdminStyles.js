@@ -9,14 +9,14 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     width: 175,
-    "@media (max-width: 700px)": {
+    "@media (max-width: 850px)": {
       width: 55,
     },
     flexShrink: 0,
   },
   drawerPaper: {
     width: 175,
-    "@media (max-width: 700px)": {
+    "@media (max-width: 850px)": {
       width: 55,
     },
   },
@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  sideBarMargin: {
+    paddingLeft: "1px",
+    minWidth: 0,
+    marginRight: "15px",
   },
 }));
 
