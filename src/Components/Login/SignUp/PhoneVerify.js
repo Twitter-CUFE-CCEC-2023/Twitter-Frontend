@@ -1,4 +1,4 @@
-
+import React, { useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./PhoneVerify.module.css";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -6,7 +6,34 @@ import SignUp from "./Buttons/SignUpComplete";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import InputField from "../InputField";
 import Alert from "./Alert/Alert"
+import axios from "../../axios"
 const PhoneVerify = () => {
+    useEffect(() => {
+        let verificationObject = {
+            
+        }
+        axios
+            .put("/auth/verify-credentials", verificationObject, {
+                headers: { "Content-Type": "application/json" },
+            })
+            .then((response) => {
+                console.log(response);
+                if (response.status === 200) {
+                    localStorage.setItem(
+                        "UserInfo",
+                        JSON.stringify(response.data.user)
+                    );
+                    localStorage.removeItem("ValidationCode");
+                    localStorage.removeItem("Name");
+                    localStorage.removeItem("Password");
+                    localStorage.removeItem("Email");
+                    localStorage.removeItem("PhoneNumber");
+                    localStorage.removeItem("Username");
+                }
+            })
+            .catch((err) => {
+            });
+    }, []);
     return (
         <div>
             <img
