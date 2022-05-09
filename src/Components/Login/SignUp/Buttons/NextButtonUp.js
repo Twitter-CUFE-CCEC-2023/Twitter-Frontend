@@ -29,8 +29,9 @@ const NextButtonUp = (props) => {
     console.log(props.handleMonthSet);
     console.log(props.handleDaySet);
     console.log(props.handleYearSet);
-    if (name != "" && email.includes("@") && email.includes(".") && (props.handleGenderSet == "Male" || props.handleGenderSet == "Female") && props.handleMonthSet != true 
-    && props.handleDaySet != true && props.handleYearSet != true)
+    if (name != "" && email.includes("@") && email.includes(".") && (props.handleGenderSet == "Male" || props.handleGenderSet == "Female") //&& props.handleMonthSet != true 
+    //&& props.handleDaySet != true && props.handleYearSet != true}
+    )
     {
       props.handleButtonClick(true);
     }

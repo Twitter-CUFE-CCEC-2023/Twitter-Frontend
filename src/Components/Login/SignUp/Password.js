@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import classes from "./Password.module.css";
 import ClearIcon from "@material-ui/icons/Clear";
-import NextButtonUp from "./Buttons/NextButtonUp"
+import PasswordNext from "./Buttons/PasswordNext"
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignUpBackground from "./MailBack";
 import InputField from "../InputField";
@@ -22,7 +22,7 @@ const Mail = (props) => {
         }, 5000);
     }, [alert]);
     return (
-        <SignUpBackground>
+        <div>
             <img
                 className={classes.twitterBluelogo}
                 src={twitterBlueLogo}
@@ -47,11 +47,11 @@ const Mail = (props) => {
 
             {/* <div className={classes.button}> */}
             <div className={classes.NextButton}>
-                <NextButtonUp handleButtonClick={handleClick} />
+                <PasswordNext handleButtonClick={handleClick} />
             </div>
             {/* </div> */}
 
-        </SignUpBackground>
+        </div>
     );
 };
 

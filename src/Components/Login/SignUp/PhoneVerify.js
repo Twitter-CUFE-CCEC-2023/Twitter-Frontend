@@ -2,9 +2,8 @@
 import { NavLink } from "react-router-dom";
 import classes from "./PhoneVerify.module.css";
 import ClearIcon from "@material-ui/icons/Clear";
-import NextButton from "../Buttons/NextButton";
+import SignUp from "./Buttons/SignUpComplete";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
-import SignUpBackground from "./MailBack";
 import InputField from "../InputField";
 
 const PhoneVerify = () => {
@@ -42,7 +41,7 @@ const PhoneVerify = () => {
                         Didn't receive email?
                     </NavLink>
                 </div>
-                <NextButton/>
+                <SignUp/>
             </div>
         </div>
     );

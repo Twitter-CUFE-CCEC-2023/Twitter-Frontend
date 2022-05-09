@@ -11,6 +11,7 @@ const SignUpPage = () => {
     const [nextClicked2, setNextClicked2] = useState(false);
     const [nextClicked3, setNextClicked3] = useState(false);
     const [nextClicked4, setNextClicked4] = useState(false);
+    const [nextClicked5, setNextClicked5] = useState(false);
 
     const handleClick = (click) => {
 
@@ -25,14 +26,17 @@ const SignUpPage = () => {
     const handleClick4 = (click) => {
         setNextClicked4(click);
     };
+    const handleClick5 = (click) => {
+        setNextClicked5(click);
+    };
 
     return (
         <SignUpBackground>
             {!nextClicked && <Mail handleButtonClick={handleClick} />}
             {nextClicked  && !nextClicked2 && <TrackOption handleButtonClick={handleClick2}/>}
             {nextClicked  && nextClicked2  && !nextClicked3 && <AddPhone handleButtonClick={handleClick3} />}
-            {nextClicked  && nextClicked2  && nextClicked3  && !nextClicked4 && <Verify handleButtonClick={handleClick4}/>}
-            {nextClicked  && nextClicked2  && nextClicked3  && nextClicked4  && <Password handleButtonClick={handleClick} />}
+            {nextClicked  && nextClicked2  && nextClicked3  && !nextClicked4 && <Password handleButtonClick={handleClick4}/>}
+            {nextClicked  && nextClicked2  && nextClicked3  && nextClicked4  && <Verify handleButtonClick={handleClick5} />}
         </SignUpBackground>
     );
 };

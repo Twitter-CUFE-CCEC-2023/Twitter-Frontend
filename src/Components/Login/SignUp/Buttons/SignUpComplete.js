@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import classes from "./SignUpComplete.module.css";
-import { LoginContext } from "../../../../../login-context";
-import axios from "../../../../axios";
+import axios from "../../../axios";
 
 const NextButtonUp = (props) => {
   const handleClick = () => {
-    const name = JSON.parse(localStorage.getItem("ValidationCode"));
-    if (name === "") {
+    const Code = JSON.parse(localStorage.getItem("ValidationCode"));
+    if (Code === "") {
       props.handleButtonClick(false);
     } else {
       props.handleButtonClick(true);
