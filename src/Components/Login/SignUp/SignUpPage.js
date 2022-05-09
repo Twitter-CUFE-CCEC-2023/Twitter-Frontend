@@ -7,6 +7,18 @@ import Verify from "./PhoneVerify";
 import Password from "./Password";
 
 const SignUpPage = () => {
+  const [stepOne, setStepOne] = useState(false);
+  const [stepTwo, setStepTwo] = useState(false);
+  const [stepThree, setStepThree] = useState(false);
+
+  const handleSteps = (step) => {
+    if (step == 1) {
+      setStepOne(true);
+      setStepTwo(false);
+      setStepThree(false);
+    }
+  };
+
   const [nextClicked, setNextClicked] = useState(false);
   const [nextClicked2, setNextClicked2] = useState(false);
   const [nextClicked3, setNextClicked3] = useState(false);
@@ -46,6 +58,15 @@ const SignUpPage = () => {
 
   return (
     <SignUpBackground>
+      {stepOne && !stepTwo && !stepThree && (
+        <Mail
+          handleButtonClick={handleClick}
+          handleSetGenderFn={handleSetGender}
+          handleMonthchangedFn={handleMonthchanged}
+          handleDaychangedFn={handleDaychanged}
+          handleYearchangedFn={handleYearchanged}
+        />
+      )}
       {!nextClicked && (
         <Mail
           handleButtonClick={handleClick}

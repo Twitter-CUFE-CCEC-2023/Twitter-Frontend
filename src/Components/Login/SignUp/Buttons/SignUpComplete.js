@@ -28,7 +28,7 @@ const NextButtonUp = (props) => {
         if (response.status === 200) {
           console.log(response);
           // loginCtx.login(false, response.data.access_token, response.data.expirartion_time);
-          history.push("/home");
+          history.push("/SignInPage");
           localStorage.removeItem("ValidationCode");
           localStorage.removeItem("Email");
         }
