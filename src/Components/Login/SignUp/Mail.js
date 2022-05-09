@@ -10,6 +10,7 @@ import InputField from "../InputField";
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Alert from "./Alert/Alert"
 
 
 const Mail = (props) => {
@@ -19,11 +20,6 @@ const Mail = (props) => {
     const [year, setYear] = useState();
     const [gender, setGender] = useState();
 
-    const Genderchanged = (value) => {
-        console.log(value.target.value);
-    }
-
-
     const SetGender = (value) => {
         setGender(value.target.value);
         
@@ -31,14 +27,17 @@ const Mail = (props) => {
     };
     const Monthchanged = (value) => {
         setMonth(value.target.value);
+        console.log(value.target.value);
         //console.log(value.target.value);
     };
     const Daychanged = (value) => {
         setDay(value.target.value);
+        console.log(value.target.value);
         //console.log(value.target.value);
     };
     const Yearchanged = (value) => {
         setYear(value.target.value);
+        console.log(value.target.value);
         //console.log(value.target.value);
     };
     const handleClick = (val) => {
@@ -104,6 +103,17 @@ const Mail = (props) => {
                 />
             </div>
 
+            <p></p>
+
+            <div className={classes.Minor3}>
+                <InputField
+                    label="Username"
+                    disable={false}
+                    itemName="Username"
+                    maxLength={50}
+                />
+            </div>
+
             <NavLink to="/Phone">
                 <div className={classes.content2}>
                     Use phone instead
@@ -139,7 +149,11 @@ const Mail = (props) => {
             <div className={classes.NextButton}>
                 <NextButtonUp handleButtonClick={handleClick} handleGenderSet={gender} handleDaySet={day} handleMonthSet={month} handleYearSet={year} />
             </div>
-
+            {!alert && (
+                <div className={classes.alert}>
+                    <Alert message="Invalid credentials. Please enter all the data." />
+                </div>
+            )}
         </div>
     );
 };

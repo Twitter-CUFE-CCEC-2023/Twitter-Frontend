@@ -6,7 +6,7 @@ import PasswordNext from "./Buttons/PasswordNext"
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import SignUpBackground from "./MailBack";
 import InputField from "../InputField";
-
+import Alert from "./Alert/Alert"
 
 const Mail = (props) => {
     const [alert, setAlert] = useState(true);
@@ -50,7 +50,11 @@ const Mail = (props) => {
                 <PasswordNext handleButtonClick={handleClick} />
             </div>
             {/* </div> */}
-
+            {!alert && (
+                <div className={classes.alert}>
+                    <Alert message="Invalid password. Please enter a valid password." />
+                </div>
+            )}
         </div>
     );
 };

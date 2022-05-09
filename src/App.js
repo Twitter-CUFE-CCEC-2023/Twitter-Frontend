@@ -8,7 +8,6 @@ import MainPage from "./Components/Login/FirstPage/MainPage";
 import SignInPage from "./Components/Login/SignInPage/SignInPage";
 
 import Mail from "./Components/Login/SignUp/SignUpPage";
-import Phone from "./Components/Login/SignUp/Phone";
 import PhoneVerify from "./Components/Login/SignUp/PhoneVerify";
 import TrackOption from "./Components/Login/SignUp/TrackOption";
 import AddPhone from "./Components/Login/SignUp/AddPhone";

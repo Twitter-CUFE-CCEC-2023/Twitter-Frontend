@@ -5,14 +5,9 @@ import ClearIcon from "@material-ui/icons/Clear";
 import SignUp from "./Buttons/SignUpComplete";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import InputField from "../InputField";
-
+import Alert from "./Alert/Alert"
 const PhoneVerify = () => {
     return (
-        // <img
-        //     className={classes.twitterBluelogo}
-        //     src={twitterBlueLogo}
-        //     alt="TwitterLogo"
-        // />
         <div>
             <img
                 className={classes.twitterBluelogo}
@@ -43,6 +38,11 @@ const PhoneVerify = () => {
                 </div>
                 <SignUp/>
             </div>
+            {!alert && (
+                <div className={classes.alert}>
+                    <Alert message="Invalid. Please enter the verification code you received." />
+                </div>
+            )}
         </div>
     );
 };

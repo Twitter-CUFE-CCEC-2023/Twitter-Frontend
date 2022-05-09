@@ -18,7 +18,7 @@ const GroupedSelect = (props) => {
         <div>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-native-select">Month</InputLabel>
-                <Select onSelect={props.MonthBack} native defaultValue="00" id="grouped-native-select">
+                <Select onChange={props.MonthBack} native defaultValue="" id="grouped-native-select">
                     <option aria-label="None" value="" />
                     <option value="01">January</option>
                     <option value="02">February</option>
@@ -36,7 +36,7 @@ const GroupedSelect = (props) => {
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-select">Day</InputLabel>
-                <Select onChange={props.DayBack} native defaultValue="00" id="grouped-native-select" >
+                <Select onChange={props.DayBack} native defaultValue="" id="grouped-native-select" >
                     <option aria-label="None" value="" />
                     <option value="01">01</option>
                     <option value="02">02</option>
