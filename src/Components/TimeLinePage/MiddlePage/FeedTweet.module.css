@@ -5,6 +5,7 @@
   cursor: pointer;
   font-size: 15px;
   flex: auto;
+  max-width: 598px;
 }
 
 .feedTweet:hover {
@@ -15,6 +16,7 @@
   display: flex;
   border: 1px solid var(--twitterBorder);
   font-size: 15px;
+  
 }
 
 .profilePic {
@@ -188,4 +190,8 @@
   color: var(--twitterBlue) !important;
   font-size: 15px !important;
   padding-bottom: 2px !important;
+}
+
+.absolute{
+  position: absolute;
 }

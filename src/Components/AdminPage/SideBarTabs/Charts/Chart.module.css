@@ -1,0 +1,13 @@
+.chartContainer {
+  /* border: 1px solid violet; */
+  height: 55vh;
+  /* width: 60vw; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 90%;
+  /* z-index: 1; */
+}

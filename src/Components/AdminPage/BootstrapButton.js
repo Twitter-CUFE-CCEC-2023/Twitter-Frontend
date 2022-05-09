@@ -9,7 +9,7 @@ const BootstrapButton = withStyles({
     padding: "6px 12px",
     border: "1px solid",
     borderRadius: "100px",
-    width: "125px",
+    width: "127px",
     lineHeight: 1.5,
     backgroundColor: "#3f51b5",
     borderColor: "#3f51b5",
@@ -34,6 +34,9 @@ const BootstrapButton = withStyles({
       boxShadow: "none",
       backgroundColor: "#3b4fbf",
       borderColor: "#3b4fbf",
+    },
+    "@media (max-width: 400px)": {
+      width: "120px",
     },
   },
 })(Button);

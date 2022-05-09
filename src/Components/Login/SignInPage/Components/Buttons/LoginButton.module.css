@@ -2,7 +2,7 @@
   margin-top: 220px;
   padding: 0px;
   height: 52px;
-  width: 450px;
+  width: 440px;
 
   text-decoration: none;
   font-family: sans-serif;
@@ -40,7 +40,7 @@
   margin-top: 220px;
   padding: 0px;
   height: 52px;
-  width: 450px;
+  width: 440px;
 
   text-decoration: none;
   font-family: sans-serif;
@@ -57,10 +57,10 @@
 
 @media only screen and (min-width: 0px) and (max-width: 700px) {
   .loginButton {
-    width: 315px;
+    width: 90vw;
   }
 
   .disabled {
-    width: 315px;
+    width: 90vw;
   }
 }

@@ -3,9 +3,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-.container {
   text-align: left;
 }
 
@@ -16,57 +13,74 @@
 }
 
 .alert {
-  /* position: relative; */
-  /* border: 1px solid violet; */
-  height: 50px;
-  /* width: 100%;
+  height: 40px;
+  width: 440px;
+
   display: flex;
-  justify-content: center; */
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  bottom: -20px;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 300px) {
+@media only screen and (min-width: 0px) and (max-width: 700px) {
   .upperContainer {
-    margin-top: 68px;
-    overflow-x: scroll;
-    width: 350px;
-    /* height: 60%; */
-    position: static;
-    /* width: 100vw; */
-    height: 100vh;
+    margin-top: 4%;
   }
 
   .signInToTwitter {
     font-size: 110%;
   }
+
+  .alert {
+    width: 100%;
+    position: absolute;
+    bottom: 30px;
+    bottom: 2.9px;
+  }
 }
 
-@media only screen and (min-width: 300px) and (max-width: 700px) {
-  .container {
-    margin-top: 4%;
+@media only screen and (min-width: 0px) and (max-width: 359px) {
+  .upperContainer {
+    overflow-x: scroll;
+    width: 100%;
+    width: 300px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 20px;
   }
 
+  .alert {
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+  }
+}
+
+/* @media only screen and (width: 280px) and (height: 653px) {
+  .upperContainer {
+    margin-left: 5px;
+  }
+
+  .alert {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+} */
+
+@media only screen and (width: 1024px) and (height: 600px) {
   .signInToTwitter {
-    font-size: 120%;
+    margin-top: 70px;
   }
 
-  /* .alert {
-    position: inherit;
-  } */
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1024px) {
-  .container {
-    margin-top: 68px;
-  }
-
-  .signInToTwitter {
-    font-size: 130%;
-  }
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1024px) {
-  .container {
-    margin-top: 68px;
+  .alert {
+    position: absolute;
+    bottom: 3px;
+    z-index: 1;
   }
 
   .signInToTwitter {

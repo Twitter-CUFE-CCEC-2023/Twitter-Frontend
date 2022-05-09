@@ -1,35 +1,68 @@
-import React, { useState } from "react";
-import { withStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
+import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import TablePagination from "@material-ui/core/TablePagination";
-import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 
-import classess from "./UsersList.module.css";
-import DummyData from "./DummyData";
-import TableRowOfUser from "./TableRowOfUser";
-
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
+import classess from "./UsersTable.module.css";
+import LoadingSpinner from "../../AdminComponents/LoadingSpinner";
+import Header from "./Rows/Header";
+import UserRow from "./Rows/UserRow";
+import TablePaginationActions from "./TablePaginationActions";
+import axios from "../../../axios";
 
 const UsersTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [totalNumberUsers, setTotalNumberUsers] = useState(0);
+
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const requestUsers = () => {
+    let requestFilters = {
+      access_token: localStorage.getItem("token"),
+      count: rowsPerPage,
+    };
+
+    if (localStorage.getItem(`filter-gender`) !== "both") {
+      requestFilters["gender"] = localStorage.getItem("filter-gender");
+    }
+
+    if (localStorage.getItem(`filter-regions`).length !== 0) {
+      requestFilters["location"] = localStorage.getItem("filter-regions");
+    }
+
+    console.log("Sending request", requestFilters);
+    axios
+      .get("/dashboard/users", requestFilters, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setUsers(response.data.user);
+          setTotalNumberUsers(response.data.count);
+          console.log("Users are");
+          console.log(response.data.user);
+        }
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        // props.handleLoadingfn(false);
+        // if (err.response.status === 401) {
+        //   props.handleLoginClickfn(false);
+        // }
+      });
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+    requestUsers();
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -37,41 +70,58 @@ const UsersTable = () => {
     setPage(0);
   };
 
+  useEffect(() => {
+    requestUsers();
+  }, []);
+
   return (
     <Paper className={classess.paper}>
       <TableContainer className={classess.container}>
-        <Table stickyHeader aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell />
-              <StyledTableCell>
-                <PersonRoundedIcon /> User Name
-              </StyledTableCell>
-              <StyledTableCell />
-              <StyledTableCell />
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {DummyData.map((row, index) => {
-              if (index % 2 !== 0) {
-                return (
-                  <TableRowOfUser key={index} row={row} class={classess.even} />
-                );
-              } else {
-                return <TableRowOfUser key={index} row={row} />;
-              }
-            })}
-          </TableBody>
-        </Table>
+        {isLoading && (
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell>
+                  <LoadingSpinner />
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        )}
+
+        {!isLoading && (
+          <Table
+            stickyHeader
+            aria-label="collapsible table"
+            className={classess.table}
+          >
+            <Header />
+            <TableBody>
+              {/* {users.map((row, index) => {
+                return <UserRow key={index} row={row} id={index} />;
+              })} */}
+              {(rowsPerPage > 0
+                ? users.slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
+                : users
+              ).map((row, index) => {
+                return <UserRow key={index} row={row} id={index} />;
+              })}
+            </TableBody>
+          </Table>
+        )}
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[10]}
         component="div"
-        count={DummyData.length}
+        count={totalNumberUsers}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        ActionsComponent={TablePaginationActions}
       />
     </Paper>
   );

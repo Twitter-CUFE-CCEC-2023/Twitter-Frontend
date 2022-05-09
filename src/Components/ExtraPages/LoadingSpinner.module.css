@@ -42,3 +42,15 @@
     border-radius: 0px;
   }
 }
+
+@media only screen and (width: 1024px) and (height: 600px) {
+  .container {
+    height: 541px;
+    width: 600px;
+
+    /* position: static;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0px; */
+  }
+}

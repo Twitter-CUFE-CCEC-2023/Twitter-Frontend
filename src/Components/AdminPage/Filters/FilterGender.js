@@ -19,8 +19,8 @@ function FilterGender(props) {
           value={props.gender}
           onChange={props.handleChange}
         >
-          <FormControlLabel value="male" control={<Radio />} label="Male" />
-          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="Male" control={<Radio />} label="Male" />
+          <FormControlLabel value="Female" control={<Radio />} label="Female" />
           <FormControlLabel value="both" control={<Radio />} label="both" />
         </RadioGroup>
       </FormControl>

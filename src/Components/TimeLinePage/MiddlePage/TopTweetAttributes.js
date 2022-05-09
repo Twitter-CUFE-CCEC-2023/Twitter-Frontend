@@ -16,6 +16,8 @@ function TopTweetAttributes(props) {
   const [retweets, setRetweets] = React.useState(props.retweets);
   const [hlLike, setHlLike] = React.useState(false);
   const [hlRet, setHlRet] = React.useState(false);
+  
+  let isMock = localStorage.getItem("isMock") === "true";
 
   React.useEffect(() => {
     if (props.isLiked) {
@@ -24,18 +26,65 @@ function TopTweetAttributes(props) {
     if (props.isRetweeted) {
       setHlRet(true);
     }
-    console.log(hlLike, hlRet);
+    //console.log(hlLike, hlRet);
   }, []);
 
   function clickLike() {
     if (hlLike) {
-      instance.delete("/status/unlike", {
-        data :{
-          id: props.tweet.id
-        }})
+      if (!isMock) {
+        instance.delete("/status/unlike", {
+          data: {
+            id: props.tweet.id,
+          },
+        });
+      } else {
+        fetch(`http://localhost:3000/home/${props.tweet.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes_count: likes - 1,
+            is_liked: false,
+          }),
+        });
+        fetch(`http://localhost:3000/replies/${props.tweet.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes_count: likes - 1,
+            is_liked: false,
+          }),
+        });
+      }
       setLikes(likes - 1);
     } else {
+      if (!isMock) {
       instance.post(`/status/like`, { id: props.tweet.id });
+      } else {
+        fetch(`http://localhost:3000/home/${props.tweet.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes_count: likes + 1,
+            is_liked: true,
+          }),
+        });
+        fetch(`http://localhost:3000/replies/${props.tweet.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes_count: likes + 1,
+            is_liked: true,
+          }),
+        });
+      }
       setLikes(likes + 1);
     }
     setHlLike((prevhlLike) => {
@@ -70,13 +119,13 @@ function TopTweetAttributes(props) {
             &nbsp;&nbsp;
             <p className={classes.fs15 + " " + classes.ul}><span className={classes.bold}>{likes}</span> <span className={classes.gray}>Likes</span></p>
         </div>
-        <div className={classes.flex}>
+        {!props.isShowPhotos && <div className={classes.flex}>
             <ChatBubbleOutlineOutlinedIcon className={`${classes.centre} ${classes.attIcon} ${classes.b}`}/>
             <div onClick={clickRet} className={` ${classes.centre} `}><LoopOutlinedIcon className={`${classes.attIcon} ${classes.g} ${hlRet && classes.clicked}`}/></div>
             {!hlLike && <div className={classes.centre} onClick={clickLike}> <FavoriteBorderOutlinedIcon className={`${classes.attIcon} ${classes.r}`}/> </div>}
             {hlLike && <div className={classes.centre} onClick={clickLike}> <FavoriteIcon className={`${classes.attIcon} ${classes.r} ${classes.clicked}`}/> </div>}
             <ShareOutlinedIcon className={`${classes.centre} ${classes.attIcon} ${classes.b}`}/>
-        </div>
+        </div>}
     </div>
   )
 }

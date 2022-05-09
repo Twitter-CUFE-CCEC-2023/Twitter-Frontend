@@ -1,11 +1,12 @@
 .followButton {
   border-radius: 26px;
   font-size: 0.6em;
+  margin-left: 4px;
   background-color: black;
   border-color: #cbd6db;
   border-width: 1px;
   font-weight: 640;
-  font-size: 0.67em;
+  font-size: 14px;
   color: white;
   padding-left: 0.8rem !important;
   padding-right: 0.8rem !important;
@@ -21,6 +22,7 @@
 
 .followingButton{
   margin-right: 5px;
+  margin-left: -10px !important;
   border-radius: 25px;
   font-size: 14px;
   border-color: #cbd6db;
@@ -31,7 +33,7 @@
   background-color: transparent;
   margin-left: 6px;
   margin-right: 12px;
-  transition-duration: 0.7s;
+  /* transition-duration: 0.7s; */
 }
 .followingButton:hover {
   border-color: #c76969;

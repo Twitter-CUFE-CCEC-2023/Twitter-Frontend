@@ -62,10 +62,14 @@
   padding-left: 6px;
   font-size: 25px !important;
 }
-.cropUploader{
+.coverCropUploader{
   top:-18%;
   /* z-index: 1800 !important; */
   position: absolute;
+}
+.profileCropUploader{
+  top:-50%;
+
 }
 
 .saveButton {
@@ -86,9 +90,15 @@
   color: white;
 }
 .coverPhotoEdit {
-  position: relative;
   filter: brightness(80%);
   z-index: 1;
+  object-fit: cover;
+
+}
+.coverImage{
+  width: 620px!important;
+  height: 198px!important;
+  
 }
 
 .profilePhotoEdit {
@@ -134,7 +144,18 @@
   cursor: pointer;
   font-size: 30px !important;
 }
+.birthdayLabel{
+  font-size: 0.7em;
+  color: #5b5353;
+  margin-left: 2%;
+}
 
+.birthdayInput{
+  margin-left: 2%;
+  border-color: #ced4da;
+  border-style: solid;
+  font-size: 0.7em;
+}
 
 
 @media screen and (max-width: 705px) {
@@ -157,6 +178,17 @@
     width: 100% !important;
     height: 100% !important;
     padding: 0;
+  }
+  .coverCropUploader{
+    top:-1rem !important;
+    /* right: 1.8rem; */
+    /* z-index: 1800 !important; */
+    position: absolute;
+  }
+  .coverImage{
+    width: 717.18px!important;
+    height:35vw !important;
+    
   }
 }
 @media screen and (min-width: 705px) {

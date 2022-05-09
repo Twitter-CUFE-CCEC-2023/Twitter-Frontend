@@ -1,0 +1,7 @@
+.noStyle{
+    text-decoration: none !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    cursor: inherit;
+}

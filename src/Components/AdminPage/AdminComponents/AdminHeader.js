@@ -9,7 +9,7 @@ import AdminStyles from "../AdminStyles";
 
 const AdminHeader = () => {
   const classes = AdminStyles();
-  const adminName = "Millania";
+  const adminName = JSON.parse(localStorage.getItem("UserInfo")).username;
 
   return (
     <React.Fragment>

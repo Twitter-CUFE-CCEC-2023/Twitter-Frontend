@@ -1,10 +1,18 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import classess from "./LogoHeader.module.css";
+
 import ClearIcon from "@material-ui/icons/Clear";
+import { useHistory } from "react-router-dom";
+
+import classess from "./LogoHeader.module.css";
 import twitterBlueLogo from "../../../../../Assets/twitterBlueLogo.png";
 
 const LogoHeader = () => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.replace("/");
+  };
+
   return (
     <div className={classess.header}>
       <img
@@ -12,9 +20,10 @@ const LogoHeader = () => {
         src={twitterBlueLogo}
         alt="TwitterLogo"
       />
-      <NavLink to="/" className={classess.closeIcon}>
+
+      <p className={classess.closeIcon} onClick={handleClick}>
         <ClearIcon />
-      </NavLink>
+      </p>
     </div>
   );
 };

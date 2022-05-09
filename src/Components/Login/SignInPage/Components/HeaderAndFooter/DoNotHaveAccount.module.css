@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1024px) {
+@media only screen and (width: 1024px) and (height: 600px) {
   .alreadyHaveAcc {
     margin-top: 16%;
     margin-bottom: 15%;

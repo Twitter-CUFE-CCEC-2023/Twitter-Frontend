@@ -20,12 +20,13 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MoreOutlinedIcon from "@material-ui/icons/MoreOutlined";
+import AccountButton from "./AccountButton";
 
-import SelectMore from "./SelectMore/SelectMore";
+import MoreButton from "./MoreButton";
 
 const LeftSideBar = () => {
   const [moreSelected, setMoreSelected] = useState(false);
-  const currentuser =JSON.parse(localStorage.getItem("UserInfo")); 
+  const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
   const pathname = window.location.pathname.toLowerCase();
 
   const [pageActive, setPageActive] = React.useState(
@@ -37,10 +38,11 @@ const LeftSideBar = () => {
       ["messages", pathname === "messages"],
       ["bookmarks", pathname === "i/bookmarks"],
       ["lists", pathname === "profileName/lists"],
-      ["userprofile", pathname === "userprofile"],
+      ["userprofile", pathname.includes("userprofile")],
       ["more", pathname === "more"],
     ])
   );
+
 
   useEffect(() => {
     setPageActive((prevPageActive) => {
@@ -55,11 +57,10 @@ const LeftSideBar = () => {
 
   return (
     <div className={classes.leftSideBar}>
-      {moreSelected && <SelectMore />}
       {!moreSelected && (
         <div className={classes.twitterIcon}>
           {" "}
-          <TwitterIcon />{" "}
+          <TwitterIcon className={classes.iconTest} />{" "}
         </div>
       )}
       {!moreSelected && (
@@ -137,13 +138,14 @@ const LeftSideBar = () => {
           <LeftButton
             Icon={AccountCircleOutlinedIcon}
             IconActive={AccountCircleIcon}
-            url={`userprofile/${currentuser.username}`}
+            url={`userProfile/${currentuser ? currentuser.username : null}`}
             title="Profile"
             onPage={pageActive.get("userprofile")}
           />
         </div>
       )}
-      {!moreSelected && (
+      <MoreButton />
+      {/* {!moreSelected && (
         <div
           className={`${classesLeftButton.leftButton} ${classes.phoneInvis}`}
         >
@@ -155,10 +157,12 @@ const LeftSideBar = () => {
             More
           </p>
         </div>
-      )}{" "}
+      )}{" "} */}
       {/* need to add the functionality of more */}
       <div className={classes.phoneInvis}>
         <TweetButton />
+
+        <AccountButton />
       </div>
     </div>
   );

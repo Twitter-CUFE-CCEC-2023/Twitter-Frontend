@@ -78,6 +78,7 @@ function User(props) {
         <FollowButton
           isFollowing={isFollowing}
           onFollow={onFollow}
+          username={props.userName}
         ></FollowButton>
       </div>
     </div>

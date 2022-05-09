@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import Drawer from "@material-ui/core/Drawer";
@@ -8,21 +8,35 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
+import { LoginContext } from "../../../login-context";
 
 import AdminStyles from "../AdminStyles";
 import Tabs from "./AdminSideBarTabs";
+import classess from "./AdminSideBar.module.css";
 
 const AdminSideBar = () => {
-  const screenSize = window.innerWidth;
-  let largeScreen = true;
+  // const screenSize = window.innerWidth;
+  // let largeScreen = true;
 
-  if (screenSize < 800) {
-    largeScreen = false;
-  } else {
-    largeScreen = true;
-  }
+  // if (screenSize < 800) {
+  //   largeScreen = false;
+  // } else {
+  //   largeScreen = true;
+  // }
+
+  // const styles = classess.sideBarText;
+
+  // useEffect(()=>{
+  //   const styles = classess.sideBarText;
+  // }, [])
 
   const classes = AdminStyles();
+  const loginCtx = useContext(LoginContext);
+
+  const handleLogout = () => {
+    loginCtx.logout();
+  };
 
   return (
     <React.Fragment>
@@ -47,21 +61,46 @@ const AdminSideBar = () => {
                     }}
                   >
                     <ListItem button key={index}>
-                      <ListItemIcon style={{ minWidth: 0 }}>
+                      <ListItemIcon
+                        style={{ minWidth: 0, marginRight: "15px" }}
+                      >
                         {item.icon}
                       </ListItemIcon>
-                      {largeScreen && (
-                        <ListItemText
-                          style={{ marginLeft: "15px" }}
-                          primary={item.title}
-                        />
-                      )}
+                      <ListItemText
+                        // disableTypography
+                        // className={classess.sideBarText}
+                        // style={{ marginLeft: "15px" }}
+                        classes={{ primary: classess.disable }}
+                        primary={item.title}
+                        // primaryTypographyProps={{ style: styles }}
+                      />
                     </ListItem>
                   </NavLink>
                   <Divider />
                 </div>
               );
             })}
+
+            <NavLink
+              to={`/`}
+              style={{
+                textDecoration: "none",
+                color: "rgba(0, 0, 0, 0.8)",
+              }}
+            >
+              <div onClick={handleLogout}>
+                <ListItem button key={"logout"}>
+                  <ListItemIcon style={{ minWidth: 0, marginRight: "15px" }}>
+                    <ExitToAppRoundedIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    classes={{ primary: classess.disable }}
+                    primary="Logout"
+                  />
+                </ListItem>
+              </div>
+            </NavLink>
+            <Divider />
           </List>
         </div>
       </Drawer>

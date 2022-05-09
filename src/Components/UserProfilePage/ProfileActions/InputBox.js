@@ -8,6 +8,7 @@ function InputBox(props) {
 
   const onInputchange = (event) => {
     setinputValue(event.target.value);
+    props.onChangeVal(event.target.value);
   };
 
 

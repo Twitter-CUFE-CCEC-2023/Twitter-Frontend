@@ -1,14 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-let drawerWidth = 200;
-const screenSize = window.innerWidth;
-
-if (screenSize < 800) {
-  drawerWidth = 60;
-} else {
-  drawerWidth = 175;
-}
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -17,11 +8,17 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
   },
   drawer: {
-    width: drawerWidth,
+    width: 175,
+    "@media (max-width: 850px)": {
+      width: 55,
+    },
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: 175,
+    "@media (max-width: 850px)": {
+      width: 55,
+    },
   },
   drawerContainer: {
     overflow: "auto",
@@ -29,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  sideBarMargin: {
+    paddingLeft: "1px",
+    minWidth: 0,
+    marginRight: "15px",
   },
 }));
 

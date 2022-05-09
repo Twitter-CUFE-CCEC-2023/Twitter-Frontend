@@ -30,10 +30,10 @@ function ImageUploader(props) {
   };
   const setCropPhotoURL = (croppedPhoto) => {
     if (croppedPhoto === false) {
-      props.editCover(props.croppedCoverPhoto);
+      props.editPhoto(props.croppedPhoto);
       console.log("no photos");
     } else {
-      props.editCover(croppedPhoto);
+      props.editPhoto(croppedPhoto);
     }
   };
   return (
@@ -48,7 +48,7 @@ function ImageUploader(props) {
           // write your building UI
           <Fragment>
             <CameraEnhanceOutlinedIcon
-              className={`${classes.coverEditor}`}
+              className={`${props.profileOrCover==="cover"? classes.coverEditor:classes.profileEditor}`}
               onClick={onImageUpload}
               {...dragProps}
             />
@@ -62,6 +62,7 @@ function ImageUploader(props) {
           setOpenCrop={setOpenCrop}
           setCropPhotoURL={setCropPhotoURL}
           toShowCropper={showCropper}
+          profileOrCover={props.profileOrCover}
         />
       )}
     </Fragment>

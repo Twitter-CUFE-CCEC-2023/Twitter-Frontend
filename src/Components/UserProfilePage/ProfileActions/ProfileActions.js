@@ -27,6 +27,7 @@ function ProfileActions(props) {
           <FollowButton
             isFollowing={isFollowing}
             onFollow={onFollowHandeler}
+            
           ></FollowButton>
         </div>
         <div className={`${classes.settingButton} col-2`}>

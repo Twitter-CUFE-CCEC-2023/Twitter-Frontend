@@ -50,6 +50,13 @@ function ImageCropper(props) {
   }, []);
 
   let cropPage;
+  let aspect;
+  if(props.profileOrCover==="cover"){
+    aspect=25 / 9;
+  }
+  else{
+    aspect=3/3;
+  }
 
 
   return (
@@ -77,7 +84,7 @@ function ImageCropper(props) {
           image={props.selectedImage}
           crop={crop}
           zoom={zoom}
-          aspect={25 / 9}
+          aspect={aspect}
           onCropChange={setCrop}
           onCropComplete={onCropComplete}
           onZoomChange={setZoom}
