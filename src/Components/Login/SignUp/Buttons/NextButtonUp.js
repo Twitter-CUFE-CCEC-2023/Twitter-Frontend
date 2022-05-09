@@ -3,7 +3,6 @@ import classes from "./NextButtonUp.module.css";
 
 const NextButtonUp = (props) => {
   const handleClick = () => {
-    
     // const name = JSON.parse(localStorage.getItem("Name"));
     // if (name === "") {
     //   props.handleButtonClick(false);
@@ -29,17 +28,22 @@ const NextButtonUp = (props) => {
     console.log(props.handleMonthSet);
     console.log(props.handleDaySet);
     console.log(props.handleYearSet);
-    if (name != "" && email.includes("@") && email.includes(".") && (props.handleGenderSet == "Male" || props.handleGenderSet == "Female")
-    && (props.handleDaySet != undefined && props.handleDaySet != true) && (props.handleMonthSet != undefined && props.handleMonthSet != true )
-    && (props.handleYearSet != undefined && props.handleYearSet != true))
-    {
+    if (
+      name != "" &&
+      email.includes("@") &&
+      email.includes(".") &&
+      (props.handleGenderSet == "Male" || props.handleGenderSet == "Female") &&
+      props.handleDaySet != undefined &&
+      props.handleDaySet != true &&
+      props.handleMonthSet != undefined &&
+      props.handleMonthSet != true &&
+      props.handleYearSet != undefined &&
+      props.handleYearSet != true
+    ) {
       props.handleButtonClick(true);
-    }
-    else
-    {
+    } else {
       props.handleButtonClick(false);
     }
-    
   };
 
   return (
