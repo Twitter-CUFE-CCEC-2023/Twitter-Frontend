@@ -34,13 +34,13 @@ const TrackOption = (props) => {
                         Track where you see Twitter content across the web
                     </p>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    <label className={classes.Minor3} for="flexCheckDefault">
+                <div className="form-check">
+                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                    <label className={classes.Minor3} htmlFor="flexCheckDefault">
                         Twitter uses this data to personalize your experience. This web browsing history will never be stored with your name, email, or phone number.
                     </label>
                 </div>
-                <div className={classes.Minor4} for="flexCheckDefault">
+                <div className={classes.Minor4} htmlFor="flexCheckDefault">
                     <PrivacyAndPolicy />
                 </div>
                 <AddPhoneNext handleButtonClick={handleClick}/>

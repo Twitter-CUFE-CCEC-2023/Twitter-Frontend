@@ -12,24 +12,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function GroupedSelect() {
-    const [month, setmonth] = useState()
+const GroupedSelect = (props) => {
     const classes = useStyles();
-    const Monthchanged = (value) => {
-        setmonth(value.target.value)
-        console.log(value.target.value);
-    }
-    const Daychanged = (value) => {
-        console.log(value.target.value);
-    }
-    const Yearchanged = (value) => {
-        console.log(value.target.value);
-    }
     return (
         <div>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-native-select">Month</InputLabel>
-                <Select onChange={Monthchanged} native defaultValue="00" id="grouped-native-select">
+                <Select onSelect={props.MonthBack} native defaultValue="00" id="grouped-native-select">
                     <option aria-label="None" value="" />
                     <option value="01">January</option>
                     <option value="02">February</option>
@@ -47,7 +36,7 @@ export default function GroupedSelect() {
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-select">Day</InputLabel>
-                <Select onChange={Daychanged} native defaultValue="" id="grouped-native-select">
+                <Select onChange={props.DayBack} native defaultValue="00" id="grouped-native-select" >
                     <option aria-label="None" value="" />
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -84,7 +73,7 @@ export default function GroupedSelect() {
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-select">Year</InputLabel>
-                <Select onChange={Yearchanged} native defaultValue="" id="grouped-native-select">
+                <Select onChange={props.YearBack} native defaultValue="00" id="grouped-native-select">
                     <option aria-label="None" value="" />
                     <option value="1980">1980</option>
                     <option value="1981">1981</option>
@@ -123,3 +112,5 @@ export default function GroupedSelect() {
         </div>
     );
 }
+
+export default GroupedSelect;

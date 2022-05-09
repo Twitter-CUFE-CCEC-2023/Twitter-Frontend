@@ -14,7 +14,7 @@ const PhoneVerify = () => {
         //     src={twitterBlueLogo}
         //     alt="TwitterLogo"
         // />
-        <SignUpBackground>
+        <div>
             <img
                 className={classes.twitterBluelogo}
                 src={twitterBlueLogo}
@@ -44,7 +44,7 @@ const PhoneVerify = () => {
                 </div>
                 <NextButton/>
             </div>
-        </SignUpBackground>
+        </div>
     );
 };
 

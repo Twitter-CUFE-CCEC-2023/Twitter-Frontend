@@ -55,15 +55,15 @@ const AddPhone = (props) => {
                     maxLength={50}
                 />
             
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    <label className={classes.Minor3} for="flexCheckDefault">
+                <div className="form-check">
+                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                    <label className={classes.Minor3} htmlFor="flexCheckDefault">
                         Let people who have your phone number find and connect with you on Twitter
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    <label className={classes.Minor3} for="flexCheckDefault">
+                <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                    <label className={classes.Minor3} htmlFor="flexCheckDefault">
                         <PhonePrivacyPolicy />
                     </label>
                 </div>

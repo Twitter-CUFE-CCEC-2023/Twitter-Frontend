@@ -14,11 +14,33 @@ import Select from '@material-ui/core/Select';
 
 const Mail = (props) => {
     const [alert, setAlert] = useState(true);
-    const [emailcheck, setemail] = useState(true);
-    const [day, setDay] = useState(true);
-    const [month, setMonth] = useState(true);
-    const [year, setYear] = useState(true);
+    const [day, setDay] = useState();
+    const [month, setMonth] = useState();
+    const [year, setYear] = useState();
+    const [gender, setGender] = useState();
 
+    const Genderchanged = (value) => {
+        console.log(value.target.value);
+    }
+
+
+    const SetGender = (value) => {
+        setGender(value.target.value);
+        
+        console.log(value.target.value);
+    };
+    const Monthchanged = (value) => {
+        setMonth(value.target.value);
+        //console.log(value.target.value);
+    };
+    const Daychanged = (value) => {
+        setDay(value.target.value);
+        //console.log(value.target.value);
+    };
+    const Yearchanged = (value) => {
+        setYear(value.target.value);
+        //console.log(value.target.value);
+    };
     const handleClick = (val) => {
         props.handleButtonClick(val);
         setAlert(val);
@@ -29,11 +51,6 @@ const Mail = (props) => {
             setAlert(true);
         }, 5000);
     }, [alert]);
-    useEffect(() => {
-        setTimeout(() => {
-            setemail(true);
-        }, 5000);
-    }, [emailcheck]);
     useEffect(() => {
         setTimeout(() => {
             setDay(true);
@@ -49,9 +66,11 @@ const Mail = (props) => {
             setYear(true);
         }, 5000);
     }, [year]);
-    const Genderchanged = (value) => {
-        console.log(value.target.value);
-    }
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setGender(true);
+    //     }, 5000);
+    // }, [gender]);
     return (
         <div>
             <img
@@ -59,13 +78,11 @@ const Mail = (props) => {
                 src={twitterBlueLogo}
                 alt="TwitterLogo"
             />
-            
+
             <NavLink to="/" className={classes.closeIcon}>
                 <ClearIcon />
             </NavLink>
             <div className={classes.Header}>Create your account</div>
-            {/* <div className={classes.upperContainer}> 
-            <div className={classes.container}> */}
 
             <div className={classes.Minor3}>
                 <InputField
@@ -75,16 +92,16 @@ const Mail = (props) => {
                     maxLength={50}
                 />
             </div>
-            <p>
 
-            </p>
+            <p></p>
+
             <div className={classes.Minor3}>
-            <InputField
-                label="Email address"
-                disable={false}
-                itemName="Email"
-                maxLength={50}
-            />
+                <InputField
+                    label="Email address"
+                    disable={false}
+                    itemName="Email"
+                    maxLength={50}
+                />
             </div>
 
             <NavLink to="/Phone">
@@ -92,33 +109,37 @@ const Mail = (props) => {
                     Use phone instead
                 </div>
             </NavLink>
+
             <div className={classes.Gender}>
-            <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="grouped-native-select">Gender</InputLabel>
-                <Select onChange={Genderchanged} native defaultValue="00" id="grouped-native-select" itemname="Gender">
-                    <option aria-label="None" value="" />
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </Select>
-            </FormControl>
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="grouped-native-select">Gender</InputLabel>
+                    <Select onChange={SetGender} native defaultValue="00" id="grouped-native-select" itemname="Gender">
+                        <option aria-label="None" value="" />
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </Select>
+                </FormControl>
             </div>
+
             <p></p>
+
             <div className={classes.DateOfBirth} style={{ fontWeight: "bold" }}>
                 Date of birth{" "}
             </div>
+
             <div className={classes.Minor3}>
                 This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.
             </div>
+
             <div className={classes.Minor3}>
-                <DateOfBirth />
+                <DateOfBirth YearBack={Yearchanged} MonthBack={Monthchanged} DayBack={Daychanged} />
             </div>
 
-            {/* <div className={classes.button}> */}
-            <div className={classes.NextButton}>
-            <NextButtonUp handleButtonClick={handleClick} />
-            </div>
-            {/* </div> */}
             
+            <div className={classes.NextButton}>
+                <NextButtonUp handleButtonClick={handleClick} handleGenderSet={gender} handleDaySet={day} handleMonthSet={month} handleYearSet={year} />
+            </div>
+
         </div>
     );
 };

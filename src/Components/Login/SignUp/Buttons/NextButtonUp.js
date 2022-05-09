@@ -25,7 +25,12 @@ const NextButtonUp = (props) => {
     const email = JSON.parse(localStorage.getItem("Email"));
     //const gender = JSON.parse(localStorage.getItem("Gender"));
     //console.log(gender);
-    if (name != "" && email.includes("@") && email.includes("."))
+    console.log(props.handleGenderSet);
+    console.log(props.handleMonthSet);
+    console.log(props.handleDaySet);
+    console.log(props.handleYearSet);
+    if (name != "" && email.includes("@") && email.includes(".") && (props.handleGenderSet == "Male" || props.handleGenderSet == "Female") && props.handleMonthSet != true 
+    && props.handleDaySet != true && props.handleYearSet != true)
     {
       props.handleButtonClick(true);
     }

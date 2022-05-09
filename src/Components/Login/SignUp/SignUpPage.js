@@ -29,10 +29,10 @@ const SignUpPage = () => {
     return (
         <SignUpBackground>
             {!nextClicked && <Mail handleButtonClick={handleClick} />}
-            {nextClicked && !nextClicked2 && <TrackOption handleButtonClick={handleClick2}/>}
-            {nextClicked && nextClicked2 && !nextClicked3 && <AddPhone handleButtonClick={handleClick4} />}
-            {nextClicked && nextClicked2 && nextClicked3  && !nextClicked4&& <Verify handleButtonClick={handleClick}/>}
-            {nextClicked && nextClicked2 && nextClicked3 && nextClicked4 &&  <Password handleButtonClick={handleClick} />}
+            {nextClicked  && !nextClicked2 && <TrackOption handleButtonClick={handleClick2}/>}
+            {nextClicked  && nextClicked2  && !nextClicked3 && <AddPhone handleButtonClick={handleClick3} />}
+            {nextClicked  && nextClicked2  && nextClicked3  && !nextClicked4 && <Verify handleButtonClick={handleClick4}/>}
+            {nextClicked  && nextClicked2  && nextClicked3  && nextClicked4  && <Password handleButtonClick={handleClick} />}
         </SignUpBackground>
     );
 };
