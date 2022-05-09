@@ -59,6 +59,7 @@ const Mail = (props) => {
                 src={twitterBlueLogo}
                 alt="TwitterLogo"
             />
+            
             <NavLink to="/" className={classes.closeIcon}>
                 <ClearIcon />
             </NavLink>
