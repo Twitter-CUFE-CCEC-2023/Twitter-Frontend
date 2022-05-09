@@ -4,14 +4,12 @@ import classes from "./Mail.module.css";
 import ClearIcon from "@material-ui/icons/Clear";
 import NextButtonUp from "./Buttons/NextButtonUp"
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
-import SignUpBackground from "./MailBack";
 import DateOfBirth from "./DateOfBirth"
 import InputField from "../InputField";
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Alert from "./Alert/Alert"
-
 
 const Mail = (props) => {
     const [alert, setAlert] = useState(true);
@@ -65,13 +63,9 @@ const Mail = (props) => {
             setYear(true);
         }, 5000);
     }, [year]);
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setGender(true);
-    //     }, 5000);
-    // }, [gender]);
     return (
         <div>
+
             <img
                 className={classes.twitterBluelogo}
                 src={twitterBlueLogo}
@@ -81,6 +75,7 @@ const Mail = (props) => {
             <NavLink to="/" className={classes.closeIcon}>
                 <ClearIcon />
             </NavLink>
+
             <div className={classes.Header}>Create your account</div>
 
             <div className={classes.Minor3}>
