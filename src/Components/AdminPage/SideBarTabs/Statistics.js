@@ -7,6 +7,7 @@ import AdminSideBar from "../AdminComponents/AdminSideBar";
 import BackgroundPaper from "../BackgroundPaper";
 import ShowHide from "./Charts/ShowHide";
 import axios from "../../axios";
+import LoadingSpinner from "../AdminComponents/LoadingSpinner";
 
 import classess from "./CommunStyles.module.css";
 
@@ -44,6 +45,8 @@ const Statistics = () => {
   const [avgTweets, setAvgTweets] = useState();
   const [totalRetweets, setotalRetweets] = useState();
   const [avgRetweets, setAvgRetweets] = useState();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let request;
@@ -107,6 +110,7 @@ const Statistics = () => {
           console.log(response.data);
           setotalRetweets(response.data.count);
           setAvgRetweets(response.data.avgPerDay.toFixed(3));
+          setIsLoading(false);
         }
       })
       .catch((err) => {
@@ -149,7 +153,8 @@ const Statistics = () => {
         <Toolbar />
         <BackgroundPaper>
           <h1 className={classess.header}>Statistics</h1>
-          <ShowHide dataPie={data_Pie} dataBar={data_Bar} />
+          {isLoading && <LoadingSpinner />}
+          {!isLoading && <ShowHide dataPie={data_Pie} dataBar={data_Bar} />}
         </BackgroundPaper>
       </main>
     </div>

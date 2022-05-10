@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
-import Paper from "@material-ui/core/Paper";
 import Fade from "@material-ui/core/Fade";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
@@ -11,14 +10,28 @@ import CustomBarChart from "./CustomBarChart";
 const useStyles = makeStyles((theme) => ({
   root: {
     // height: 180,
+    // "@media (min-width: 0px) and (max-width: 800px)": {
+    //   fontSize: "102%",
+    // },
   },
-  container: {
-    // display: "flex",
-  },
-  paper: {
-    margin: theme.spacing(1),
+  paperBar: {
     height: "50vh",
-    width: "65vw",
+    "@media (min-width: 800px)": {
+      width: "65vw",
+      margin: theme.spacing(1),
+    },
+    "@media (min-width: 0px) and (max-width: 800px)": {
+      marginLeft: "-20px",
+    },
+  },
+  paperPie: {
+    height: "55vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-end",
+    "@media (min-width: 1000px)": {
+      alignItems: "center",
+    },
   },
 }));
 
@@ -36,10 +49,10 @@ export default function ShowHide(props) {
         control={<Switch checked={checked} onChange={handleChange} />}
         label="Pie Chart"
       />
-      <div className={classes.container}>
+      <div>
         <Fade in={checked}>
           <div
-            className={classes.paper}
+            className={classes.paperPie}
             style={!checked ? { display: "none" } : {}}
           >
             <CustomPieChart data={props.dataPie} />
@@ -47,7 +60,7 @@ export default function ShowHide(props) {
         </Fade>
         <Fade in={!checked}>
           <div
-            className={classes.paper}
+            className={classes.paperBar}
             style={checked ? { display: "none" } : {}}
           >
             <CustomBarChart data={props.dataBar} />

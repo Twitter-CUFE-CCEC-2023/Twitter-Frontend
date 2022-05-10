@@ -85,6 +85,7 @@ export default function BanModel(props) {
         banDuration: todate,
         isPermanent: banForever,
       };
+      console.log("banning", banRequest);
       setSubmitButton("Submitting");
       axios
         .post("/dashboard/ban", banRequest, {

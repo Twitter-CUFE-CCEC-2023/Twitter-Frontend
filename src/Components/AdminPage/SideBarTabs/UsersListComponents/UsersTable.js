@@ -26,6 +26,7 @@ const UsersTable = () => {
     let requestFilters = {
       access_token: localStorage.getItem("token"),
       count: rowsPerPage,
+      page: page,
     };
 
     if (localStorage.getItem(`filter-gender`) !== "both") {
@@ -62,6 +63,7 @@ const UsersTable = () => {
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+    console.log("page =", newPage);
     requestUsers();
   };
 
@@ -97,10 +99,10 @@ const UsersTable = () => {
           >
             <Header />
             <TableBody>
-              {/* {users.map((row, index) => {
+              {users.map((row, index) => {
                 return <UserRow key={index} row={row} id={index} />;
-              })} */}
-              {(rowsPerPage > 0
+              })}
+              {/* {(rowsPerPage > 0
                 ? users.slice(
                     page * rowsPerPage,
                     page * rowsPerPage + rowsPerPage
@@ -108,7 +110,7 @@ const UsersTable = () => {
                 : users
               ).map((row, index) => {
                 return <UserRow key={index} row={row} id={index} />;
-              })}
+              })} */}
             </TableBody>
           </Table>
         )}

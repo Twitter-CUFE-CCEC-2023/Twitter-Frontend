@@ -4,10 +4,11 @@ import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 import AdminStyles from "../AdminStyles";
 
-const AdminHeader = () => {
+const AdminHeader = (props) => {
   const classes = AdminStyles();
   const adminName = JSON.parse(localStorage.getItem("UserInfo")).username;
 
@@ -20,6 +21,17 @@ const AdminHeader = () => {
         style={{ zIndex: 1201 }}
       >
         <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={() => {
+              props.handleDrawerToggleFn();
+            }}
+            className={classes.menuButton}
+          >
+            <MenuIcon />
+          </IconButton>
           <Typography variant="h6" noWrap>
             Welcome {adminName}
           </Typography>

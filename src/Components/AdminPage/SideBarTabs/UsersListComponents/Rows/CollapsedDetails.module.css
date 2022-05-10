@@ -3,6 +3,18 @@
   border-radius: 10px;
 }
 
+@media only screen and (min-width: 800px) and (max-width: 1000px) {
+  .paper {
+    width: 66.5vw;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 800px) {
+  .paper {
+    width: 82vw;
+  }
+}
+
 @media only screen and (min-width: 0px) and (max-width: 300px) {
   .paper {
     width: 95vw;

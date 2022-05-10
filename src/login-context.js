@@ -261,6 +261,7 @@ export const LoginContextProvider = (props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
     localStorage.removeItem("admin");
+    localStorage.removeItem("UserInfo");
     if (logoutTimer) {
       clearTimeout(logoutTimer);
     }

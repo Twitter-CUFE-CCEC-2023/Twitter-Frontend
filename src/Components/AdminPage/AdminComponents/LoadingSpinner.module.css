@@ -18,15 +18,20 @@
 
 .container {
   height: 66vh;
-  /* width: 600px; */
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 1000px) {
+@media only screen and (min-width: 0px) and (max-width: 800px) {
   .container {
-    height: 73vh;
+    height: 78vh;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 300px) {
+  .container {
+    height: 80vh;
   }
 }

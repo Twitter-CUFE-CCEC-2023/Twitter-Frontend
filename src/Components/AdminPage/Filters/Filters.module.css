@@ -55,10 +55,13 @@
   }
 }
 
-@media only screen and (min-width: 0px) and (max-width: 380px) {
+@media only screen and (min-width: 0px) and (max-width: 280px) {
   .clearFiltersButton {
     width: 120px;
-    /* margin-bottom: 3px; */
+  }
+
+  .instructions {
+    font-size: 105%;
   }
 
   .buttonsGroup {

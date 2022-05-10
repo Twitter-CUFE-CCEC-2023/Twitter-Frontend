@@ -1,18 +1,11 @@
-.container {
-  height: 66vh;
-}
-
-/* .spinner {
-  height: 66vh;
-  width: 65vw;
-
-  height: 40vh;
-} */
-
 .paper {
   height: 73vh;
   margin: 3% 15%;
   position: relative;
+}
+
+.container {
+  height: 66vh;
 }
 
 .tableHead {
@@ -20,23 +13,33 @@
   color: white;
 }
 
-@media only screen and (min-width: 0px) and (max-width: 1000px) {
+@media only screen and (min-width: 0px) and (max-width: 800px) {
   .paper {
-    height: 80vh;
-    margin: 2%;
+    height: 85vh;
+    margin: 2% 0%;
+    width: 90vw;
   }
 
   .container {
-    height: 73vh;
+    height: 78vh;
   }
-
-  /* .table {
-    width: 75vw;
-  } */
 }
 
-/* @media only screen and (width: 280) {
+@media only screen and (min-width: 801px) and (max-width: 1000px) {
   .paper {
-    height: 130vh;
+    width: 70vw;
+    margin: 3%;
   }
-} */
+}
+
+@media only screen and (min-width: 0px) and (max-width: 300px) {
+  .paper {
+    height: 87vh;
+    margin: -1% -6%;
+    width: 93vw;
+  }
+
+  .container {
+    height: 80vh;
+  }
+}

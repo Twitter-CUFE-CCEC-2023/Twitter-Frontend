@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import FilterDates from "./FilterDates";
 import FilterGender from "./FilterGender";
@@ -52,6 +52,13 @@ function Filters() {
     localStorage.removeItem(`filter-regions`);
   };
 
+  useEffect(() => {
+    localStorage.setItem(`filter-From-date`, fromdate);
+    localStorage.setItem(`filter-To-date`, todate);
+    localStorage.setItem(`filter-gender`, gender);
+    localStorage.setItem(`filter-regions`, regions);
+  }, []);
+
   return (
     <BackgroundPaper>
       <h1 className={classes.instructions}>
@@ -77,7 +84,6 @@ function Filters() {
             variant="contained"
             color="primary"
             disableRipple
-            // className={classes.clearFiltersButton}
             onClick={handleClearFilters}
           >
             Clear filters
@@ -89,7 +95,6 @@ function Filters() {
             color="primary"
             data-testid="submitButton"
             disableRipple
-            // className={classes.submitButton}
             onClick={handleSubmissiom}
           >
             {!submitFilters && "Submit"}
