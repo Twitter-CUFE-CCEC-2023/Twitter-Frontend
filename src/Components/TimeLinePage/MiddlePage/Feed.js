@@ -10,6 +10,7 @@ import instance from "../../axios";
 // import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { browserName, browserVersion } from "react-device-detect";
+import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 // import { data } from "jquery";
 
 export default function Feed(props) {
@@ -57,7 +58,7 @@ export default function Feed(props) {
     newTweets.forEach((APItweet) => {
       let tweet = {
         name: APItweet.user.name,
-        profilePic: APItweet.user.profile_image_url,
+        profilePic: APItweet.user.profile_image_url ? APItweet.user.profile_image_url : DefaultProfilePic,
         userName: APItweet.user.username,
         isVerified: APItweet.user.isVerified,
         bio: APItweet.user.bio,
@@ -72,7 +73,7 @@ export default function Feed(props) {
         quotes: APItweet.quotes_count,
         isLiked: APItweet.is_liked,
         isRetweeted: APItweet.is_retweeted,
-        isReply: APItweet.is_reply,
+        isTweetReply: APItweet.is_reply,
         media: APItweet.media,
       };
       //console.log(tweet);

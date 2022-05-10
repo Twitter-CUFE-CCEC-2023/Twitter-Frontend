@@ -94,7 +94,6 @@ function TweetAndReplies(props) {
         media : reply.media,
       };
     });
-
     setTopTweet(tweet);
     setTopUser(tu);
     setReplies(repl);

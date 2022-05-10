@@ -16,6 +16,7 @@ import TopTweetAttributes from "./TopTweetAttributes";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ImageGrid from "./ImageGrid";
 import PhotosPage from "../ViewPhotosPage/PhotosPage";
+import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 // import { LinkSharp } from "@material-ui/icons";
 // import { react } from "fontawesome";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
@@ -80,6 +81,8 @@ export default function FeedTweet(props) {
   // let observer = React.createRef();
 
   const [tweetText, setTweetText] = useState(props.text);
+
+  let profilePic = props.profilePic ? props.profilePic : DefaultProfilePic;
 
   React.useEffect(() => setTweetText(linkify(props.text)), []);
 
@@ -176,7 +179,7 @@ export default function FeedTweet(props) {
             }}
             className={classes.profilePic + " " + classes.minip}
             alt="profile"
-            src={props.profilePic}
+            src={profilePic}
           ></img>
         <div
           onClick={(e) => {
@@ -186,7 +189,7 @@ export default function FeedTweet(props) {
           className={classes.hoverProfile + " " + classes.top}
         >
           <MiniProfile
-            profilePic={props.profilePic}
+            profilePic={profilePic}
             name={props.name}
             userName={props.userName}
             profileDesciption={props.bio}
@@ -232,7 +235,7 @@ export default function FeedTweet(props) {
               className={classes.hoverProfile + " " + classes.bot}
             >
               <MiniProfile
-                profilePic={props.profilePic}
+                profilePic={profilePic}
                 name={props.name}
                 userName={props.userName}
                 profileDesciption={props.bio}
@@ -274,7 +277,7 @@ export default function FeedTweet(props) {
               className={classes.hoverProfile + " " + classes.bot}
             >
               <MiniProfile
-                profilePic={props.profilePic}
+                profilePic={profilePic}
                 name={props.name}
                 userName={props.userName}
                 profileDesciption={props.bio}
@@ -307,7 +310,7 @@ export default function FeedTweet(props) {
               </p>
               <div className={classes.hoverProfile + " " + classes.repmin}>
                 <MiniProfile
-                  profilePic={props.topUser ?props.topUser.profilePic : ""}
+                  profilePic={props.topUser ? props.topUser.profilePic ? props.topUser.profilePic : DefaultProfilePic : ""}
                   name={props.topUser ?props.topUser.name : ""}
                   userName={props.topUser ?props.topUser.userName : ""}
                   profileDesciption={props.topUser ?props.topUser.bio : ""}

@@ -18,10 +18,13 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 function MoreButton() {
     let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
     const [hidden, setHidden] = React.useState(true);
-    document.body.addEventListener("click", hide, true);
+
+    React.useEffect(() => {
+        document.body.addEventListener("click", hide, true);
+    }, []);
 
     function hide(event) {
-        var isClickInsideElement = document.getElementById("moreList").contains(event.target);
+        var isClickInsideElement = document.getElementById("moreList") ? document.getElementById("moreList").contains(event.target) : false;
         if (!isClickInsideElement) {
             setHidden(true);
         }

@@ -15,6 +15,9 @@ import classes from "./FeedTweetBox.module.css";
 import ImageUploading from "react-images-uploading";
 import PhotosContainer from "./PhotosContainer";
 import instance from "../../../axios";
+
+import DefaultProfilePic from "../../../../Assets/DefaultProfilePic.jpg";
+
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
   const [tweetContent, setTweetContent] = useState("");
@@ -51,6 +54,7 @@ export default function FeedTweetBox(props) {
   }, []);
 
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
+  loggedUser.profile_image_url = loggedUser.profile_image_url ? loggedUser.profile_image_url : DefaultProfilePic;
   //console.log(loggedUser);
   //postTweet configuration
   function postTweet() {

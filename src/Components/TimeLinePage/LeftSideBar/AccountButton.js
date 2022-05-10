@@ -5,8 +5,11 @@ import DoneIcon from "@material-ui/icons/Done";
 
 import LogoutModal from "./LogoutModal";
 
+import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
+
 function AccountButton() {
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
+  loggedUser.profile_image_url = loggedUser.profile_image_url ? loggedUser.profile_image_url : DefaultProfilePic;
   const [hidden, setHidden] = React.useState(true);
   const [showLogout, setShowLogout] = React.useState(false);
 
