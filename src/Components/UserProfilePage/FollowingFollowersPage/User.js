@@ -48,6 +48,7 @@ function User(props) {
           userName={props.userName}
           profileDesciption={props.bio}
           isFollowing={isFollowing}
+          setIsFollowing = {setIsFollowing}
           onClickFollow={onFollow}
           following={props.following}
           followers={props.followers}
@@ -99,6 +100,7 @@ function User(props) {
         {!props.currentuser && (
           <FollowButton
             isFollowing={isFollowing}
+            setIsFollowing = {setIsFollowing}
             onFollow={onFollow}
             username={props.userName}
           ></FollowButton>

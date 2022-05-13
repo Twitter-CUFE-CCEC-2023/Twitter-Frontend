@@ -21,7 +21,9 @@ function FollowButton(props) {
       if (followOrFollowing === "Follow") {
         console.log("follow");
         instance.post("/user/follow", {"username": props.username}).then((res) => { console.log(res); }); 
-        props.onFollow();
+        // props.onFollow();
+        if(props.setIsFollowing) 
+          props.setIsFollowing(true);
         return "Following";
       } else {
         console.log("unfollow");
@@ -33,12 +35,22 @@ function FollowButton(props) {
           .catch((err) => {
             console.log(err);
           });
-          props.onFollow();
+          // props.onFollow();
+        if(props.setIsFollowing) 
+          props.setIsFollowing(false);
         return "Follow";
       }
     });
-    
   }
+
+  React.useEffect(() => {
+    if (props.isFollowing === true) {
+      setFollowOrUnFollow("Following");
+    } else {
+      setFollowOrUnFollow("Follow");
+    }
+  }, [props.isFollowing]);
+
 
   let followActionsRenderer;
 

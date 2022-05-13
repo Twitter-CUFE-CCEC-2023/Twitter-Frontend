@@ -12,10 +12,16 @@ function MiniProfile(props) {
   const onFollow = () => {
     if (isFollowing) {
       setIsFollowing(()=>{return false});
+      props.setIsFollowing(false);
     } else {
       setIsFollowing(()=>{return true});
+      props.setIsFollowing(true);
     }
   };
+
+  React.useEffect(() => {
+    console.log("isFollowing", props.isFollowing);
+  }, [props.isFollowing]);
 
   return (
     <div className={classes.miniProfile}>
@@ -37,6 +43,7 @@ function MiniProfile(props) {
         >
           <FollowButton
             isFollowing={props.isFollowing}
+            setIsFollowing={props.setIsFollowing}
             onFollow={onFollow}
             className={classes.miniButton}
             username={props.userName}
