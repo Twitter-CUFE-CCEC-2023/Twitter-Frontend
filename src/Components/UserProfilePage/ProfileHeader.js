@@ -10,7 +10,7 @@ function ProfileHeader(props) {
 
   }
   return (
-    <div className={`row`}>
+    <div className={`row pb-0`}>
       <div className={`col-1 me-3 ${classes.arrowRow}`}>
         <NavLink to={`/userprofile/${props.username}`} className={` ${classes.arrow}`} >
         <ArrowBack className={`${classes.arrow}`}  ></ArrowBack>

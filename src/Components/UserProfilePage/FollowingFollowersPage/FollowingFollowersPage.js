@@ -13,6 +13,8 @@ import { useParams } from "react-router-dom";
 import { diceSix } from "fontawesome";
 
 function FollowingFollowersPage() {
+  const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
+  let currentuserName = currentuser.username;
   const pathlocation = useLocation();
   let type = pathlocation.pathname.split("/")[1];
   const [followersSelected, setFollowersSelected] = useState(
@@ -78,35 +80,33 @@ function FollowingFollowersPage() {
   const getUsers = async () => {
     setLoading(true);
     //get user info from database
-    if(!isMock){
+    if (!isMock) {
       const res = await instance.get(`/info/${userName}`);
-      const userInfo=res.data.user;
+      const userInfo = res.data.user;
       setUser(userInfo);
-      
     }
     //get user info from mock
-    else{
-
+    else {
     }
     if (type === "followers") {
-      let userFollowers
-      if(!isMock){
-      const res = await instance
-        .get(`/follower/list/${userName}/${pageNumberFollowers}/3`)
-        .catch(function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log("Error", error.message);
-          }
-        });
-      console.log(res.data);
-      userFollowers = res.data.followers;
-      }else{
+      let userFollowers;
+      if (!isMock) {
+        const res = await instance
+          .get(`/follower/list/${userName}/${pageNumberFollowers}/3`)
+          .catch(function (error) {
+            if (error.response) {
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              console.log(error.request);
+            } else {
+              console.log("Error", error.message);
+            }
+          });
+        console.log(res.data);
+        userFollowers = res.data.followers;
+      } else {
         await fetch(
           `http://localhost:3000/followerslist/${userName}?_page=${pageNumberFollowers}&_limit=5`
         )
@@ -134,24 +134,24 @@ function FollowingFollowersPage() {
       setLoading(false);
     }
     if (type === "following") {
-      let userFollowings 
-      if(!isMock){
-      const res = await instance
-        .get(`/following/list/${userName}/${pageNumberFollowing}/3`)
-        .catch(function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log("Error", error.message);
-          }
-        });
-      console.log("following", res.data);
-      userFollowings = res.data.followings;
-      }else{
+      let userFollowings;
+      if (!isMock) {
+        const res = await instance
+          .get(`/following/list/${userName}/${pageNumberFollowing}/3`)
+          .catch(function (error) {
+            if (error.response) {
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              console.log(error.request);
+            } else {
+              console.log("Error", error.message);
+            }
+          });
+        console.log("following", res.data);
+        userFollowings = res.data.followings;
+      } else {
         await fetch(
           `http://localhost:3000/followingslist/${userName}?_page=${pageNumberFollowers}&_limit=5`
         )
@@ -201,7 +201,11 @@ function FollowingFollowersPage() {
       <LeftSideBar />
       <div className={classes.followingFollowersContainer}>
         <div className={`${classes.header} row`}>
-          <ProfileHeader className={`${classes.infoHeader} `} name={user.name} username={user.username}></ProfileHeader>
+          <ProfileHeader
+            className={`${classes.infoHeader} `}
+            name={user.name}
+            username={user.username}
+          ></ProfileHeader>
 
           <div className={`${classes.headerTabs}`}>
             <NavLink
@@ -245,13 +249,26 @@ function FollowingFollowersPage() {
               if (index === followers.length - 1) {
                 return (
                   <div ref={lastTweetElementRefFollowers} key={index}>
-                    <User {...follower} showAction={true}></User>{" "}
+                    <User
+                      {...follower}
+                      showAction={true}
+                      currentuser={
+                        currentuserName === follower.userName ? true : false
+                      }
+                    ></User>{" "}
                   </div>
                 );
               } else {
                 return;
                 <div>
-                  <User {...follower} key={index} showAction={true} />
+                  <User
+                    {...follower}
+                    key={index}
+                    showAction={true}
+                    currentuser={
+                      currentuserName === follower.userName ? true : false
+                    }
+                  />
                 </div>;
               }
             })}
@@ -262,6 +279,11 @@ function FollowingFollowersPage() {
                   <div ref={lastTweetElementRefFollowing} key={index}>
                     <User
                       {...followingUser}
+                      currentuser={
+                        currentuserName === followingUser.userName
+                          ? true
+                          : false
+                      }
                       isFollowing={true}
                       showAction={true}
                     ></User>{" "}
@@ -273,6 +295,11 @@ function FollowingFollowersPage() {
                     <User
                       {...followingUser}
                       isFollowing={true}
+                      currentuser={
+                        currentuserName === followingUser.userName
+                          ? true
+                          : false
+                      }
                       key={index}
                       showAction={true}
                     />

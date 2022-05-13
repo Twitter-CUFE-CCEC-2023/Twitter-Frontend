@@ -12,27 +12,43 @@ import { NavLink } from "react-router-dom";
 import FollowButton from "../ProfileActions/FollowButton";
 
 function User(props) {
-  const [isFollowing, setIsFollowing] = useState(props.isFollowing?true:false);
+  const [isFollowing, setIsFollowing] = useState(
+    props.isFollowing ? true : false
+  );
+
   const onFollow = () => {
-    if (isFollowing) setIsFollowing(false);
-    else setIsFollowing(true);
+    if (isFollowing) {
+      setIsFollowing(false);
+    } else {
+      setIsFollowing(true);
+    }
   };
   return (
     <div className={classes.userContainer}>
       <NavLink className={classes.navl + " " + classes.minip} to="profile">
         <img
           className={`${ftclasses.profilePic} ${classes.center} ${classes.minip}`}
-          src={props.profilePic?props.profilePic:"https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"}
+          src={
+            props.profilePic
+              ? props.profilePic
+              : "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
+          }
           alt="profile"
           data-testid="profilePic"
         ></img>
       </NavLink>
       <div className={`${classes.hoverProfile} ${classes.top}`}>
         <MiniProfile
-          profilePic={props.profilePic?props.profilePic:"https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"}
+          profilePic={
+            props.profilePic
+              ? props.profilePic
+              : "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
+          }
           name={props.name}
           userName={props.userName}
           profileDesciption={props.bio}
+          isFollowing={isFollowing}
+          onClickFollow={onFollow}
           following={props.following}
           followers={props.followers}
         />
@@ -54,16 +70,21 @@ function User(props) {
           >
             @{props.userName}
           </p>
-          
         </NavLink>
         <div>
-        <p className={`${classes.bio}`}>{props.bio}</p>
+          <p className={`${classes.bio}`}>{props.bio}</p>
         </div>
       </div>
       <div className={`${classes.hoverProfile} ${classes.bot}`}>
         <MiniProfile
-          profilePic={props.profilePic?props.profilePic:"https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"}
+          profilePic={
+            props.profilePic
+              ? props.profilePic
+              : "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
+          }
           name={props.name}
+          onClickFollow={onFollow}
+          isFollowing={isFollowing}
           userName={props.userName}
           profileDesciption={props.bio}
           following={props.following}
@@ -75,11 +96,13 @@ function User(props) {
           !isFollowing ? "me-3" : "me-4"
         }`}
       >
-        <FollowButton
-          isFollowing={isFollowing}
-          onFollow={onFollow}
-          username={props.userName}
-        ></FollowButton>
+        {!props.currentuser && (
+          <FollowButton
+            isFollowing={isFollowing}
+            onFollow={onFollow}
+            username={props.userName}
+          ></FollowButton>
+        )}
       </div>
     </div>
   );

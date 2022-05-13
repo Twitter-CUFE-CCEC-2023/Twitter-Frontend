@@ -21,6 +21,7 @@ function FollowButton(props) {
       if (followOrFollowing === "Follow") {
         console.log("follow");
         instance.post("/user/follow", {"username": props.username}).then((res) => { console.log(res); }); 
+        props.onFollow();
         return "Following";
       } else {
         console.log("unfollow");
@@ -32,10 +33,11 @@ function FollowButton(props) {
           .catch((err) => {
             console.log(err);
           });
+          props.onFollow();
         return "Follow";
       }
     });
-    props.onFollow();
+    
   }
 
   let followActionsRenderer;

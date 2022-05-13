@@ -8,6 +8,10 @@ import { GoCalendar } from "react-icons/go";
 import { BsLink45Deg } from "react-icons/bs";
 
 function ProfileInfo(props) {
+  let JoinedDate = new Date(props.created_at);
+  const joined_at=JoinedDate.toString().split(" ");
+  let birth_date=new Date(props.birth_date);
+  const birth_at=birth_date.toString().split(" ");
   return (
     <Fragment>
       <div>
@@ -18,23 +22,33 @@ function ProfileInfo(props) {
         <p className={`${classes.userBio} py-0 my-2`}>{props.userBio}</p>
       </div>
       <div className={`${classes.Info}`}>
-        <div className={`${classes.userBirthDate} `}>
-          <GrLocation className={`${classes.calender} ms-2`}></GrLocation> New
-          Cairo
-        </div>
+        {props.userLocation && (
+          <div className={`${classes.userBirthDate} `}>
+            <GrLocation className={`${classes.calender} ms-2`}></GrLocation>{" "}
+            {props.userLocation}
+          </div>
+        )}
         <div className={`${classes.userBirthDate} ms-2`}>
           <IoBalloonOutline className={``}></IoBalloonOutline> Born{" "}
-          {props.birthMonth} {props.birthDay}, {props.birthYear}
+          {birth_at[1]} {birth_at[2]}, {birth_at[3]}
         </div>
 
         <div className={`${classes.userBirthDate}`}>
           <GoCalendar className={`${classes.calender} ms-2`}></GoCalendar>{" "}
-          Joined July 2021
+          Joined {joined_at[1]} {joined_at[3]}
         </div>
-        <div className={`${classes.userBirthDate}`}>
-          <BsLink45Deg className={`${classes.calender} ms-3`}></BsLink45Deg>{" "}
-          <a href='https://www.facebook.com/' style={{color:"#1DA1F2"}} target="_blank">https://www.facebook.com/</a>
-        </div>
+        {props.userWebsite && (
+          <div className={`${classes.userBirthDate}`}>
+            <BsLink45Deg className={`${classes.calender} ms-3`}></BsLink45Deg>{" "}
+            <a
+              href=""
+              style={{ color: "#1DA1F2" }}
+              target="_blank"
+            >
+              {props.userWebsite}
+            </a>
+          </div>
+        )}
       </div>
 
       <div className={`${classes.followesRow}row  mt-2 no-gutters`}>

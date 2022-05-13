@@ -22,7 +22,9 @@ function EditProfileButton() {
   const [bio, setBio] = useState(currentuser.bio);
   const [website, setWebsite] = useState(currentuser.website);
   const [location, setLocation] = useState(currentuser.location);
-
+  const [birth_date, setBirthDate] = useState(currentuser.birth_date.slice(0, 10));
+  console.log(birth_date);
+  console.log(currentuser.name);
   const editCover = (editedcover) => {
     setCroppedCoverPhoto(editedcover);
   };
@@ -50,15 +52,18 @@ function EditProfileButton() {
         "website": website,
         "location": location,
         "profile_image_url": croppedProfilePhoto,
+        "birth_date": birth_date,
       })
       .then((res) => {
         console.log(res);
         window.location.reload();
         //set local storage
+        console.log(res.data.message);
         localStorage.setItem("UserInfo", JSON.stringify(res.data.user));
       })
       .catch((err) => {
         console.log(err);
+          console.log("Error message", err.message);
       });
   }
   const changeNameVal=(value)=>{
@@ -172,7 +177,9 @@ function EditProfileButton() {
                   type="date"
                   id="birthday"
                   name="birthday"
-                  max="2012-01-01"
+                  value={birth_date}
+                  max="2021-01-01"
+                  onChange={(e) => {setBirthDate(e.target.value.toString()); console.log(e.target.value.toString())}}
                   className={`${classes.birthdayInput}`}
                 ></input>
               </form>

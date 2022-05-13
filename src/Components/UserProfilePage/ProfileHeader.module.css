@@ -6,19 +6,23 @@
   margin-top: 0;
   padding: 10px;
 }
+
 .username {
   font-size: 0.9em;
   /* --bs-gutter-x: none; */
 }
+
 .tweetsNumber {
   padding-left: 0px;
   font-size: 0.5em;
 }
+
 .arrowRow {
   padding-right: 0;
   margin-left: 1px;
   color: black !important;
 }
+
 .arrow{
     color: black !important;
 }

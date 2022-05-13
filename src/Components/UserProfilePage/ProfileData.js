@@ -28,7 +28,7 @@ function ProfileData(props) {
   let currentuserName=currentuser.username;
   const location = useLocation();
   let { userName } = useParams();
-  console.log(userInPath, "userInPath",currentuserName, "currentuserName");
+
 
   if (currentuser) {
     currentuserName = currentuser.username;
@@ -162,6 +162,10 @@ function ProfileData(props) {
       email: currentUserTweets.email,
       isVerified: currentUserTweets.isVerified,
       bio: currentUserTweets.bio,
+      location: currentUserTweets.location,
+      birth_date: currentUserTweets.birth_date,
+      created_at: currentUserTweets.created_at,
+      website: currentUserTweets.website,
       followers_count: currentUserTweets.followers_count,
       following_count: currentUserTweets.following_count,
       tweets_count: currentUserTweets.tweets_count,
@@ -200,9 +204,10 @@ function ProfileData(props) {
           name={user.name}
           userEmail={user.email}
           userBio={user.bio}
-          birthMonth="October"
-          birthDay={17}
-          birthYear={2000}
+          userLocation={user.location}
+          userWebsite={user.website}
+          created_at={user.created_at}
+          birth_date={user.birth_date}
           followers_count={user.followers_count}
           following_count={user.following_count}
         ></ProfileInfo>
