@@ -17,6 +17,8 @@
     "name": "typicode"
   },
   "auth": {
+    "email": "amrzaki2000.az@gmail.com",
+    "password": "12345678",
     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRhNGE5NGM2NjczOGYxMzg1NGI0NzQiLCJ1c2VybmFtZSI6ImFtcnpha2kiLCJpYXQiOjE2NTA5ODU0MDl9.EptG_kF70u_GB63quvTg4Fw9m3M_kfwd19P3zu4-Lzo",
     "user": {
       "bio": "",

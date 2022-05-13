@@ -21,6 +21,7 @@ import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined"
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MoreOutlinedIcon from "@material-ui/icons/MoreOutlined";
 import AccountButton from "./AccountButton";
+import NotificationAddOutlinedIcon from "@mui/icons-material/NotificationAddOutlined";
 
 import MoreButton from "./MoreButton";
 
@@ -42,7 +43,6 @@ const LeftSideBar = () => {
       ["more", pathname === "more"],
     ])
   );
-
 
   useEffect(() => {
     setPageActive((prevPageActive) => {

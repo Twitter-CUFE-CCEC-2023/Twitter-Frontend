@@ -40,3 +40,8 @@
   margin-left: 50%;
   margin-top: 5%;
 }
+
+.is_read {
+  background-color: var(--twitterHoverBlue);
+  border-bottom: 2px solid rgb(255, 255, 255);
+}

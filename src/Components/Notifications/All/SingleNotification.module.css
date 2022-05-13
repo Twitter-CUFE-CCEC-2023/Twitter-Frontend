@@ -73,3 +73,91 @@
   padding: 0 !important;
   cursor: inherit;
 }
+.nameLink {
+  text-decoration: none;
+  color: black !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: inherit;
+}
+.nameLink:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+}
+
+.hoverProfile {
+  transition: 0s 180s;
+}
+
+.minip + .hoverProfile {
+  position: relative;
+  display: inline-block;
+  visibility: hidden;
+  transition-delay: 0.6s;
+  transition-property: visibility;
+  z-index: 2;
+}
+
+.minip:hover + .hoverProfile {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+}
+
+.hoverProfile {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+}
+
+.hoverProfile:hover {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+}
+
+.hoverProfile {
+  display: none;
+}
+
+.top {
+  top: 65px;
+  left: -55px;
+}
+
+.fs15 {
+  font-size: 15px;
+}
+
+.noStyle {
+  text-decoration: none !important;
+  color: black !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: inherit;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.underline:hover {
+  text-decoration: underline;
+}
+
+.alignTop {
+  margin: 0;
+  margin-top: 7px;
+  align-items: baseline;
+  margin-bottom: 0;
+}
+
+.bot {
+  top: 15px;
+  left: -70px;
+}
+
+.is_read {
+  background-color: var(--twitterHoverBlue);
+  border-bottom: 2px solid rgb(255, 255, 255);
+}

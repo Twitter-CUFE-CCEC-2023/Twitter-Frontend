@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./SingleNotification.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -7,15 +7,23 @@ import PersonIcon from "@mui/icons-material/Person";
 import BlockIcon from "@mui/icons-material/Block";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { NavLink } from "react-router-dom";
+import FeedTweet from "../../TimeLinePage/MiddlePage/FeedTweet";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import MiniProfile from "../../TimeLinePage/MiniProfile";
 function SingleNotification(props) {
   let nottype = "";
   let description = "";
+  let history = useHistory();
 
   if (props.type === "Account Update") {
     nottype = classes.ban;
     description = "This account is restricted for " + props.banDuration;
     return (
-      <div className={classes.notification}>
+      <div
+        className={`${classes.notification} ${
+          props.is_read ? "" : classes.is_read
+        }`}
+      >
         <div className="container">
           <div className="row pt-2">
             <div className="col-1">
@@ -37,138 +45,350 @@ function SingleNotification(props) {
     nottype = classes.tweet;
     description = "New tweet notification for ";
     return (
-      <NavLink
-        to={`/${props.personID}/status/${props.tweetID}`}
-        className={classes.link}
+      <div
+        className={`${classes.notification} ${
+          props.is_read ? "" : classes.is_read
+        }`}
+        onClick={(e) => {
+          e.stopPropagation();
+          history.push(`/${props.personID}/status/${props.tweetID}`);
+          window.location.reload();
+        }}
       >
-        <div className={classes.notification}>
-          <div className="container">
-            <div className="row pt-2">
-              <div className="col-1">
-                <NotificationsIcon
-                  className={`${classes.noteicon} ${nottype}`}
-                />
-              </div>
-              <div className="col-4">
+        <div className="container">
+          <div className="row pt-2">
+            <div className="col-1">
+              <NotificationsIcon className={`${classes.noteicon} ${nottype}`} />
+            </div>
+            <div className="col-4">
+              <NavLink
+                to={`/userProfile/${props.personID}`}
+                className={classes.link}
+              >
                 <img
-                  className={classes.profilePic}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className={`${classes.profilePic} ${classes.minip}`}
                   alt="profile"
                   src={props.profilePicture}
                 ></img>
-              </div>
-            </div>
-            <div className="row mt-2">
-              <p className={classes.notedescription}>
-                {description}
-                <span>
-                  <strong>{props.Person} </strong>
-                </span>
-              </p>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }}
+                  className={`${classes.hoverProfile} ${classes.top}`}
+                >
+                  <MiniProfile
+                    profilePic={props.profilePicture}
+                    name={props.Person}
+                    userName={props.personID}
+                    profileDesciption={props.bio}
+                    following={props.following}
+                    followers={props.followers}
+                  />
+                </div>
+              </NavLink>
             </div>
           </div>
+          <div className="row mt-2">
+            <p className={classes.notedescription}>
+              {description}
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className={`${classes.underline} ${classes.fs15} ${classes.pointer} ${classes.alignTop} `}
+              >
+                <NavLink
+                  to={`/userProfile/${props.personID}`}
+                  className={`${classes.nameLink} ${classes.fs15} ${classes.minip} ${classes.noStyle}`}
+                >
+                  <strong>{props.Person} </strong>
+                </NavLink>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className={`${classes.hoverProfile}  ${classes.bot}`}
+                >
+                  <MiniProfile
+                    profilePic={props.profilePicture}
+                    name={props.person}
+                    userName={props.personID}
+                    profileDesciption={props.bio}
+                    following={props.following}
+                    followers={props.followers}
+                  />
+                </div>
+              </span>
+            </p>
+          </div>
         </div>
-      </NavLink>
+      </div>
     );
   } else if (props.type === "Like") {
     nottype = classes.like;
     description = "liked your tweet";
     return (
-      <NavLink
-        to={`/${props.uid}/status/${props.tweetID}`}
-        className={classes.link}
+      <div
+        className={`${classes.notification} ${
+          props.is_read ? "" : classes.is_read
+        }`}
+        onClick={(e) => {
+          e.stopPropagation();
+          history.push(`/${props.personID}/status/${props.tweetID}`);
+          window.location.reload();
+        }}
       >
-        <div className={classes.notification}>
-          <div className="container">
-            <div className="row pt-2">
-              <div className="col-1">
-                <FavoriteIcon className={`${classes.noteicon} ${nottype}`} />
-              </div>
-              <div className="col-4">
+        <div className="container">
+          <div className="row pt-2">
+            <div className="col-1">
+              <FavoriteIcon className={`${classes.noteicon} ${nottype}`} />
+            </div>
+            <div className="col-4">
+              <NavLink
+                to={`/userProfile/${props.personID}`}
+                className={classes.link}
+              >
                 <img
-                  className={classes.profilePic}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className={`${classes.profilePic} ${classes.minip}`}
                   alt="profile"
                   src={props.profilePicture}
                 ></img>
-              </div>
-            </div>
-            <div className="row mt-2">
-              <p className={classes.notedescription}>
-                <span>
-                  <strong>{props.Person} </strong>
-                </span>
-                {description}
-              </p>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }}
+                  className={`${classes.hoverProfile} ${classes.top}`}
+                >
+                  <MiniProfile
+                    profilePic={props.profilePicture}
+                    name={props.Person}
+                    userName={props.personID}
+                    profileDesciption={props.bio}
+                    following={props.following}
+                    followers={props.followers}
+                  />
+                </div>
+              </NavLink>
             </div>
           </div>
+          <div className="row mt-2">
+            <p className={classes.notedescription}>
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className={`${classes.underline} ${classes.fs15} ${classes.pointer} ${classes.alignTop} `}
+              >
+                <NavLink
+                  to={`/userProfile/${props.personID}`}
+                  className={`${classes.nameLink} ${classes.fs15} ${classes.minip} ${classes.noStyle}`}
+                >
+                  <strong>{props.Person} </strong>
+                </NavLink>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className={`${classes.hoverProfile}  ${classes.bot}`}
+                >
+                  <MiniProfile
+                    profilePic={props.profilePicture}
+                    name={props.person}
+                    userName={props.personID}
+                    profileDesciption={props.bio}
+                    following={props.following}
+                    followers={props.followers}
+                  />
+                </div>
+              </span>
+              {description}
+            </p>
+          </div>
         </div>
-      </NavLink>
+      </div>
     );
   } else if (props.type === "Retweet") {
     nottype = classes.retweet;
     description = "retweeted your tweet";
     return (
-      <NavLink
-        to={`/${props.uid}/status/${props.tweetID}`}
-        className={classes.link}
+      <div
+        className={`${classes.notification} ${
+          props.is_read ? "" : classes.is_read
+        }`}
+        onClick={(e) => {
+          e.stopPropagation();
+          history.push(`/${props.personID}/status/${props.tweetID}`);
+          window.location.reload();
+        }}
       >
-        <div className={classes.notification}>
-          <div className="container">
-            <div className="row pt-2">
-              <div className="col-1">
-                <AutorenewIcon className={`${classes.noteicon} ${nottype}`} />
-              </div>
-              <div className="col-4">
+        <div className="container">
+          <div className="row pt-2">
+            <div className="col-1">
+              <AutorenewIcon className={`${classes.noteicon} ${nottype}`} />
+            </div>
+            <div className="col-4">
+              <NavLink
+                to={`/userProfile/${props.personID}`}
+                className={classes.link}
+              >
                 <img
-                  className={classes.profilePic}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className={`${classes.profilePic} ${classes.minip}`}
                   alt="profile"
                   src={props.profilePicture}
                 ></img>
-              </div>
-            </div>
-            <div className="row mt-2">
-              <p className={classes.notedescription}>
-                <span>
-                  <strong>{props.Person} </strong>
-                </span>
-                {description}
-              </p>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }}
+                  className={`${classes.hoverProfile} ${classes.top}`}
+                >
+                  <MiniProfile
+                    profilePic={props.profilePicture}
+                    name={props.Person}
+                    userName={props.personID}
+                    profileDesciption={props.bio}
+                    following={props.following}
+                    followers={props.followers}
+                  />
+                </div>
+              </NavLink>
             </div>
           </div>
+          <div className="row mt-2">
+            <p className={classes.notedescription}>
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className={`${classes.underline} ${classes.fs15} ${classes.pointer} ${classes.alignTop} `}
+              >
+                <NavLink
+                  to={`/userProfile/${props.personID}`}
+                  className={`${classes.nameLink} ${classes.fs15} ${classes.minip} ${classes.noStyle}`}
+                >
+                  <strong>{props.Person} </strong>
+                </NavLink>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className={`${classes.hoverProfile}  ${classes.bot}`}
+                >
+                  <MiniProfile
+                    profilePic={props.profilePicture}
+                    name={props.person}
+                    userName={props.personID}
+                    profileDesciption={props.bio}
+                    following={props.following}
+                    followers={props.followers}
+                  />
+                </div>
+              </span>
+              {description}
+            </p>
+          </div>
         </div>
-      </NavLink>
+      </div>
     );
   } else if (props.type === "Follow") {
     nottype = classes.follow;
     description = "started following you";
     return (
-      <NavLink to={`/userProfile/${props.personID}`} className={classes.link}>
-        <div className={classes.notification}>
-          <div className="container">
-            <div className="row pt-2">
-              <div className="col-1">
-                <PersonIcon className={`${classes.noteicon} ${nottype}`} />
-              </div>
-              <div className="col-4">
+      <div
+        className={`${classes.notification} ${
+          props.is_read ? "" : classes.is_read
+        }`}
+        onClick={(e) => {
+          e.stopPropagation();
+          history.push(`/userProfile/${props.personID}`);
+          window.location.reload();
+        }}
+      >
+        <div className="container">
+          <div className="row pt-2">
+            <div className="col-1">
+              <PersonIcon className={`${classes.noteicon} ${nottype}`} />
+            </div>
+            <div className="col-4">
+              <NavLink
+                to={`/userProfile/${props.personID}`}
+                className={classes.link}
+              >
                 <img
-                  className={classes.profilePic}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className={`${classes.profilePic} ${classes.minip}`}
                   alt="profile"
                   src={props.profilePicture}
                 ></img>
-              </div>
-            </div>
-            <div className="row mt-2">
-              <p className={classes.notedescription}>
-                <span>
-                  <strong>{props.Person} </strong>
-                </span>
-                {description}
-              </p>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }}
+                  className={`${classes.hoverProfile} ${classes.top}`}
+                >
+                  <MiniProfile
+                    profilePic={props.profilePicture}
+                    name={props.Person}
+                    userName={props.personID}
+                    profileDesciption={props.bio}
+                    following={props.following}
+                    followers={props.followers}
+                  />
+                </div>
+              </NavLink>
             </div>
           </div>
+          <div className="row mt-2">
+            <p className={classes.notedescription}>
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className={`${classes.underline} ${classes.fs15} ${classes.pointer} ${classes.alignTop} `}
+              >
+                <NavLink
+                  to={`/userProfile/${props.personID}`}
+                  className={`${classes.nameLink} ${classes.fs15} ${classes.minip} ${classes.noStyle}`}
+                >
+                  <strong>{props.Person} </strong>
+                </NavLink>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className={`${classes.hoverProfile}  ${classes.bot}`}
+                >
+                  <MiniProfile
+                    profilePic={props.profilePicture}
+                    name={props.person}
+                    userName={props.personID}
+                    profileDesciption={props.bio}
+                    following={props.following}
+                    followers={props.followers}
+                  />
+                </div>
+              </span>
+              {description}
+            </p>
+          </div>
         </div>
-      </NavLink>
+      </div>
     );
-  } else if (props.type === "Reply") {
   }
 }
 export default SingleNotification;
