@@ -62,7 +62,7 @@ const EnterEmail = (props) => {
                 handleButtonClick={handleNextClick}
                 handleLoadingfn={handleLoading}
               />
-              <ForgetPasswordButton />
+              <ForgetPasswordButton handleButtonClick={handleNextClick} />
               <DoNotHaveAccount />
             </div>
             <div className={classes.alert}>
