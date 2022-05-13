@@ -38,9 +38,9 @@ function App() {
   const loginCtx = useContext(LoginContext);
 
   console.log("Admin ", loginCtx.isAdmin);
+  console.log("!!!Admin ", !!!loginCtx.isAdmin);
   console.log("Login ", loginCtx.isLoggedIn);
-  console.log(loginCtx.isAdmin !== false)
-  const ans = loginCtx.isLoggedIn && (loginCtx.isAdmin === false);
+  const ans = loginCtx.isLoggedIn && !loginCtx.isAdmin;
   const ans2 = loginCtx.isLoggedIn && loginCtx.isAdmin;
   console.log("User Can Login " + ans);
   console.log("Admin Can Login " + ans2);

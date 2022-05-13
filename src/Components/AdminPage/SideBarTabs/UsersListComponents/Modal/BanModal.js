@@ -69,8 +69,7 @@ export default function BanModel(props) {
       }, 3000);
     } else {
       const today = new Date();
-      console.log(today > todate);
-      if (today >= todate) {
+      if (!banForever && today >= todate) {
         setDateError(true);
         setTimeout(() => {
           setDateError(false);
@@ -85,7 +84,6 @@ export default function BanModel(props) {
         banDuration: todate,
         isPermanent: banForever,
       };
-      console.log("banning", banRequest);
       setSubmitButton("Submitting");
       axios
         .post("/dashboard/ban", banRequest, {
@@ -137,13 +135,15 @@ export default function BanModel(props) {
                 value={reason}
               />
             </div>
-            <div style={{ marginTop: "20px" }}>
-              <FilterDates
-                label="To"
-                date={todate}
-                handleChange={handleToDateChange}
-              />
-            </div>
+            {!banForever && (
+              <div style={{ marginTop: "20px" }}>
+                <FilterDates
+                  label="To"
+                  date={todate}
+                  handleChange={handleToDateChange}
+                />
+              </div>
+            )}
             <div style={{ marginTop: "10px" }}>
               <FormControlLabel
                 control={

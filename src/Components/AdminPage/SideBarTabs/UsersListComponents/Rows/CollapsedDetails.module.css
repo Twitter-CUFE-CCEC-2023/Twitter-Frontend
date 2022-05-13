@@ -20,3 +20,9 @@
     width: 95vw;
   }
 }
+
+@media only screen and (width: 280px) {
+  .paper {
+    width: 106vw;
+  }
+}

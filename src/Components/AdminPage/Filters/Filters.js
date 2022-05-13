@@ -6,13 +6,15 @@ import FilterRegion from "./FilterRegion";
 import BackgroundPaper from "../BackgroundPaper";
 import classes from "./Filters.module.css";
 import BootstrapButton from "../BootstrapButton";
+import ErrorModal from "../AdminComponents/ErrorModal";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 
 function Filters() {
   const [fromdate, setFromDate] = useState(new Date());
   const [todate, setToDate] = useState(new Date());
-  const [gender, setGender] = useState("Male");
+  const [gender, setGender] = useState("");
   const [regions, setRegions] = useState([]);
+  const [dateError, setDateError] = useState(false);
 
   const [submitFilters, setSubmitFilters] = useState(false);
 
@@ -29,11 +31,34 @@ function Filters() {
     setRegions(event.target.value);
   };
 
+  const closeErrorModal = (value) => {
+    setTimeout(() => {
+      setDateError(value);
+    }, 100);
+  };
+
   const handleSubmissiom = () => {
-    localStorage.setItem(`filter-From-date`, fromdate);
-    localStorage.setItem(`filter-To-date`, todate);
     localStorage.setItem(`filter-gender`, gender);
     localStorage.setItem(`filter-regions`, regions);
+    // console.log(localStorage.getItem(`filter-From-date`));
+    // console.log(localStorage.getItem(`filter-To-date`));
+    // console.log(fromdate > todate);
+    // console.log(fromdate);
+    // console.log(todate);
+
+    // const from = fromdate.toLocaleString("en-US", { timeZone: "Africa/Cairo" });
+    // const to = todate.toLocaleString("en-US", { timeZone: "Africa/Cairo" });
+    // console.log(from);
+    // console.log(to);
+    // console.log(from > to);
+    // console.log(fromdate > todate);
+
+    if (fromdate > todate) {
+      setDateError(true);
+      return;
+    }
+    localStorage.setItem(`filter-From-date`, fromdate);
+    localStorage.setItem(`filter-To-date`, todate);
     setSubmitFilters(true);
     setTimeout(() => {
       setSubmitFilters(false);
@@ -43,13 +68,13 @@ function Filters() {
   const handleClearFilters = () => {
     setFromDate(new Date());
     setToDate(new Date());
-    setGender("male");
+    setGender("");
     setRegions([]);
     setSubmitFilters(false);
-    localStorage.removeItem(`filter-To-date`);
-    localStorage.removeItem(`filter-From-date`);
-    localStorage.removeItem(`filter-gender`);
-    localStorage.removeItem(`filter-regions`);
+    localStorage.setItem(`filter-From-date`, new Date());
+    localStorage.setItem(`filter-To-date`, new Date());
+    localStorage.setItem(`filter-gender`, "All");
+    localStorage.setItem(`filter-regions`, []);
   };
 
   useEffect(() => {
@@ -103,6 +128,13 @@ function Filters() {
           </BootstrapButton>
         </div>
       </div>
+      {dateError && (
+        <ErrorModal
+          message="End-date can't be before Start-date"
+          open={dateError}
+          setOpenModalValue={closeErrorModal}
+        />
+      )}
     </BackgroundPaper>
   );
 }

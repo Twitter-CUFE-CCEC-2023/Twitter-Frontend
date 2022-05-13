@@ -32,6 +32,12 @@
   }
 }
 
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .paper {
+    width: 65vw;
+  }
+}
+
 @media only screen and (min-width: 0px) and (max-width: 300px) {
   .paper {
     height: 87vh;
@@ -41,5 +47,17 @@
 
   .container {
     height: 80vh;
+  }
+}
+
+@media only screen and (width: 280px) {
+  .paper {
+    height: 117vh;
+    margin: -1% 0%;
+    width: 115vw;
+  }
+
+  .container {
+    height: 110vh;
   }
 }

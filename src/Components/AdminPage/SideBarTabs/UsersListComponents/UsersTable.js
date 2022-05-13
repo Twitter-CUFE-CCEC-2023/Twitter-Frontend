@@ -15,21 +15,26 @@ import TablePaginationActions from "./TablePaginationActions";
 import axios from "../../../axios";
 
 const UsersTable = () => {
+  const rowsPerPage = 10;
+
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
   const [totalNumberUsers, setTotalNumberUsers] = useState(0);
 
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const requestUsers = () => {
+  const requestUsers = (newPage) => {
     let requestFilters = {
-      access_token: localStorage.getItem("token"),
+      // access_token: localStorage.getItem("token"),
       count: rowsPerPage,
-      page: page,
+      page: newPage + 1,
     };
 
-    if (localStorage.getItem(`filter-gender`) !== "both") {
+    if (
+      localStorage.getItem(`filter-gender`) !== "" &&
+      localStorage.getItem(`filter-gender`) !== "All"
+    ) {
       requestFilters["gender"] = localStorage.getItem("filter-gender");
     }
 
@@ -37,23 +42,21 @@ const UsersTable = () => {
       requestFilters["location"] = localStorage.getItem("filter-regions");
     }
 
-    console.log("Sending request", requestFilters);
+    // console.log("Sending request", requestFilters);
     axios
-      .get("/dashboard/users", requestFilters, {
+      .post("/dashboard/users", requestFilters, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
           setUsers(response.data.user);
           setTotalNumberUsers(response.data.count);
-          console.log("Users are");
-          console.log(response.data.user);
         }
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         // props.handleLoadingfn(false);
         // if (err.response.status === 401) {
         //   props.handleLoginClickfn(false);
@@ -63,17 +66,17 @@ const UsersTable = () => {
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
-    console.log("page =", newPage);
-    requestUsers();
+    setIsLoading(true);
+    requestUsers(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(event.target.value);
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setRowsPerPage(event.target.value);
+  //   setPage(1);
+  // };
 
   useEffect(() => {
-    requestUsers();
+    requestUsers(0);
   }, []);
 
   return (
@@ -122,7 +125,7 @@ const UsersTable = () => {
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        // onRowsPerPageChange={handleChangeRowsPerPage}
         ActionsComponent={TablePaginationActions}
       />
     </Paper>

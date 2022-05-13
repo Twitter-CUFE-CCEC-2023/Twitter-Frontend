@@ -8,11 +8,6 @@ import twitterWhiteLogo from "../../../Assets/twitterWhiteLogo.png";
 const PosterImage = () => {
   return (
     <div className={classes.posterSection}>
-      {/* <img
-        className={classes.smallScreenLogo}
-        src={twitterWhiteLogoBlueBackground}
-        alt="TwitterLogo"
-      /> */}
       <img
         className={classes.background}
         src={backgroundImage}
