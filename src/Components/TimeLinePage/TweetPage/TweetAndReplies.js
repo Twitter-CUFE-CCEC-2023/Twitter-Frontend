@@ -51,6 +51,7 @@ function TweetAndReplies(props) {
       bio: maintweet.user.bio,
       followers: maintweet.user.followers_count,
       following: maintweet.user.following_count,
+      isFollowing: maintweet.user.is_followed,
       text: maintweet.content,
       tweetId: maintweet.id,
       date: maintweet.created_at,
@@ -71,6 +72,7 @@ function TweetAndReplies(props) {
       bio: maintweet.user.bio,
       followers: maintweet.user.followers_count,
       following: maintweet.user.following_count,
+      isFollowing: maintweet.user.is_followed
     }
     let repl = replies.map( (reply) => {
       return {

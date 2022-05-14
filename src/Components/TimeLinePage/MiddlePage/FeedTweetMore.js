@@ -15,6 +15,8 @@ import VolumeOffOutlinedIcon from '@material-ui/icons/VolumeOffOutlined';
 import BlockOutlinedIcon from '@material-ui/icons/BlockOutlined';
 import OutlinedFlagIcon from '@material-ui/icons/OutlinedFlag';
 
+import instance from '../../axios';
+
 function FeedTweetMore(props) {
     let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
     const[listHidden, setListHidden] = React.useState(true)
@@ -41,18 +43,25 @@ function FeedTweetMore(props) {
 
     function follow(){
         if(props.isFollowing){
-            props.setFollowingSet((prev) => {
+            if(props.setFollowingSet)
+            {
+                props.setFollowingSet((prev) => {
                 let newFollowingSet = new Set(prev);
                 newFollowingSet.delete(props.userName);
                 return newFollowingSet;
-            });
+            });}
+            instance.post("/user/unfollow",  {"username": props.userName} ).then(res => { console.log(res.data)});
         }
         else{
-            props.setFollowingSet((prev) => {
+            if(props.setFollowingSet)
+            {
+                props.setFollowingSet((prev) => {
                 let newFollowingSet = new Set(prev);
                 newFollowingSet.add(props.userName);
                 return newFollowingSet;
-            });
+            });}
+            instance.post("/user/follow", {"username": props.username}).then(res => { console.log(res.data)}); 
+
         }
         props.setIsFollowing(prev => !prev); 
         setListHidden(true);

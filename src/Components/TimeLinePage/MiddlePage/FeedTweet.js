@@ -30,7 +30,7 @@ export default function FeedTweet(props) {
 
   const [isDeleted, setIsDeleted] = useState(false);
 
-  const [isFollowing, setIsFollowing] = useState(props.followingSet ? props.followingSet.has(props.userName) : false);
+  const [isFollowing, setIsFollowing] = useState(props.followingSet ? props.followingSet.has(props.userName) : props.isFollowing);
 
   React.useEffect(() => {
     if (props.followingSet)
