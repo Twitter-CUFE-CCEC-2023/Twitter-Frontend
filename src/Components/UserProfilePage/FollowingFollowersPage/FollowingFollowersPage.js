@@ -82,6 +82,7 @@ function FollowingFollowersPage() {
     //get user info from database
     if (!isMock) {
       const res = await instance.get(`/info/${userName}`);
+
       const userInfo = res.data.user;
       setUser(userInfo);
     }

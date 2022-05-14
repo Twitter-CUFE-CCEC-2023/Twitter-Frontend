@@ -12,7 +12,11 @@ function SearchBar() {
 
   const currentUser = JSON.parse(localStorage.getItem("UserInfo"));
 
-  useEffect(() => getSearchResults(), [searchItem]);
+  const handleIconClick = () => {
+    getSearchResults();
+  };
+
+  // useEffect(() => getSearchResults(), [searchItem]);
 
   const getSearchResults = async () => {
     setLoading(true);
@@ -22,7 +26,7 @@ function SearchBar() {
     SearchResults = results.data.users;
     console.log("searchResults", SearchResults);
     SearchResults.forEach((results) => {
-      console.log("results", results);
+      // console.log("results", results);
       let searchResult = {
         profilePic: results.profile_image_url,
         name: results.name,
@@ -32,6 +36,7 @@ function SearchBar() {
         return [...prevSearchResults, searchResult];
       });
     });
+
     setLoading(false);
   };
 
@@ -61,7 +66,10 @@ function SearchBar() {
             className={classes.searchInput}
             onChange={searchHandler}
           ></input>
-          <SearchIcon className={classes.searchIcon} />
+          <SearchIcon
+            className={classes.searchIcon}
+            onClick={handleIconClick}
+          />
         </form>
       </div>
       <div className={classes.searchResultsList}>
