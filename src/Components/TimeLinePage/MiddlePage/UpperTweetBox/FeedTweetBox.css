@@ -13,7 +13,9 @@
 
 .profileImg { 
   border-radius: 50%;
-  height: 50px;
+  height: 48px;
+  width: 48px;
+  object-fit: cover;
   cursor: pointer;
 }
 
