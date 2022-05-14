@@ -29,15 +29,19 @@ export default function FeedTweet(props) {
   }
 
   const [isDeleted, setIsDeleted] = useState(false);
-  const [isFollowing, setIsFollowing] = useState(props.followingSet.has(props.userName));
+
+  const [isFollowing, setIsFollowing] = useState(props.followingSet ? props.followingSet.has(props.userName) : false);
 
   React.useEffect(() => {
-    if(props.followingSet.has(props.userName)){
-      setIsFollowing(true);
-    }
-    else{
-      setIsFollowing(false);
-    }
+    if (props.followingSet)
+    {
+        if(props.followingSet.has(props.userName)){
+        setIsFollowing(true);
+      }
+      else{
+        setIsFollowing(false);
+      }
+  }
   }, [props.followingSet]);
 
   // function hideReplyModal() {
