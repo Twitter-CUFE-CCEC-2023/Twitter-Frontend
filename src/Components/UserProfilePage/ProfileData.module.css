@@ -37,6 +37,11 @@
   border-width: 5px;
   border-color: rgb(255, 255, 255);
   top: -50%;
+  cursor: pointer;
+}
+
+.profileImage:hover {
+  opacity: 0.9;
 }
 
 .profileActionsRow {

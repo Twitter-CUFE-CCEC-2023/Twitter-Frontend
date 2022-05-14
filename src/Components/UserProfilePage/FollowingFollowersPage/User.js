@@ -25,7 +25,7 @@ function User(props) {
   };
   return (
     <div className={classes.userContainer}>
-      <NavLink className={classes.navl + " " + classes.minip} to="profile">
+      <NavLink to={`/userprofile/${props.userName}`} className={classes.navl + " " + classes.minip} >
         <img
           className={`${ftclasses.profilePic} ${classes.center} ${classes.minip}`}
           src={
@@ -56,7 +56,7 @@ function User(props) {
       </div>
 
       <div className={classes.names + " " + classes.minip}>
-        <NavLink className={classes.navl} to="profile">
+        <NavLink to={`/userprofile/${props.userName}`} className={classes.navl} >
           <p
             className={classes.name + " " + classes.minip + " " + classes.nom}
             data-testid="name"
@@ -64,7 +64,7 @@ function User(props) {
             {props.name}
           </p>
         </NavLink>
-        <NavLink className={classes.navl} to="profile">
+        <NavLink to={`/userprofile/${props.userName}`} className={classes.navl}>
           <p
             className={classes.userName + " " + classes.nom}
             data-testid="userName"
