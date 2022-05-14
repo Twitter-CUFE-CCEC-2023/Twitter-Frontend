@@ -18,37 +18,42 @@ const Likes = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let likesRequest;
-    if (localStorage.getItem(`filter-regions`).length === 0) {
-      likesRequest = {
-        start_date: localStorage.getItem(`filter-From-date`),
-        end_date: localStorage.getItem(`filter-To-date`),
-        gender: localStorage.getItem(`filter-gender`),
-      };
-    } else {
-      likesRequest = {
-        start_date: localStorage.getItem(`filter-From-date`),
-        end_date: localStorage.getItem(`filter-To-date`),
-        gender: localStorage.getItem(`filter-gender`),
-        location: localStorage.getItem(`filter-regions`),
-      };
+    let likesRequest = {
+      start_date: localStorage.getItem(`filter-From-date`),
+      end_date: localStorage.getItem(`filter-To-date`),
+    };
+
+    if (
+      localStorage.getItem(`filter-gender`) !== "" &&
+      localStorage.getItem(`filter-gender`) !== "All"
+    ) {
+      likesRequest["gender"] = localStorage.getItem("filter-gender");
     }
 
+    if (localStorage.getItem(`filter-regions`).length !== 0) {
+      likesRequest["location"] = localStorage.getItem("filter-regions");
+    }
+
+    // console.log("likes request", likesRequest);
+
     axios
-      .get("/dashboard/likes", likesRequest, {
+      .post("/dashboard/likes", likesRequest, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
           setTotal(response.data.count);
-          setAvg(response.data.avgPerDay.toFixed(3));
+          const avg = response.data.avgPerDay
+            ? response.data.avgPerDay.toFixed(3)
+            : 0;
+          setAvg(avg);
           setIsLoading(false);
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 

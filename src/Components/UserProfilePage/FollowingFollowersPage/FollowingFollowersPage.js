@@ -174,7 +174,7 @@ function FollowingFollowersPage() {
           return [...prevFollowing, followingUser];
         });
       });
-      setHasMoreFollowing(userFollowings.length === 3);
+      setHasMoreFollowing(userFollowings.length === 5);
       setLoading(false);
     }
   };

@@ -65,7 +65,7 @@ const LoginButton = (props) => {
           if (data.email === username && data.password === password) {
             localStorage.setItem("UserInfo", JSON.stringify(data.user));
             if (data.user.role === "User") {
-              loginCtx.login(false, data.access_token, 360000);
+              loginCtx.login(null, data.access_token, 360000);
               history.push("/home");
               localStorage.removeItem("userEmailOrName");
             } else if (data.user.role === "Admin") {

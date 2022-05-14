@@ -176,33 +176,51 @@ const CustomPieChart = (props) => {
     const inData = props.data;
     const result = inData.filter((data) => data.value !== 0);
     setData(result);
+    // console.log(result);
+    // console.log(result.length);
   }, [props.data]);
 
   return (
-    <div className={classes.chartContainerPie}>
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={400} height={400}>
-          <Pie
-            data={data}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius="100%"
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-        </PieChart>
-      </ResponsiveContainer>
-    </div>
+    <>
+      {data.length === 0 && (
+        <p
+          style={{
+            color: "rgba(0, 0, 0, 0.54)",
+            fontSize: "150%",
+            position: "absolute",
+            top: "200px",
+          }}
+        >
+          No data to show
+        </p>
+      )}
+      {data.length !== 0 && (
+        <div className={classes.chartContainerPie}>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart width={400} height={400}>
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius="100%"
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {data.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -47,7 +47,7 @@ export default function ShowHide(props) {
     <div className={classes.root}>
       <FormControlLabel
         control={<Switch checked={checked} onChange={handleChange} />}
-        label="Pie Chart"
+        label={checked ? "Pie Chart" : "Bar Chart"}
       />
       <div>
         <Fade in={checked}>

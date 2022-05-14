@@ -1,0 +1,36 @@
+.openedProfilePic {
+  border-radius: 50%;
+  width: 380px;
+  height: 380px;
+}
+.imageBox {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0px;
+}
+
+.profilePicDialog{
+    width: 400px;
+    height: 400px;
+    background: transparent;
+    background-color: transparent;
+    color: transparent;
+    
+}
+
+@media screen and (max-width: 500px){
+    .openedProfilePic {
+        width: 290px;
+        height: 290px;
+      } 
+}
+@media screen and (max-width: 370px){
+    .openedProfilePic {
+        width: 220px;
+        height: 220px;
+      } 
+}
+

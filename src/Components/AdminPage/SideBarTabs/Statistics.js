@@ -49,72 +49,81 @@ const Statistics = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let request;
-    if (localStorage.getItem(`filter-regions`).length === 0) {
-      request = {
-        start_date: localStorage.getItem(`filter-From-date`),
-        end_date: localStorage.getItem(`filter-To-date`),
-        gender: localStorage.getItem(`filter-gender`),
-      };
-    } else {
-      request = {
-        start_date: localStorage.getItem(`filter-From-date`),
-        end_date: localStorage.getItem(`filter-To-date`),
-        gender: localStorage.getItem(`filter-gender`),
-        location: localStorage.getItem(`filter-regions`),
-      };
+    let request = {
+      start_date: localStorage.getItem(`filter-From-date`),
+      end_date: localStorage.getItem(`filter-To-date`),
+    };
+
+    if (
+      localStorage.getItem(`filter-gender`) !== "" &&
+      localStorage.getItem(`filter-gender`) !== "All"
+    ) {
+      request["gender"] = localStorage.getItem("filter-gender");
+    }
+
+    if (localStorage.getItem(`filter-regions`).length !== 0) {
+      request["location"] = localStorage.getItem("filter-regions");
     }
 
     // Likes request
     axios
-      .get("/dashboard/likes", request, {
+      .post("/dashboard/likes", request, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
           setTotalLikes(response.data.count);
-          setAvgLikes(response.data.avgPerDay.toFixed(3));
+          const avg = response.data.avgPerDay
+            ? response.data.avgPerDay.toFixed(3)
+            : 0;
+          setAvgLikes(avg);
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
 
     // Tweets request
     axios
-      .get("/dashboard/tweets", request, {
+      .post("/dashboard/tweets", request, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
           setTotalTweets(response.data.count);
-          setAvgTweets(response.data.avgPerDay.toFixed(3));
+          const avg = response.data.avgPerDay
+            ? response.data.avgPerDay.toFixed(3)
+            : 0;
+          setAvgTweets(avg);
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
 
     // Retweets request
     axios
-      .get("/dashboard/retweets", request, {
+      .post("/dashboard/retweets", request, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
           setotalRetweets(response.data.count);
-          setAvgRetweets(response.data.avgPerDay.toFixed(3));
+          const avg = response.data.avgPerDay
+            ? response.data.avgPerDay.toFixed(3)
+            : 0;
+          setAvgRetweets(avg);
           setIsLoading(false);
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 

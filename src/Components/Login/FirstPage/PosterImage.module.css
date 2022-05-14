@@ -28,10 +28,6 @@
   /* width: 42%; */
 }
 
-.smallScreenLogo {
-  display: none;
-}
-
 @media only screen and (min-width: 0px) and (max-width: 700px) {
   .posterSection {
     height: 45vh;
@@ -40,22 +36,7 @@
   }
 
   .logo {
-    width: 60%;
-    /* width: 300px; */
-    /* top: 19%;
-    left: 21%; */
-  }
-}
-
-@media only screen and (min-width: 0px) and (max-width: 700px) {
-  .posterSection {
-    height: 45vh;
-    width: 100%;
-    margin-bottom: 1%;
-  }
-
-  .logo {
-    width: 60%;
+    width: 56%;
     /* width: 300px; */
     /* top: 19%;
     left: 21%; */
@@ -70,7 +51,7 @@
   }
 
   .logo {
-    width: 41%;
+    width: 39%;
     /* width: 300px; */
     /* top: 19%;
     left: 21%; */
@@ -103,5 +84,11 @@
 @media only screen and (min-width: 1024px) and (max-width: 1024px) {
   .posterSection {
     height: 115vh;
+  }
+}
+
+@media only screen and (width: 280px) {
+  .posterSection {
+    width: 347px;
   }
 }

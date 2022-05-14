@@ -11,6 +11,7 @@ import CoverPhoto from "./CoverPhoto";
 import ProfileActions from "./ProfileActions/ProfileActions.js";
 import ProfileInfo from "./ProfileInfo";
 import ProfileTabs from "./ProfileTabs/ProfileTabs";
+import ProfilePhotoModal from "./Modals/ProfilePhotoModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FeedTweet from "../../Components/TimeLinePage/MiddlePage/FeedTweet";
 import ReactLoading from "react-loading";
@@ -175,8 +176,18 @@ function ProfileData(props) {
     setLoading(false);
   };
 
+
+
+  //profile photo open handeling
+  const [openProfilePhoto,setOpenProfilePhoto]=useState(false);
+  const handleProfilePhotoOpenAndClose=()=>{
+    if(user.profilePic)
+    setOpenProfilePhoto(()=>{return !openProfilePhoto});
+  }
+
   return (
     <div className={`${classes.profileDataContainer} `}>
+      <ProfilePhotoModal isOpen={openProfilePhoto} handleProfilePhotoOpenAndClose={handleProfilePhotoOpenAndClose} profilePic={user.profilePic}/>
       <div className={`${classes.header} row`}>
         <ProfileHeader profilePic={user.profilePic} name={user.name} username={user.username} tweets_count={user.tweets_count}></ProfileHeader>
       </div>
@@ -185,6 +196,7 @@ function ProfileData(props) {
         <div className={`${classes.profileImageContainer} `}>
           <img
             className={`${classes.profileImage} img-fluid`}
+            onClick={handleProfilePhotoOpenAndClose}
             src={`${
               user.profilePic
                 ? user.profilePic
@@ -192,6 +204,7 @@ function ProfileData(props) {
             }`}
             alt=""
           />
+          
         </div>
       </div>
       <div className={`${classes.profileActionsRow}  `}>
