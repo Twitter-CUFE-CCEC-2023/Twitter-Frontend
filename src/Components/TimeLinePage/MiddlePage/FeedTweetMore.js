@@ -39,6 +39,25 @@ function FeedTweetMore(props) {
         setListHidden(true);
     }
 
+    function follow(){
+        if(props.isFollowing){
+            props.setFollowingSet((prev) => {
+                let newFollowingSet = new Set(prev);
+                newFollowingSet.delete(props.userName);
+                return newFollowingSet;
+            });
+        }
+        else{
+            props.setFollowingSet((prev) => {
+                let newFollowingSet = new Set(prev);
+                newFollowingSet.add(props.userName);
+                return newFollowingSet;
+            });
+        }
+        props.setIsFollowing(prev => !prev); 
+        setListHidden(true);
+    }
+
     return (
         <div>
             <div onClick={toggleList}>
@@ -81,7 +100,7 @@ function FeedTweetMore(props) {
                         <SentimentDissatisfiedOutlinedIcon className={classes.liIcon}/>
                         <p className={classes.liText}>Not Interested in this Tweet</p>
                     </div>
-                    <div onClick={() => {props.setIsFollowing(prev => !prev); setListHidden(true)}} className={`${classes.listItem}`}>
+                    <div onClick={follow} className={`${classes.listItem}`}>
                         <PermIdentityOutlinedIcon className={classes.liIcon}/>
                         <p className={classes.liText}>{props.isFollowing && `Unfollow @${props.userName}`}{!props.isFollowing && `Follow @${props.userName}`}</p>
                     </div>

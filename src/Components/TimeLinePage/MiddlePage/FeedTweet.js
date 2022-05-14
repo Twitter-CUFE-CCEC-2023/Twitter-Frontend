@@ -29,7 +29,16 @@ export default function FeedTweet(props) {
   }
 
   const [isDeleted, setIsDeleted] = useState(false);
-  const [isFollowing, setIsFollowing] = useState(props.isFollowing);
+  const [isFollowing, setIsFollowing] = useState(props.followingSet.has(props.userName));
+
+  React.useEffect(() => {
+    if(props.followingSet.has(props.userName)){
+      setIsFollowing(true);
+    }
+    else{
+      setIsFollowing(false);
+    }
+  }, [props.followingSet]);
 
   // function hideReplyModal() {
   //   setReplyModal(false);
@@ -203,6 +212,7 @@ export default function FeedTweet(props) {
             followers={props.followers}
             isFollowing={isFollowing}
             setIsFollowing = {setIsFollowing}
+            setFollowingSet = {props.setFollowingSet}
           />
         </div>
         {/* </NavLink> */}
@@ -251,6 +261,7 @@ export default function FeedTweet(props) {
                 followers={props.followers}
               isFollowing={isFollowing}
               setIsFollowing = {setIsFollowing}
+            setFollowingSet = {props.setFollowingSet}
             />
             </div>
             &nbsp;
@@ -295,6 +306,7 @@ export default function FeedTweet(props) {
                 followers={props.followers}
               isFollowing={isFollowing}
               setIsFollowing = {setIsFollowing}
+            setFollowingSet = {props.setFollowingSet}
             />
             </div>
             &nbsp;{!props.isTopTweet && <p className={classes.gray}>.</p>}&nbsp;
@@ -309,7 +321,12 @@ export default function FeedTweet(props) {
               </p>
             )}
             <div className={classes.moreIcon}>
-              <FeedTweetMore userName = {props.userName} tweetId = {props.tweetId} setIsDeleted = {setIsDeleted} isFollowing = {isFollowing} setIsFollowing ={setIsFollowing}/>
+              <FeedTweetMore userName = {props.userName} 
+              tweetId = {props.tweetId} 
+              setIsDeleted = {setIsDeleted} 
+              isFollowing = {isFollowing} 
+              setIsFollowing ={setIsFollowing}
+              setFollowingSet = {props.setFollowingSet}/>
             </div>
           </div>
           {props.isReply && (

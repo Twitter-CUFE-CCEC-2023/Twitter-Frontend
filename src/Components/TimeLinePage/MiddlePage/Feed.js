@@ -20,6 +20,7 @@ export default function Feed(props) {
   const [isLoading, setLoading] = React.useState(true);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
+  const [followingSet, setFollowingSet] = React.useState(new Set());
   const observer = useRef();
   let isMock = localStorage.getItem("isMock") === "true";
 
@@ -77,6 +78,11 @@ export default function Feed(props) {
         isTweetReply: APItweet.is_reply,
         media: APItweet.media,
       };
+      setFollowingSet((prevSet) => {
+        let newSet = new Set(prevSet);
+        newSet.add(tweet.userName);
+        return newSet;
+      });
       //console.log(tweet);
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
@@ -163,6 +169,8 @@ export default function Feed(props) {
                 key={index}
                 setPhotosActive={props.setPhotosActive}
                 setIncrement={props.setIncrement}
+                followingSet={followingSet}
+                setFollowingSet = {setFollowingSet}
               />
             </div>
           );
@@ -175,6 +183,8 @@ export default function Feed(props) {
               showAction={true}
               setPhotosActive={props.setPhotosActive}
               setIncrement={props.setIncrement}
+              followingSet={followingSet}
+              setFollowingSet = {setFollowingSet}
             />
           );
         }

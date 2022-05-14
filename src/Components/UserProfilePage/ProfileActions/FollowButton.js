@@ -24,6 +24,14 @@ function FollowButton(props) {
         // props.onFollow();
         if(props.setIsFollowing) 
           props.setIsFollowing(true);
+        if(props.setFollowingSet)
+        {
+          props.setFollowingSet((prev) => {
+            let newFollowingSet = new Set(prev);
+            newFollowingSet.add(props.username);
+            return newFollowingSet;
+          });
+        }
         return "Following";
       } else {
         console.log("unfollow");
@@ -38,6 +46,14 @@ function FollowButton(props) {
           // props.onFollow();
         if(props.setIsFollowing) 
           props.setIsFollowing(false);
+        if(props.setFollowingSet)
+        {
+          props.setFollowingSet((prev) => {
+            let newFollowingSet = new Set(prev);
+            newFollowingSet.delete(props.username);
+            return newFollowingSet;
+          });
+        }
         return "Follow";
       }
     });

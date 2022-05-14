@@ -14,9 +14,23 @@ function MiniProfile(props) {
     if (isFollowing) {
       setIsFollowing(()=>{return false});
       props.setIsFollowing(false);
+      if(props.setFollowingSet){
+        props.setFollowingSet((prev) => {
+          let newFollowingSet = new Set(prev);
+          newFollowingSet.delete(props.userName);
+          return newFollowingSet;
+        });
+      }
     } else {
       setIsFollowing(()=>{return true});
       props.setIsFollowing(true);
+      if(props.setFollowingSet){
+        props.setFollowingSet((prev) => {
+          let newFollowingSet = new Set(prev);
+          newFollowingSet.add(props.userName);
+          return newFollowingSet;
+        });
+      }
     }
   };
 
@@ -46,6 +60,7 @@ function MiniProfile(props) {
             onFollow={onFollow}
             className={classes.miniButton}
             username={props.userName}
+            setFollowingSet = {props.setFollowingSet}
           ></FollowButton>}
         </div>
       </div>
