@@ -62,6 +62,7 @@ export default function Feed(props) {
         userName: APItweet.user.username,
         isVerified: APItweet.user.isVerified,
         bio: APItweet.user.bio,
+        isFollowing: APItweet.user.is_followed,
         followers: APItweet.user.followers_count,
         following: APItweet.user.following_count,
         text: APItweet.content,

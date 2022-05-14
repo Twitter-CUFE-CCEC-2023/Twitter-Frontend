@@ -37,6 +37,7 @@
 .listItem:hover{
     background-color: var(--twitterGrayHighligh);
     width: 100%;
+    cursor: pointer;
 }
 
 .delete{
@@ -55,8 +56,9 @@
 .position{
     position: relative;
     width: 100%;
-    right: 250px;
+    right: 260px;
     bottom: 30px;
+    
 }
 
 

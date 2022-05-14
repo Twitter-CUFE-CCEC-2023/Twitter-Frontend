@@ -9,6 +9,12 @@ import CodeOutlinedIcon from '@material-ui/icons/CodeOutlined';
 import BarChartOutlinedIcon from '@material-ui/icons/BarChartOutlined';
 import DeleteModal from './DeleteModal';
 
+import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
+import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
+import VolumeOffOutlinedIcon from '@material-ui/icons/VolumeOffOutlined';
+import BlockOutlinedIcon from '@material-ui/icons/BlockOutlined';
+import OutlinedFlagIcon from '@material-ui/icons/OutlinedFlag';
+
 function FeedTweetMore(props) {
     let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
     const[listHidden, setListHidden] = React.useState(true)
@@ -68,6 +74,39 @@ function FeedTweetMore(props) {
                 </div>
             </div>}
             {showDelete && <DeleteModal setIsDeleted = {props.setIsDeleted} tweetId = {props.tweetId} setShowDelete = {setShowDelete}/>}
+            {loggedUser.username !== props.userName &&
+            <div className={classes.position}>
+                <div name = "ListItem" onClick={(e) => e.stopPropagation()} className={`${classes.list} ${listHidden && classes.hidden}`}>
+                    <div className={`${classes.listItem}`}>
+                        <SentimentDissatisfiedOutlinedIcon className={classes.liIcon}/>
+                        <p className={classes.liText}>Not Interested in this Tweet</p>
+                    </div>
+                    <div onClick={() => {props.setIsFollowing(prev => !prev); setListHidden(true)}} className={`${classes.listItem}`}>
+                        <PermIdentityOutlinedIcon className={classes.liIcon}/>
+                        <p className={classes.liText}>{props.isFollowing && `Unfollow @${props.userName}`}{!props.isFollowing && `Follow @${props.userName}`}</p>
+                    </div>
+                    <div className={`${classes.listItem}`}>
+                        <PlaylistAddOutlinedIcon className={classes.liIcon}/>
+                        <p className={classes.liText}>Add/remove @{props.userName} from Lists</p>
+                    </div>
+                    <div className={`${classes.listItem}`}>
+                        <VolumeOffOutlinedIcon className={classes.liIcon}/>
+                        <p className={classes.liText}>Mute @{props.userName}</p>
+                    </div>
+                    <div className={`${classes.listItem}`}>
+                        <BlockOutlinedIcon className={classes.liIcon}/>
+                        <p className={classes.liText}>Block @{props.userName}</p>
+                    </div>
+                    <div className={`${classes.listItem}`}>
+                        <CodeOutlinedIcon className={classes.liIcon}/>
+                        <p className={classes.liText}>Embed Tweet</p>
+                    </div>
+                    <div className={`${classes.listItem}`}>
+                        <OutlinedFlagIcon className={classes.liIcon}/>
+                        <p className={classes.liText}>Report Tweet</p>
+                    </div>
+                </div>
+            </div>}
         </div>
     )
 }

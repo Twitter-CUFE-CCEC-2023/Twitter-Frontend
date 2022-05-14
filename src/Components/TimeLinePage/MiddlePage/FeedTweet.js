@@ -29,6 +29,7 @@ export default function FeedTweet(props) {
   }
 
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(props.isFollowing);
 
   // function hideReplyModal() {
   //   setReplyModal(false);
@@ -200,6 +201,8 @@ export default function FeedTweet(props) {
             profileDesciption={props.bio}
             following={props.following}
             followers={props.followers}
+            isFollowing={isFollowing}
+            setIsFollowing = {setIsFollowing}
           />
         </div>
         {/* </NavLink> */}
@@ -246,7 +249,9 @@ export default function FeedTweet(props) {
                 profileDesciption={props.bio}
                 following={props.following}
                 followers={props.followers}
-              />
+              isFollowing={isFollowing}
+              setIsFollowing = {setIsFollowing}
+            />
             </div>
             &nbsp;
             <NavLink
@@ -288,7 +293,9 @@ export default function FeedTweet(props) {
                 profileDesciption={props.bio}
                 following={props.following}
                 followers={props.followers}
-              />
+              isFollowing={isFollowing}
+              setIsFollowing = {setIsFollowing}
+            />
             </div>
             &nbsp;{!props.isTopTweet && <p className={classes.gray}>.</p>}&nbsp;
             {!props.isTopTweet && (
@@ -302,7 +309,7 @@ export default function FeedTweet(props) {
               </p>
             )}
             <div className={classes.moreIcon}>
-              <FeedTweetMore userName = {props.userName} tweetId = {props.tweetId} setIsDeleted = {setIsDeleted}/>
+              <FeedTweetMore userName = {props.userName} tweetId = {props.tweetId} setIsDeleted = {setIsDeleted} isFollowing = {isFollowing} setIsFollowing ={setIsFollowing}/>
             </div>
           </div>
           {props.isReply && (
