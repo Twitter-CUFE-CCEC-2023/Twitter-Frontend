@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 export const LoginContext = React.createContext({
   token: "",
   isLoggedIn: false,
-  isAdmin: false,
+  // isAdmin: false,
   login: () => {},
   logout: () => {},
 });
@@ -21,21 +21,21 @@ const calculateRemainingTime = (expirationTime) => {
 const retrieveStoredToken = () => {
   const storedToken = localStorage.getItem("token");
   const storedExpirationDate = localStorage.getItem("expirationTime");
-  const storedAdmin = localStorage.getItem("admin");
+  // const storedAdmin = localStorage.getItem("admin");
 
   const remainingTime = calculateRemainingTime(storedExpirationDate);
 
   if (remainingTime <= 0) {
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
-    localStorage.removeItem("admin");
+    // localStorage.removeItem("admin");
     return null;
   }
 
   return {
     token: storedToken,
     duration: remainingTime,
-    admin: storedAdmin,
+    // admin: storedAdmin,
   };
 };
 
@@ -43,25 +43,25 @@ export const LoginContextProvider = (props) => {
   const tokenData = retrieveStoredToken();
 
   let initialToken;
-  let initialAdmin;
+  // let initialAdmin;
   if (tokenData) {
     initialToken = tokenData.token;
-    initialAdmin = tokenData.admin;
+    // initialAdmin = tokenData.admin;
   }
 
   // const [token, setToken] = useState(localStorage.getItem("token"));
   // const [admin, setAdmin] = useState(localStorage.getItem("admin"));
 
   const [token, setToken] = useState(initialToken);
-  const [admin, setAdmin] = useState(false);
+  // const [admin, setAdmin] = useState(initialAdmin);
   const loginState = !!token;
 
   const logoutHandler = () => {
     setToken(null);
-    setAdmin(false);
+    // setAdmin(false);
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
-    localStorage.removeItem("admin");
+    // localStorage.removeItem("admin");
     localStorage.removeItem("UserInfo");
     if (logoutTimer) {
       clearTimeout(logoutTimer);
@@ -71,10 +71,10 @@ export const LoginContextProvider = (props) => {
   const loginHandler = (admin, token, expirationTime) => {
     console.log("Login is called");
     setToken(token);
-    setAdmin(admin);
+    // setAdmin(admin);
     localStorage.setItem("token", token);
     localStorage.setItem("expirationTime", expirationTime);
-    localStorage.setItem("admin", admin);
+    // localStorage.setItem("admin", admin);
     const remainingTime = calculateRemainingTime(expirationTime);
     logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
@@ -89,7 +89,7 @@ export const LoginContextProvider = (props) => {
   const contextValue = {
     token: token,
     isLoggedIn: loginState,
-    isAdmin: admin,
+    // isAdmin: admin,
     login: loginHandler,
     logout: logoutHandler,
   };

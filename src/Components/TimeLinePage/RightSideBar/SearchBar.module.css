@@ -1,35 +1,42 @@
-.searchBar{
-    position: sticky;
-    margin-top: 10px;
-    margin-left: 20px;
+.searchBar {
+  position: sticky;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
-.searchForm{
-    display: flex;
+.searchForm {
+  display: flex;
 }
 
-.searchIcon{
-    position: absolute;
-    margin-left: 20px;
-    margin-top: 9px;
+.searchIcon {
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 9px;
 }
 
-.searchInput{
-    background-color: var(--tweetHover);
-    border: none;
-    border-radius: 40px;
-    height: 44px;
-    width: 350px;
-    padding-left: 50px;
+.searchInput {
+  background-color: var(--tweetHover);
+  border: none;
+  border-radius: 40px;
+  height: 44px;
+  width: 350px;
+  padding-left: 50px;
 }
 
-.searchInput:focus{
-    outline-color: var(--twitterBlue);
-    outline-width: 1px;
-    background-color: white;
+.searchInput:focus {
+  outline-color: var(--twitterBlue);
+  outline-width: 1px;
+  background-color: white;
 }
 
-.searchInput:focus + .searchIcon{
-    color: var(--twitterBlue);
+.searchInput:focus + .searchIcon {
+  color: var(--twitterBlue);
 }
 
+.searchResultsList {
+  height: 600px;
+  width: 300px;
+  border: 1px solid blue;
+  overflow-y: scroll;
+  position: absolute;
+}

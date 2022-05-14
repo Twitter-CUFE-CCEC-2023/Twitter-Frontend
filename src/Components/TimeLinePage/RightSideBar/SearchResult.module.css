@@ -4,7 +4,6 @@
   border: 2px solid var(--twitterBorder);
   cursor: pointer;
   margin-left: 1em;
-  position: absolute;
   z-index: 999;
   background-color: white;
   width: 14.8em;

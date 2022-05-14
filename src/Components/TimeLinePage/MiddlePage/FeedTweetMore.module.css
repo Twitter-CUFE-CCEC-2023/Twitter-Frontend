@@ -1,0 +1,63 @@
+.icon{
+    color: gray !important;
+    font-size: 24px !important;
+    border-radius: 50% !important;
+}
+
+.icon:hover{
+    color: var(--twitterBlue) !important;
+    background-color: var(--twitterHoverBlue) !important;
+}
+
+.hidden{
+    display: none;
+}
+
+.list{
+    position: absolute;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    z-index: 1;
+    width: max-content;
+}
+
+.listItem{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px !important;
+    color: rgb(99, 99, 99) !important;
+}
+
+.listItem:hover{
+    background-color: var(--twitterGrayHighligh);
+    width: 100%;
+}
+
+.delete{
+    color: var(--twitterRed) !important;
+}
+
+.liText{
+    margin-left: 10px;
+    margin-top: 14px;
+}
+
+.liIcon{
+    font-size: 24px;
+}
+
+.position{
+    position: relative;
+    width: 100%;
+    right: 250px;
+    bottom: 30px;
+}
+
+
+

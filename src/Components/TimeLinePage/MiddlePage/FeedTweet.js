@@ -17,6 +17,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ImageGrid from "./ImageGrid";
 import PhotosPage from "../ViewPhotosPage/PhotosPage";
 import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
+import FeedTweetMore from "./FeedTweetMore";
 // import { LinkSharp } from "@material-ui/icons";
 // import { react } from "fontawesome";
 // import FeedTweetReplyModal from "./FeedTweetReplyModal";
@@ -26,6 +27,8 @@ export default function FeedTweet(props) {
   function viewReplyModal() {
     setReplyModal(true);
   }
+
+  const [isDeleted, setIsDeleted] = useState(false);
 
   // function hideReplyModal() {
   //   setReplyModal(false);
@@ -79,7 +82,6 @@ export default function FeedTweet(props) {
   }
 
   // let observer = React.createRef();
-
   const [tweetText, setTweetText] = useState(props.text);
 
   let profilePic = props.profilePic ? props.profilePic : DefaultProfilePic;
@@ -152,7 +154,10 @@ export default function FeedTweet(props) {
     }
   }
 
-  
+  if(isDeleted)
+  {
+    return null;
+  }
 
   return (
     <div onClick={handleClick} className={classes.FeedTweet}>
@@ -296,6 +301,9 @@ export default function FeedTweet(props) {
                 {getDateDiff(props.date)}
               </p>
             )}
+            <div className={classes.moreIcon}>
+              <FeedTweetMore userName = {props.userName} tweetId = {props.tweetId} setIsDeleted = {setIsDeleted}/>
+            </div>
           </div>
           {props.isReply && (
             <div className={classes.flex}>

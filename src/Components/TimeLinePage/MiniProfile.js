@@ -19,9 +19,6 @@ function MiniProfile(props) {
     }
   };
 
-  React.useEffect(() => {
-    console.log("isFollowing", props.isFollowing);
-  }, [props.isFollowing]);
 
   return (
     <div className={classes.miniProfile}>
