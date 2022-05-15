@@ -40,8 +40,7 @@ function SingleNotification(props) {
     });
     setLoading(true);
     e.stopPropagation();
-    history.push(`/userProfile/${props.personID}`);
-    localStorage.setItem("currentPage", "/notifications");
+    history.push(`/userprofile/${props.personID}`);
     window.location.reload();
   };
 

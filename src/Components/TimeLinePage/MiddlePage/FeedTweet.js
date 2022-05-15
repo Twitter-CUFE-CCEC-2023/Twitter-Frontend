@@ -33,15 +33,14 @@ export default function FeedTweet(props) {
   const [isFollowing, setIsFollowing] = useState(props.followingSet ? props.followingSet.has(props.userName) : props.isFollowing);
 
   React.useEffect(() => {
-    if (props.followingSet)
-    {
-        if(props.followingSet.has(props.userName)){
+    if (props.followingSet) {
+      if (props.followingSet.has(props.userName)) {
         setIsFollowing(true);
       }
-      else{
+      else {
         setIsFollowing(false);
       }
-  }
+    }
   }, [props.followingSet]);
 
   // function hideReplyModal() {
@@ -77,9 +76,8 @@ export default function FeedTweet(props) {
     const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
 
     if (diffYears > 0) {
-      return `${
-        months[date1.getMonth()]
-      } ${date1.getDate()}, ${date1.getFullYear()}`;
+      return `${months[date1.getMonth()]
+        } ${date1.getDate()}, ${date1.getFullYear()}`;
     }
     if (diffDays > 0) {
       return `${months[date1.getMonth()]} ${date1.getDate()}`;
@@ -161,15 +159,13 @@ export default function FeedTweet(props) {
 
   let history = useHistory();
   function handleClick(e) {
-    if(!props.isTopTweet)
-    {
+    if (!props.isTopTweet) {
       history.push(`/${props.userName}/status/${props.tweetId}`);
       window.location.reload();
     }
   }
 
-  if(isDeleted)
-  {
+  if (isDeleted) {
     return null;
   }
 
@@ -190,16 +186,16 @@ export default function FeedTweet(props) {
           to={`/userProfile/${props.userName}`}
           className={classes.fs15  + " " + classes.noStyle}
         > */}
-          <img
-            onClick={(e) => {
-              e.stopPropagation();
-              history.push(`/userProfile/${props.userName}`);
-              window.location.reload();
-            }}
-            className={classes.profilePic + " " + classes.minip}
-            alt="profile"
-            src={profilePic}
-          ></img>
+        <img
+          onClick={(e) => {
+            e.stopPropagation();
+            history.push(`/userProfile/${props.userName}`);
+            window.location.reload();
+          }}
+          className={classes.profilePic + " " + classes.minip}
+          alt="profile"
+          src={profilePic}
+        ></img>
         <div
           onClick={(e) => {
             e.stopPropagation();
@@ -215,8 +211,8 @@ export default function FeedTweet(props) {
             following={props.following}
             followers={props.followers}
             isFollowing={isFollowing}
-            setIsFollowing = {setIsFollowing}
-            setFollowingSet = {props.setFollowingSet}
+            setIsFollowing={setIsFollowing}
+            setFollowingSet={props.setFollowingSet}
           />
         </div>
         {/* </NavLink> */}
@@ -224,7 +220,7 @@ export default function FeedTweet(props) {
         <div className={classes.tweet}>
           <div className={classes.user}>
             <NavLink
-              to={`/userProfile/${props.userName}`}
+              to={`/userprofile/${props.userName}`}
               className={
                 classes.fs15 + " " + classes.minip + " " + classes.noStyle
               }
@@ -263,14 +259,14 @@ export default function FeedTweet(props) {
                 profileDesciption={props.bio}
                 following={props.following}
                 followers={props.followers}
-              isFollowing={isFollowing}
-              setIsFollowing = {setIsFollowing}
-            setFollowingSet = {props.setFollowingSet}
-            />
+                isFollowing={isFollowing}
+                setIsFollowing={setIsFollowing}
+                setFollowingSet={props.setFollowingSet}
+              />
             </div>
             &nbsp;
             <NavLink
-              to={`/userProfile/${props.userName}`}
+              to={`/userprofile/${props.userName}`}
               className={
                 classes.fs15 + " " + classes.minip + " " + classes.noStyle
               }
@@ -308,10 +304,10 @@ export default function FeedTweet(props) {
                 profileDesciption={props.bio}
                 following={props.following}
                 followers={props.followers}
-              isFollowing={isFollowing}
-              setIsFollowing = {setIsFollowing}
-            setFollowingSet = {props.setFollowingSet}
-            />
+                isFollowing={isFollowing}
+                setIsFollowing={setIsFollowing}
+                setFollowingSet={props.setFollowingSet}
+              />
             </div>
             &nbsp;{!props.isTopTweet && <p className={classes.gray}>.</p>}&nbsp;
             {!props.isTopTweet && (
@@ -325,12 +321,12 @@ export default function FeedTweet(props) {
               </p>
             )}
             <div className={classes.moreIcon}>
-              <FeedTweetMore userName = {props.userName} 
-              tweetId = {props.tweetId} 
-              setIsDeleted = {setIsDeleted} 
-              isFollowing = {isFollowing} 
-              setIsFollowing ={setIsFollowing}
-              setFollowingSet = {props.setFollowingSet}/>
+              <FeedTweetMore userName={props.userName}
+                tweetId={props.tweetId}
+                setIsDeleted={setIsDeleted}
+                isFollowing={isFollowing}
+                setIsFollowing={setIsFollowing}
+                setFollowingSet={props.setFollowingSet} />
             </div>
           </div>
           {props.isReply && (
@@ -347,9 +343,9 @@ export default function FeedTweet(props) {
               <div className={classes.hoverProfile + " " + classes.repmin}>
                 <MiniProfile
                   profilePic={props.topUser ? props.topUser.profilePic ? props.topUser.profilePic : DefaultProfilePic : ""}
-                  name={props.topUser ?props.topUser.name : ""}
-                  userName={props.topUser ?props.topUser.userName : ""}
-                  profileDesciption={props.topUser ?props.topUser.bio : ""}
+                  name={props.topUser ? props.topUser.name : ""}
+                  userName={props.topUser ? props.topUser.userName : ""}
+                  profileDesciption={props.topUser ? props.topUser.bio : ""}
                   following={props.following}
                   followers={props.followers}
                 />
@@ -363,9 +359,9 @@ export default function FeedTweet(props) {
           >
           </div>
           {props.media && !props.isShowPhotos && props.media.length > 0 && (
-            <ImageGrid media = {props.media} userName = {props.userName} tweetId = {props.tweetId} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement}/>
+            <ImageGrid media={props.media} userName={props.userName} tweetId={props.tweetId} setPhotosActive={props.setPhotosActive} setIncrement={props.setIncrement} />
           )}
-          
+
           {props.isTopTweet && (
             <div
               className={classes.flex + " " + classes.gray + " " + classes.m10}
@@ -375,9 +371,8 @@ export default function FeedTweet(props) {
                   classes.underline + " " + classes.fs15 + " " + classes.pointer
                 }
               >
-                {`${tweetDate.getHours()}:${tweetDate.getMinutes()} . ${
-                  months[tweetDate.getMonth()]
-                } ${tweetDate.getDay()}, ${tweetDate.getFullYear()}`}
+                {`${tweetDate.getHours()}:${tweetDate.getMinutes()} . ${months[tweetDate.getMonth()]
+                  } ${tweetDate.getDay()}, ${tweetDate.getFullYear()}`}
               </p>
             </div>
           )}
@@ -428,7 +423,7 @@ export default function FeedTweet(props) {
               likes={props.likes}
               retweets={props.retweets}
               quoteTweets={props.quotes}
-              isShowPhotos = {props.isShowPhotos}
+              isShowPhotos={props.isShowPhotos}
             />
           )}
         </div>

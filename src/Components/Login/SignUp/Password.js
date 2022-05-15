@@ -8,52 +8,13 @@ import InputField from "../InputField";
 import Alert from "./Alert/Alert"
 import axios from "../../axios";
 
-const Mail = (props) => {
-    // useEffect(() => {
-    //     const Name = JSON.parse(localStorage.getItem("Name"));
-    //     const PW = JSON.parse(localStorage.getItem("Password"));
-    //     const Email = JSON.parse(localStorage.getItem("Email"));
-    //     const phone = JSON.parse(localStorage.getItem("PhoneNumber"));
-    //     const Username = JSON.parse(localStorage.getItem("Username"));
-
-    //     let userObject = {
-    //         email: Email,
-    //         username: Username,
-    //         password: PW,
-    //         name: Name,
-    //         gender: props.gender,
-    //         birth_date: props.birth,
-    //     };
-
-    //     console.log(userObject);
-
-    //     if (phone.length !== 0) {
-    //         userObject["phone_number"] = phone;
-    //     }
-
-    //     axios
-    //         .post("/auth/signup", userObject, {
-    //             headers: { "Content-Type": "application/json" },
-    //         })
-    //         .then((response) => {
-    //             console.log(response);
-    //             if (response.status === 200) {
-    //                 localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
-    //                 localStorage.removeItem("Name");
-    //                 localStorage.removeItem("Password");
-    //                 localStorage.removeItem("PhoneNumber");
-    //                 localStorage.removeItem("Username");
-    //             }
-    //         })
-    //         .catch((err) => { });
-    // }, []);
+const PASSWORD = (props) => {
     const [alert, setAlert] = useState(true);
 
     const handleClick = (val) => {
         props.handleButtonClick(val);
         setAlert(val);
     };
-    //Use above for day month and year to gain their value
     useEffect(() => {
         setTimeout(() => {
             setAlert(true);
@@ -70,8 +31,6 @@ const Mail = (props) => {
                 <ClearIcon />
             </NavLink>
             <div className={classes.Header}>You'll need a password</div>
-            {/* <div className={classes.upperContainer}> 
-            <div className={classes.container}> */}
 
             <div className={classes.Minor3}>
                 <InputField
@@ -83,11 +42,10 @@ const Mail = (props) => {
                 />
             </div>
 
-            {/* <div className={classes.button}> */}
             <div className={classes.NextButton}>
                 <PasswordNext handleButtonClick={handleClick}/>
             </div>
-            {/* </div> */}
+            
             {!alert && (
                 <div className={classes.alert}>
                     <Alert message="Invalid password. Please enter a valid password." />
@@ -97,4 +55,4 @@ const Mail = (props) => {
     );
 };
 
-export default Mail;
+export default PASSWORD;

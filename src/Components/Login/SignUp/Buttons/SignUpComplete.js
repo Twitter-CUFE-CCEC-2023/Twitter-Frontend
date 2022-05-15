@@ -34,9 +34,9 @@ const NextButtonUp = (props) => {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          console.log(response);
+          // console.log(response);
           // loginCtx.login(false, response.data.access_token, response.data.expirartion_time);
-          history.push("/SignInPage");
+          history.push("/SignIn");
           localStorage.removeItem("Password");
           localStorage.removeItem("Name");
           localStorage.removeItem("Email");

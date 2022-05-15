@@ -155,7 +155,7 @@ const LeftSideBar = () => {
           <LeftButton
             Icon={AccountCircleOutlinedIcon}
             IconActive={AccountCircleIcon}
-            url={`userProfile/${currentuser ? currentuser.username : null}`}
+            url={`userprofile/${currentuser ? currentuser.username : null}`}
             title="Profile"
             onPage={pageActive.get("userprofile")}
           />

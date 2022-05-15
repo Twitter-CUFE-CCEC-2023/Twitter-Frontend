@@ -30,6 +30,7 @@ function ProfileData(props) {
   const location = useLocation();
   let { userName } = useParams();
 
+  useEffect(() => { }, [])
 
   if (currentuser) {
     currentuserName = currentuser.username;
@@ -217,8 +218,8 @@ function ProfileData(props) {
             className={`${classes.profileImage} img-fluid`}
             onClick={handleProfilePhotoOpenAndClose}
             src={`${user.profilePic
-                ? user.profilePic
-                : "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
+              ? user.profilePic
+              : "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
               }`}
             alt=""
           />
