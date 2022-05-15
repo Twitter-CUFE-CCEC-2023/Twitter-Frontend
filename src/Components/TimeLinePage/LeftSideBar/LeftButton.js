@@ -7,15 +7,15 @@ export default function LeftButton(props) {
 
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
   let history = useHistory();
-  function reloadProfile(){
-    if(props.title === "Profile"){
-      history.push(`/userProfile/${loggedUser.username}`);
+  function reloadProfile() {
+    if (props.title === "Profile") {
+      history.push(`/userprofile/${loggedUser.username}`);
       window.location.reload();
     }
   }
 
-  return ( 
-      <NavLink to={`/${props.url}`} className={classes.navLink} onClick={reloadProfile}>
+  return (
+    <NavLink to={`/${props.url}`} className={classes.navLink} onClick={reloadProfile}>
       <div
         className={`${classes.leftButton} ${props.onPage && classes.onPage}`}
       >

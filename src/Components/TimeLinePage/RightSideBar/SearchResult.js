@@ -13,7 +13,7 @@ function SearchResult(props) {
   }
   return (
     <div className={classes.searchResult}>
-      <NavLink to={`/userProfile/${props.username}`} className={classes.link}>
+      <NavLink to={`/userprofile/${props.username}`} className={classes.link} >
         <div className="container my-1">
           <div className="row">
             <div className="col-2">

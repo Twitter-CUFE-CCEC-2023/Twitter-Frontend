@@ -29,7 +29,7 @@ function SingleNotification(props) {
       notificationId: props.note_id,
     });
     e.stopPropagation();
-    history.push(`/userProfile/${props.personID}`);
+    history.push(`/userprofile/${props.personID}`);
     window.location.reload();
   };
 
@@ -74,7 +74,7 @@ function SingleNotification(props) {
             </div>
             <div className="col-4">
               <NavLink
-                to={`/userProfile/${props.personID}`}
+                to={`/userprofile/${props.personID}`}
                 className={classes.link}
               >
                 <img
@@ -114,7 +114,7 @@ function SingleNotification(props) {
                 className={`${classes.underline} ${classes.fs15} ${classes.pointer} ${classes.alignTop} `}
               >
                 <NavLink
-                  to={`/userProfile/${props.personID}`}
+                  to={`/userprofile/${props.personID}`}
                   className={`${classes.nameLink} ${classes.fs15} ${classes.minip} ${classes.noStyle}`}
                 >
                   <strong>{props.Person} </strong>
@@ -156,7 +156,7 @@ function SingleNotification(props) {
             </div>
             <div className="col-4">
               <NavLink
-                to={`/userProfile/${props.personID}`}
+                to={`/userprofile/${props.personID}`}
                 className={classes.link}
               >
                 <img
@@ -195,7 +195,7 @@ function SingleNotification(props) {
                 className={`${classes.underline} ${classes.fs15} ${classes.pointer} ${classes.alignTop} `}
               >
                 <NavLink
-                  to={`/userProfile/${props.personID}`}
+                  to={`/userprofile/${props.personID}`}
                   className={`${classes.nameLink} ${classes.fs15} ${classes.minip} ${classes.noStyle}`}
                 >
                   <strong>{props.Person} </strong>
@@ -238,7 +238,7 @@ function SingleNotification(props) {
             </div>
             <div className="col-4">
               <NavLink
-                to={`/userProfile/${props.personID}`}
+                to={`/userprofile/${props.personID}`}
                 className={classes.link}
               >
                 <img
@@ -277,7 +277,7 @@ function SingleNotification(props) {
                 className={`${classes.underline} ${classes.fs15} ${classes.pointer} ${classes.alignTop} `}
               >
                 <NavLink
-                  to={`/userProfile/${props.personID}`}
+                  to={`/userprofile/${props.personID}`}
                   className={`${classes.nameLink} ${classes.fs15} ${classes.minip} ${classes.noStyle}`}
                 >
                   <strong>{props.Person} </strong>
@@ -320,7 +320,7 @@ function SingleNotification(props) {
             </div>
             <div className="col-4">
               <NavLink
-                to={`/userProfile/${props.personID}`}
+                to={`/userprofile/${props.personID}`}
                 className={classes.link}
               >
                 <img
@@ -359,7 +359,7 @@ function SingleNotification(props) {
                 className={`${classes.underline} ${classes.fs15} ${classes.pointer} ${classes.alignTop} `}
               >
                 <NavLink
-                  to={`/userProfile/${props.personID}`}
+                  to={`/userprofile/${props.personID}`}
                   className={`${classes.nameLink} ${classes.fs15} ${classes.minip} ${classes.noStyle}`}
                 >
                   <strong>{props.Person} </strong>
