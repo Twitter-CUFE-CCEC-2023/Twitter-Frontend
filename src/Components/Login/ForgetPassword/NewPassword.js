@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import classes from "./NewPassword.module.css";
 import ClearIcon from "@material-ui/icons/Clear";
-import NextStep from "./Buttons/EmailDoneNext";
+import NextStep from "./Buttons/NewPasswordSet";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import InputField from "../InputField";
 import Alert from "../SignUp/Alert/Alert";

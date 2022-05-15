@@ -12,7 +12,7 @@ const DidntReceiveCode = (props) => {
         };
         console.log(userObject);
         axios
-            .post("/auth/resend-verification", userObject, {
+            .post("/auth/send-reset-password", userObject, {
                 headers: { "Content-Type": "application/json" },
             })
             .then((response) => {
