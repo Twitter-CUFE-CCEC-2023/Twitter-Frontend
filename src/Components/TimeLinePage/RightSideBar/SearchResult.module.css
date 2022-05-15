@@ -3,10 +3,11 @@
   align-items: center;
   border: 2px solid var(--twitterBorder);
   cursor: pointer;
-  margin-left: 1em;
+  margin-left: 0.7em;
   z-index: 999;
   background-color: white;
-  width: 14.8em;
+  width: 14em;
+  border-radius: 20px;
 }
 
 .profilePic {
@@ -26,15 +27,27 @@
 
 .name {
   font-size: 0.5em;
-  margin-left: 0.4em;
+  margin-left: 2em !important;
 }
 
 .username {
   font-size: 0.5em;
   color: gray;
-  margin-left: 0.3em;
+  margin-left: 2em !important;
 }
 
 .searchResult:hover {
   background-color: var(--tweetHover);
+}
+
+.link {
+  text-decoration: none !important;
+  cursor: inherit;
+  color: black !important;
+}
+
+.verifiedIcon {
+  color: var(--twitterBlue) !important;
+  font-size: 15px !important;
+  padding-bottom: 2px !important;
 }

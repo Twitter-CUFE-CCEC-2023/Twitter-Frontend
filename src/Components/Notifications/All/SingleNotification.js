@@ -10,10 +10,27 @@ import { NavLink } from "react-router-dom";
 import FeedTweet from "../../TimeLinePage/MiddlePage/FeedTweet";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import MiniProfile from "../../TimeLinePage/MiniProfile";
+import instance from "../../axios";
 function SingleNotification(props) {
   let nottype = "";
   let description = "";
   let history = useHistory();
+
+  const readNote = async (e) => {
+    await instance.put("/read-notification", { notificationId: props.note_id });
+    e.stopPropagation();
+    history.push(`/${props.personID}/status/${props.tweetID}`);
+    window.location.reload();
+  };
+
+  const readNoteFollow = async (e) => {
+    await instance.put("/read-notification", {
+      notificationId: props.note_id,
+    });
+    e.stopPropagation();
+    history.push(`/userProfile/${props.personID}`);
+    window.location.reload();
+  };
 
   if (props.type === "Account Update") {
     nottype = classes.ban;
@@ -49,11 +66,7 @@ function SingleNotification(props) {
         className={`${classes.notification} ${
           props.is_read ? "" : classes.is_read
         }`}
-        onClick={(e) => {
-          e.stopPropagation();
-          history.push(`/${props.personID}/status/${props.tweetID}`);
-          window.location.reload();
-        }}
+        onClick={readNote}
       >
         <div className="container">
           <div className="row pt-2">
@@ -136,11 +149,7 @@ function SingleNotification(props) {
         className={`${classes.notification} ${
           props.is_read ? "" : classes.is_read
         }`}
-        onClick={(e) => {
-          e.stopPropagation();
-          history.push(`/${props.personID}/status/${props.tweetID}`);
-          window.location.reload();
-        }}
+        onClick={readNote}
       >
         <div className="container">
           <div className="row pt-2">
@@ -223,11 +232,7 @@ function SingleNotification(props) {
         className={`${classes.notification} ${
           props.is_read ? "" : classes.is_read
         }`}
-        onClick={(e) => {
-          e.stopPropagation();
-          history.push(`/${props.personID}/status/${props.tweetID}`);
-          window.location.reload();
-        }}
+        onClick={readNote}
       >
         <div className="container">
           <div className="row pt-2">
@@ -310,11 +315,7 @@ function SingleNotification(props) {
         className={`${classes.notification} ${
           props.is_read ? "" : classes.is_read
         }`}
-        onClick={(e) => {
-          e.stopPropagation();
-          history.push(`/userProfile/${props.personID}`);
-          window.location.reload();
-        }}
+        onClick={readNoteFollow}
       >
         <div className="container">
           <div className="row pt-2">

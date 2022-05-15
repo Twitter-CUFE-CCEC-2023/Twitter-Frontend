@@ -22,11 +22,13 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MoreOutlinedIcon from "@material-ui/icons/MoreOutlined";
 import AccountButton from "./AccountButton";
 import NotificationAddOutlinedIcon from "@mui/icons-material/NotificationAddOutlined";
+import instance from "../../axios";
 
 import MoreButton from "./MoreButton";
 
 const LeftSideBar = () => {
   const [moreSelected, setMoreSelected] = useState(false);
+  const [unreadNotes, setUnreadNotes] = useState(0);
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
   const pathname = window.location.pathname.toLowerCase();
 
@@ -54,6 +56,18 @@ const LeftSideBar = () => {
       return newPageActive;
     });
   }, [pathname]);
+
+  useEffect(() => getUnreadNotes());
+
+  const getUnreadNotes = async () => {
+    let numUnreadResponse;
+    let numUnread;
+    // console.log("fetching search results");
+    numUnreadResponse = await instance.get(`/count-notifications`);
+    console.log("response", numUnreadResponse);
+    numUnread = numUnreadResponse.data.count;
+    setUnreadNotes(numUnread);
+  };
 
   return (
     <div className={classes.leftSideBar}>
@@ -97,6 +111,9 @@ const LeftSideBar = () => {
               pageActive.get("mentionnotifications")
             }
           />
+          {unreadNotes !== 0 && (
+            <div className={classes.numberCircle}>{unreadNotes}</div>
+          )}
         </div>
       )}
       {!moreSelected && (
