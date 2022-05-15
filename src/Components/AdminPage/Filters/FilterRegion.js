@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -6,12 +6,25 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
+import axios from "../../axios";
 
-import { useStyles, names, getStyles, MenuProps } from "./FilterRegionStyles";
+import { useStyles, getStyles, MenuProps } from "./FilterRegionStyles";
 
 const FilterRegion = (props) => {
   const classes = useStyles();
   const theme = useTheme();
+  const [names, setNames] = useState([]);
+
+  useEffect(() => {
+    axios.get("/get-locations").then((response) => {
+      if (response.status === 200) {
+        // console.log(response.data.locations);
+        setNames(response.data.locations);
+      } else {
+        setNames([""]);
+      }
+    });
+  }, []);
 
   return (
     <div>

@@ -2,7 +2,7 @@
   flex: auto;
   margin-top: 0;
   border-right: 1px solid var(--twitterBorder);
-  height: 100%;
+  
   overflow-y: scroll;
   overflow-x: hidden;
   -ms-overflow-style: none; /* IE and Edge  to hide scrollbar*/

@@ -8,14 +8,29 @@ function MiniProfile(props) {
   const [isFollowing, setIsFollowing] = useState(
     props.isFollowing ? true : false
   );
+  let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
 
   const onFollow = () => {
     if (isFollowing) {
       setIsFollowing(()=>{return false});
       props.setIsFollowing(false);
+      if(props.setFollowingSet){
+        props.setFollowingSet((prev) => {
+          let newFollowingSet = new Set(prev);
+          newFollowingSet.delete(props.userName);
+          return newFollowingSet;
+        });
+      }
     } else {
       setIsFollowing(()=>{return true});
       props.setIsFollowing(true);
+      if(props.setFollowingSet){
+        props.setFollowingSet((prev) => {
+          let newFollowingSet = new Set(prev);
+          newFollowingSet.add(props.userName);
+          return newFollowingSet;
+        });
+      }
     }
   };
 
@@ -38,13 +53,15 @@ function MiniProfile(props) {
             !isFollowing ? "me-0" : "me-0"
           }`}
         >
-          <FollowButton
+          {loggedUser && loggedUser.username !== props.userName &&
+            <FollowButton
             isFollowing={props.isFollowing}
             setIsFollowing={props.setIsFollowing}
             onFollow={onFollow}
             className={classes.miniButton}
             username={props.userName}
-          ></FollowButton>
+            setFollowingSet = {props.setFollowingSet}
+          ></FollowButton>}
         </div>
       </div>
       <div className={classes.userNames}>

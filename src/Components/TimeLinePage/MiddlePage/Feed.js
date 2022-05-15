@@ -20,6 +20,7 @@ export default function Feed(props) {
   const [isLoading, setLoading] = React.useState(true);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
+  const [followingSet, setFollowingSet] = React.useState(new Set());
   const observer = useRef();
   let isMock = localStorage.getItem("isMock") === "true";
 
@@ -43,9 +44,19 @@ export default function Feed(props) {
     setLoading(true);
     let response;
     let newTweets;
+    let tryAgain = true;
     if (!isMock) {
       if (!props.testUrl)
-        response = await instance.get(`/home/${pageNumber}/5`);
+        while (tryAgain) {
+        try
+        {
+          response = await instance.get(`/home/${pageNumber}/5`);
+        }catch(error)
+        {
+          continue;
+        }
+          tryAgain = false;
+      }
       else response = await axios.get(props.testUrl);
       newTweets = response.data.tweets;
     } else {
@@ -62,6 +73,7 @@ export default function Feed(props) {
         userName: APItweet.user.username,
         isVerified: APItweet.user.isVerified,
         bio: APItweet.user.bio,
+        isFollowing: APItweet.user.is_followed,
         followers: APItweet.user.followers_count,
         following: APItweet.user.following_count,
         text: APItweet.content,
@@ -76,6 +88,11 @@ export default function Feed(props) {
         isTweetReply: APItweet.is_reply,
         media: APItweet.media,
       };
+      setFollowingSet((prevSet) => {
+        let newSet = new Set(prevSet);
+        newSet.add(tweet.userName);
+        return newSet;
+      });
       //console.log(tweet);
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
@@ -162,6 +179,8 @@ export default function Feed(props) {
                 key={index}
                 setPhotosActive={props.setPhotosActive}
                 setIncrement={props.setIncrement}
+                followingSet={followingSet}
+                setFollowingSet = {setFollowingSet}
               />
             </div>
           );
@@ -174,6 +193,8 @@ export default function Feed(props) {
               showAction={true}
               setPhotosActive={props.setPhotosActive}
               setIncrement={props.setIncrement}
+              followingSet={followingSet}
+              setFollowingSet = {setFollowingSet}
             />
           );
         }
