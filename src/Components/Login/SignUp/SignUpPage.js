@@ -7,22 +7,60 @@ import Verify from "./PhoneVerify";
 import Password from "./Password";
 
 const SignUpPage = () => {
-  const [stepOne, setStepOne] = useState(false);
-  const [stepTwo, setStepTwo] = useState(false);
-  const [stepThree, setStepThree] = useState(false);
-
-  const handleSteps = (step) => {
-    if (step == 1) {
-      setStepOne(true);
-      setStepTwo(false);
-      setStepThree(false);
-    }
-  };
+  // const [stepOne, setStepOne] = useState(true);
+  // const [stepTwo, setStepTwo] = useState(false);
+  // const [stepThree, setStepThree] = useState(false);
+  // const [stepFour, setStepFour] = useState(false);
+  // const [stepFive, setStepFive] = useState(false);
+  
+  
+  // const handleSteps = (step) => {
+  //   if (step == 1) {
+  //     setStepOne(true);
+  //     setStepTwo(false);
+  //     setStepThree(false);
+  //     setStepFour(false);
+  //     setStepFive(false);
+  //   }
+  //   else if (step == 2)
+  //   {
+  //     setStepOne(false);
+  //     setStepTwo(true);
+  //     setStepThree(false);
+  //     setStepFour(false);
+  //     setStepFive(false);
+  //   }
+  //   else if (step == 3)
+  //   {
+  //     setStepOne(false);
+  //     setStepTwo(false);
+  //     setStepThree(true);
+  //     setStepFour(false);
+  //     setStepFive(false);
+  //   }
+  //   else if (step == 4)
+  //   {
+  //     setStepOne(false);
+  //     setStepTwo(false);
+  //     setStepThree(false);
+  //     setStepFour(true);
+  //     setStepFive(false);
+  //   }
+  //   else if ( step == 5 )
+  //   {
+  //     setStepOne(false);
+  //     setStepTwo(false);
+  //     setStepThree(false);
+  //     setStepFour(false);
+  //     setStepFive(true);
+  //   }
+  // };
 
   const [nextClicked, setNextClicked] = useState(false);
   const [nextClicked2, setNextClicked2] = useState(false);
   const [nextClicked3, setNextClicked3] = useState(false);
   const [nextClicked4, setNextClicked4] = useState(false);
+  const [nextClicked5, setNextClicked5] = useState(false);
 
   const [day, setDay] = useState();
   const [month, setMonth] = useState();
@@ -55,18 +93,22 @@ const SignUpPage = () => {
   const handleClick4 = (click) => {
     setNextClicked4(click);
   };
+  const handleClick5 = (click) => {
+    setNextClicked5(click);
+  };
 
   return (
     <SignUpBackground>
-      {stepOne && !stepTwo && !stepThree && (
+      {/* {stepOne && !stepTwo && !stepThree && !stepFour && !stepFive && (
         <Mail
           handleButtonClick={handleClick}
           handleSetGenderFn={handleSetGender}
           handleMonthchangedFn={handleMonthchanged}
           handleDaychangedFn={handleDaychanged}
           handleYearchangedFn={handleYearchanged}
+          handleStepsFn={handleSteps}
         />
-      )}
+      )} */}
       {!nextClicked && (
         <Mail
           handleButtonClick={handleClick}
@@ -83,10 +125,10 @@ const SignUpPage = () => {
         <AddPhone handleButtonClick={handleClick3} />
       )}
       {nextClicked && nextClicked2 && nextClicked3 && !nextClicked4 && (
-        <Password handleButtonClick={handleClick4} />
+        <Verify handleButtonClick={handleClick4} gender={gender} birth={new Date(year, month - 1, day)} />
       )}
       {nextClicked && nextClicked2 && nextClicked3 && nextClicked4 && (
-        <Verify gender={gender} birth={new Date(year, month - 1, day)} />
+        <Password handleButtonClick={handleClick5} gender={gender} birth={new Date(year, month - 1, day)} />
       )}
     </SignUpBackground>
   );

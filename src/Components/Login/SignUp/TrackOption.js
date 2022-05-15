@@ -7,18 +7,18 @@ import PrivacyAndPolicy from "./PrivacyAndPolicy";
 import AddPhoneNext from "../Buttons/AddPhoneNext"
 
 const TrackOption = (props) => {
-    const [alert, setAlert] = useState(true);
+    // const [alert, setAlert] = useState(true);
 
     const handleClick = (val) => {
         props.handleButtonClick(val);
-        setAlert(val);
+        // setAlert(val);
     };
 
-    useEffect(() => {
-        setTimeout(() => {
-            setAlert(true);
-        }, 5000);
-    }, [alert]);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setAlert(true);
+    //     }, 5000);
+    // }, [alert]);
     return (
         
         <div>
@@ -43,7 +43,9 @@ const TrackOption = (props) => {
                 <div className={classes.Minor4} htmlFor="flexCheckDefault">
                     <PrivacyAndPolicy />
                 </div>
-                <AddPhoneNext handleButtonClick={handleClick}/>
+                <div className={classes.NextButton}>
+                    <AddPhoneNext handleButtonClick={handleClick}/>
+                </div>
             </div>
         </div>
     );

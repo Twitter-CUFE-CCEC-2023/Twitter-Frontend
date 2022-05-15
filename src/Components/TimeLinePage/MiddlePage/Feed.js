@@ -48,15 +48,13 @@ export default function Feed(props) {
     if (!isMock) {
       if (!props.testUrl)
         while (tryAgain) {
-        try
-        {
-          response = await instance.get(`/home/${pageNumber}/5`);
-        }catch(error)
-        {
-          continue;
-        }
+          try {
+            response = await instance.get(`/home/${pageNumber}/5`);
+          } catch (error) {
+            continue;
+          }
           tryAgain = false;
-      }
+        }
       else response = await axios.get(props.testUrl);
       newTweets = response.data.tweets;
     } else {
@@ -180,7 +178,7 @@ export default function Feed(props) {
                 setPhotosActive={props.setPhotosActive}
                 setIncrement={props.setIncrement}
                 followingSet={followingSet}
-                setFollowingSet = {setFollowingSet}
+                setFollowingSet={setFollowingSet}
               />
             </div>
           );
@@ -194,7 +192,7 @@ export default function Feed(props) {
               setPhotosActive={props.setPhotosActive}
               setIncrement={props.setIncrement}
               followingSet={followingSet}
-              setFollowingSet = {setFollowingSet}
+              setFollowingSet={setFollowingSet}
             />
           );
         }

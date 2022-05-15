@@ -31,6 +31,7 @@ import Retweets from "./Components/AdminPage/SideBarTabs/Retweets";
 import Statistics from "./Components/AdminPage/SideBarTabs/Statistics";
 import MainTweetPage from "./Components/TimeLinePage/TweetPage/MainTweetPage";
 import PhotosPage from "./Components/TimeLinePage/ViewPhotosPage/PhotosPage";
+import forgotPW from "./Components/Login/ForgetPassword/Process"
 
 // ctrl k + ctrl shift s => to save without formatting
 
@@ -60,6 +61,7 @@ function App() {
           <Route path="/TrackOption" component={TrackOption} />
           <Route path="/AddPhone" component={AddPhone} />
           <Route path="/Password" component={Password} />
+          <Route path="/ForgetPW" component={forgotPW} />
 
           {loginCtx.isLoggedIn && <Route path="/home" component={Home} />}
           {loginCtx.isLoggedIn && <Route path="/:userId/status/:id" component={MainTweetPage} />}
