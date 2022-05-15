@@ -1,18 +1,24 @@
 import React from "react";
-import classes from "./EmailDoneNext.module.css";
+import classes from "./NewPasswordSet.module.css";
 import axios from "../../../axios";
+import { faPersonWalkingLuggage } from "@fortawesome/free-solid-svg-icons";
 
 const EmailDoneNext = (props) => {
     const handleClick = () => {
 
         const Email = JSON.parse(localStorage.getItem("RecoveryEmail"));
+        const code = JSON.parse(localStorage.getItem("VerificationCode"));
+        const PW = JSON.parse(localStorage.getItem("NewPassword"));
+        const PWAgain = JSON.parse(localStorage.getItem("NewPasswordCopy"));
         // let check=false;
         let userObject = {
             email_or_username: Email,
+            verification_code: code,
+            password: PW,
         };
         console.log(userObject);
         axios
-            .post("/auth/send-reset-password", userObject, {
+            .put("/auth/reset-password", userObject, {
                 headers: { "Content-Type": "application/json" },
             })
             .then((response) => {
@@ -29,9 +35,9 @@ const EmailDoneNext = (props) => {
             .catch((err) => { });
 
         if (
-            Email.includes("@") &&
-            Email.includes(".")
-            ) {
+            PW !="" &&
+            PW == PWAgain
+        ) {
             props.handleButtonClick(true);
         } else {
             props.handleButtonClick(false);
@@ -41,7 +47,7 @@ const EmailDoneNext = (props) => {
     return (
         <button className={classes.buttonNext} onClick={handleClick}>
             <p className={classes.content} >
-                Search
+                Confirm
             </p>
         </button>
     );

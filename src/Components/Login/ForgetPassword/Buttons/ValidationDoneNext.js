@@ -14,7 +14,7 @@ const EmailDoneNext = (props) => {
         };
         console.log(userObject);
         axios
-            .post("/auth/verify-credentials", userObject, {
+            .put("/auth/verify-credentials", userObject, {
                 headers: { "Content-Type": "application/json" },
             })
             .then((response) => {
