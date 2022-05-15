@@ -7,9 +7,13 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 
 function ProfileActions(props) {
   const [isFollowing, setIsFollowing] = useState(props.isFollowing ? true : false);
-  const onFollowHandeler = () => {
-    if (isFollowing) setIsFollowing(false);
-    else setIsFollowing(true);
+
+  const onFollow = () => {
+    if (isFollowing) {
+      setIsFollowing(false);
+    } else {
+      setIsFollowing(true);
+    }
   };
   
   const handleChangeData=(user)=>{
@@ -30,7 +34,7 @@ function ProfileActions(props) {
         <div className={`${classes.followButtonDiv} col-2 pe-0 ${!isFollowing ? "me-3" : "me-4"}`}>
           <FollowButton
             isFollowing={props.isFollowing}
-            onFollow={onFollowHandeler}
+            onFollow={onFollow}
 
           ></FollowButton>
         </div>
