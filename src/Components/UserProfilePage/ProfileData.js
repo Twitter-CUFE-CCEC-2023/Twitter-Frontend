@@ -229,6 +229,7 @@ function ProfileData(props) {
       <div className={`${classes.profileActionsRow}  `}>
         <ProfileActions
           isFollowing={user.isFollowing}
+          username={user.userName}
           isMyProfile={currentuserName === userInPath ? true : false}
           setProfileData={handleProfileChange}
         ></ProfileActions>
