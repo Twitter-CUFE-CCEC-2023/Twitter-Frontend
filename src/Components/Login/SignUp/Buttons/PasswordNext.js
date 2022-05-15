@@ -24,7 +24,7 @@ const NextButtonUp = (props) => {
             .then((response) => {
                 console.log(response);
                 if (response.status === 200) {
-                    console.log(response);
+                    //console.log(response);
                     // loginCtx.login(false, response.data.access_token, response.data.expirartion_time);
                     localStorage.removeItem("ValidationCode");
                 }
