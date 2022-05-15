@@ -6,16 +6,15 @@ import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 
 function ProfileActions(props) {
-  const [isFollowing, setIsFollowing] = useState(false);
-
-  const handleChangeData = (user) => {
-    props.setProfileData(user)
-  }
-
+  const [isFollowing, setIsFollowing] = useState(props.isFollowing ? true : false);
   const onFollowHandeler = () => {
     if (isFollowing) setIsFollowing(false);
     else setIsFollowing(true);
   };
+  
+  const handleChangeData=(user)=>{
+    props.setProfileData(user);
+  }
 
   let actionsRendered;
   if (props.isMyProfile === true) {
@@ -27,10 +26,10 @@ function ProfileActions(props) {
   } else {
     actionsRendered = (
       <Fragment>
-
-        <div className={`col-2 pe-0 ${!isFollowing ? "me-3" : "me-4"}`}>
+        
+        <div className={`${classes.followButtonDiv} col-2 pe-0 ${!isFollowing ? "me-3" : "me-4"}`}>
           <FollowButton
-            isFollowing={isFollowing}
+            isFollowing={props.isFollowing}
             onFollow={onFollowHandeler}
 
           ></FollowButton>

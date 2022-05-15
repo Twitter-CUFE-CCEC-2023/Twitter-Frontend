@@ -20,6 +20,10 @@
     padding-left: 6px;
 }
 
+.followButtonDiv{
+  margin-left: 0.8em !important;
+}
+
 .settingButton:hover {
     border-radius: 200px;
     border-color: rgb(209, 213, 219);

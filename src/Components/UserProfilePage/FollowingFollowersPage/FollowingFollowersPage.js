@@ -131,6 +131,7 @@ function FollowingFollowersPage() {
           return [...prevFollowers, follower];
         });
       });
+      console.log(followers);
       setHasMoreFollowers(userFollowers.length === 3);
       setLoading(false);
     }
@@ -170,11 +171,13 @@ function FollowingFollowersPage() {
           bio: APIfollowing.bio,
           followers: APIfollowing.followers_count,
           following: APIfollowing.following_count,
+          isFollowing: APIfollowing.is_followed,
         };
         setFollowing((prevFollowing) => {
           return [...prevFollowing, followingUser];
         });
       });
+      console.log(userFollowings);
       setHasMoreFollowing(userFollowings.length === 5);
       setLoading(false);
     }
@@ -285,7 +288,6 @@ function FollowingFollowersPage() {
                           ? true
                           : false
                       }
-                      isFollowing={true}
                       showAction={true}
                     ></User>{" "}
                   </div>
@@ -295,7 +297,6 @@ function FollowingFollowersPage() {
                   <div>
                     <User
                       {...followingUser}
-                      isFollowing={true}
                       currentuser={
                         currentuserName === followingUser.userName
                           ? true

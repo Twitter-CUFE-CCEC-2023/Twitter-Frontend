@@ -189,8 +189,8 @@ function ProfileData(props) {
       followers_count: currentUserTweets.followers_count,
       following_count: currentUserTweets.following_count,
       tweets_count: currentUserTweets.tweets_count,
+      isFollowing: currentUserTweets.is_followed,
     });
-
     setHasMore(userTweets.length === 3);
     setLoading(false);
   };
@@ -227,6 +227,7 @@ function ProfileData(props) {
       </div>
       <div className={`${classes.profileActionsRow}  `}>
         <ProfileActions
+          isFollowing={user.isFollowing}
           isMyProfile={currentuserName === userInPath ? true : false}
           setProfileData={handleProfileChange}
         ></ProfileActions>
