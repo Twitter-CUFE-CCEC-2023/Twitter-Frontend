@@ -110,7 +110,7 @@ function TweetAndReplies(props) {
     return (
       <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
         {!props.isShowPhotos && <div className={classes.tweetHeader}>
-          <NavLink className={classes.nlink} to={localStorage.getItem("currentPage") === "/notifications" ? "/notifications" : "/home"}>
+          <NavLink className={classes.nlink} to={localStorage.getItem("currentPage")? localStorage.getItem("currentPage") : "/home"}>
             <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
           </NavLink>
           <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
@@ -131,7 +131,7 @@ function TweetAndReplies(props) {
   return (
     <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
       {!props.isShowPhotos && <div className={classes.tweetHeader}>
-        <NavLink className={classes.nlink} to={localStorage.getItem("currentPage") === "/notifications" ? "/notifications" : "/home"}>
+        <NavLink className={classes.nlink} to={localStorage.getItem("currentPage") ? "/notifications" : "/home"}>
           <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
         </NavLink>
         <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>

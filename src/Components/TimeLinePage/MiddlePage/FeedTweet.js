@@ -160,6 +160,7 @@ export default function FeedTweet(props) {
   let history = useHistory();
   function handleClick(e) {
     if (!props.isTopTweet) {
+      localStorage.setItem("currentPage", window.location.pathname);
       history.push(`/${props.userName}/status/${props.tweetId}`);
       window.location.reload();
     }
@@ -329,7 +330,7 @@ export default function FeedTweet(props) {
                 setFollowingSet={props.setFollowingSet} />
             </div>
           </div>
-          {props.isReply && (
+          {props.isReply && !props.isTopTweet && (
             <div className={classes.flex}>
               <p className={`${classes.gray} ${classes.fs15} ${classes.nom}`}>
                 Replying to{" "}
@@ -381,7 +382,7 @@ export default function FeedTweet(props) {
             <div id="FeedTweetAttributes" className={classes.attributes}>
               <TweetAtrribute
                 Icon={ChatBubbleOutlineOutlinedIcon}
-                num={props.replies}
+                num={props.replies ? props.replies.length() : 0}
                 color="b"
                 tooltip="Reply"
                 onClick={viewReplyModal}

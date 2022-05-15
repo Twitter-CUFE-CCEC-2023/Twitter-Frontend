@@ -47,14 +47,8 @@ export default function Feed(props) {
     let tryAgain = true;
     if (!isMock) {
       if (!props.testUrl)
-        while (tryAgain) {
-          try {
-            response = await instance.get(`/home/${pageNumber}/5`);
-          } catch (error) {
-            continue;
-          }
-          tryAgain = false;
-        }
+        response = await instance.get(`/home/${pageNumber}/5`);
+
       else response = await axios.get(props.testUrl);
       newTweets = response.data.tweets;
     } else {
