@@ -5,6 +5,9 @@ const NextButtonUp = (props) => {
   const handleClick = () => {
     const name = JSON.parse(localStorage.getItem("Name"));
     const email = JSON.parse(localStorage.getItem("Email"));
+    console.log(name);
+    console.log(email);
+    console.log(JSON.parse(localStorage.getItem("Username")))
     console.log(props.handleGenderSet);
     console.log(props.handleMonthSet);
     console.log(props.handleDaySet);
@@ -16,9 +19,7 @@ const NextButtonUp = (props) => {
       email.includes(".") &&
       (props.handleGenderSet == "Male" || props.handleGenderSet == "Female") &&
       props.handleDaySet != undefined &&
-      props.handleDaySet != true &&
       props.handleMonthSet != undefined &&
-      props.handleMonthSet != true &&
       props.handleYearSet != undefined &&
       props.handleYearSet != true
     ) {
