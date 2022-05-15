@@ -14,7 +14,7 @@ import ReactLoading from "react-loading";
 
 function TweetAndReplies(props) {
   let { userId, id } = useParams();
-  if(props.isShowPhotos) id = window.location.pathname.split("/")[3];
+  if (props.isShowPhotos) id = window.location.pathname.split("/")[3];
   const [isLoading, setLoading] = React.useState(true);
   const [topTweet, setTopTweet] = React.useState([]);
   const [replies, setReplies] = React.useState([]);
@@ -62,9 +62,9 @@ function TweetAndReplies(props) {
       isLiked: maintweet.is_liked,
       isRetweeted: maintweet.is_retweeted,
       isReply: maintweet.is_reply,
-      media : maintweet.media,
+      media: maintweet.media,
     };
-    let tu ={
+    let tu = {
       name: maintweet.user.name,
       profilePic: maintweet.user.profile_image_url,
       userName: maintweet.user.username,
@@ -74,7 +74,7 @@ function TweetAndReplies(props) {
       following: maintweet.user.following_count,
       isFollowing: maintweet.user.is_followed
     }
-    let repl = replies.map( (reply) => {
+    let repl = replies.map((reply) => {
       return {
         name: reply.user.name,
         profilePic: reply.user.profile_image_url,
@@ -93,7 +93,7 @@ function TweetAndReplies(props) {
         isLiked: reply.is_liked,
         isRetweeted: reply.is_retweeted,
         isReply: reply.is_reply,
-        media : reply.media,
+        media: reply.media,
       };
     });
     setTopTweet(tweet);
@@ -110,7 +110,7 @@ function TweetAndReplies(props) {
     return (
       <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
         {!props.isShowPhotos && <div className={classes.tweetHeader}>
-          <NavLink className={classes.nlink} to="/home">
+          <NavLink className={classes.nlink} to={localStorage.getItem("currentPage") === "/notifications" ? "/notifications" : "/home"}>
             <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
           </NavLink>
           <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
@@ -131,13 +131,13 @@ function TweetAndReplies(props) {
   return (
     <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
       {!props.isShowPhotos && <div className={classes.tweetHeader}>
-        <NavLink className={classes.nlink} to="/home">
+        <NavLink className={classes.nlink} to={localStorage.getItem("currentPage") === "/notifications" ? "/notifications" : "/home"}>
           <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
         </NavLink>
         <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
       </div>}
       <div data-testid="topTweet">
-        <FeedTweet isShowPhotos = {props.isShowPhotos} isTopTweet={true} {...topTweet} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement}/>
+        <FeedTweet isShowPhotos={props.isShowPhotos} isTopTweet={true} {...topTweet} setPhotosActive={props.setPhotosActive} setIncrement={props.setIncrement} />
       </div>
       <div className={classes.tbox}>
         {" "}
@@ -160,8 +160,8 @@ function TweetAndReplies(props) {
             topUser={topUser}
             showAction={true}
             key={index}
-            setPhotosActive = {props.setPhotosActive}
-            setIncrement = {props.setIncrement}
+            setPhotosActive={props.setPhotosActive}
+            setIncrement={props.setIncrement}
           />
         );
       })}

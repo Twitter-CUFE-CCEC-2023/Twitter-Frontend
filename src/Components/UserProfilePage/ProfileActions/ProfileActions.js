@@ -7,6 +7,11 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 
 function ProfileActions(props) {
   const [isFollowing, setIsFollowing] = useState(false);
+
+  const handleChangeData = (user) => {
+    props.setProfileData(user)
+  }
+
   const onFollowHandeler = () => {
     if (isFollowing) setIsFollowing(false);
     else setIsFollowing(true);
@@ -16,18 +21,18 @@ function ProfileActions(props) {
   if (props.isMyProfile === true) {
     actionsRendered = (
 
-        <EditProfileButton></EditProfileButton>
-      
+      <EditProfileButton setData={handleChangeData} ></EditProfileButton>
+
     );
   } else {
     actionsRendered = (
       <Fragment>
-        
+
         <div className={`col-2 pe-0 ${!isFollowing ? "me-3" : "me-4"}`}>
           <FollowButton
             isFollowing={isFollowing}
             onFollow={onFollowHandeler}
-            
+
           ></FollowButton>
         </div>
         <div className={`${classes.settingButton} col-2`}>

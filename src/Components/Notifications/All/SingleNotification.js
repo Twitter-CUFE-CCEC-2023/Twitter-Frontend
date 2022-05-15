@@ -20,6 +20,7 @@ function SingleNotification(props) {
     await instance.put("/read-notification", { notificationId: props.note_id });
     e.stopPropagation();
     history.push(`/${props.personID}/status/${props.tweetID}`);
+    localStorage.setItem("currentPage", "/notifications")
     window.location.reload();
   };
 
@@ -37,9 +38,8 @@ function SingleNotification(props) {
     description = "This account is restricted for " + props.banDuration;
     return (
       <div
-        className={`${classes.notification} ${
-          props.is_read ? "" : classes.is_read
-        }`}
+        className={`${classes.notification} ${props.is_read ? "" : classes.is_read
+          }`}
       >
         <div className="container">
           <div className="row pt-2">
@@ -63,9 +63,8 @@ function SingleNotification(props) {
     description = "New tweet notification for ";
     return (
       <div
-        className={`${classes.notification} ${
-          props.is_read ? "" : classes.is_read
-        }`}
+        className={`${classes.notification} ${props.is_read ? "" : classes.is_read
+          }`}
         onClick={readNote}
       >
         <div className="container">
@@ -146,9 +145,8 @@ function SingleNotification(props) {
     description = "liked your tweet";
     return (
       <div
-        className={`${classes.notification} ${
-          props.is_read ? "" : classes.is_read
-        }`}
+        className={`${classes.notification} ${props.is_read ? "" : classes.is_read
+          }`}
         onClick={readNote}
       >
         <div className="container">
@@ -229,9 +227,8 @@ function SingleNotification(props) {
     description = "retweeted your tweet";
     return (
       <div
-        className={`${classes.notification} ${
-          props.is_read ? "" : classes.is_read
-        }`}
+        className={`${classes.notification} ${props.is_read ? "" : classes.is_read
+          }`}
         onClick={readNote}
       >
         <div className="container">
@@ -312,9 +309,8 @@ function SingleNotification(props) {
     description = "started following you";
     return (
       <div
-        className={`${classes.notification} ${
-          props.is_read ? "" : classes.is_read
-        }`}
+        className={`${classes.notification} ${props.is_read ? "" : classes.is_read
+          }`}
         onClick={readNoteFollow}
       >
         <div className="container">

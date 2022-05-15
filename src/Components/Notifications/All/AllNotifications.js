@@ -105,10 +105,13 @@ function AllNotifications(props) {
           notes.notification_type === "Retweet" ||
           notes.notification_type === "Following Tweet"
         ) {
-          notification = {
-            ...notification,
-            tweetID: notes.tweet.id,
-          };
+          if (notes.tweet !== null) {
+            notification = {
+              ...notification,
+              tweetID: notes.tweet.id,
+            };
+          }
+
         }
       }
       if (!notes.is_read) {

@@ -8,7 +8,7 @@ import CameraEnhanceOutlinedIcon from "@mui/icons-material/CameraEnhanceOutlined
 import ImageUploader from "./ImageUploader";
 import instance from "../../axios";
 
-function EditProfileButton() {
+function EditProfileButton(props) {
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
   const [croppedCoverPhoto, setCroppedCoverPhoto] = useState(
     currentuser.cover_image_url
@@ -56,27 +56,30 @@ function EditProfileButton() {
       })
       .then((res) => {
         console.log(res);
-        window.location.reload();
+        // window.location.reload();
         //set local storage
-        console.log(res.data.message);
+        console.log("user after changes", res.data.message);
         localStorage.setItem("UserInfo", JSON.stringify(res.data.user));
+
+        props.setData(res.data.user)
+
       })
       .catch((err) => {
         console.log(err);
-          console.log("Error message", err.message);
+        console.log("Error message", err.message);
       });
   }
-  const changeNameVal=(value)=>{
+  const changeNameVal = (value) => {
     setName(value);
     console.log(value);
   }
-  const changeBioVal=(value)=>{
+  const changeBioVal = (value) => {
     setBio(value);
   }
-  const changeWebsiteVal=(value)=>{
+  const changeWebsiteVal = (value) => {
     setWebsite(value);
   }
-  const changeLocationVal=(value)=>{
+  const changeLocationVal = (value) => {
     setLocation(value);
   }
 
@@ -179,7 +182,7 @@ function EditProfileButton() {
                   name="birthday"
                   value={birth_date}
                   max="2021-01-01"
-                  onChange={(e) => {setBirthDate(e.target.value.toString()); console.log(e.target.value.toString())}}
+                  onChange={(e) => { setBirthDate(e.target.value.toString()); console.log(e.target.value.toString()) }}
                   className={`${classes.birthdayInput}`}
                 ></input>
               </form>

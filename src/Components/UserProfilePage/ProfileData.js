@@ -26,13 +26,32 @@ function ProfileData(props) {
   const pathlocation = useLocation();
   let userInPath = pathlocation.pathname.split("/")[2];
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
-  let currentuserName=currentuser.username;
+  let currentuserName = currentuser.username;
   const location = useLocation();
   let { userName } = useParams();
 
 
   if (currentuser) {
     currentuserName = currentuser.username;
+  }
+
+  const handleProfileChange = (currentUserTweets) => {
+    setUser({
+      name: currentUserTweets.name, //user.name,
+      profilePic: currentUserTweets.profile_image_url,
+      coverimage: currentUserTweets.cover_image_url,
+      userName: currentUserTweets.username,
+      email: currentUserTweets.email,
+      isVerified: currentUserTweets.isVerified,
+      bio: currentUserTweets.bio,
+      location: currentUserTweets.location,
+      birth_date: currentUserTweets.birth_date,
+      created_at: currentUserTweets.created_at,
+      website: currentUserTweets.website,
+      followers_count: currentUserTweets.followers_count,
+      following_count: currentUserTweets.following_count,
+      tweets_count: currentUserTweets.tweets_count,
+    });
   }
 
   const [user, setUser] = useState({});
@@ -65,12 +84,12 @@ function ProfileData(props) {
   useEffect(() => {
     getTweets();
   }, [pageNumber]);
-  
-  
+
+
 
   const getTweets = async () => {
     setLoading(true);
-    
+
     let currentUserTweets;
     let currentUser;
     //get user tweets from api
@@ -99,8 +118,8 @@ function ProfileData(props) {
         const tweets = await axios.get(props.testUrl);
         userTweets = tweets.data.tweets;
       }
-     
-     
+
+
     }
     //get user tweets from mock api
     else {
@@ -120,15 +139,15 @@ function ProfileData(props) {
         });
     }
     userTweets.forEach((APItweet) => {
-      if(props.testUrl){
-        currentUserTweets={
-          username:"userName",
-          name:"userName",
-          isVerified:true,
-          profileImage:"https://pbs.twimg.com/profile_images/1209858989998693888/zHXx-qQl_400x400.jpg",
-          bio:"biooo",
-          followers:0,
-          following:0,
+      if (props.testUrl) {
+        currentUserTweets = {
+          username: "userName",
+          name: "userName",
+          isVerified: true,
+          profileImage: "https://pbs.twimg.com/profile_images/1209858989998693888/zHXx-qQl_400x400.jpg",
+          bio: "biooo",
+          followers: 0,
+          following: 0,
         }
       }
       let tweet = {
@@ -171,7 +190,7 @@ function ProfileData(props) {
       following_count: currentUserTweets.following_count,
       tweets_count: currentUserTweets.tweets_count,
     });
-    
+
     setHasMore(userTweets.length === 3);
     setLoading(false);
   };
@@ -179,37 +198,37 @@ function ProfileData(props) {
 
 
   //profile photo open handeling
-  const [openProfilePhoto,setOpenProfilePhoto]=useState(false);
-  const handleProfilePhotoOpenAndClose=()=>{
-    if(user.profilePic)
-    setOpenProfilePhoto(()=>{return !openProfilePhoto});
+  const [openProfilePhoto, setOpenProfilePhoto] = useState(false);
+  const handleProfilePhotoOpenAndClose = () => {
+    if (user.profilePic)
+      setOpenProfilePhoto(() => { return !openProfilePhoto });
   }
 
   return (
     <div className={`${classes.profileDataContainer} `}>
-      <ProfilePhotoModal isOpen={openProfilePhoto} handleProfilePhotoOpenAndClose={handleProfilePhotoOpenAndClose} profilePic={user.profilePic}/>
+      <ProfilePhotoModal isOpen={openProfilePhoto} handleProfilePhotoOpenAndClose={handleProfilePhotoOpenAndClose} profilePic={user.profilePic} />
       <div className={`${classes.header} row`}>
         <ProfileHeader profilePic={user.profilePic} name={user.name} username={user.username} tweets_count={user.tweets_count}></ProfileHeader>
       </div>
       <div className={`${classes.coverPhoto}  row `}>
-        <CoverPhoto coverImage={user.coverimage? user.coverimage:"https://jannaschreier.files.wordpress.com/2012/03/website-header-blue-grey-background.jpg"}></CoverPhoto>
+        <CoverPhoto coverImage={user.coverimage ? user.coverimage : "https://jannaschreier.files.wordpress.com/2012/03/website-header-blue-grey-background.jpg"}></CoverPhoto>
         <div className={`${classes.profileImageContainer} `}>
           <img
             className={`${classes.profileImage} img-fluid`}
             onClick={handleProfilePhotoOpenAndClose}
-            src={`${
-              user.profilePic
+            src={`${user.profilePic
                 ? user.profilePic
                 : "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
-            }`}
+              }`}
             alt=""
           />
-          
+
         </div>
       </div>
       <div className={`${classes.profileActionsRow}  `}>
         <ProfileActions
           isMyProfile={currentuserName === userInPath ? true : false}
+          setProfileData={handleProfileChange}
         ></ProfileActions>
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>

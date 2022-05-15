@@ -1,65 +1,65 @@
-.moreButton{
-    margin-bottom: 20px;
+.moreButton {
+  margin-bottom: 20px;
 }
 
-.moreList{
-    top: 0;
-    margin-left: 7px;
-    position: absolute;
-    z-index: 100;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.moreList {
+  top: 0;
+  margin-left: 7px;
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.flex{
-    display: flex;
+.flex {
+  display: flex;
 }
 
-.noStyle{
-    color: black !important;
-    font-size: 15px !important;
-    text-decoration: none;
-    font-weight: 350;
-    align-items: center;
-    padding: 15.5px;
-    width: 225px;
+.noStyle {
+  color: black !important;
+  font-size: 15px !important;
+  text-decoration: none;
+  font-weight: 350;
+  align-items: center;
+  padding: 15.5px;
+  width: 225px;
 }
 
-.choiceText{
-    margin: 0 0 0 10px;
-    font-size: 15px;
+.choiceText {
+  margin: 0 0 0 10px;
+  font-size: 15px;
 }
 
-.moreListChoice:hover{
-    background-color: var(--twitterBorder);
+.moreListChoice:hover {
+  background-color: var(--twitterBorder);
 }
 
-.firstChoice{
-    margin-top: 0;
-    border-radius: 10px 10px 0 0;
+.firstChoice {
+  margin-top: 0;
+  border-radius: 10px 10px 0 0;
 }
 
-.lastChoice{
-    margin-bottom: 0;
-    border-radius: 0 0 10px 10px;
+.lastChoice {
+  margin-bottom: 0;
+  border-radius: 0 0 10px 10px;
 }
 
-.hidden{
-    display: none;
+.hidden {
+  display: none;
 }
 
-.borderBottom{
-    border-bottom: 1px solid var(--twitterBorder);
+.borderBottom {
+  border-bottom: 1px solid var(--twitterBorder);
 }
 
-.listIcon{
-    font-size: 20px !important;
-    margin-top: 2px;
+.listIcon {
+  font-size: 20px !important;
+  margin-top: 2px;
 }
 
 @media only screen and (max-width: 500px) {
-    .moreButton{
-        display: none;
-    }
+  .moreButton {
+    display: none;
+  }
 }
