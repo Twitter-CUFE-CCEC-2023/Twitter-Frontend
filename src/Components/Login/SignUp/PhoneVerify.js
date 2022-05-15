@@ -14,7 +14,7 @@ const Verify = (props) => {
     const Email = JSON.parse(localStorage.getItem("Email"));
     const phone = JSON.parse(localStorage.getItem("PhoneNumber"));
     const Username = JSON.parse(localStorage.getItem("Username"));
-    
+
     let userObject = {
       email: Email,
       username: Username,
@@ -39,9 +39,14 @@ const Verify = (props) => {
           localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
+
   const [alert, setAlert] = useState(true);
+
+  const handleSendEmail = () => {
+
+  }
 
   const handleClick = (val) => {
     props.handleButtonClick(val);
@@ -77,8 +82,8 @@ const Verify = (props) => {
           itemName="VerificationCode"
           maxLength={50}
         />
-        <div className={classes.Minor4}>
-          <NavLink to="/Password">Didn't receive email?</NavLink>
+        <div className={classes.Minor4} onClick={handleSendEmail}>
+          Didn't receive email?
         </div>
         <div className={classes.NextButton}>
           <SignUp handleButtonClick={handleClick} />

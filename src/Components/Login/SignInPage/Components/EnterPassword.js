@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import classes from "./EnterPassword.module.css";
 
 import LoadingSpinner from "../../../ExtraPages/LoadingSpinner";
@@ -55,7 +56,7 @@ const EnterPassword = () => {
                 label={type}
                 disable={true}
                 default={email}
-                passData={() => {}}
+                passData={() => { }}
               />
               <div className={classes.lineBreak}></div>
               <PasswordInputField
@@ -65,7 +66,7 @@ const EnterPassword = () => {
                 handleButtonClick={handleLoginClick}
                 handleLoadingfn={handleLoading}
               />
-              <p className={classes.forgetPassword}>Forgot Password?</p>
+              <NavLink to="ForgetPW" style={{ textDecoration: "none" }}><p className={classes.forgetPassword}>Forgot Password?</p></NavLink>
 
               <div className={classes.alert} data-testid="passwordAlert">
                 {!alert && <WrongPasswordAlert />}

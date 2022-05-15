@@ -5,6 +5,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import NextButtonUp from "./Buttons/NextButtonUp";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import DateOfBirth from "./DateOfBirth";
+import InputFieldError from "./InputFieldError"
 import InputField from "../InputField";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -21,14 +22,12 @@ const Mail = (props) => {
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
 
-  const usephoneInstead = () =>
-  {
+  const usephoneInstead = () => {
     setPhone(!phone);
   }
-  
 
-  const SetName = (value) =>
-  {
+
+  const SetName = (value) => {
     setName(value);
     console.log(value);
   }
@@ -66,7 +65,7 @@ const Mail = (props) => {
       setAlert(true);
     }, 5000);
   }, [alert]);
-  let step=2;
+  let step = 2;
   return (
     <div>
       <img
@@ -89,12 +88,17 @@ const Mail = (props) => {
           maxLength={50}
           passData={SetName}
         />
+        {/* <InputFieldError label="Name"
+          disable={false}
+          itemName="Name"
+          maxLength={50}
+          passData={SetName} /> */}
       </div>
 
       <p></p>
 
       <div className={classes.Minor3}>
-        { !phone && <InputField
+        {!phone && <InputField
           label="Email address"
           disable={false}
           itemName="Email"
@@ -120,7 +124,7 @@ const Mail = (props) => {
       </div>
 
       <div className={classes.content2} onClick={usephoneInstead} >
-        {!phone &&<p>Use phone instead</p>}
+        {!phone && <p>Use phone instead</p>}
         {phone && <p>Use email instead</p>}
       </div>
 

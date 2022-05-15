@@ -2,8 +2,16 @@ import React from "react";
 import classes from "./SearchResult.module.css";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function SearchResult(props) {
+
+  let history = useHistory();
+  function reloadProfile() {
+    history.push(`/userprofile/${props.username}`);
+    window.location.reload();
+  }
+
   let profilePicture;
   if (props.profilePic === "") {
     profilePicture =
@@ -13,7 +21,7 @@ function SearchResult(props) {
   }
   return (
     <div className={classes.searchResult}>
-      <NavLink to={`/userprofile/${props.username}`} className={classes.link} >
+      <NavLink to={`/userprofile/${props.username}`} className={classes.link} onClick={reloadProfile}>
         <div className="container my-1">
           <div className="row">
             <div className="col-2">

@@ -4,16 +4,15 @@ import ArrowBack from "./ArrowBack";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { blackberry } from "fontawesome";
-const black='#000000';
-function ProfileHeader(props) {
-  const clickArrowBack=()=>{
+const black = '#000000';
 
-  }
+function ProfileHeader(props) {
+
   return (
     <div className={`row pb-0`}>
       <div className={`col-1 me-3 ${classes.arrowRow}`}>
         <NavLink to={`/userprofile/${props.username}`} className={` ${classes.arrow}`} >
-        <ArrowBack className={`${classes.arrow}`}  ></ArrowBack>
+          <ArrowBack className={`${classes.arrow}`}  ></ArrowBack>
         </NavLink>
       </div>
       <div className={` col-9`}>

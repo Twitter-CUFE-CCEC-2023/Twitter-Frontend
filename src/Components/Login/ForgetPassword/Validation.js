@@ -16,13 +16,13 @@ const Validation = (props) => {
         setCode(false);
     }
 
-    const CodeExists = () =>
-    {
+    const CodeExists = () => {
         setCode(true);
     }
 
     const handleClick = (val) => {
         props.handleButtonClick(val);
+        console.log("button clicked", val)
         setAlert(val);
     };
     //Use above for day month and year to gain their value
@@ -47,7 +47,7 @@ const Validation = (props) => {
             <div className={classes.Minor3}>
                 You'll receive a code to verify here so you can reset your account password.
             </div>
-            
+
             <div className={classes.Minor3} onInput={CodeExists} onEmptied={NoCode}>
                 <InputField
                     label=""
@@ -60,13 +60,13 @@ const Validation = (props) => {
             <p></p>
 
             <div className={classes.NextButton}>
-                {code &&<NextButtonUp
+                {code && <NextButtonUp
                     handleButtonClick={handleClick}
                     Step={step}
                 />}
                 {!code && <DidntReceiveCode
-                handleButtonClick={handleClick}
-                Step={!step}
+                    handleButtonClick={handleClick}
+                    Step={!step}
                 />}
             </div>
             {!alert && (
