@@ -161,3 +161,9 @@
   background-color: var(--twitterHoverBlue);
   border-bottom: 2px solid rgb(255, 255, 255);
 }
+
+.loadingIcon {
+  margin-left: 50%;
+  margin-top: 5%;
+  padding-bottom: 5%;
+}

@@ -83,6 +83,7 @@ function MentionNotifications(props) {
           media: notes.tweet.media,
           is_read: notes.is_read,
           note_id: notes._id,
+          isFollowing: notes.related_user.is_followed,
         };
         setRepliesNum(repliesNum + 1);
       } else {

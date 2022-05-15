@@ -84,6 +84,7 @@ function AllNotifications(props) {
           type: notes.notification_type,
           is_read: notes.is_read,
           note_id: notes._id,
+          isFollowed: notes.related_user.is_followed,
         };
       } else {
         notification = {
@@ -99,6 +100,7 @@ function AllNotifications(props) {
           followers: notes.related_user.followers_count,
           time: notes.created_at,
           note_id: notes._id,
+          isFollowed: notes.related_user.is_followed,
         };
         if (
           notes.notification_type === "Like" ||
@@ -110,8 +112,12 @@ function AllNotifications(props) {
               ...notification,
               tweetID: notes.tweet.id,
             };
+          } else {
+            notification = {
+              ...notification,
+              tweetID: "no",
+            };
           }
-
         }
       }
       if (!notes.is_read) {
