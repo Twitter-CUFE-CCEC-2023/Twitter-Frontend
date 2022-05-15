@@ -112,8 +112,7 @@
 }
 
 .NextButton {
-  text-align: center;
-  margin: 0% 25%;
+  margin: 0% 20%;
   font-size: 80%;
   color: #536471;
 }
@@ -132,6 +131,8 @@
 .content2 {
   text-align: left;
   margin: 1% 10%;
+  cursor:pointer;
+  color: #006dd0;
   font-size: 65%;
 }
 

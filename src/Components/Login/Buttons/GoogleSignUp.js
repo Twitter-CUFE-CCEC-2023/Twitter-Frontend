@@ -8,7 +8,7 @@ const GoogleSignUp = (props) => {
   const history = useHistory();
   const handleClick = () => {
   axios
-    .put("/auth/google", {
+    .get("/auth/google", {
       headers: { "Content-Type": "application/json" },
     })
     .then((response) => {

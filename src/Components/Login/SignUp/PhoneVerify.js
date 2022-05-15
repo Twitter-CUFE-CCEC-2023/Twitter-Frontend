@@ -1,25 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./PhoneVerify.module.css";
 import ClearIcon from "@material-ui/icons/Clear";
-import SignUp from "./Buttons/SignUpComplete";
+import SignUp from "./Buttons/PasswordNext";
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
 import InputField from "../InputField";
 import Alert from "./Alert/Alert";
 import axios from "../../axios";
 
-const PhoneVerify = (props) => {
+const Verify = (props) => {
   useEffect(() => {
     const Name = JSON.parse(localStorage.getItem("Name"));
-    const PW = JSON.parse(localStorage.getItem("Password"));
     const Email = JSON.parse(localStorage.getItem("Email"));
     const phone = JSON.parse(localStorage.getItem("PhoneNumber"));
     const Username = JSON.parse(localStorage.getItem("Username"));
-
+    
     let userObject = {
       email: Email,
       username: Username,
-      password: PW,
       name: Name,
       gender: props.gender,
       birth_date: props.birth,
@@ -39,14 +37,22 @@ const PhoneVerify = (props) => {
         console.log(response);
         if (response.status === 200) {
           localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
-          localStorage.removeItem("Name");
-          localStorage.removeItem("Password");
-          localStorage.removeItem("PhoneNumber");
-          localStorage.removeItem("Username");
         }
       })
       .catch((err) => {});
   }, []);
+  const [alert, setAlert] = useState(true);
+
+  const handleClick = (val) => {
+    props.handleButtonClick(val);
+    setAlert(val);
+  };
+  //Use above for day month and year to gain their value
+  useEffect(() => {
+    setTimeout(() => {
+      setAlert(true);
+    }, 5000);
+  }, [alert]);
   return (
     <div>
       <img
@@ -74,7 +80,9 @@ const PhoneVerify = (props) => {
         <div className={classes.Minor4}>
           <NavLink to="/Password">Didn't receive email?</NavLink>
         </div>
-        <SignUp />
+        <div className={classes.NextButton}>
+          <SignUp handleButtonClick={handleClick} />
+        </div>
       </div>
       {!alert && (
         <div className={classes.alert}>
@@ -85,4 +93,4 @@ const PhoneVerify = (props) => {
   );
 };
 
-export default PhoneVerify;
+export default Verify;

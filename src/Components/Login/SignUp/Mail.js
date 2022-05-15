@@ -10,6 +10,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Alert from "./Alert/Alert";
+import WrongData from "./InputField/InputField"
 
 const Mail = (props) => {
   const [alert, setAlert] = useState(true);
@@ -17,7 +18,20 @@ const Mail = (props) => {
   const [month, setMonth] = useState();
   const [year, setYear] = useState();
   const [gender, setGender] = useState();
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
 
+  const usephoneInstead = () =>
+  {
+    setPhone(!phone);
+  }
+  
+
+  const SetName = (value) =>
+  {
+    setName(value);
+    console.log(value);
+  }
   const SetGender = (value) => {
     props.handleSetGenderFn(value.target.value);
     setGender(value.target.value);
@@ -52,7 +66,7 @@ const Mail = (props) => {
       setAlert(true);
     }, 5000);
   }, [alert]);
-
+  let step=2;
   return (
     <div>
       <img
@@ -67,24 +81,31 @@ const Mail = (props) => {
 
       <div className={classes.Header}>Create your account</div>
 
-      <div className={classes.Minor3}>
+      <div className={classes.Minor3} onPointerLeave={SetName} onChange={SetName}   >
         <InputField
           label="Name"
           disable={false}
           itemName="Name"
           maxLength={50}
+          passData={SetName}
         />
       </div>
 
       <p></p>
 
       <div className={classes.Minor3}>
-        <InputField
+        { !phone && <InputField
           label="Email address"
           disable={false}
           itemName="Email"
           maxLength={50}
-        />
+        />}
+        {phone && <InputField
+          label="Phone number"
+          disable={false}
+          itemName="Phone"
+          maxLength={50}
+        />}
       </div>
 
       <p></p>
@@ -98,9 +119,10 @@ const Mail = (props) => {
         />
       </div>
 
-      <NavLink to="/Phone">
-        <div className={classes.content2}>Use phone instead</div>
-      </NavLink>
+      <div className={classes.content2} onClick={usephoneInstead} >
+        {!phone &&<p>Use phone instead</p>}
+        {phone && <p>Use email instead</p>}
+      </div>
 
       <div className={classes.Gender}>
         <FormControl className={classes.formControl}>
@@ -145,6 +167,7 @@ const Mail = (props) => {
           handleDaySet={day}
           handleMonthSet={month}
           handleYearSet={year}
+          Step={step}
         />
       </div>
       {!alert && (

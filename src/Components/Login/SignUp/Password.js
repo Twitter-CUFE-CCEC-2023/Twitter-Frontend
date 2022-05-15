@@ -2,13 +2,51 @@ import { NavLink } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import classes from "./Password.module.css";
 import ClearIcon from "@material-ui/icons/Clear";
-import PasswordNext from "./Buttons/PasswordNext"
+import PasswordNext from "./Buttons/SignUpComplete"
 import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
-import SignUpBackground from "./MailBack";
 import InputField from "../InputField";
 import Alert from "./Alert/Alert"
+import axios from "../../axios";
 
 const Mail = (props) => {
+    useEffect(() => {
+        const Name = JSON.parse(localStorage.getItem("Name"));
+        const PW = JSON.parse(localStorage.getItem("Password"));
+        const Email = JSON.parse(localStorage.getItem("Email"));
+        const phone = JSON.parse(localStorage.getItem("PhoneNumber"));
+        const Username = JSON.parse(localStorage.getItem("Username"));
+
+        let userObject = {
+            email: Email,
+            username: Username,
+            password: PW,
+            name: Name,
+            gender: props.gender,
+            birth_date: props.birth,
+        };
+
+        console.log(userObject);
+
+        if (phone.length !== 0) {
+            userObject["phone_number"] = phone;
+        }
+
+        axios
+            .post("/auth/signup", userObject, {
+                headers: { "Content-Type": "application/json" },
+            })
+            .then((response) => {
+                console.log(response);
+                if (response.status === 200) {
+                    localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+                    localStorage.removeItem("Name");
+                    localStorage.removeItem("Password");
+                    localStorage.removeItem("PhoneNumber");
+                    localStorage.removeItem("Username");
+                }
+            })
+            .catch((err) => { });
+    }, []);
     const [alert, setAlert] = useState(true);
 
     const handleClick = (val) => {
@@ -47,7 +85,7 @@ const Mail = (props) => {
 
             {/* <div className={classes.button}> */}
             <div className={classes.NextButton}>
-                <PasswordNext handleButtonClick={handleClick} />
+                <PasswordNext handleButtonClick={handleClick}/>
             </div>
             {/* </div> */}
             {!alert && (

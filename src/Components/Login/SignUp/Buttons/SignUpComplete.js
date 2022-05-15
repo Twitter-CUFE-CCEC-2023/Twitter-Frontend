@@ -6,21 +6,29 @@ import axios from "../../../axios";
 
 const NextButtonUp = (props) => {
   const history = useHistory();
-  const loginCtx = useContext(LoginContext);
-
   const handleClick = () => {
-    const Code = JSON.parse(localStorage.getItem("VerificationCode"));
+    const Name = JSON.parse(localStorage.getItem("Name"));
+    const PW = JSON.parse(localStorage.getItem("Password"));
     const Email = JSON.parse(localStorage.getItem("Email"));
+    const phone = JSON.parse(localStorage.getItem("PhoneNumber"));
+    const Username = JSON.parse(localStorage.getItem("Username"));
 
     let userObject = {
-      email_or_username: Email,
-      verificationCode: Code,
+      email: Email,
+      username: Username,
+      password: PW,
+      name: Name,
+      gender: props.gender,
+      birth_date: props.birth,
     };
 
+    if (phone.length !== 0) {
+      userObject["phone_number"] = phone;
+    }
     console.log(userObject);
 
     axios
-      .put("/auth/verify-credentials", userObject, {
+      .post("/auth/signup", userObject, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
@@ -29,13 +37,16 @@ const NextButtonUp = (props) => {
           console.log(response);
           // loginCtx.login(false, response.data.access_token, response.data.expirartion_time);
           history.push("/SignInPage");
-          localStorage.removeItem("ValidationCode");
+          localStorage.removeItem("Password");
+          localStorage.removeItem("Name");
           localStorage.removeItem("Email");
+          localStorage.removeItem("PhoneNumber");
+          localStorage.removeItem("Username");
         }
       })
       .catch((err) => {});
 
-    if (Code === "") {
+    if (PW === "") {
       props.handleButtonClick(false);
     } else {
       props.handleButtonClick(true);

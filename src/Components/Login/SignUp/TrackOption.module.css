@@ -124,3 +124,19 @@
   font-size: 60%;
   color: #424040;
 }
+
+.NextButton {
+  margin: -2% -7%;
+  font-size: 80%;
+  color: #536471;
+
+}
+
+@media only screen and (min-width: 0px) and (max-width: 700px) {
+  .NextButton {
+    /* margin-top: 600px; */
+    /* margin-left: 25vw; */
+    margin-top: 27vh ;
+    width: 45vw;
+  }
+}
