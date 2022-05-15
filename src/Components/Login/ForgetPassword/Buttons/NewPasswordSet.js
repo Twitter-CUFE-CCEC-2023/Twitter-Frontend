@@ -13,7 +13,7 @@ const EmailDoneNext = (props) => {
         // let check=false;
         let userObject = {
             email_or_username: Email,
-            verification_code: code,
+            resetPasswordCode: code,
             password: PW,
         };
         console.log(userObject);

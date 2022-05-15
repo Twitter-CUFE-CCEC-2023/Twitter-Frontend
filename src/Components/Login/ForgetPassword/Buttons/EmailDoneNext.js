@@ -19,12 +19,7 @@ const EmailDoneNext = (props) => {
                 console.log(response);
                 if (response.status === 200) {
                     console.log(response);
-                    // check = true;
                 }
-                // else
-                // {
-                //     check = false;
-                // }
             })
             .catch((err) => { });
 

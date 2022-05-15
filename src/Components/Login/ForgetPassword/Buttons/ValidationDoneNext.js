@@ -10,17 +10,17 @@ const EmailDoneNext = (props) => {
 
         let userObject = {
             email_or_username: Email,
-            verification_code: code,
+            resetPasswordCode: code,
         };
         console.log(userObject);
         axios
-            .put("/auth/verify-credentials", userObject, {
+            .put("/auth/reset-password", userObject, {
                 headers: { "Content-Type": "application/json" },
             })
             .then((response) => {
                 console.log(response);
                 if (response.status === 200) {
-                    console.log(response);
+                    // console.log("yaay success");
                     // props.handleButtonClick(true);
                 }
                 else
@@ -33,8 +33,10 @@ const EmailDoneNext = (props) => {
         if (
             code!="") {
             props.handleButtonClick(true);
+            console.log("Correct Info, proceed");
         } else {
             props.handleButtonClick(false);
+            console.log("Incorrect Info");
         }
     }
 
