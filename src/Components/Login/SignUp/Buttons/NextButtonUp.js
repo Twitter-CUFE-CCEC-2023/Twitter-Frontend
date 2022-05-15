@@ -20,8 +20,7 @@ const NextButtonUp = (props) => {
       (props.handleGenderSet == "Male" || props.handleGenderSet == "Female") &&
       props.handleDaySet != undefined &&
       props.handleMonthSet != undefined &&
-      props.handleYearSet != undefined &&
-      props.handleYearSet != true
+      props.handleYearSet != undefined
     ) {
       props.handleButtonClick(true);
     } else {
