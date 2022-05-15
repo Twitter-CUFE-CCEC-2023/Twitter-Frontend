@@ -11,6 +11,7 @@ import axios from "axios";
 // import { SkipPreviousRounded } from '@material-ui/icons';
 import instance from "../../axios";
 import ReactLoading from "react-loading";
+import { useHistory } from "react-router-dom";
 
 function TweetAndReplies(props) {
   let { userId, id } = useParams();
@@ -83,6 +84,7 @@ function TweetAndReplies(props) {
         bio: reply.user.bio,
         followers: reply.user.followers_count,
         following: reply.user.following_count,
+        isFollowing: reply.user.is_followed,
         text: reply.content,
         tweetId: reply.id,
         date: reply.created_at,
@@ -100,17 +102,21 @@ function TweetAndReplies(props) {
     setTopUser(tu);
     setReplies(repl);
     setLoading(false);
+    if(prevPath === "/home"){
+      localStorage.setItem("homeBack", String(tweet.tweetId));
+    }
   };
 
   //console.log(replies);
 
-  //let history = useHistory();
-
+  let history = useHistory();
+  let prevPath = localStorage.getItem("currentPage")? localStorage.getItem("currentPage") : "/home";
+  
   if (isLoading) {
     return (
       <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
         {!props.isShowPhotos && <div className={classes.tweetHeader}>
-          <NavLink className={classes.nlink} to={localStorage.getItem("currentPage")? localStorage.getItem("currentPage") : "/home"}>
+          <NavLink className={classes.nlink} to={prevPath} onClick = {() => {localStorage.setItem("currentPage", prevPath); history.push(prevPath); window.location.reload();}}>
             <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
           </NavLink>
           <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
@@ -131,7 +137,7 @@ function TweetAndReplies(props) {
   return (
     <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
       {!props.isShowPhotos && <div className={classes.tweetHeader}>
-        <NavLink className={classes.nlink} to={localStorage.getItem("currentPage") ? "/notifications" : "/home"}>
+        <NavLink className={classes.nlink} to={prevPath} onClick = {() => {localStorage.setItem("currentPage", prevPath); history.push(localStorage.getItem("homeBack") === String(topTweet.tweetId) ? "/home" : prevPath); window.location.reload();}}>
           <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
         </NavLink>
         <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>

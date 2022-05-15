@@ -15,7 +15,7 @@ function DeleteModal(props) {
         }
     }
   return (
-    <div name = "deleteModal" onClick={(e) => {e.stopPropagation(); props.setShowDelete(false);}} className={classes.background}>
+    <div name = "deleteModal" onClick={(e) => {e.preventDefault(); e.stopPropagation(); props.setShowDelete(false);}} className={classes.background}>
         <div className={classes.modal}>
             <div>
                 <h2 className={classes.header}>Delete Tweet?</h2>

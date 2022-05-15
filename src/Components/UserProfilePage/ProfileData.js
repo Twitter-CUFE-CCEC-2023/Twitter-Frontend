@@ -168,7 +168,7 @@ function ProfileData(props) {
         quotes: APItweet.quotes_count,
         isLiked: APItweet.is_liked,
         isRetweeted: APItweet.is_retweeted,
-        isReply: APItweet.is_reply,
+        is_Reply: APItweet.is_reply,
       };
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
