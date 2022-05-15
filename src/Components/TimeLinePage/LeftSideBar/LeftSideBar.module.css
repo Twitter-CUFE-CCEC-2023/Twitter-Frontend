@@ -1,56 +1,67 @@
-.leftSideBar{
-    border-right: 1px solid var(--twitterBorder);
-    padding-left: auto;
+.leftSideBar {
+  border-right: 1px solid var(--twitterBorder);
+  padding-left: auto;
 }
 
-
-@media (max-width : 1300px) {
-    .leftSideBar{
-        flex: inherit;
-    }
+@media (max-width: 1300px) {
+  .leftSideBar {
+    flex: inherit;
+  }
 }
 
-.twitterIcon{
-    color: var(--twitterBlue);
-    font-size: 15px !important;
-    margin: 5px 0 -5px 10px;
-    padding: 5px;
-    width: fit-content;
-    cursor: pointer;
+.twitterIcon {
+  color: var(--twitterBlue);
+  font-size: 15px !important;
+  margin: 5px 0 -5px 10px;
+  padding: 5px;
+  width: fit-content;
+  cursor: pointer;
 }
 
-.iconTest{
-    font-size: 34px !important;
+.iconTest {
+  font-size: 34px !important;
 }
 
-.twitterIcon:hover{
-    background-color: var(--twitterHoverBlue);
-    border-radius: 50%;
+.twitterIcon:hover {
+  background-color: var(--twitterHoverBlue);
+  border-radius: 50%;
 }
-
-
 
 @media only screen and (max-width: 500px) {
-    .leftSideBar{
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        background-color: white;
-        width: 100%;
-        z-index: 1000;
-    }
+  .leftSideBar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+    z-index: 1000;
+  }
 
-    .twitterIcon{
-        display: none;
-    }
+  .twitterIcon {
+    display: none;
+  }
 
-    .phoneInvis{
-        display: none !important;
-    }
+  .phoneInvis {
+    display: none !important;
+  }
 
-    .phoneVis{
-        margin-right: auto;
-        margin-left: auto;
-    }
+  .phoneVis {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
 
+.numberCircle {
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  position: absolute;
+  padding-top: 0.1em;
+  z-index: 999;
+  background: var(--twitterBlue);
+  color: white;
+  text-align: center;
+  font: 0.7em Arial, sans-serif;
+  margin-left: 1.9em;
+  margin-top: -3.5em;
 }

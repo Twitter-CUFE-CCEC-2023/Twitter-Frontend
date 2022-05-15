@@ -45,3 +45,9 @@
   cursor: inherit;
   color: black !important;
 }
+
+.verifiedIcon {
+  color: var(--twitterBlue) !important;
+  font-size: 15px !important;
+  padding-bottom: 2px !important;
+}

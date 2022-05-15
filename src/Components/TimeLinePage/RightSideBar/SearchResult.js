@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./SearchResult.module.css";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { NavLink } from "react-router-dom";
 
 function SearchResult(props) {
@@ -24,7 +25,10 @@ function SearchResult(props) {
             </div>
             <div className="col-10 my-2">
               <p className={`${classes.name} mb-0`}>
-                <strong>{props.name}</strong>
+                <strong>{props.name} </strong>
+                {props.is_verified && (
+                  <CheckCircleIcon className={classes.verifiedIcon} />
+                )}
               </p>
               <p className={classes.username}>@{props.username}</p>
             </div>

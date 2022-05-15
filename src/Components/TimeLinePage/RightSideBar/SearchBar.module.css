@@ -46,3 +46,21 @@
   margin-left: 0.13em;
   margin-top: 0.2em;
 }
+
+::-webkit-scrollbar {
+  width: 1px;
+  display: block;
+}
+
+.loadingIcon {
+  margin-left: 50%;
+  margin-top: 5%;
+}
+
+.noResults {
+  background-color: white;
+  text-align: center;
+  margin-top: 0;
+  font-size: 0.7em;
+  margin-left: 1.6em;
+}

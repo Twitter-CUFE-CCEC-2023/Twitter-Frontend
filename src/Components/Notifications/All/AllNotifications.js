@@ -83,6 +83,7 @@ function AllNotifications(props) {
           media: notes.tweet.media,
           type: notes.notification_type,
           is_read: notes.is_read,
+          note_id: notes._id,
         };
       } else {
         notification = {
@@ -97,6 +98,7 @@ function AllNotifications(props) {
           following: notes.related_user.following_count,
           followers: notes.related_user.followers_count,
           time: notes.created_at,
+          note_id: notes._id,
         };
         if (
           notes.notification_type === "Like" ||
