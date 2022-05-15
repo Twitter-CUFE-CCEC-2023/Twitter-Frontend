@@ -62,11 +62,9 @@ const Validation = (props) => {
             <div className={classes.NextButton}>
                 {code &&<NextButtonUp
                     handleButtonClick={handleClick}
-                    Step={step}
                 />}
                 {!code && <DidntReceiveCode
                 handleButtonClick={handleClick}
-                Step={!step}
                 />}
             </div>
             {!alert && (

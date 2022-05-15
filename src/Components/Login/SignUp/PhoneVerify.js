@@ -47,6 +47,25 @@ const Verify = (props) => {
     props.handleButtonClick(val);
     setAlert(val);
   };
+  const ResendHandler = () => {
+    const Email = JSON.parse(localStorage.getItem("Email")); 
+
+    let userObject = {
+      email_or_username: Email,
+    };
+    axios
+      .post("/auth/resend-verification", userObject, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+        }
+      })
+      .catch((err) => { });
+
+  }
   //Use above for day month and year to gain their value
   useEffect(() => {
     setTimeout(() => {
@@ -77,8 +96,8 @@ const Verify = (props) => {
           itemName="VerificationCode"
           maxLength={50}
         />
-        <div className={classes.Minor4}>
-          <NavLink to="/Password">Didn't receive email?</NavLink>
+        <div className={classes.Minor4} onClick={ResendHandler}>
+          Didn't receive email?
         </div>
         <div className={classes.NextButton}>
           <SignUp handleButtonClick={handleClick} />

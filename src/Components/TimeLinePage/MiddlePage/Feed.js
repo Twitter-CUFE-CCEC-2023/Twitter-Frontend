@@ -9,7 +9,7 @@ import instance from "../../axios";
 // import { ContactlessOutlined } from "@material-ui/icons";
 // import { useHistory } from "react-router-dom";
 import { useState } from "react";
-//import { browserName, browserVersion } from "react-device-detect";
+import { browserName, browserVersion } from "react-device-detect";
 // import { data } from "jquery";
 
 export default function Feed(props) {

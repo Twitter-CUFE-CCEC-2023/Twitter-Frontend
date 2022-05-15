@@ -129,7 +129,11 @@
     margin: 5% 8%;
     margin-left: 0;
     font-size: 75%;
-    color: #333333;
+    color: rgb(29, 155, 240);
+}
+
+.Minor4:hover{
+    cursor: pointer;
 }
 
 .NextButton {
