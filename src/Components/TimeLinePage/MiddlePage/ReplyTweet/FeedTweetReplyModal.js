@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FeedTweet from "../FeedTweet";
 import classes from "./FeedTweetReplyModal.module.css";
 import IsReplying from "./IsReplying";
@@ -6,9 +6,21 @@ import Reply from "./Reply";
 import TweetReplyBody from "./TweetReplyBody";
 import x from "../../../../Assets/icons/close.png";
 import instance from "../../../axios";
+import ErrorModal from "../../BanModal/ErrorModal"
+
 function FeedTweetReplyModal(props) {
   const [tweetContent, setTweetContent] = useState("");
+  const [banned, setBanned] = useState(false);
+  const handleOpenModal = (val) => {
+    setBanned(val)
+  };
+
   function replyTweet(e) {
+    const isBanned = JSON.parse(localStorage.getItem("UserInfo")).isBanned;
+    if (isBanned === true) {
+      setBanned(true);
+      return;
+    }
     e.preventDefault();
     instance
       .post("/status/tweet/reply", {
@@ -24,6 +36,7 @@ function FeedTweetReplyModal(props) {
         // setError(1);
       });
   }
+
   return (
     <React.Fragment>
       <div className={classes.background} onClick={props.onHide}></div>
@@ -67,6 +80,13 @@ function FeedTweetReplyModal(props) {
           </button>
         </div>
       </div>
+      {banned && (
+        <ErrorModal
+          message="You are Banned."
+          open={banned}
+          setOpenModalValue={handleOpenModal}
+        />
+      )}
     </React.Fragment>
   );
 }
