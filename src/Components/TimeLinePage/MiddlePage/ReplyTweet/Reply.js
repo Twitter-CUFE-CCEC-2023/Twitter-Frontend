@@ -1,11 +1,12 @@
 import classes from "./Reply.module.css";
-import defaultMaleProfile from "../../../../Assets/defaultMaleProfile.jpg";
+import defaultMaleProfile from "../../../../Assets/DefaultProfilePic.jpg";
 import { useState } from "react";
 export default function Reply(props) {
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
   const [tweetContent, setTweetContent] = useState("");
   function textAreaChangeHandler(event) {
     setTweetContent(event.target.value);
+    props.setTweetContent(event.target.value);
   }
   return (
     <div className={classes.container}>

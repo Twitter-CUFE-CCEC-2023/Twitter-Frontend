@@ -1,6 +1,7 @@
 import classes from "./UserNameItem.module.css";
 import classes1 from "../ProfileSection.module.css";
 import React, { useState } from "react";
+import instance from "../../../axios";
 function UserNameItem(props) {
   const [UserNameValue, setUserNameValue] = useState(props.value);
   const initial = props.value;
@@ -9,7 +10,18 @@ function UserNameItem(props) {
   }
   function saveName(e) {
     e.preventDefault();
-    props.onSave(UserNameValue);
+    instance
+      .put("/update-username", {
+        username: UserNameValue,
+      })
+      .then((res) => {
+        console.log(res);
+        props.onGoBack();
+      })
+      .catch((err) => {
+        console.log(err);
+        // setError(1);
+      });
   }
   return (
     <React.Fragment>

@@ -37,6 +37,14 @@ export default function Feed(props) {
     },
     [isLoading, hasMore]
   );
+  const [calling, setCalling] = useState(0);
+  // React.useEffect(() => {
+  //   // addTweets;
+  //   if (calling !== 0) {
+  //     addTweet(props.currentTweet);
+  //   }
+  //   setCalling(1);
+  // }, [props.updateTweets]);
 
   React.useEffect(() => subscribeNotifications(), []);
   React.useEffect(() => getTweets(), [pageNumber]);
@@ -48,7 +56,6 @@ export default function Feed(props) {
     if (!isMock) {
       if (!props.testUrl)
         response = await instance.get(`/home/${pageNumber}/5`);
-
       else response = await axios.get(props.testUrl);
       newTweets = response.data.tweets;
     } else {
@@ -63,7 +70,9 @@ export default function Feed(props) {
       console.log("APItweet", APItweet);
       let tweet =APItweet ? {
         name: APItweet.user.name,
-        profilePic: APItweet.user.profile_image_url ? APItweet.user.profile_image_url : DefaultProfilePic,
+        profilePic: APItweet.user.profile_image_url
+          ? APItweet.user.profile_image_url
+          : DefaultProfilePic,
         userName: APItweet.user.username,
         isVerified: APItweet.user.isVerified,
         bio: APItweet.user.bio,

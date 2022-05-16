@@ -1,9 +1,10 @@
 import AccountInfoItem from "./AccountInfoItem";
 import classes from "./ChangePassword.module.css";
 import classes1 from "../ProfileSection.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserNameItem from "./UserNameItem";
 import PrettyInput from "./PrettyInput";
+import instance from "../../../axios";
 export default function AccountInfo(props) {
   const [chosenInfoItem, setChosenInfoItem] = useState(undefined);
   const [chosenInfoValue, setChosenInfoValue] = useState(undefined);
@@ -16,6 +17,41 @@ export default function AccountInfo(props) {
   }
   function goBack() {
     setChosenInfoItem(undefined);
+  }
+  const [oldPassword, setOldPassword] = useState("");
+  const [NewPassword, setNewPassword] = useState("");
+  const [ConfirmedPassword, setConfirmedPassword] = useState("");
+  const [red, setRed] = useState(0);
+  const [error, setError] = useState(0);
+
+  useEffect(() => {
+    setError(false);
+
+    if (
+      oldPassword.trim() != "" &&
+      NewPassword.trim() == ConfirmedPassword.trim() &&
+      NewPassword.trim() != ""
+    ) {
+      setRed(false);
+    } else {
+      setRed(true);
+    }
+  }, [oldPassword, NewPassword, ConfirmedPassword]);
+  function changePassword(e) {
+    e.preventDefault();
+    instance
+      .put("/auth/update-password", {
+        old_password: oldPassword,
+        new_password: NewPassword,
+      })
+      .then((res) => {
+        console.log(res);
+        props.onGoBack();
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(1);
+      });
   }
   return (
     <div className={classes1["profile-section"]}>
@@ -39,21 +75,45 @@ export default function AccountInfo(props) {
               naming="current password"
               label="current password "
               placeHolder="Enter current password"
+              value={oldPassword}
+              changeValue={(val) => {
+                setOldPassword(val);
+              }}
             ></PrettyInput>
             <PrettyInput
               naming="new password"
               label="new password "
               placeHolder="Enter new password"
+              value={NewPassword}
+              changeValue={(val) => {
+                setNewPassword(val);
+              }}
             ></PrettyInput>
             <PrettyInput
               naming="confirm password"
               label="confirm password"
               placeHolder="confirm new password"
+              value={ConfirmedPassword}
+              changeValue={(val) => {
+                setConfirmedPassword(val);
+              }}
+              red={red}
             ></PrettyInput>
           </div>
-          <button type="submit" className={`btn btn-primary ${classes.button}`}>
+          <button
+            // type="submit"
+            className={`btn btn-primary ${classes.button}`}
+            disabled={red}
+            onClick={changePassword}
+          >
             save
           </button>
+          {error && (
+            <span className={classes.error}>
+              an error has ocurred ,try again or maybe your old password is
+              wrong
+            </span>
+          )}
         </form>
       </div>
     </div>

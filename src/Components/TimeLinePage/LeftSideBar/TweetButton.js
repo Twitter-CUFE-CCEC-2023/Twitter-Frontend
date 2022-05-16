@@ -22,9 +22,9 @@ export default function TweetButton(props) {
       {tweetModal && (
         <TweetModal
           onHide={hideTweetModal}
-          addTweet={() => {
+          addTweet={(tweet) => {
             hideTweetModal();
-            props.addTweet();
+            props.addTweet(tweet);
           }}
           changePostingTweet={props.changePostingTweet}
         ></TweetModal>

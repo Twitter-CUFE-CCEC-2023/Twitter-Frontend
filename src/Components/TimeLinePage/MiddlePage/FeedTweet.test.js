@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import FeedTweet from "./FeedTweet";
-import defaultMaleProfile from "../../../Assets/defaultMaleProfile.jpg";
+import defaultMaleProfile from "../../../Assets/DefaultProfilePic.jpg";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const tweet = {

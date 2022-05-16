@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./FeedTweetBox.css";
-import defaultMaleProfile from "../../../../Assets/defaultMaleProfile.jpg";
+import defaultMaleProfile from "../../../../Assets/DefaultProfilePic.jpg";
 import FeedBoxButton from "../FeedBoxButton";
 import { NavLink } from "react-router-dom";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
@@ -80,6 +80,7 @@ export default function FeedTweetBox(props) {
     // props.changePostingTweet();
     setTweetContent("");
     setImages([]);
+    setLeftLetters(280);
   }
   const [pollView, setPollView] = useState(false);
   const togglePollView = () => {

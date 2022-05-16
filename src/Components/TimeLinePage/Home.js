@@ -10,6 +10,11 @@ export default function Home() {
   const [photosActive, setPhotosActive] = useState(false);
   const [path, setPath] = useState(window.location.pathname);
   const [increment, setIncrement] = useState(0);
+  const [updateTweets, setUpdateTweets] = useState(false);
+  function toggleUpdateTweets(prev) {
+    setUpdateTweets(!prev);
+  }
+  const [currentTweet, setCurrentTweet] = useState(undefined);
 
   return (
     <div>
@@ -23,8 +28,19 @@ export default function Home() {
         />
       )}
       <div className={classes.timeLine}>
-        <LeftSideBar addTweet={() => {}} changePostingTweet={() => {}} />
-        <Feed setPhotosActive={setPhotosActive} setIncrement={setIncrement} />
+        <LeftSideBar
+          addTweet={(tweet) => {
+            toggleUpdateTweets();
+            setCurrentTweet(tweet);
+          }}
+          changePostingTweet={() => {}}
+        />
+        <Feed
+          setPhotosActive={setPhotosActive}
+          setIncrement={setIncrement}
+          updateTweets={updateTweets}
+          currentTweet={currentTweet}
+        />
         <RightSideBar />
       </div>
     </div>
