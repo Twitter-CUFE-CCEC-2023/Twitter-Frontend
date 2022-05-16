@@ -5,6 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import InputBox from "./InputBox";
 import ImageUploader from "./ImageUploader";
 import instance from "../../axios";
+import { useNextMonthDisabled } from "@mui/lab/internal/pickers/hooks/date-helpers-hooks";
 
 function EditProfileButton(props) {
   const [fileData, setFileData] = useState();
@@ -78,6 +79,23 @@ function EditProfileButton(props) {
       .put(`/user/update-profile`, formData, config)
       .then((res) => {
         props.setData(res.data.user);
+        console.log("response on update",res.data.user);
+        let localStorageData={
+          name: res.data.user.name,
+          bio: res.data.user.bio,
+          website: res.data.user.website,
+          location: res.data.user.location,
+          birth_date: res.data.user.birth_date,
+          profile_image_url: res.data.user.profile_image_url,
+          cover_image_url: res.data.user.cover_image_url,
+          username:res.data.user.username
+
+        }
+        console.log('send data',localStorageData);
+        
+        //reload page
+        if(currentuser.profile_image_url!==res.data.user.profile_image_url || currentuser.name!==res.data.user.name){
+        window.location.reload();}
         localStorage.setItem("UserInfo", JSON.stringify(res.data.user));
       })
       .catch((err) => {
