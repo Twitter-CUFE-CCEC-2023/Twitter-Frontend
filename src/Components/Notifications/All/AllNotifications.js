@@ -86,6 +86,14 @@ function AllNotifications(props) {
           note_id: notes._id,
           isFollowed: notes.related_user.is_followed,
         };
+      } else if (notes.notification_type === "Account Update") {
+        notification = {
+          type: notes.notification_type,
+          content: notes.content,
+          personID: currentUser.username,
+          is_read: notes.is_read,
+          note_id: notes._id,
+        };
       } else {
         notification = {
           Person: notes.related_user.name,
