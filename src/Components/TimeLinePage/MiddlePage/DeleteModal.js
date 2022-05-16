@@ -15,8 +15,8 @@ function DeleteModal(props) {
         }
     }
   return (
-    <div name = "deleteModal" onClick={(e) => {e.preventDefault(); e.stopPropagation(); props.setShowDelete(false);}} className={classes.background}>
-        <div className={classes.modal}>
+    <div onClick={(e) => {props.setShowDelete(false);}} className={classes.background}>
+        <div className={classes.modal} onClick = {(e) => e.stopPropagation()}>
             <div>
                 <h2 className={classes.header}>Delete Tweet?</h2>
                 <p className={classes.text}>This can’t be undone and it will be removed from your profile, the timeline of any accounts that follow you, and from Twitter search results.</p>

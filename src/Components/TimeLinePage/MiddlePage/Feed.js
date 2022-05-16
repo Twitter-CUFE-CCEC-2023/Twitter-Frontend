@@ -59,7 +59,9 @@ export default function Feed(props) {
         });
     }
     newTweets.forEach((APItweet) => {
-      let tweet = {
+
+      console.log("APItweet", APItweet);
+      let tweet =APItweet ? {
         name: APItweet.user.name,
         profilePic: APItweet.user.profile_image_url ? APItweet.user.profile_image_url : DefaultProfilePic,
         userName: APItweet.user.username,
@@ -79,7 +81,7 @@ export default function Feed(props) {
         isRetweeted: APItweet.is_retweeted,
         isTweetReply: APItweet.is_reply,
         media: APItweet.media,
-      };
+      } : null;
       setFollowingSet((prevSet) => {
         let newSet = new Set(prevSet);
         newSet.add(tweet.userName);
