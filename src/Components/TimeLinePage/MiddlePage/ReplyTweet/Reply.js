@@ -12,7 +12,11 @@ export default function Reply(props) {
     <div className={classes.container}>
       <img
         className={classes.profilePic + " " + classes.minip}
-        src={loggedUser ? loggedUser.profile_image_url : defaultMaleProfile}
+        src={
+          loggedUser.profile_image_url
+            ? loggedUser.profile_image_url
+            : defaultMaleProfile
+        }
         alt="profile"
       ></img>
       <div className={classes.tweetBoxFormContainer}>
