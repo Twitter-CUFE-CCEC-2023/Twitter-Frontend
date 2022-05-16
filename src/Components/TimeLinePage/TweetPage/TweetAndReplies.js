@@ -102,7 +102,7 @@ function TweetAndReplies(props) {
     setTopUser(tu);
     setReplies(repl);
     setLoading(false);
-    if(prevPath === "/home"){
+    if (prevPath === "/home") {
       localStorage.setItem("homeBack", String(tweet.tweetId));
     }
   };
@@ -110,13 +110,13 @@ function TweetAndReplies(props) {
   //console.log(replies);
 
   let history = useHistory();
-  let prevPath = localStorage.getItem("currentPage")? localStorage.getItem("currentPage") : "/home";
-  
+  let prevPath = localStorage.getItem("currentPage") ? localStorage.getItem("currentPage") : "/home";
+
   if (isLoading) {
     return (
       <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
         {!props.isShowPhotos && <div className={classes.tweetHeader}>
-          <NavLink className={classes.nlink} to={prevPath} onClick = {() => {localStorage.setItem("currentPage", prevPath); history.push(prevPath); window.location.reload();}}>
+          <NavLink className={classes.nlink} to={prevPath} onClick={() => { localStorage.setItem("currentPage", prevPath); history.push(prevPath); window.location.reload(); }}>
             <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
           </NavLink>
           <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
@@ -137,7 +137,7 @@ function TweetAndReplies(props) {
   return (
     <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
       {!props.isShowPhotos && <div className={classes.tweetHeader}>
-        <NavLink className={classes.nlink} to={prevPath} onClick = {() => {localStorage.setItem("currentPage", prevPath); history.push(localStorage.getItem("homeBack") === String(topTweet.tweetId) ? "/home" : prevPath); window.location.reload();}}>
+        <NavLink className={classes.nlink} to={prevPath} onClick={() => { localStorage.setItem("currentPage", prevPath); history.push(localStorage.getItem("homeBack") === String(topTweet.tweetId) ? "/home" : prevPath); window.location.reload(); }}>
           <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
         </NavLink>
         <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
