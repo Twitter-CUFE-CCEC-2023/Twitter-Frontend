@@ -21,7 +21,8 @@ function TweetAtrribute(props) {
     }
   }, []);
 
-  const white = props.textColor && props.textColor === "white" ? classes.white : "";
+  const white =
+    props.textColor && props.textColor === "white" ? classes.white : "";
 
   //console.log(props.tweet);
   function click() {
@@ -113,7 +114,9 @@ function TweetAtrribute(props) {
 
   return (
     <div
-      className={`${classes.tweetAtrribute} ${classes[props.color]} ${clicked} ${white}`}
+      className={`${classes.tweetAtrribute} ${
+        classes[props.color]
+      } ${clicked} ${white}`}
       onClick={(e) => {
         e.stopPropagation();
       }}

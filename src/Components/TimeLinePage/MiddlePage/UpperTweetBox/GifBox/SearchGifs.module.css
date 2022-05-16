@@ -1,0 +1,39 @@
+.searchBar {
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+  
+  .searchForm {
+    display: flex;
+  }
+  
+  .searchIcon {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 9px;
+  }
+  
+  .searchInput {
+    /* background-color: var(--tweetHover); */
+    border: 1px solid rgba(0, 0, 0, 0.382);
+    border-radius: 40px;
+    min-height: 44px;
+    width: 90%;
+    padding-left: 50px;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .searchInput:focus {
+    outline-color: var(--twitterBlue);
+    outline-width: 1px;
+    background-color: white;
+  }
+  
+  .searchInput:focus + .searchIcon {
+    color: var(--twitterBlue);
+  }
+  

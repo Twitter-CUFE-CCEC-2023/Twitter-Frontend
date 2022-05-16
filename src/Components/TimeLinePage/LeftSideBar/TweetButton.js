@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./TweetButton.module.css";
-import RateReviewIcon from '@material-ui/icons/RateReview';
+import RateReviewIcon from "@material-ui/icons/RateReview";
+import TweetModal from "./TweetModal";
 
-export default function TweetButton(){
+export default function TweetButton(props) {
+  const [tweetModal, SetTweetModal] = useState(false);
+  function showTweetModal() {
+    SetTweetModal(true);
+  }
+  function hideTweetModal() {
+    SetTweetModal(false);
+  }
   return (
-    <div className={classes.button}>
+    <React.Fragment>
+      <div className={classes.button} onClick={showTweetModal}>
         <div className={classes.icon}>
-            <RateReviewIcon/>
+          <RateReviewIcon />
         </div>
         <p className={classes.text}>Tweet</p>
-    </div>
+      </div>
+      {tweetModal && (
+        <TweetModal
+          onHide={hideTweetModal}
+          addTweet={() => {
+            hideTweetModal();
+            props.addTweet();
+          }}
+          changePostingTweet={props.changePostingTweet}
+        ></TweetModal>
+      )}
+    </React.Fragment>
   );
-};
-
+}
