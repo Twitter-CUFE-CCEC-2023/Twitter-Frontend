@@ -2,7 +2,7 @@
 
 .appleSignUp {
   font-family: "Mukta", sans-serif;
-  font-size: 60%;
+  font-size: 75%;
   font-weight: 700;
   color: black;
   text-align: center;
@@ -16,6 +16,9 @@
   background-color: white;
   border: 1px solid rgb(207, 217, 222);
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .appleSignUp:hover {
@@ -27,16 +30,9 @@
   background-color: rgb(204, 204, 204);
 }
 
-.appleSignUp table {
-  margin-left: 73px;
-}
-
-.content {
-  padding-top: 5%;
-}
-
 .logo {
-  padding-top: 4px;
+  padding-top: 9px;
+  padding-right: 3px;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 700px) {

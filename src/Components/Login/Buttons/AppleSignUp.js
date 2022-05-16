@@ -5,16 +5,7 @@ import AppleIcon from "@material-ui/icons/Apple";
 const AppleSignUp = (props) => {
   return (
     <div className={classes.appleSignUp}>
-      <table>
-        <tbody>
-          <tr>
-            <td className={classes.logo}>
-              <AppleIcon />
-            </td>
-            <td className={classes.content}>{props.content}</td>
-          </tr>
-        </tbody>
-      </table>
+      <p className={classes.logo}><AppleIcon /></p> {props.content}
     </div>
   );
 };
