@@ -46,25 +46,38 @@ function EditProfileButton(props) {
         : "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
     );
   };
-  const onSaveEdits = () => {
-    const media=[croppedProfilePhoto,croppedCoverPhoto]
+  const onSaveEdits = async () => {
+    const profilefileBlob = await fetch(croppedProfilePhoto)
+      .then((r) => r.blob());
+    const coverfileBlob = await fetch(croppedCoverPhoto)
+      .then((r) => r.blob());
+
+    function getBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    }
+    const profilePhotoData = await getBase64(profilefileBlob);
+    const coverPhotoData = await getBase64(coverfileBlob);
+
     let formData = new FormData();
-    formData.append("media", media);
     formData.append("name", name);
     formData.append("bio", bio);
     formData.append("website", website);
     formData.append("location", location);
     formData.append("birth_date", birth_date);
-    const config = {     
-      headers: { 'content-type': 'multipart/form-data' }
-  }
-    
-    console.log('formmm data',formData)
+    formData.append("profile_picture", profilePhotoData);
+    formData.append("cover_picture", coverPhotoData);
+    const config = {
+      headers: { "Content-Type": "multipart/form-data;" },
+    };
     instance
       .put(`/user/update-profile`, formData, config)
       .then((res) => {
-        console.log('edited',res);
-        props.setData(res.data.user)
+        props.setData(res.data.user);
         localStorage.setItem("UserInfo", JSON.stringify(res.data.user));
       })
       .catch((err) => {
