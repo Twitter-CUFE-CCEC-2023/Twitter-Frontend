@@ -350,7 +350,7 @@ export default function FeedTweet(props) {
               >
                 @{props.topUser ? props.topUser.userName : ""}
               </p>
-              <div className={classes.hoverProfile + " " + classes.repmin}>
+              <div className={classes.hoverProfile + " " + classes.repmin} onClick = {(e) => e.stopPropagation()}>
                 <MiniProfile
                   profilePic={
                     props.topUser
