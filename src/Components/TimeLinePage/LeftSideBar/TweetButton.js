@@ -3,7 +3,7 @@ import classes from "./TweetButton.module.css";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 import TweetModal from "./TweetModal";
 
-export default function TweetButton() {
+export default function TweetButton(props) {
   const [tweetModal, SetTweetModal] = useState(false);
   function showTweetModal() {
     SetTweetModal(true);
@@ -19,7 +19,16 @@ export default function TweetButton() {
         </div>
         <p className={classes.text}>Tweet</p>
       </div>
-      {tweetModal && <TweetModal onHide={hideTweetModal}></TweetModal>}
+      {tweetModal && (
+        <TweetModal
+          onHide={hideTweetModal}
+          addTweet={() => {
+            hideTweetModal();
+            props.addTweet();
+          }}
+          changePostingTweet={props.changePostingTweet}
+        ></TweetModal>
+      )}
     </React.Fragment>
   );
 }

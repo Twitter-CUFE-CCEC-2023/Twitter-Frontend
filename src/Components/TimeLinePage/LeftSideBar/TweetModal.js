@@ -15,7 +15,10 @@ function TweetModal(props) {
           ></img>
         </div>
         <div className={classes.message}>
-          <FeedTweetBox></FeedTweetBox>
+          <FeedTweetBox
+            onAddTweet={props.addTweet}
+            changePostingTweet={props.changePostingTweet}
+          ></FeedTweetBox>
         </div>
       </div>
     </React.Fragment>
