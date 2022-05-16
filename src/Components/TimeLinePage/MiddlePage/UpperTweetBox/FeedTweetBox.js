@@ -17,6 +17,9 @@ import PhotosContainer from "./PhotosContainer";
 import instance from "../../../axios";
 
 import DefaultProfilePic from "../../../../Assets/DefaultProfilePic.jpg";
+import PollBox from "./PollBox/PollBox";
+import GifModal from "./GifBox/GifModal";
+import ScheduleBox from "./Schedule Box/ScheduleBox";
 
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
@@ -54,7 +57,9 @@ export default function FeedTweetBox(props) {
   }, []);
 
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
-  loggedUser.profile_image_url = loggedUser.profile_image_url ? loggedUser.profile_image_url : DefaultProfilePic;
+  loggedUser.profile_image_url = loggedUser.profile_image_url
+    ? loggedUser.profile_image_url
+    : DefaultProfilePic;
   //console.log(loggedUser);
   //postTweet configuration
   function postTweet() {
@@ -76,7 +81,35 @@ export default function FeedTweetBox(props) {
     setTweetContent("");
     setImages([]);
   }
+  const [pollView, setPollView] = useState(false);
+  const togglePollView = () => {
+    setPollView((prev) => {
+      return !prev;
+    });
+  };
+  const removePollView = () => {
+    setPollView(false);
+  };
 
+  const [GifView, setGifView] = useState(false);
+  const toggleGifView = () => {
+    setGifView((prev) => {
+      return !prev;
+    });
+  };
+  const removeGifView = () => {
+    setGifView(false);
+  };
+
+  const [ScheduleView, setScheduleView] = useState(false);
+  const toggleScheduleView = () => {
+    setScheduleView((prev) => {
+      return !prev;
+    });
+  };
+  const removeScheduleView = () => {
+    setScheduleView(false);
+  };
   return (
     <ImageUploading
       multiple
@@ -103,7 +136,7 @@ export default function FeedTweetBox(props) {
                 }`}
               >
                 <img
-                  className="profileImg"
+                  className={classes.profilePic + " " + classes.minip}
                   src={
                     loggedUser
                       ? loggedUser.profile_image_url
@@ -139,6 +172,11 @@ export default function FeedTweetBox(props) {
                 <span className={classes.tweetBoxTextSpan}>
                   {leftLetters}/280
                 </span>
+                {pollView && <PollBox onRemove={removePollView}></PollBox>}
+                {GifView && <GifModal onHide={removeGifView}></GifModal>}
+                {ScheduleView && (
+                  <ScheduleBox onHide={removeScheduleView}></ScheduleBox>
+                )}
               </div>
             </form>
           </div>
@@ -178,10 +216,22 @@ export default function FeedTweetBox(props) {
               ))}
               */}
             </div>
-            <FeedBoxButton Icon={GifOutlinedIcon} text="GIF" />
-            <FeedBoxButton Icon={PollOutlinedIcon} text="Poll" />
+            <FeedBoxButton
+              Icon={GifOutlinedIcon}
+              onClick={toggleGifView}
+              text="GIF"
+            />
+            <FeedBoxButton
+              Icon={PollOutlinedIcon}
+              onClick={togglePollView}
+              text="Poll"
+            />
             <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
-            <FeedBoxButton Icon={DateRangeOutlinedIcon} text="Schedule" />
+            <FeedBoxButton
+              Icon={DateRangeOutlinedIcon}
+              onClick={toggleScheduleView}
+              text="Schedule"
+            />
             <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
             <button
               className={classes["tweetButton"]}

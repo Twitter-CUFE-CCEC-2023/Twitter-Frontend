@@ -20,7 +20,7 @@ import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 import FeedTweetMore from "./FeedTweetMore";
 // import { LinkSharp } from "@material-ui/icons";
 // import { react } from "fontawesome";
-// import FeedTweetReplyModal from "./FeedTweetReplyModal";
+import FeedTweetReplyModal from "./ReplyTweet/FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
   const [replyModal, setReplyModal] = useState(false);
@@ -30,14 +30,17 @@ export default function FeedTweet(props) {
 
   const [isDeleted, setIsDeleted] = useState(false);
 
-  const [isFollowing, setIsFollowing] = useState(props.followingSet ? props.followingSet.has(props.userName) : props.isFollowing);
+  const [isFollowing, setIsFollowing] = useState(
+    props.followingSet
+      ? props.followingSet.has(props.userName)
+      : props.isFollowing
+  );
 
   React.useEffect(() => {
     if (props.followingSet) {
       if (props.followingSet.has(props.userName)) {
         setIsFollowing(true);
-      }
-      else {
+      } else {
         setIsFollowing(false);
       }
     }
@@ -46,6 +49,9 @@ export default function FeedTweet(props) {
   // function hideReplyModal() {
   //   setReplyModal(false);
   // }
+  function hideReplyModal() {
+    setReplyModal(false);
+  }
 
   // {
   //   console.log(props.img);
@@ -76,8 +82,9 @@ export default function FeedTweet(props) {
     const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
 
     if (diffYears > 0) {
-      return `${months[date1.getMonth()]
-        } ${date1.getDate()}, ${date1.getFullYear()}`;
+      return `${
+        months[date1.getMonth()]
+      } ${date1.getDate()}, ${date1.getFullYear()}`;
     }
     if (diffDays > 0) {
       return `${months[date1.getMonth()]} ${date1.getDate()}`;
@@ -177,12 +184,12 @@ export default function FeedTweet(props) {
         id={`Tweet${props.tweetId}`}
         className={props.isTopTweet ? classes.topTweet : classes.feedTweet}
       >
-        {/* {replyModal && (
-        <FeedTweetReplyModal
-          onHide={hideReplyModal}
-          data={props}
-        ></FeedTweetReplyModal>
-      )} */}
+        {replyModal && (
+          <FeedTweetReplyModal
+            onHide={hideReplyModal}
+            {...props}
+          ></FeedTweetReplyModal>
+        )}
         {/* <NavLink
           to={`/userProfile/${props.userName}`}
           className={classes.fs15  + " " + classes.noStyle}
@@ -322,12 +329,14 @@ export default function FeedTweet(props) {
               </p>
             )}
             <div className={classes.moreIcon}>
-              <FeedTweetMore userName={props.userName}
+              <FeedTweetMore
+                userName={props.userName}
                 tweetId={props.tweetId}
                 setIsDeleted={setIsDeleted}
                 isFollowing={isFollowing}
                 setIsFollowing={setIsFollowing}
-                setFollowingSet={props.setFollowingSet} />
+                setFollowingSet={props.setFollowingSet}
+              />
             </div>
           </div>
           {props.isReply && !props.isTopTweet && (
@@ -343,7 +352,13 @@ export default function FeedTweet(props) {
               </p>
               <div className={classes.hoverProfile + " " + classes.repmin}>
                 <MiniProfile
-                  profilePic={props.topUser ? props.topUser.profilePic ? props.topUser.profilePic : DefaultProfilePic : ""}
+                  profilePic={
+                    props.topUser
+                      ? props.topUser.profilePic
+                        ? props.topUser.profilePic
+                        : DefaultProfilePic
+                      : ""
+                  }
                   name={props.topUser ? props.topUser.name : ""}
                   userName={props.topUser ? props.topUser.userName : ""}
                   profileDesciption={props.topUser ? props.topUser.bio : ""}
@@ -357,10 +372,15 @@ export default function FeedTweet(props) {
             data-testid="text"
             className={classes.fs15 + " " + classes.txt}
             dangerouslySetInnerHTML={{ __html: tweetText }}
-          >
-          </div>
+          ></div>
           {props.media && !props.isShowPhotos && props.media.length > 0 && (
-            <ImageGrid media={props.media} userName={props.userName} tweetId={props.tweetId} setPhotosActive={props.setPhotosActive} setIncrement={props.setIncrement} />
+            <ImageGrid
+              media={props.media}
+              userName={props.userName}
+              tweetId={props.tweetId}
+              setPhotosActive={props.setPhotosActive}
+              setIncrement={props.setIncrement}
+            />
           )}
 
           {props.isTopTweet && (
@@ -372,8 +392,9 @@ export default function FeedTweet(props) {
                   classes.underline + " " + classes.fs15 + " " + classes.pointer
                 }
               >
-                {`${tweetDate.getHours()}:${tweetDate.getMinutes()} . ${months[tweetDate.getMonth()]
-                  } ${tweetDate.getDay()}, ${tweetDate.getFullYear()}`}
+                {`${tweetDate.getHours()}:${tweetDate.getMinutes()} . ${
+                  months[tweetDate.getMonth()]
+                } ${tweetDate.getDay()}, ${tweetDate.getFullYear()}`}
               </p>
             </div>
           )}

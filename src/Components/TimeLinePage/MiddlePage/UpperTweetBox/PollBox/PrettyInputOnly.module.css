@@ -1,0 +1,27 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    align-items: center;
+    width: 100%;
+  }
+  .formWidth{
+    width: 100%;
+  }
+  .formWidth2{
+    width: 90%;
+  }
+  .label{
+    font-size: 70%;
+  }
+.input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.size {
+    position: absolute;
+    right: 3px;
+    top: 7px;
+    font-size: 10px;
+}
