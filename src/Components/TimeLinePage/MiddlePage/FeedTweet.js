@@ -100,7 +100,7 @@ export default function FeedTweet(props) {
     }
   }
 
-  const imageExtenionsSet = new Set(["jpg", "jpeg", "png"]);
+  const imageExtenionsSet = new Set(["jpg", "jpeg", "png","webp"]);
   const videoExtenionsSet = new Set(["mp4", "avi", "mkv"]);
 
   function getMediaType() {
@@ -384,8 +384,9 @@ export default function FeedTweet(props) {
                   name={props.topUser ? props.topUser.name : ""}
                   userName={props.topUser ? props.topUser.userName : ""}
                   profileDesciption={props.topUser ? props.topUser.bio : ""}
-                  following={props.following}
-                  followers={props.followers}
+                  following={props.topUser.following}
+                  followers={props.topUser.followers}
+                  isFollowing = {props.topUser.isFollowing}
                 />
               </div>
             </div>
@@ -440,7 +441,7 @@ export default function FeedTweet(props) {
             <div id="FeedTweetAttributes" className={classes.attributes}>
               <TweetAtrribute
                 Icon={ChatBubbleOutlineOutlinedIcon}
-                num={props.replies ? props.replies.length() : 0}
+                num={props.repliesCount ? props.repliesCount : 0}
                 color="b"
                 tooltip="Reply"
                 onClick={viewReplyModal}
