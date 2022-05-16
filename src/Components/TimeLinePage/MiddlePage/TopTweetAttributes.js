@@ -133,6 +133,7 @@ function TopTweetAttributes(props) {
         <FeedTweetReplyModal
           onHide={hideReplyModal}
           {...props}
+          isTopTweet={false}
         ></FeedTweetReplyModal>
       )}
       <div className={classes.flex + " " + classes.nums}>

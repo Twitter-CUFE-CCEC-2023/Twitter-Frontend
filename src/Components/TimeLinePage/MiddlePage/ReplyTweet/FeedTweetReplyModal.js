@@ -29,7 +29,7 @@ function FeedTweetReplyModal(props) {
       })
       .then((res) => {
         console.log(res);
-        // props.onGoBack();
+        props.onGoBack();
       })
       .catch((err) => {
         console.log(err);
