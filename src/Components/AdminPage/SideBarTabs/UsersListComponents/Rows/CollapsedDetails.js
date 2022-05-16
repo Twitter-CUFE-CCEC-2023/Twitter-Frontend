@@ -61,13 +61,13 @@ const CollapsedDetails = (props) => {
                     <TableCell align="left">{props.user.email}</TableCell>
                   </StyledTableRow>
 
-                  <StyledTableRow key={"Country"}>
+                  <StyledTableRow key={"location"}>
                     <TableCell component="th" scope="row">
-                      Country
+                      Location
                     </TableCell>
                     <TableCell align="left">
-                      {props.user.country
-                        ? props.user.country
+                      {props.user.location
+                        ? props.user.location
                         : "None provided"}
                     </TableCell>
                   </StyledTableRow>

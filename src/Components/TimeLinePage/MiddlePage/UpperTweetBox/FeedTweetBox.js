@@ -20,6 +20,7 @@ import DefaultProfilePic from "../../../../Assets/DefaultProfilePic.jpg";
 import PollBox from "./PollBox/PollBox";
 import GifModal from "./GifBox/GifModal";
 import ScheduleBox from "./Schedule Box/ScheduleBox";
+import ErrorModal from "../../BanModal/ErrorModal";
 
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
@@ -62,8 +63,20 @@ export default function FeedTweetBox(props) {
     : DefaultProfilePic;
   //console.log(loggedUser);
   //postTweet configuration
+
+  const [banned, setBanned] = useState(false);
+  const handleOpenModal = (val) => {
+    setBanned(val)
+  };
+
   function postTweet() {
     // props.changePostingTweet();
+    const isBanned = JSON.parse(localStorage.getItem("UserInfo")).isBanned;
+    if (isBanned === true) {
+      setBanned(true);
+      return;
+    }
+
     instance
       .post("/status/tweet/post", {
         content: tweetContent,
@@ -112,91 +125,90 @@ export default function FeedTweetBox(props) {
     setScheduleView(false);
   };
   return (
-    <ImageUploading
-      multiple
-      value={images}
-      onChange={onChange}
-      maxNumber={maxNumber}
-      dataURLKey="data_url"
-    >
-      {({
-        imageList,
-        onImageUpload,
-        // onImageRemoveAll,
-        onImageUpdate,
-        onImageRemove,
-        // isDragging,
-        // dragProps,
-      }) => (
-        <div className="feedTweetBox">
-          <div className="boxInput">
-            <div className="profileImgOpacity">
-              <NavLink
-                to={`userprofile/${
-                  loggedUser ? loggedUser.username : "amrzaki"
-                }`}
-              >
-                <img
-                  className={classes.profilePic + " " + classes.minip}
-                  src={
-                    loggedUser
-                      ? loggedUser.profile_image_url
-                      : defaultMaleProfile
-                  }
-                  alt="profile"
-                ></img>
-              </NavLink>
-            </div>
-            <form onFocus={focus} className={classes.tweetBoxForm}>
-              <div className={classes.tweetBoxFormContainer}>
-                <textarea
-                  onChange={textAreaChangeHandler}
-                  className={classes.tweetBoxText}
-                  placeholder={
-                    props.isReply ? "Tweet Your Reply" : "What's happening?"
-                  }
-                  value={tweetContent}
-                  maxLength="280"
-                ></textarea>
-
-                {images.length > 0 && (
-                  <div className={classes.container}>
-                    {imageList.map((image, index) => (
-                      <PhotosContainer
-                        photos={image}
-                        onUpdate={() => onImageUpdate(index)}
-                        onRemove={() => onImageRemove(index)}
-                      ></PhotosContainer>
-                    ))}
-                  </div>
-                )}
-                <span className={classes.tweetBoxTextSpan}>
-                  {leftLetters}/280
-                </span>
-                {pollView && <PollBox onRemove={removePollView}></PollBox>}
-                {GifView && <GifModal onHide={removeGifView}></GifModal>}
-                {ScheduleView && (
-                  <ScheduleBox onHide={removeScheduleView}></ScheduleBox>
-                )}
+    <>
+      <ImageUploading
+        multiple
+        value={images}
+        onChange={onChange}
+        maxNumber={maxNumber}
+        dataURLKey="data_url"
+      >
+        {({
+          imageList,
+          onImageUpload,
+          // onImageRemoveAll,
+          onImageUpdate,
+          onImageRemove,
+          // isDragging,
+          // dragProps,
+        }) => (
+          <div className="feedTweetBox">
+            <div className="boxInput">
+              <div className="profileImgOpacity">
+                <NavLink
+                  to={`userprofile/${loggedUser ? loggedUser.username : "amrzaki"
+                    }`}
+                >
+                  <img
+                    className={classes.profilePic + " " + classes.minip}
+                    src={
+                      loggedUser
+                        ? loggedUser.profile_image_url
+                        : defaultMaleProfile
+                    }
+                    alt="profile"
+                  ></img>
+                </NavLink>
               </div>
-            </form>
-          </div>
-          <div
-            className={`buttons  ${
-              !props.isReply || show ? classes.show : classes.hidden
-            }`}
-          >
-            {/* // write your building UI */}
-            <div className="upload__image-wrapper">
-              <FeedBoxButton
-                Icon={ImageOutlinedIcon}
-                text="Media"
-                // style={isDragging ? { color: "red" } : null}
-                onClick={onImageUpload}
-                // {...dragProps}
-              />
+              <form onFocus={focus} className={classes.tweetBoxForm}>
+                <div className={classes.tweetBoxFormContainer}>
+                  <textarea
+                    onChange={textAreaChangeHandler}
+                    className={classes.tweetBoxText}
+                    placeholder={
+                      props.isReply ? "Tweet Your Reply" : "What's happening?"
+                    }
+                    value={tweetContent}
+                    maxLength="280"
+                  ></textarea>
 
-              {/* <button
+                  {images.length > 0 && (
+                    <div className={classes.container}>
+                      {imageList.map((image, index) => (
+                        <PhotosContainer
+                          photos={image}
+                          onUpdate={() => onImageUpdate(index)}
+                          onRemove={() => onImageRemove(index)}
+                        ></PhotosContainer>
+                      ))}
+                    </div>
+                  )}
+                  <span className={classes.tweetBoxTextSpan}>
+                    {leftLetters}/280
+                  </span>
+                  {pollView && <PollBox onRemove={removePollView}></PollBox>}
+                  {GifView && <GifModal onHide={removeGifView}></GifModal>}
+                  {ScheduleView && (
+                    <ScheduleBox onHide={removeScheduleView}></ScheduleBox>
+                  )}
+                </div>
+              </form>
+            </div>
+            <div
+              className={`buttons  ${!props.isReply || show ? classes.show : classes.hidden
+                }`}
+            >
+              {/* // write your building UI */}
+              <div className="upload__image-wrapper">
+                <FeedBoxButton
+                  Icon={ImageOutlinedIcon}
+                  text="Media"
+                  // style={isDragging ? { color: "red" } : null}
+                  onClick={onImageUpload}
+                // {...dragProps}
+                />
+
+                {/* <button
                 style={isDragging ? { color: "red" } : null}
                 onClick={onImageUpload}
                 {...dragProps}
@@ -216,34 +228,43 @@ export default function FeedTweetBox(props) {
                 </div>
               ))}
               */}
+              </div>
+              <FeedBoxButton
+                Icon={GifOutlinedIcon}
+                onClick={toggleGifView}
+                text="GIF"
+              />
+              <FeedBoxButton
+                Icon={PollOutlinedIcon}
+                onClick={togglePollView}
+                text="Poll"
+              />
+              <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
+              <FeedBoxButton
+                Icon={DateRangeOutlinedIcon}
+                onClick={toggleScheduleView}
+                text="Schedule"
+              />
+              <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
+              <button
+                className={classes["tweetButton"]}
+                disabled={imageList.length === 0 && tweetContent.trim() === ""}
+                onClick={postTweet}
+              >
+                {props.isReply ? "Reply" : "Tweet"}
+              </button>
             </div>
-            <FeedBoxButton
-              Icon={GifOutlinedIcon}
-              onClick={toggleGifView}
-              text="GIF"
-            />
-            <FeedBoxButton
-              Icon={PollOutlinedIcon}
-              onClick={togglePollView}
-              text="Poll"
-            />
-            <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
-            <FeedBoxButton
-              Icon={DateRangeOutlinedIcon}
-              onClick={toggleScheduleView}
-              text="Schedule"
-            />
-            <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
-            <button
-              className={classes["tweetButton"]}
-              disabled={imageList.length === 0 && tweetContent.trim() === ""}
-              onClick={postTweet}
-            >
-              {props.isReply ? "Reply" : "Tweet"}
-            </button>
           </div>
-        </div>
+        )}
+
+      </ImageUploading>
+      {banned && (
+        <ErrorModal
+          message="You are Banned."
+          open={banned}
+          setOpenModalValue={handleOpenModal}
+        />
       )}
-    </ImageUploading>
+    </>
   );
 }

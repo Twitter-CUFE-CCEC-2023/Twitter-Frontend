@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./TweetAtrribute.module.css";
 import feedBoxButtonClasses from "./FeedBoxButton.module.css";
 // import axios from "axios";
 import instance from "../../axios";
+import ErrorModal from "../BanModal/ErrorModal";
 
 function TweetAtrribute(props) {
   const [clicked, setClicked] = React.useState("");
   const [num, setNum] = React.useState(props.num);
   const [hlLike, setHlLike] = React.useState(false);
+
+  const [banned, setBanned] = useState(false);
+  const handleOpenModal = (val) => {
+    setBanned(val);
+  };
 
   let isMock = localStorage.getItem("isMock") === "true";
 
@@ -96,6 +102,11 @@ function TweetAtrribute(props) {
           });
         } else {
           // props.tweet.retweets += 1;
+          const isBanned = JSON.parse(localStorage.getItem("UserInfo")).isBanned;
+          if (isBanned === true) {
+            setBanned(true);
+            return;
+          }
           instance.post("/status/retweet", { id: props.tweet.id });
         }
       }
@@ -113,25 +124,35 @@ function TweetAtrribute(props) {
   }
 
   return (
-    <div
-      className={`${classes.tweetAtrribute} ${
-        classes[props.color]
-      } ${clicked} ${white}`}
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-    >
-      <div onClick={click} className={feedBoxButtonClasses.tooltip}>
-        <div className={classes.flex}>
-          {!hlLike && <props.Icon className={classes.attIcon} />}
-          {hlLike && <props.FilledIcon className={classes.attIcon} />}
-          <p className={classes.num}>{num}</p>
+    <>
+      <div
+        className={`${classes.tweetAtrribute} ${classes[props.color]
+          } ${clicked} ${white}`}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <div onClick={click} className={feedBoxButtonClasses.tooltip}>
+          <div className={classes.flex}>
+            {!hlLike && <props.Icon className={classes.attIcon} />}
+            {hlLike && <props.FilledIcon className={classes.attIcon} />}
+            <p className={classes.num}>{num}</p>
+          </div>
+          <span className={feedBoxButtonClasses.tooltiptext}>
+            {props.tooltip}
+          </span>
         </div>
-        <span className={feedBoxButtonClasses.tooltiptext}>
-          {props.tooltip}
-        </span>
       </div>
-    </div>
+      <div onClick={(e) => e.stopPropagation()}>
+        {banned && (
+          <ErrorModal
+            message="You are Banned."
+            open={banned}
+            setOpenModalValue={handleOpenModal}
+          />
+        )}
+      </div>
+    </>
   );
 }
 

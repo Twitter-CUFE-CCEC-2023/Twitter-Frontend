@@ -55,6 +55,7 @@ function App() {
         <Switch>
           <Route exact={true} path="/" component={MainPage} />
           <Route path="/SignIn" component={SignInPage} />
+          <Route path="/auth/google" />
 
           <Route path="/Mail" component={Mail} />
           <Route path="/Phone" component={SignUpPagePhone} />
@@ -65,118 +66,41 @@ function App() {
           <Route path="/ForgetPW" component={forgotPW} />
 
           {loginCtx.isLoggedIn && <Route path="/home" component={Home} />}
-          {loginCtx.isLoggedIn && (
-            <Route path="/:userId/status/:id" component={MainTweetPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route
-              path="/photos/status/:id/photo/:photoNum"
-              component={PhotosPage}
-            />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/explore" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/notifications" component={AllNotificationsPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route
-              path="/mentionnotifications"
-              component={MentionNotificationsPage}
-            />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/deletedtweet" component={DeletedTweet} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/messages" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/i/bookmarks" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route
-              path="/profileName/lists"
-              component={UnderConstructionPage}
-            />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/userprofile/:userName" component={UserProfile} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route
-              path="/following/:userName"
-              component={FollowingFollowersPage}
-            />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route
-              path="/followers/:userName"
-              component={FollowingFollowersPage}
-            />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/crop" component={ImageCropper} />
-          )}
+          {loginCtx.isLoggedIn && <Route path="/:userId/status/:id" component={MainTweetPage} />}
+          {loginCtx.isLoggedIn && <Route path="/photos/status/:id/photo/:photoNum" component={PhotosPage} />}
+          {loginCtx.isLoggedIn && <Route path="/explore" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/notifications" component={AllNotificationsPage} />}
+          {loginCtx.isLoggedIn && <Route path="/mentionnotifications" component={MentionNotificationsPage} />}
+          {loginCtx.isLoggedIn && <Route path="/deletedtweet" component={DeletedTweet} />}
+          {loginCtx.isLoggedIn && <Route path="/messages" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/i/bookmarks" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/profileName/lists" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/userprofile/:userName" component={UserProfile} />}
+          {loginCtx.isLoggedIn && <Route path="/following/:userName" component={FollowingFollowersPage} />}
+          {loginCtx.isLoggedIn && <Route path="/followers/:userName" component={FollowingFollowersPage} />}
+          {loginCtx.isLoggedIn && <Route path="/crop" component={ImageCropper} />}
 
-          {loginCtx.isLoggedIn && (
-            <Route path="/:userName/topics" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/i/moment_maker" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/i/newsletters" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route
-              path="/i/flow/convert_to_professional"
-              component={UnderConstructionPage}
-            />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/twitter-ads" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/analytics" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/settings" component={Settings} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/help-center" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/i/display" component={UnderConstructionPage} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route
-              path="/i/keyboard-shortcuts"
-              component={UnderConstructionPage}
-            />
-          )}
+          {loginCtx.isLoggedIn && <Route path="/:userName/topics" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/i/moment_maker" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/i/newsletters" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/i/flow/convert_to_professional" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/twitter-ads" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/analytics" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/settings" component={Settings} />}
+          {loginCtx.isLoggedIn && <Route path="/help-center" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/i/display" component={UnderConstructionPage} />}
+          {loginCtx.isLoggedIn && <Route path="/i/keyboard-shortcuts" component={UnderConstructionPage} />}
 
           {loginCtx.isLoggedIn && <Route path="/admin" component={Admin} />}
-          {loginCtx.isLoggedIn && (
-            <Route path="/admin-userslist" component={UsersList} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/admin-likes" component={Likes} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/admin-tweets" component={Tweets} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/admin-retweets" component={Retweets} />
-          )}
-          {loginCtx.isLoggedIn && (
-            <Route path="/admin-statistics" component={Statistics} />
-          )}
+          {loginCtx.isLoggedIn && <Route path="/admin-userslist" component={UsersList} />}
+          {loginCtx.isLoggedIn && <Route path="/admin-likes" component={Likes} />}
+          {loginCtx.isLoggedIn && <Route path="/admin-tweets" component={Tweets} />}
+          {loginCtx.isLoggedIn && <Route path="/admin-retweets" component={Retweets} />}
+          {loginCtx.isLoggedIn && <Route path="/admin-statistics" component={Statistics} />}
 
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
+          {!loginCtx.isLoggedIn && <Route path="*"><Redirect to="/" /></Route>}
+          {loginCtx.isLoggedIn && <Route path="*"><Redirect to="/home" /></Route>}
+
         </Switch>
       </BrowserRouter>
     </div>

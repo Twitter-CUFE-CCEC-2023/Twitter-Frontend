@@ -100,6 +100,25 @@ export default function FeedTweet(props) {
     }
   }
 
+  const imageExtenionsSet = new Set(["jpg", "jpeg", "png"]);
+  const videoExtenionsSet = new Set(["mp4", "avi", "mkv"]);
+
+  function getMediaType(){
+    if(props.media){
+      if(props.media.length > 0){
+        if(imageExtenionsSet.has(props.media[0].split(".")[3])){
+          return "image";
+        }
+        else if(videoExtenionsSet.has(props.media[0].split(".")[3])){
+          return "video";
+        }
+        else{
+          return "gif";
+        }
+      }
+    }
+  }
+
   // let observer = React.createRef();
   const [tweetText, setTweetText] = useState(props.text);
 
@@ -184,12 +203,14 @@ export default function FeedTweet(props) {
         id={`Tweet${props.tweetId}`}
         className={props.isTopTweet ? classes.topTweet : classes.feedTweet}
       >
+        <div onClick={(e) => e.stopPropagation()}>
         {replyModal && (
           <FeedTweetReplyModal
             onHide={hideReplyModal}
             {...props}
           ></FeedTweetReplyModal>
         )}
+        </div>
         {/* <NavLink
           to={`/userProfile/${props.userName}`}
           className={classes.fs15  + " " + classes.noStyle}
@@ -373,7 +394,7 @@ export default function FeedTweet(props) {
             className={classes.fs15 + " " + classes.txt}
             dangerouslySetInnerHTML={{ __html: tweetText }}
           ></div>
-          {props.media && !props.isShowPhotos && props.media.length > 0 && (
+          {props.media && !props.isShowPhotos && props.media.length > 0 && getMediaType() === "image" && (
             <ImageGrid
               media={props.media}
               userName={props.userName}
@@ -382,6 +403,16 @@ export default function FeedTweet(props) {
               setIncrement={props.setIncrement}
             />
           )}
+
+          {
+            props.media && !props.isShowPhotos && props.media.length > 0 && getMediaType() === "video" && (
+              <video>
+                <source src={props.media[0]} type={`video/${props.media[0].split(".")[3]}`} />
+              </video>
+            ) 
+          }
+
+          
 
           {props.isTopTweet && (
             <div
