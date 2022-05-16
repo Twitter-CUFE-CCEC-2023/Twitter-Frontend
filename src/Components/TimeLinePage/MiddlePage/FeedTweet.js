@@ -103,16 +103,14 @@ export default function FeedTweet(props) {
   const imageExtenionsSet = new Set(["jpg", "jpeg", "png"]);
   const videoExtenionsSet = new Set(["mp4", "avi", "mkv"]);
 
-  function getMediaType(){
-    if(props.media){
-      if(props.media.length > 0){
-        if(imageExtenionsSet.has(props.media[0].split(".")[3])){
+  function getMediaType() {
+    if (props.media) {
+      if (props.media.length > 0) {
+        if (imageExtenionsSet.has(props.media[0].split(".")[3])) {
           return "image";
-        }
-        else if(videoExtenionsSet.has(props.media[0].split(".")[3])){
+        } else if (videoExtenionsSet.has(props.media[0].split(".")[3])) {
           return "video";
-        }
-        else{
+        } else {
           return "gif";
         }
       }
@@ -204,12 +202,12 @@ export default function FeedTweet(props) {
         className={props.isTopTweet ? classes.topTweet : classes.feedTweet}
       >
         <div onClick={(e) => e.stopPropagation()}>
-        {replyModal && (
-          <FeedTweetReplyModal
-            onHide={hideReplyModal}
-            {...props}
-          ></FeedTweetReplyModal>
-        )}
+          {replyModal && (
+            <FeedTweetReplyModal
+              onHide={hideReplyModal}
+              {...props}
+            ></FeedTweetReplyModal>
+          )}
         </div>
         {/* <NavLink
           to={`/userProfile/${props.userName}`}
@@ -371,7 +369,10 @@ export default function FeedTweet(props) {
               >
                 @{props.topUser ? props.topUser.userName : ""}
               </p>
-              <div className={classes.hoverProfile + " " + classes.repmin} onClick = {(e) => e.stopPropagation()}>
+              <div
+                className={classes.hoverProfile + " " + classes.repmin}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <MiniProfile
                   profilePic={
                     props.topUser
@@ -394,25 +395,30 @@ export default function FeedTweet(props) {
             className={classes.fs15 + " " + classes.txt}
             dangerouslySetInnerHTML={{ __html: tweetText }}
           ></div>
-          {props.media && !props.isShowPhotos && props.media.length > 0 && getMediaType() === "image" && (
-            <ImageGrid
-              media={props.media}
-              userName={props.userName}
-              tweetId={props.tweetId}
-              setPhotosActive={props.setPhotosActive}
-              setIncrement={props.setIncrement}
-            />
-          )}
+          {props.media &&
+            !props.isShowPhotos &&
+            props.media.length > 0 &&
+            getMediaType() === "image" && (
+              <ImageGrid
+                media={props.media}
+                userName={props.userName}
+                tweetId={props.tweetId}
+                setPhotosActive={props.setPhotosActive}
+                setIncrement={props.setIncrement}
+              />
+            )}
 
-          {
-            props.media && !props.isShowPhotos && props.media.length > 0 && getMediaType() === "video" && (
+          {props.media &&
+            !props.isShowPhotos &&
+            props.media.length > 0 &&
+            getMediaType() === "video" && (
               <video>
-                <source src={props.media[0]} type={`video/${props.media[0].split(".")[3]}`} />
+                <source
+                  src={props.media[0]}
+                  type={`video/${props.media[0].split(".")[3]}`}
+                />
               </video>
-            ) 
-          }
-
-          
+            )}
 
           {props.isTopTweet && (
             <div
@@ -477,6 +483,7 @@ export default function FeedTweet(props) {
               retweets={props.retweets}
               quoteTweets={props.quotes}
               isShowPhotos={props.isShowPhotos}
+              {...props}
             />
           )}
         </div>

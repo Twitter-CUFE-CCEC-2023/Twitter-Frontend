@@ -6,13 +6,13 @@ import Reply from "./Reply";
 import TweetReplyBody from "./TweetReplyBody";
 import x from "../../../../Assets/icons/close.png";
 import instance from "../../../axios";
-import ErrorModal from "../../BanModal/ErrorModal"
+import ErrorModal from "../../BanModal/ErrorModal";
 
 function FeedTweetReplyModal(props) {
   const [tweetContent, setTweetContent] = useState("");
   const [banned, setBanned] = useState(false);
   const handleOpenModal = (val) => {
-    setBanned(val)
+    setBanned(val);
   };
 
   function replyTweet(e) {
@@ -23,7 +23,7 @@ function FeedTweetReplyModal(props) {
     }
     e.preventDefault();
     instance
-      .post("/status/tweet/reply", {
+      .post("/status/tweet/post", {
         content: tweetContent,
         replied_to_tweet: props.tweetId,
       })

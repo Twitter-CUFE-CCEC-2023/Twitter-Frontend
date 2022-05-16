@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import classes from './TopTweetAttributes.module.css'
+import React, { useState } from "react";
+import classes from "./TopTweetAttributes.module.css";
 
 import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
 import LoopOutlinedIcon from "@material-ui/icons/LoopOutlined";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
-import instance from '../../axios';
-import ErrorModal from '../BanModal/ErrorModal';
+import instance from "../../axios";
+import ErrorModal from "../BanModal/ErrorModal";
+import FeedTweetReplyModal from "./ReplyTweet/FeedTweetReplyModal";
 
 function TopTweetAttributes(props) {
-
   const [clicked, setClicked] = React.useState("");
   const [likes, setLikes] = React.useState(props.likes);
   const [retweets, setRetweets] = React.useState(props.retweets);
@@ -21,6 +21,13 @@ function TopTweetAttributes(props) {
     setBanned(val);
   };
 
+  const [replyModal, setReplyModal] = useState(false);
+  function viewReplyModal() {
+    setReplyModal(true);
+  }
+  function hideReplyModal() {
+    setReplyModal(false);
+  }
   let isMock = localStorage.getItem("isMock") === "true";
 
   React.useEffect(() => {
@@ -101,9 +108,9 @@ function TopTweetAttributes(props) {
     if (hlRet) {
       instance.delete("/status/unretweet", {
         data: {
-          id: props.tweet.id
-        }
-      })
+          id: props.tweet.id,
+        },
+      });
       setRetweets(retweets - 1);
     } else {
       const isBanned = JSON.parse(localStorage.getItem("UserInfo")).isBanned;
@@ -122,20 +129,62 @@ function TopTweetAttributes(props) {
 
   return (
     <div className={classes.topTweetAttributes}>
+      {replyModal && (
+        <FeedTweetReplyModal
+          onHide={hideReplyModal}
+          {...props}
+        ></FeedTweetReplyModal>
+      )}
       <div className={classes.flex + " " + classes.nums}>
-        <p className={classes.fs15 + " " + classes.ul}><span className={classes.bold}>{retweets}</span> <span className={classes.gray}>Retweets</span></p>
+        <p className={classes.fs15 + " " + classes.ul}>
+          <span className={classes.bold}>{retweets}</span>{" "}
+          <span className={classes.gray}>Retweets</span>
+        </p>
         &nbsp;&nbsp;
-        <p className={classes.fs15 + " " + classes.ul}><span className={classes.bold}>{props.quoteTweets}</span> <span className={classes.gray}>Quote Tweets</span></p>
+        <p className={classes.fs15 + " " + classes.ul}>
+          <span className={classes.bold}>{props.quoteTweets}</span>{" "}
+          <span className={classes.gray}>Quote Tweets</span>
+        </p>
         &nbsp;&nbsp;
-        <p className={classes.fs15 + " " + classes.ul}><span className={classes.bold}>{likes}</span> <span className={classes.gray}>Likes</span></p>
+        <p className={classes.fs15 + " " + classes.ul}>
+          <span className={classes.bold}>{likes}</span>{" "}
+          <span className={classes.gray}>Likes</span>
+        </p>
       </div>
-      {!props.isShowPhotos && <div className={classes.flex}>
-        <ChatBubbleOutlineOutlinedIcon className={`${classes.centre} ${classes.attIcon} ${classes.b}`} />
-        <div onClick={clickRet} className={` ${classes.centre} `}><LoopOutlinedIcon className={`${classes.attIcon} ${classes.g} ${hlRet && classes.clicked}`} /></div>
-        {!hlLike && <div className={classes.centre} onClick={clickLike}> <FavoriteBorderOutlinedIcon className={`${classes.attIcon} ${classes.r}`} /> </div>}
-        {hlLike && <div className={classes.centre} onClick={clickLike}> <FavoriteIcon className={`${classes.attIcon} ${classes.r} ${classes.clicked}`} /> </div>}
-        <ShareOutlinedIcon className={`${classes.centre} ${classes.attIcon} ${classes.b}`} />
-      </div>}
+      {!props.isShowPhotos && (
+        <div className={classes.flex}>
+          <ChatBubbleOutlineOutlinedIcon
+            className={`${classes.centre} ${classes.attIcon} ${classes.b}`}
+            onClick={viewReplyModal}
+          />
+          <div onClick={clickRet} className={` ${classes.centre} `}>
+            <LoopOutlinedIcon
+              className={`${classes.attIcon} ${classes.g} ${
+                hlRet && classes.clicked
+              }`}
+            />
+          </div>
+          {!hlLike && (
+            <div className={classes.centre} onClick={clickLike}>
+              {" "}
+              <FavoriteBorderOutlinedIcon
+                className={`${classes.attIcon} ${classes.r}`}
+              />{" "}
+            </div>
+          )}
+          {hlLike && (
+            <div className={classes.centre} onClick={clickLike}>
+              {" "}
+              <FavoriteIcon
+                className={`${classes.attIcon} ${classes.r} ${classes.clicked}`}
+              />{" "}
+            </div>
+          )}
+          <ShareOutlinedIcon
+            className={`${classes.centre} ${classes.attIcon} ${classes.b}`}
+          />
+        </div>
+      )}
       <div onClick={(e) => e.stopPropagation()}>
         {banned && (
           <ErrorModal
@@ -146,7 +195,7 @@ function TopTweetAttributes(props) {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default TopTweetAttributes
+export default TopTweetAttributes;
