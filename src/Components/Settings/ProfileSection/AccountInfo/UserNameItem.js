@@ -17,6 +17,7 @@ function UserNameItem(props) {
       .then((res) => {
         console.log(res);
         props.onGoBack();
+        props.onSave(UserNameValue);
       })
       .catch((err) => {
         console.log(err);
