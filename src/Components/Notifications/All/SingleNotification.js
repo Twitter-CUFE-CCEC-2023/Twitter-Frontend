@@ -42,10 +42,10 @@ function SingleNotification(props) {
   };
 
   const readNoteFollow = async (e) => {
+    setLoading(true);
     await instance.put("/read-notification", {
       notificationId: props.note_id,
     });
-    setLoading(true);
     e.stopPropagation();
     history.push(`/userprofile/${props.personID}`);
     window.location.reload();
@@ -53,28 +53,40 @@ function SingleNotification(props) {
 
   if (props.type === "Account Update") {
     nottype = classes.ban;
-    description = "This account is restricted for " + props.banDuration;
+    description = props.content;
     return (
       <div
         className={`${classes.notification} ${
           props.is_read ? "" : classes.is_read
         }`}
+        onClick={readNoteFollow}
       >
-        <div className="container">
-          <div className="row pt-2">
-            <div className="col-1">
-              <BlockIcon className={`${classes.noteicon} ${nottype}`} />
-            </div>
-            <div className="col-8 pt-3 mb-2">
-              <p
-                className={classes.notedescription}
-                style={{ marginLeft: "0.25em", marginTop: "-0.2em" }}
-              >
-                <strong>{description}</strong>
-              </p>
+        {!isLoading && (
+          <div className="container">
+            <div className="row pt-2">
+              <div className="col-1">
+                <BlockIcon className={`${classes.noteicon} ${nottype}`} />
+              </div>
+              <div className="col-8 pt-3 mb-2">
+                <p
+                  className={classes.notedescription}
+                  style={{ marginLeft: "0.25em", marginTop: "-0.2em" }}
+                >
+                  <strong>{description}</strong>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+        {isLoading && (
+          <ReactLoading
+            type={"spin"}
+            color={"#1DA1F2"}
+            height={"4%"}
+            width={"4%"}
+            className={`${classes.loadingIcon}`}
+          />
+        )}
       </div>
     );
   } else if (props.type === "Following Tweet") {
