@@ -14,7 +14,6 @@ import { Box, DialogActions, DialogContent, Typography } from "@mui/material";
 function ImageCropper(props) {
   //props are selectedImage, setShowCropPage, 
   const [showCropPage, setShowCropPage] = useState(true);
-  console.log("image cropped" + props.selectedImage);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -46,7 +45,6 @@ function ImageCropper(props) {
     setCroppedImage(null);
     props.setCropPhotoURL(false);
     props.setOpenCrop(false);
-    console.log(croppedImage);
   }, []);
 
   let cropPage;

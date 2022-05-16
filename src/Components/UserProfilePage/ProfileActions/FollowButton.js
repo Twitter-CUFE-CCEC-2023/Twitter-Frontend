@@ -62,7 +62,7 @@ function FollowButton(props) {
   React.useEffect(() => {
     if (props.isFollowing === true) {
       setFollowOrUnFollow("Following");
-    } else {
+    } if(props.isFollowing === false) {
       setFollowOrUnFollow("Follow");
     }
   }, [props.isFollowing]);

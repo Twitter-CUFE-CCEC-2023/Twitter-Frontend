@@ -9,6 +9,14 @@
     padding: 6px;
     margin-left: 12px;
 }
+.messageButton1{
+  border-radius: 50% ;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  padding: 6px;
+  margin-left: 12px;
+}
 .settingButton{
     border-radius: 50% ;
     width: 40px;

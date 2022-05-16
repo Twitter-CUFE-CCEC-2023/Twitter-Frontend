@@ -2,13 +2,12 @@ import React, { useState, Fragment } from "react";
 import classes from "./EditProfileButton.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CloseIcon from "@mui/icons-material/Close";
-import coverphoto from "../../../Assets/new-york-city.jpg";
 import InputBox from "./InputBox";
-import CameraEnhanceOutlinedIcon from "@mui/icons-material/CameraEnhanceOutlined";
 import ImageUploader from "./ImageUploader";
 import instance from "../../axios";
 
 function EditProfileButton(props) {
+  const [fileData, setFileData] = useState();
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
   const [croppedCoverPhoto, setCroppedCoverPhoto] = useState(
     currentuser.cover_image_url
@@ -17,12 +16,16 @@ function EditProfileButton(props) {
   );
   const [croppedProfilePhoto, setCroppedProfilePhoto] = useState(
     currentuser.profile_image_url
+      ? currentuser.profile_image_url
+      : "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
   );
   const [name, setName] = useState(currentuser.name);
   const [bio, setBio] = useState(currentuser.bio);
   const [website, setWebsite] = useState(currentuser.website);
   const [location, setLocation] = useState(currentuser.location);
-  const [birth_date, setBirthDate] = useState(currentuser.birth_date.slice(0, 10));
+  const [birth_date, setBirthDate] = useState(
+    currentuser.birth_date.slice(0, 10)
+  );
   console.log(birth_date);
   console.log(currentuser.name);
   const editCover = (editedcover) => {
@@ -31,7 +34,6 @@ function EditProfileButton(props) {
   const editProfilePhoto = (editedprofile) => {
     setCroppedProfilePhoto(editedprofile);
   };
-  console.log('croppedProfilePhoto', croppedProfilePhoto)
   const resetModal = () => {
     setCroppedCoverPhoto(
       currentuser.cover_image_url
@@ -41,47 +43,48 @@ function EditProfileButton(props) {
     setCroppedProfilePhoto(
       currentuser.profile_image_url
         ? currentuser.profile_image_url
-        : "https://pbs.twimg.com/profile_images/1492532221110104067/_3ozwoyh_400x400.jpg"
+        : "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
     );
   };
   const onSaveEdits = () => {
+    const media=[croppedProfilePhoto,croppedCoverPhoto]
+    let formData = new FormData();
+    formData.append("media", media);
+    formData.append("name", name);
+    formData.append("bio", bio);
+    formData.append("website", website);
+    formData.append("location", location);
+    formData.append("birth_date", birth_date);
+    const config = {     
+      headers: { 'content-type': 'multipart/form-data' }
+  }
+    
+    console.log('formmm data',formData)
     instance
-      .put("/user/update-profile", {
-        "name": name,
-        "bio": bio,
-        "website": website,
-        "location": location,
-        "profile_image_url": croppedProfilePhoto,
-        "birth_date": birth_date,
-      })
+      .put(`/user/update-profile`, formData, config)
       .then((res) => {
-        console.log(res);
-        // window.location.reload();
-        //set local storage
-        console.log("user after changes", res.data.message);
-        localStorage.setItem("UserInfo", JSON.stringify(res.data.user));
-
+        console.log('edited',res);
         props.setData(res.data.user)
-
+        localStorage.setItem("UserInfo", JSON.stringify(res.data.user));
       })
       .catch((err) => {
         console.log(err);
-        console.log("Error message", err.message);
       });
-  }
+  };
+
   const changeNameVal = (value) => {
     setName(value);
     console.log(value);
-  }
+  };
   const changeBioVal = (value) => {
     setBio(value);
-  }
+  };
   const changeWebsiteVal = (value) => {
     setWebsite(value);
-  }
+  };
   const changeLocationVal = (value) => {
     setLocation(value);
-  }
+  };
 
   return (
     <Fragment>
@@ -182,7 +185,10 @@ function EditProfileButton(props) {
                   name="birthday"
                   value={birth_date}
                   max="2021-01-01"
-                  onChange={(e) => { setBirthDate(e.target.value.toString()); console.log(e.target.value.toString()) }}
+                  onChange={(e) => {
+                    setBirthDate(e.target.value.toString());
+                    console.log(e.target.value.toString());
+                  }}
                   className={`${classes.birthdayInput}`}
                 ></input>
               </form>

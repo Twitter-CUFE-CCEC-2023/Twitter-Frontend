@@ -263,7 +263,7 @@ function FollowingFollowersPage() {
                   </div>
                 );
               } else {
-                return;
+                return (
                 <div>
                   <User
                     {...follower}
@@ -273,10 +273,21 @@ function FollowingFollowersPage() {
                       currentuserName === follower.userName ? true : false
                     }
                   />
-                </div>;
+                </div>);
               }
             })}
-          {type === "following" &&
+            {type === "followers" && followers.length===0&&!isLoading&&
+            <div >
+              <div className={`row`}>
+              <img src="https://abs.twimg.com/sticky/illustrations/empty-states/yellow-birds-power-line-800x400.v1.png" alt="" />
+              </div>
+              <div className={`${classes.noFollowersContainer}`}>
+              <p className={`${classes.noFollowers} `}> Looking for followers?</p>
+              <p className={`text-muted h6`}><small>When someone follows this account, they’ll show up here. Tweeting and interacting with others helps boost followers.</small></p>
+              </div>
+            </div>
+            }
+          {type === "following" && following&&
             following.map((followingUser, index) => {
               if (index === following.length - 1) {
                 return (
@@ -309,6 +320,18 @@ function FollowingFollowersPage() {
                 );
               }
             })}
+            {type === "following" && following.length===0&&!isLoading&&
+            <div >
+              <div className={`row`}>
+              <img src="https://abs.twimg.com/sticky/illustrations/empty-states/yellow-birds-power-line-800x400.v1.png" alt="" />
+              </div>
+              <div className={`${classes.noFollowersContainer}`}>
+              <p className={`${classes.noFollowers}  mb-0 `}>{userName} isn’t </p>
+              <p className={`${classes.noFollowers}  `}> following anyone</p>
+              <p className={`text-muted h5`}><small>Once they follow accounts, they’ll show up here.</small></p>
+              </div>
+            </div>
+            }
           {isLoading && (
             <ReactLoading
               type={"spin"}
