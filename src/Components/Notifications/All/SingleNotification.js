@@ -18,6 +18,13 @@ function SingleNotification(props) {
   let description = "";
   let history = useHistory();
 
+  let picture_url =
+    "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png";
+
+  if (props.profilePicture !== "") {
+    picture_url = props.profilePicture;
+  }
+
   const [isLoading, setLoading] = useState(false);
 
   const readNote = async (e) => {
@@ -99,7 +106,7 @@ function SingleNotification(props) {
                     }}
                     className={`${classes.profilePic} ${classes.minip}`}
                     alt="profile"
-                    src={props.profilePicture}
+                    src={picture_url}
                   ></img>
                   <div
                     onClick={(e) => {
@@ -109,7 +116,7 @@ function SingleNotification(props) {
                     className={`${classes.hoverProfile} ${classes.top}`}
                   >
                     <MiniProfile
-                      profilePic={props.profilePicture}
+                      profilePic={picture_url}
                       name={props.Person}
                       userName={props.personID}
                       profileDesciption={props.bio}
@@ -143,7 +150,7 @@ function SingleNotification(props) {
                     className={`${classes.hoverProfile}  ${classes.bot}`}
                   >
                     <MiniProfile
-                      profilePic={props.profilePicture}
+                      profilePic={picture_url}
                       name={props.person}
                       userName={props.personID}
                       profileDesciption={props.bio}
@@ -195,7 +202,7 @@ function SingleNotification(props) {
                     }}
                     className={`${classes.profilePic} ${classes.minip}`}
                     alt="profile"
-                    src={props.profilePicture}
+                    src={picture_url}
                   ></img>
                   <div
                     onClick={(e) => {
@@ -205,7 +212,7 @@ function SingleNotification(props) {
                     className={`${classes.hoverProfile} ${classes.top}`}
                   >
                     <MiniProfile
-                      profilePic={props.profilePicture}
+                      profilePic={picture_url}
                       name={props.Person}
                       userName={props.personID}
                       profileDesciption={props.bio}
@@ -238,7 +245,7 @@ function SingleNotification(props) {
                     className={`${classes.hoverProfile}  ${classes.bot}`}
                   >
                     <MiniProfile
-                      profilePic={props.profilePicture}
+                      profilePic={picture_url}
                       name={props.person}
                       userName={props.personID}
                       profileDesciption={props.bio}
@@ -291,7 +298,7 @@ function SingleNotification(props) {
                     }}
                     className={`${classes.profilePic} ${classes.minip}`}
                     alt="profile"
-                    src={props.profilePicture}
+                    src={picture_url}
                   ></img>
                   <div
                     onClick={(e) => {
@@ -301,7 +308,7 @@ function SingleNotification(props) {
                     className={`${classes.hoverProfile} ${classes.top}`}
                   >
                     <MiniProfile
-                      profilePic={props.profilePicture}
+                      profilePic={picture_url}
                       name={props.Person}
                       userName={props.personID}
                       profileDesciption={props.bio}
@@ -334,7 +341,7 @@ function SingleNotification(props) {
                     className={`${classes.hoverProfile}  ${classes.bot}`}
                   >
                     <MiniProfile
-                      profilePic={props.profilePicture}
+                      profilePic={picture_url}
                       name={props.person}
                       userName={props.personID}
                       profileDesciption={props.bio}
@@ -387,7 +394,7 @@ function SingleNotification(props) {
                     }}
                     className={`${classes.profilePic} ${classes.minip}`}
                     alt="profile"
-                    src={props.profilePicture}
+                    src={picture_url}
                   ></img>
                   <div
                     onClick={(e) => {
@@ -397,7 +404,7 @@ function SingleNotification(props) {
                     className={`${classes.hoverProfile} ${classes.top}`}
                   >
                     <MiniProfile
-                      profilePic={props.profilePicture}
+                      profilePic={picture_url}
                       name={props.Person}
                       userName={props.personID}
                       profileDesciption={props.bio}
@@ -430,7 +437,7 @@ function SingleNotification(props) {
                     className={`${classes.hoverProfile}  ${classes.bot}`}
                   >
                     <MiniProfile
-                      profilePic={props.profilePicture}
+                      profilePic={picture_url}
                       name={props.person}
                       userName={props.personID}
                       profileDesciption={props.bio}
