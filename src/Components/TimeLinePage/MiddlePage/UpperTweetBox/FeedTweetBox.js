@@ -66,7 +66,7 @@ export default function FeedTweetBox(props) {
 
   const [banned, setBanned] = useState(false);
   const handleOpenModal = (val) => {
-    setBanned(val)
+    setBanned(val);
   };
 
   function postTweet() {
@@ -76,13 +76,17 @@ export default function FeedTweetBox(props) {
       setBanned(true);
       return;
     }
-
+    const config = {
+      headers: { "Content-Type": "multipart/form-data;" },
+    };
+    const formData = new FormData();
+    const media = images.map((img) => {
+      return img.file;
+    });
+    formData.append("content", tweetContent);
+    formData.append("media", media);
     instance
-      .post("/status/tweet/post", {
-        content: tweetContent,
-        //to be done nexxt phase
-        // media_ids: images,
-      })
+      .post("/status/tweet/post", formData, config)
       .catch((err) => {
         console.log(err);
       })
@@ -146,8 +150,9 @@ export default function FeedTweetBox(props) {
             <div className="boxInput">
               <div className="profileImgOpacity">
                 <NavLink
-                  to={`userprofile/${loggedUser ? loggedUser.username : "amrzaki"
-                    }`}
+                  to={`userprofile/${
+                    loggedUser ? loggedUser.username : "amrzaki"
+                  }`}
                 >
                   <img
                     className={classes.profilePic + " " + classes.minip}
@@ -176,6 +181,7 @@ export default function FeedTweetBox(props) {
                     <div className={classes.container}>
                       {imageList.map((image, index) => (
                         <PhotosContainer
+                          key={index}
                           photos={image}
                           onUpdate={() => onImageUpdate(index)}
                           onRemove={() => onImageRemove(index)}
@@ -195,8 +201,9 @@ export default function FeedTweetBox(props) {
               </form>
             </div>
             <div
-              className={`buttons  ${!props.isReply || show ? classes.show : classes.hidden
-                }`}
+              className={`buttons  ${
+                !props.isReply || show ? classes.show : classes.hidden
+              }`}
             >
               {/* // write your building UI */}
               <div className="upload__image-wrapper">
@@ -205,7 +212,7 @@ export default function FeedTweetBox(props) {
                   text="Media"
                   // style={isDragging ? { color: "red" } : null}
                   onClick={onImageUpload}
-                // {...dragProps}
+                  // {...dragProps}
                 />
 
                 {/* <button
@@ -239,7 +246,10 @@ export default function FeedTweetBox(props) {
                 onClick={togglePollView}
                 text="Poll"
               />
-              <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
+              <FeedBoxButton
+                Icon={SentimentSatisfiedOutlinedIcon}
+                text="Emoji"
+              />
               <FeedBoxButton
                 Icon={DateRangeOutlinedIcon}
                 onClick={toggleScheduleView}
@@ -256,7 +266,6 @@ export default function FeedTweetBox(props) {
             </div>
           </div>
         )}
-
       </ImageUploading>
       {banned && (
         <ErrorModal

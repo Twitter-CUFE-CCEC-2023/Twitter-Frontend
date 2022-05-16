@@ -66,8 +66,10 @@ padding: 10px;
 
 .actions {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   padding: 10px 20px;
+  align-items: center;
+  justify-content: flex-end;
 }
 .button {
   padding: 7px;

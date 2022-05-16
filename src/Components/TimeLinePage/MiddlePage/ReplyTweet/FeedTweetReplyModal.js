@@ -7,15 +7,21 @@ import TweetReplyBody from "./TweetReplyBody";
 import x from "../../../../Assets/icons/close.png";
 import instance from "../../../axios";
 import ErrorModal from "../../BanModal/ErrorModal";
-
+import LoadingSpinner from "../../../AdminPage/AdminComponents/LoadingSpinner";
 function FeedTweetReplyModal(props) {
   const [tweetContent, setTweetContent] = useState("");
   const [banned, setBanned] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleOpenModal = (val) => {
     setBanned(val);
   };
+  function setIsLoadingTrue() {
+    setIsLoading(true);
+  }
 
   function replyTweet(e) {
+    setIsLoadingTrue();
     const isBanned = JSON.parse(localStorage.getItem("UserInfo")).isBanned;
     if (isBanned === true) {
       setBanned(true);
@@ -29,12 +35,13 @@ function FeedTweetReplyModal(props) {
       })
       .then((res) => {
         console.log(res);
-        props.onGoBack();
+        props.onHide();
       })
       .catch((err) => {
         console.log(err);
         // setError(1);
       });
+    setIsLoading(false);
   }
 
   return (
@@ -74,7 +81,8 @@ function FeedTweetReplyModal(props) {
           <FeedBoxButton Icon={SentimentSatisfiedOutlinedIcon} text="Emoji" />
           <FeedBoxButton Icon={DateRangeOutlinedIcon} text="Schedule" />
           <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" /> */}
-
+          {isLoading && <LoadingSpinner></LoadingSpinner>}
+          {/* <LoadingSpinner></LoadingSpinner> */}
           <button className={classes.button} onClick={replyTweet}>
             reply
           </button>
