@@ -76,17 +76,17 @@ export default function FeedTweetBox(props) {
       setBanned(true);
       return;
     }
-    const config = {
-      headers: { "Content-Type": "multipart/form-data;" },
-    };
+
     const formData = new FormData();
     const media = images.map((img) => {
       return img.file;
     });
+    for (let i = 0; i < media.length; i++) {
+      formData.append("media", media[i]);
+    }
     formData.append("content", tweetContent);
-    formData.append("media", media);
     instance
-      .post("/status/tweet/post", formData, config)
+      .post("/status/tweet/post", formData)
       .catch((err) => {
         console.log(err);
       })
