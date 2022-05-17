@@ -67,7 +67,6 @@ export default function Feed(props) {
     }
     newTweets.forEach((APItweet) => {
 
-      console.log("APItweet", APItweet);
       let tweet =APItweet ? {
         name: APItweet.user.name,
         profilePic: APItweet.user.profile_image_url

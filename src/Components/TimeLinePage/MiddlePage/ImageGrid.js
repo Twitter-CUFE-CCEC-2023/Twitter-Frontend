@@ -27,8 +27,19 @@ function ImageGrid(props) {
     }
 
     let gridStyle;
-
-    if(props.media.length !== 3){
+    if(props.media.length === 4){
+        console.log('four');
+        gridStyle = (rows, cols) => ({
+            marginRight: '80px',
+            marginTop: '5px',
+            display: 'grid',
+            boxSizing : 'border-box',
+            gridTemplateColumns: `repeat(2, 1fr)`,
+            gridTemplateRows: `repeat(2, 140.75px)`,
+            gridGap: '2px',
+        });
+    }
+    else if(props.media.length !== 3){
         gridStyle = (rows, cols) => ({
             marginRight: '80px',
             marginTop: '5px',
@@ -39,6 +50,7 @@ function ImageGrid(props) {
             gridGap: '2px',
         });
     }
+    
     else{
         gridStyle = (rows, cols) => (
             {
