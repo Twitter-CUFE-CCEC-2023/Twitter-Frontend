@@ -67,7 +67,6 @@ export default function Feed(props) {
     }
     newTweets.forEach((APItweet) => {
 
-      console.log("APItweet", APItweet);
       let tweet =APItweet ? {
         name: APItweet.user.name,
         profilePic: APItweet.user.profile_image_url
@@ -83,6 +82,7 @@ export default function Feed(props) {
         tweetId: APItweet.id,
         date: APItweet.created_at,
         replies: APItweet.replies,
+        repliesCount : APItweet.replies_count,
         likes: APItweet.likes_count,
         retweets: APItweet.retweets_count,
         quotes: APItweet.quotes_count,

@@ -4,8 +4,9 @@ import classes1 from "../ProfileSection.module.css";
 import React, { useState } from "react";
 import UserNameItem from "./UserNameItem";
 export default function AccountInfo(props) {
+  const accName = JSON.parse(localStorage.getItem("UserInfo")).username;
   const [Info, setInfo] = useState([
-    { id: 0, name: "username", value: "mena_lateaf" },
+    { id: 0, name: "username", value: accName },
     { id: 1, name: "Phone", value: "01276011964" },
     { id: 2, name: "email", value: "mena.lateaf@gmail.com" },
     { id: 3, name: "verified", value: false },

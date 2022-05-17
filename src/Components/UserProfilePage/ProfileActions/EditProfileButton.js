@@ -5,6 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import InputBox from "./InputBox";
 import ImageUploader from "./ImageUploader";
 import instance from "../../axios";
+import { useNextMonthDisabled } from "@mui/lab/internal/pickers/hooks/date-helpers-hooks";
 
 function EditProfileButton(props) {
   const [fileData, setFileData] = useState();
@@ -46,25 +47,45 @@ function EditProfileButton(props) {
         : "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
     );
   };
-  const onSaveEdits = () => {
-    const media=[croppedProfilePhoto,croppedCoverPhoto]
+  const onSaveEdits = async () => {
+    //convert blob to file
+    const profileFile = await fetch(croppedProfilePhoto)
+      .then((r) => r.blob())
+      .then((blobFile) => new File([blobFile], "file.jpeg", {type: "image/jpeg"}));
+    const coverFile = await fetch(croppedCoverPhoto)
+      .then((r) => r.blob())
+      .then((blobFile) => new File([blobFile], "file.jpeg", { type: "image/jpeg" }));
+      
     let formData = new FormData();
-    formData.append("media", media);
     formData.append("name", name);
     formData.append("bio", bio);
     formData.append("website", website);
     formData.append("location", location);
     formData.append("birth_date", birth_date);
-    const config = {     
-      headers: { 'content-type': 'multipart/form-data' }
-  }
-    
-    console.log('formmm data',formData)
+    formData.append("media", profileFile);
+    formData.append("media", coverFile);
+
     instance
-      .put(`/user/update-profile`, formData, config)
+      .put(`/user/update-profile`, formData)
       .then((res) => {
-        console.log('edited',res);
-        props.setData(res.data.user)
+        props.setData(res.data.user);
+        console.log("response on update",res.data.user);
+        let localStorageData={
+          name: res.data.user.name,
+          bio: res.data.user.bio,
+          website: res.data.user.website,
+          location: res.data.user.location,
+          birth_date: res.data.user.birth_date,
+          profile_image_url: res.data.user.profile_image_url,
+          cover_image_url: res.data.user.cover_image_url,
+          username:res.data.user.username
+
+        }
+        console.log('send data',localStorageData);
+        
+        //reload page
+        if(currentuser.profile_image_url!==res.data.user.profile_image_url || currentuser.name!==res.data.user.name){
+        window.location.reload();}
         localStorage.setItem("UserInfo", JSON.stringify(res.data.user));
       })
       .catch((err) => {

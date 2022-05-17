@@ -30,7 +30,8 @@ export default function AccountInfo(props) {
     if (
       oldPassword.trim() != "" &&
       NewPassword.trim() == ConfirmedPassword.trim() &&
-      NewPassword.trim() != ""
+      NewPassword.trim() != "" &&
+      NewPassword.length >= 8
     ) {
       setRed(false);
     } else {
