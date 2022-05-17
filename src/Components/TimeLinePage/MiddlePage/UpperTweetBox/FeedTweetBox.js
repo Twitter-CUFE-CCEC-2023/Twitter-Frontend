@@ -85,6 +85,9 @@ export default function FeedTweetBox(props) {
       formData.append("media", media[i]);
     }
     formData.append("content", tweetContent);
+    if(props.isReply){
+      formData.append("replied_to_tweet", props.topTweetId);
+    }
     instance
       .post("/status/tweet/post", formData)
       .catch((err) => {

@@ -184,10 +184,10 @@ function TweetAndReplies(props) {
           setIncrement={props.setIncrement}
         />
       </div>
-      {/* <div className={classes.tbox}>
+      <div className={classes.tbox}>
         {" "}
-        <FeedTweetBox isReply={true} />{" "}
-      </div> */}
+        <FeedTweetBox isReply={true} topTweetId = {topTweet.tweetId} />{" "}
+      </div>
       {isLoading && (
         <ReactLoading
           type={"spin"}
