@@ -70,7 +70,7 @@ function SingleNotification(props) {
               <div className="col-8 pt-3 mb-2">
                 <p
                   className={classes.notedescription}
-                  style={{ marginLeft: "0.25em", marginTop: "-0.2em" }}
+                  style={{ marginLeft: "0.25em", marginTop: "-0.8em" }}
                 >
                   <strong>{description}</strong>
                 </p>

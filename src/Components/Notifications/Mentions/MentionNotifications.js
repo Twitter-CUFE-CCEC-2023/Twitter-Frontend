@@ -84,6 +84,16 @@ function MentionNotifications(props) {
           is_read: notes.is_read,
           note_id: notes._id,
           isFollowing: notes.related_user.is_followed,
+          topUser: {
+            name: currentUser.name,
+            profilePic: currentUser.profile_image_url,
+            userName: currentUser.username,
+            isVerified: currentUser.isVerified,
+            bio: currentUser.bio,
+            followers: currentUser.followers_count,
+            following: currentUser.following_count,
+            isFollowing: currentUser.is_followed,
+          },
         };
         setRepliesNum(repliesNum + 1);
       } else {
