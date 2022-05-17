@@ -43,7 +43,6 @@ function TweetAndReplies(props) {
         });
     }
 
-
     let tweet = {
       name: maintweet.user.name,
       profilePic: maintweet.user.profile_image_url,
@@ -73,8 +72,8 @@ function TweetAndReplies(props) {
       bio: maintweet.user.bio,
       followers: maintweet.user.followers_count,
       following: maintweet.user.following_count,
-      isFollowing: maintweet.user.is_followed
-    }
+      isFollowing: maintweet.user.is_followed,
+    };
     let repl = replies.map((reply) => {
       return {
         name: reply.user.name,
@@ -110,17 +109,33 @@ function TweetAndReplies(props) {
   //console.log(replies);
 
   let history = useHistory();
-  let prevPath = localStorage.getItem("currentPage") ? localStorage.getItem("currentPage") : "/home";
+  let prevPath = localStorage.getItem("currentPage")
+    ? localStorage.getItem("currentPage")
+    : "/home";
 
   if (isLoading) {
     return (
-      <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
-        {!props.isShowPhotos && <div className={classes.tweetHeader}>
-          <NavLink className={classes.nlink} to={prevPath} onClick={() => { localStorage.setItem("currentPage", prevPath); history.push(prevPath); window.location.reload(); }}>
-            <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
-          </NavLink>
-          <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
-        </div>}
+      <div
+        className={`${classes.TweetAndReplies} ${
+          props.isShowPhotos && classes.widthPhotos
+        }`}
+      >
+        {!props.isShowPhotos && (
+          <div className={classes.tweetHeader}>
+            <NavLink
+              className={classes.nlink}
+              to={prevPath}
+              onClick={() => {
+                localStorage.setItem("currentPage", prevPath);
+                history.push(prevPath);
+                window.location.reload();
+              }}
+            >
+              <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
+            </NavLink>
+            <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
+          </div>
+        )}
         {isLoading && (
           <ReactLoading
             type={"spin"}
@@ -135,20 +150,44 @@ function TweetAndReplies(props) {
   }
 
   return (
-    <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
-      {!props.isShowPhotos && <div className={classes.tweetHeader}>
-        <NavLink className={classes.nlink} to={prevPath} onClick={() => { localStorage.setItem("currentPage", prevPath); history.push(localStorage.getItem("homeBack") === String(topTweet.tweetId) ? "/home" : prevPath); window.location.reload(); }}>
-          <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
-        </NavLink>
-        <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
-      </div>}
+    <div
+      className={`${classes.TweetAndReplies} ${
+        props.isShowPhotos && classes.widthPhotos
+      }`}
+    >
+      {!props.isShowPhotos && (
+        <div className={classes.tweetHeader}>
+          <NavLink
+            className={classes.nlink}
+            to={prevPath}
+            onClick={() => {
+              localStorage.setItem("currentPage", prevPath);
+              history.push(
+                localStorage.getItem("homeBack") === String(topTweet.tweetId)
+                  ? "/home"
+                  : prevPath
+              );
+              window.location.reload();
+            }}
+          >
+            <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
+          </NavLink>
+          <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
+        </div>
+      )}
       <div data-testid="topTweet">
-        <FeedTweet isShowPhotos={props.isShowPhotos} isTopTweet={true} {...topTweet} setPhotosActive={props.setPhotosActive} setIncrement={props.setIncrement} />
+        <FeedTweet
+          isShowPhotos={props.isShowPhotos}
+          isTopTweet={true}
+          {...topTweet}
+          setPhotosActive={props.setPhotosActive}
+          setIncrement={props.setIncrement}
+        />
       </div>
-      <div className={classes.tbox}>
+      {/* <div className={classes.tbox}>
         {" "}
         <FeedTweetBox isReply={true} />{" "}
-      </div>
+      </div> */}
       {isLoading && (
         <ReactLoading
           type={"spin"}

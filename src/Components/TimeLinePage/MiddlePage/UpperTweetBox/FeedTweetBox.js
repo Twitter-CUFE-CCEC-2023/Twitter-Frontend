@@ -91,7 +91,7 @@ export default function FeedTweetBox(props) {
         console.log(err);
       })
       .then((response) => {
-        props.onAddTweet(response.data.tweet);
+        // props.onAddTweet(response.data.tweet);
         console.log(response);
       });
 

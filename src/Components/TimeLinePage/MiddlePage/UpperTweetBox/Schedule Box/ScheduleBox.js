@@ -4,6 +4,7 @@ import event from "../../../../../Assets/icons/event.png";
 import classes from "./ScheduleBox.module.css";
 import PrettySelect from "../PollBox/PrettySelect";
 import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
+import { set } from "date-fns";
 
 export default function ScheduleBox(props) {
   const [c_month, set_c_month] = useState(9);
@@ -12,7 +13,17 @@ export default function ScheduleBox(props) {
   const [c_hour, set_c_hour] = useState(12);
   const [c_min, set_c_min] = useState(0);
   const [c_tz, set_c_tz] = useState("a");
-
+  function clearData() {
+    set_c_month(9);
+    set_c_day(1);
+    set_c_year(2022);
+    set_c_hour(12);
+    set_c_min(0);
+    set_c_tz("a");
+    seteventContent(new Date(2022, 9, 1, 0, 0, 0));
+    eventContentComp = new Date(2022, 9, 1, 0, 0, 0);
+    dateCompare();
+  }
   const days = {
     1: "1",
     2: "2",
@@ -156,22 +167,37 @@ export default function ScheduleBox(props) {
   }
   function changeMonth(val) {
     set_c_month(val);
-    seteventContent(new Date(c_year, val, c_day, c_hour, c_min, 0));
-    eventContentComp = new Date(c_year, val, c_day, c_hour, c_min, 0);
+
+    let hour = c_hour;
+    if (c_tz === "p") hour = 12 - -hour;
+    if (c_hour == 12) hour -= 12;
+
+    seteventContent(new Date(c_year, val, c_day, hour, c_min, 0));
+    eventContentComp = new Date(c_year, val, c_day, hour, c_min, 0);
     dateCompare();
   }
 
   function changeDay(val) {
     set_c_day(val);
-    seteventContent(new Date(c_year, c_month, val, c_hour, c_min, 0));
-    eventContentComp = new Date(c_year, c_day, val, c_hour, c_min, 0);
+
+    let hour = c_hour;
+    if (c_tz === "p") hour = 12 - -hour;
+    if (c_hour == 12) hour -= 12;
+
+    seteventContent(new Date(c_year, c_month, val, hour, c_min, 0));
+    eventContentComp = new Date(c_year, c_month, val, hour, c_min, 0);
     dateCompare();
   }
 
   function changeYear(val) {
     set_c_year(val);
-    seteventContent(new Date(val, c_month, c_day, c_hour, c_min, 0));
-    eventContentComp = new Date(val, c_month, c_day, c_hour, c_min, 0);
+
+    let hour = c_hour;
+    if (c_tz === "p") hour = 12 - -hour;
+    if (c_hour == 12) hour -= 12;
+
+    seteventContent(new Date(val, c_month, c_day, hour, c_min, 0));
+    eventContentComp = new Date(val, c_month, c_day, hour, c_min, 0);
     dateCompare();
   }
 
@@ -179,6 +205,7 @@ export default function ScheduleBox(props) {
     set_c_hour(val);
     let hour = val;
     if (c_tz === "p") hour = 12 - -hour;
+    if (val == 12) hour -= 12;
     seteventContent(new Date(c_year, c_month, c_day, hour, c_min, 0));
     eventContentComp = new Date(c_year, c_month, c_day, hour, c_min, 0);
     dateCompare();
@@ -186,14 +213,20 @@ export default function ScheduleBox(props) {
 
   function changeMin(val) {
     set_c_min(val);
-    seteventContent(new Date(c_year, c_month, c_day, c_hour, val, 0));
-    eventContentComp = new Date(c_year, c_month, c_day, c_hour, val, 0);
+
+    let hour = c_hour;
+    if (c_tz === "p") hour = 12 - -hour;
+    if (c_hour == 12) hour -= 12;
+
+    seteventContent(new Date(c_year, c_month, c_day, hour, val, 0));
+    eventContentComp = new Date(c_year, c_month, c_day, hour, val, 0);
     dateCompare();
   }
   function changeTZ(val) {
     set_c_tz(val);
     let hour = c_hour;
     if (val === "p") hour = 12 - -hour;
+    if (c_hour == 12) hour -= 12;
     seteventContent(new Date(c_year, c_month, c_day, hour, c_min, 0));
     eventContentComp = new Date(c_year, c_month, c_day, hour, c_min, 0);
     dateCompare();
@@ -208,7 +241,12 @@ export default function ScheduleBox(props) {
             src={x}
             onClick={props.onHide}
           ></img>
-          <div className={classes["header-div"]}>Schedule</div>
+          <div className={classes["header-div"]}>
+            <span>Schedule</span>
+            <span className={classes["header-clear"]} onClick={clearData}>
+              clear
+            </span>
+          </div>
           <button
             className={classes["header-button"]}
             onClick={(e) => {
