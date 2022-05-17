@@ -48,35 +48,25 @@ function EditProfileButton(props) {
     );
   };
   const onSaveEdits = async () => {
-    const profilefileBlob = await fetch(croppedProfilePhoto)
-      .then((r) => r.blob());
-    const coverfileBlob = await fetch(croppedCoverPhoto)
-      .then((r) => r.blob());
-
-    function getBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-      });
-    }
-    const profilePhotoData = await getBase64(profilefileBlob);
-    const coverPhotoData = await getBase64(coverfileBlob);
-
+    //convert blob to file
+    const profileFile = await fetch(croppedProfilePhoto)
+      .then((r) => r.blob())
+      .then((blobFile) => new File([blobFile], "file.jpeg", {type: "image/jpeg"}));
+    const coverFile = await fetch(croppedCoverPhoto)
+      .then((r) => r.blob())
+      .then((blobFile) => new File([blobFile], "file.jpeg", { type: "image/jpeg" }));
+      
     let formData = new FormData();
     formData.append("name", name);
     formData.append("bio", bio);
     formData.append("website", website);
     formData.append("location", location);
     formData.append("birth_date", birth_date);
-    formData.append("profile_picture", profilePhotoData);
-    formData.append("cover_picture", coverPhotoData);
-    const config = {
-      headers: { "Content-Type": "multipart/form-data;" },
-    };
+    formData.append("media", profileFile);
+    formData.append("media", coverFile);
+
     instance
-      .put(`/user/update-profile`, formData, config)
+      .put(`/user/update-profile`, formData)
       .then((res) => {
         props.setData(res.data.user);
         console.log("response on update",res.data.user);
