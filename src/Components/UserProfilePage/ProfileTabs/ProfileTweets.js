@@ -126,6 +126,7 @@ function ProfileTweets(props) {
         tweetId: APItweet.id,
         date: APItweet.created_at,
         replies: APItweet.replies,
+        repliesCount : APItweet.replies_count,
         likes: APItweet.likes_count,
         retweets: APItweet.retweets_count,
         quotes: APItweet.quotes_count,

@@ -26,6 +26,15 @@ function TweetAndReplies(props) {
   React.useEffect(() => getTweet(), [props.increment]);
 
   const getTweet = async () => {
+    const splitPath = prevPath.split("/");
+    if (splitPath.length < 4) {
+      const prevPage = {
+        prevPath: prevPath,
+        tweetId : id,       
+      }
+      localStorage.setItem("homeBack", JSON.stringify(prevPage));
+    }
+
     let maintweet;
     let replies;
     if (!isMock) {
@@ -101,12 +110,19 @@ function TweetAndReplies(props) {
     setTopUser(tu);
     setReplies(repl);
     setLoading(false);
-    if (prevPath === "/home") {
-      localStorage.setItem("homeBack", String(tweet.tweetId));
-    }
+    
   };
 
   //console.log(replies);
+
+  function goBack(){
+    localStorage.setItem("currentPage", prevPath);
+    const prevPage = localStorage.getItem("homeBack") ? JSON.parse(localStorage.getItem("homeBack")) : null;
+    history.push(
+      prevPage && prevPage.tweetId === String(id) ? prevPage.prevPath : prevPath
+    );
+    window.location.reload();
+  }
 
   let history = useHistory();
   let prevPath = localStorage.getItem("currentPage")
@@ -125,11 +141,7 @@ function TweetAndReplies(props) {
             <NavLink
               className={classes.nlink}
               to={prevPath}
-              onClick={() => {
-                localStorage.setItem("currentPage", prevPath);
-                history.push(prevPath);
-                window.location.reload();
-              }}
+              onClick={goBack}
             >
               <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
             </NavLink>
@@ -160,15 +172,7 @@ function TweetAndReplies(props) {
           <NavLink
             className={classes.nlink}
             to={prevPath}
-            onClick={() => {
-              localStorage.setItem("currentPage", prevPath);
-              history.push(
-                localStorage.getItem("homeBack") === String(topTweet.tweetId)
-                  ? "/home"
-                  : prevPath
-              );
-              window.location.reload();
-            }}
+            onClick={goBack}
           >
             <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
           </NavLink>
