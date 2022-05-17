@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Box from "@mui/material/Box";
 import Dialog from '@mui/material/Dialog';
-import Typography from "@mui/material/Typography";
+import CloseIcon from '@mui/icons-material/Close';
 
 import classes from "./ProfilePhotoModal.module.css";
 import { DialogContent } from "@mui/material";

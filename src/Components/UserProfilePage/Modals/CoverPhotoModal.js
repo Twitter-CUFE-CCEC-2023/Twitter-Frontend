@@ -1,7 +1,5 @@
 import React, { Fragment, useEffect, useRef } from "react";
-import Box from "@mui/material/Box";
-import Dialog from "@mui/material/Dialog";
-import Typography from "@mui/material/Typography";
+import CloseIcon from '@mui/icons-material/Close';
 
 import classes from "./CoverPhotoModal.module.css";
 
@@ -18,9 +16,10 @@ function CoverPhotoModal(props) {
         setOpen(false);
       }}
         className={`${
-          open===true ? classes.coverPhotoModalOpened : classes.coverPhotoModalClosed
+          props.isOpen===true ? classes.coverPhotoModalOpened : classes.coverPhotoModalClosed
         }`}
       >
+        <CloseIcon className={`${classes.closeIcon}`}/>
         <div
           className={classes.coverPhotoModalContent}
           onClick={(e) => {

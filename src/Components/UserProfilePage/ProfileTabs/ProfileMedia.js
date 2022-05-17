@@ -129,6 +129,7 @@ function ProfileMedia(props) {
         isLiked: APItweet.is_liked,
         isRetweeted: APItweet.is_retweeted,
         is_Reply: APItweet.is_reply,
+        repliesCount : APItweet.replies_count,
         media: APItweet.media,
       };
       setTweets((prevTweets) => {

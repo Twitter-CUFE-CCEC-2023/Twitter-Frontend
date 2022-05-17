@@ -85,23 +85,7 @@ function ProfileTweetsAndReplies(props) {
         userTweets = tweets.data.tweets;
       }
     }
-    //get user tweets from mock api
-    // else {
-    //   await fetch(
-    //     `http://localhost:3000/usertweets/${userName}?_page=${pageNumber}&_limit=5`
-    //   )
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       userTweets = data.tweets;
-    //       console.log("userTweets", data);
-    //     });
 
-    //   await fetch(`http://localhost:3000/users/${userName}`)
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       currentUserTweets = data;
-    //     });
-    // }
     userTweets.forEach((APItweet) => {
       if (props.testUrl) {
         currentUserTweets = {
@@ -130,12 +114,14 @@ function ProfileTweetsAndReplies(props) {
         replies: APItweet.replies,
         likes: APItweet.likes_count,
         retweets: APItweet.retweets_count,
+        repliesCount: APItweet.replies.length,
         quotes: APItweet.quotes_count,
         isLiked: APItweet.is_liked,
         isRetweeted: APItweet.is_retweeted,
-        is_Reply: APItweet.is_reply,
+        isTweetReply: APItweet.is_reply,
         media: APItweet.media,
       };
+      console.log("tweet and reply", tweet);
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
       });
