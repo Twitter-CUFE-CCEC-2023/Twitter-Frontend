@@ -92,6 +92,7 @@ export default function FeedTweetBox(props) {
       })
       .then((response) => {
         props.onAddTweet(response.data.tweet);
+        console.log(response);
       });
 
     // props.changePostingTweet();

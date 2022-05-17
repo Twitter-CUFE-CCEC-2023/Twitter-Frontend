@@ -24,7 +24,8 @@
 left: 50%;
 transform: translate(-50%,-50%);
 cursor: default;
-
+overflow: auto;
+max-height: 90%;
 }
 
 .header {
