@@ -6,8 +6,9 @@ import ReactLoading from "react-loading";
 import axios from "axios";
 import instance from "../../axios";
 import { useParams } from "react-router-dom";
+import classes from "./ProfileTweets.module.css";
 
-function ProfileMedia() {
+function ProfileMedia(props) {
   const pathlocation = useLocation();
   let userInPath = pathlocation.pathname.split("/")[2];
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
@@ -15,19 +16,17 @@ function ProfileMedia() {
   const location = useLocation();
   let { userName } = useParams();
 
-
   if (currentuser) {
     currentuserName = currentuser.username;
   }
 
-
   const [user, setUser] = useState({});
 
-  
   const [isLoading, setLoading] = useState(true);
   const [tweets, setTweets] = useState([]);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
+  const [followingSet, setFollowingSet] = React.useState(new Set());
   let isMock = localStorage.getItem("isMock") === "true";
   let userTweets;
   const observer = useRef();
@@ -45,7 +44,6 @@ function ProfileMedia() {
     [isLoading, hasMore]
   );
 
-
   useEffect(() => {
     getTweets();
   }, [pageNumber]);
@@ -59,7 +57,7 @@ function ProfileMedia() {
     if (!isMock) {
       if (!props.testUrl) {
         const tweets = await instance
-          .get(`/status/tweets/list/${userName}/${pageNumber}/3`)
+          .get(`/media/list/${userName}/${pageNumber}/3`)
           .catch(function (error) {
             if (error.response) {
               // Request made and server responded
@@ -118,8 +116,9 @@ function ProfileMedia() {
         userName: currentUserTweets.username,
         isVerified: currentUserTweets.isVerified,
         bio: currentUserTweets.bio,
-        followers_count: currentUserTweets.followers_count,
-        following_count: currentUserTweets.following_count,
+        isFollowing: currentUserTweets.is_followed,
+        followers: currentUserTweets.followers_count,
+        following: currentUserTweets.following_count,
         text: APItweet.content,
         tweetId: APItweet.id,
         date: APItweet.created_at,
@@ -130,6 +129,7 @@ function ProfileMedia() {
         isLiked: APItweet.is_liked,
         isRetweeted: APItweet.is_retweeted,
         is_Reply: APItweet.is_reply,
+        media: APItweet.media,
       };
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
@@ -157,8 +157,64 @@ function ProfileMedia() {
     setLoading(false);
   };
   return (
-    <div>ProfileMedia</div>
-  )
+    <div>
+      <div>
+        {/* FOR TWEETS */}
+        {tweets.map((tweet, index) => {
+          if (index === tweets.length - 1) {
+            return (
+              <div ref={lastTweetElementRef} key={index}>
+                <FeedTweet
+                  {...tweet}
+                  setPhotosActive={props.setPhotosActive}
+                  setIncrement={props.setIncrement}
+                  followingSet={followingSet}
+                  setFollowingSet={setFollowingSet}
+                  showAction={true}
+                />
+              </div>
+            );
+          } else {
+            return (
+              <div data-testid={`${index}`}>
+                {" "}
+                <FeedTweet
+                  {...tweet}
+                  setPhotosActive={props.setPhotosActive}
+                  setIncrement={props.setIncrement}
+                  followingSet={followingSet}
+                  setFollowingSet={setFollowingSet}
+                  key={index}
+                  showAction={true}
+                />{" "}
+              </div>
+            );
+          }
+        })}
+        {isLoading && (
+          <ReactLoading
+            type={"spin"}
+            color={"#1DA1F2"}
+            height={"4%"}
+            width={"4%"}
+            className={`${classes.loadingIcon}`}
+          />
+        )}
+        {tweets.length === 0 && !isLoading && (
+          <div>
+          <div className="row">
+            <img src="https://abs.twimg.com/sticky/illustrations/empty-states/masked-doll-head-with-camera-800x400.v1.png" alt="" />
+          </div>
+          <div className={classes.noTweetsContainer}>
+
+            <h1>{user.userName} hasn’t Tweeted media</h1>
+          </div>
+          </div>
+        )}
+      </div>
+      
+    </div>
+  );
 }
 
-export default ProfileMedia
+export default ProfileMedia;

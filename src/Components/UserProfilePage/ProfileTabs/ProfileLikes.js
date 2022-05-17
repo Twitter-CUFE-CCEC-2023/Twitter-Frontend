@@ -6,9 +6,9 @@ import ReactLoading from "react-loading";
 import axios from "axios";
 import instance from "../../axios";
 import { useParams } from "react-router-dom";
-import classes from "./ProfileLikes.module.css";
+import classes from "./ProfileTweets.module.css";
 
-function ProfileLikes() {
+function ProfileLikes(props) {
   const pathlocation = useLocation();
   let userInPath = pathlocation.pathname.split("/")[2];
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
@@ -26,6 +26,7 @@ function ProfileLikes() {
   const [tweets, setTweets] = useState([]);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
+  const [followingSet, setFollowingSet] = React.useState(new Set());
   let isMock = localStorage.getItem("isMock") === "true";
   let userTweets;
   const observer = useRef();
@@ -75,7 +76,7 @@ function ProfileLikes() {
         currentUser = await instance.get(`/info/${userName}`);
         userTweets = tweets.data.tweets;
         currentUserTweets = currentUser.data.user;
-        console.log('likes',tweets);
+        console.log("likes", tweets);
       } else {
         // const tweets = await axios.get(props.testUrl);
         // userTweets = tweets.data.tweets;
@@ -165,14 +166,29 @@ function ProfileLikes() {
           if (index === tweets.length - 1) {
             return (
               <div ref={lastTweetElementRef} key={index}>
-                <FeedTweet {...tweet} showAction={true} />
+                <FeedTweet
+                  {...tweet}
+                  setPhotosActive={props.setPhotosActive}
+                  setIncrement={props.setIncrement}
+                  followingSet={followingSet}
+                  setFollowingSet={setFollowingSet}
+                  showAction={true}
+                />
               </div>
             );
           } else {
             return (
               <div data-testid={`${index}`}>
                 {" "}
-                <FeedTweet {...tweet} key={index} showAction={true} />{" "}
+                <FeedTweet
+                  {...tweet}
+                  setPhotosActive={props.setPhotosActive}
+                  setIncrement={props.setIncrement}
+                  followingSet={followingSet}
+                  setFollowingSet={setFollowingSet}
+                  key={index}
+                  showAction={true}
+                />{" "}
               </div>
             );
           }
@@ -186,6 +202,14 @@ function ProfileLikes() {
             className={`${classes.loadingIcon}`}
           />
         )}
+        {tweets.length === 0 && !isLoading &&
+          <div className={classes.noLikesContainer}>
+            <h1>{userName}</h1>
+            <h1>hasn’t liked </h1>
+            <h1>any Tweets</h1>
+            </div>
+
+        }
       </div>
     </div>
   );

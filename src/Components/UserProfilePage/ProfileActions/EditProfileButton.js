@@ -88,8 +88,8 @@ function EditProfileButton(props) {
 
         //reload page
         if (
-          currentuser.profile_image_url !== res.data.user.profile_image_url ||
-          currentuser.name !== res.data.user.name
+          currentuser.profile_image_url != res.data.user.profile_image_url ||
+          currentuser.name != res.data.user.name
         ) {
           window.location.reload();
         }

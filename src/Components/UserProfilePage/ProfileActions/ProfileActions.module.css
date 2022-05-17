@@ -43,3 +43,17 @@
     border-color: rgb(209, 213, 219);
     background-color: rgb(209, 213, 219);
   }
+
+@media screen and (max-width: 409px) {
+  .messageButton{
+    display: none !important;
+}
+  .settingButton{
+      display: none;
+  }
+  .followButtonDiv{
+    margin-left: 0.5em !important;
+    margin-right: 1.7em !important;
+  }
+}
+  

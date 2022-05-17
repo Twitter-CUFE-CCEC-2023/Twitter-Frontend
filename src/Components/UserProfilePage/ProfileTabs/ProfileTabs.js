@@ -12,6 +12,8 @@ import instance from "../../axios";
 import { useParams } from "react-router-dom";
 import ProfileTweets from "./ProfileTweets";
 import ProfileLikes from "./ProfileLikes";
+import ProfileMedia from "./ProfileMedia";
+import ProfileTweetsAndReplies from "./ProfileTweetsAndReplies";
 
 function ProfileTabs(props) {
   const [tweetsSelected, setTweetsSelected] = useState(true);
@@ -164,8 +166,37 @@ function ProfileTabs(props) {
         </a>
       </div>
 
-      {tweetsType == "Tweets" && <ProfileTweets />}
-      {tweetsType == "Likes" && <ProfileLikes />}
+      {tweetsType == "Tweets" && (
+        <ProfileTweets
+          setPhotosActive={props.setPhotosActive}
+          setIncrement={props.setIncrement}
+          updateTweets={props.updateTweets}
+          currentTweet={props.currentTweet}
+        />
+      )}
+      {tweetsType == "Likes" && (
+        <ProfileLikes
+          setPhotosActive={props.setPhotosActive}
+          setIncrement={props.setIncrement}
+          updateTweets={props.updateTweets}
+          currentTweet={props.currentTweet}
+        />
+      )}
+      {tweetsType == "Media" && (
+        <ProfileMedia
+          setPhotosActive={props.setPhotosActive}
+          setIncrement={props.setIncrement}
+          updateTweets={props.updateTweets}
+          currentTweet={props.currentTweet}
+        />
+      )}
+      {tweetsType == "TweetsAndReplies" && (
+        <ProfileTweetsAndReplies
+        setPhotosActive={props.setPhotosActive}
+        setIncrement={props.setIncrement}
+        updateTweets={props.updateTweets}
+        currentTweet={props.currentTweet}/>
+      )}
     </Fragment>
   );
 }

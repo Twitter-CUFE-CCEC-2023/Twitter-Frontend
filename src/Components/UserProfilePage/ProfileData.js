@@ -7,6 +7,7 @@ import ProfileActions from "./ProfileActions/ProfileActions.js";
 import ProfileInfo from "./ProfileInfo";
 import ProfileTabs from "./ProfileTabs/ProfileTabs";
 import ProfilePhotoModal from "./Modals/ProfilePhotoModal";
+import CoverPhotoModal from "./Modals/CoverPhotoModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FeedTweet from "../../Components/TimeLinePage/MiddlePage/FeedTweet";
 import ReactLoading from "react-loading";
@@ -55,7 +56,7 @@ function ProfileData(props) {
   const [isLoading, setLoading] = useState(true);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
-  const[loaded, setLoaded] = React.useState(null);
+  const [loaded, setLoaded] = React.useState(null);
   let isMock = localStorage.getItem("isMock") === "true";
   let userTweets;
   const observer = useRef();
@@ -89,7 +90,6 @@ function ProfileData(props) {
     //get user tweets from api
     if (!isMock) {
       if (!props.testUrl) {
-
         currentUser = await instance.get(`/info/${userName}`);
         // userTweets = tweets.data.tweets;
         currentUserTweets = currentUser.data.user;
@@ -118,7 +118,7 @@ function ProfileData(props) {
       isFollowing: currentUserTweets.is_followed,
     });
     // setHasMore(userTweets.length === 3);
-     setLoading(false);
+    setLoading(false);
   };
 
   //profile photo open handeling
@@ -130,12 +130,30 @@ function ProfileData(props) {
       });
   };
 
+  //cover photo open handeling
+  const [openCoverPhoto, setOpenCoverPhoto] = useState(false);
+  const handleClose = () => {
+    console.log("openCoverPhoto", openCoverPhoto);
+    setOpenCoverPhoto(() => {
+      return false;
+    });
+  };
+  const handleOpen = () => {
+    setOpenCoverPhoto(() => {
+      return true;
+    });
+  };
   return (
     <div className={`${classes.profileDataContainer} `}>
       <ProfilePhotoModal
         isOpen={openProfilePhoto}
         handleProfilePhotoOpenAndClose={handleProfilePhotoOpenAndClose}
         profilePic={user.profilePic}
+      />
+      <CoverPhotoModal
+        isOpen={openCoverPhoto}
+        handleClose={handleClose}
+        coverPic={user.coverimage}
       />
       <div className={`${classes.header} row`}>
         <ProfileHeader
@@ -147,6 +165,7 @@ function ProfileData(props) {
       </div>
       <div className={`${classes.coverPhoto}  row `}>
         <CoverPhoto
+          onClickHandler={handleOpen}
           coverImage={
             user.coverimage
               ? user.coverimage
@@ -167,13 +186,15 @@ function ProfileData(props) {
         </div>
       </div>
       <div className={`${classes.profileActionsRow}  `}>
-        {<ProfileActions
-          isLoading={isLoading}
-          isFollowing={user.isFollowing}
-          username={user.userName}
-          isMyProfile={currentuserName === userInPath ? true : false}
-          setProfileData={handleProfileChange}
-        ></ProfileActions>}
+        {
+          <ProfileActions
+            isLoading={isLoading}
+            isFollowing={user.isFollowing}
+            username={user.userName}
+            isMyProfile={currentuserName === userInPath ? true : false}
+            setProfileData={handleProfileChange}
+          ></ProfileActions>
+        }
       </div>
       <div className={`${classes.profileInfo} row  my-4 mx-1`}>
         <ProfileInfo
@@ -188,10 +209,14 @@ function ProfileData(props) {
           following_count={user.following_count}
         ></ProfileInfo>
       </div>
-      
-        <ProfileTabs onChangeTab={changeTypeHandeler}></ProfileTabs>
-      
-      
+
+      <ProfileTabs
+        onChangeTab={changeTypeHandeler}
+        setPhotosActive={props.setPhotosActive}
+        setIncrement={props.setIncrement}
+        updateTweets={props.updateTweets}
+        currentTweet={props.currentTweet}
+      ></ProfileTabs>
     </div>
   );
 }

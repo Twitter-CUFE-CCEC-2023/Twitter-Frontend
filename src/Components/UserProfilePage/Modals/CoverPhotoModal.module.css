@@ -1,0 +1,69 @@
+.coverPhotoModalOpened {
+ /* Hidden by default */
+ display: block; /* Hidden by default */
+ position: fixed; /* Stay in place */
+  z-index: 2000; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  /* overflow: auto; Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+
+}
+
+.coverPhotoModalClosed {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2000; /* Sit on top */
+  /* padding-top: 100px; Location of the box */
+  left: 0;
+  top: 0;
+  width: 50%; /* Full width */
+  height: 50%; /* Full height */
+  /* overflow: auto; Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.coverPhotoModalContent {
+z-index: 1000;
+}
+
+.openedCoverPic {
+  object-fit: cover;
+}
+
+.imageBox {
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0px;
+  z-index: 2147483647 !important;
+}
+
+.coverPicDialog {
+  width: 100rem;
+  height: 400px;
+  background: transparent;
+  background-color: transparent;
+  color: transparent;
+}
+
+@media screen and (max-width: 500px) {
+  /* .openedCoverPic {
+          width: 290px;
+          height: 290px;
+        }  */
+}
+
+@media screen and (max-width: 370px) {
+  /* .openedCoverPic {
+          width: 220px;
+          height: 220px;
+        }  */
+}
