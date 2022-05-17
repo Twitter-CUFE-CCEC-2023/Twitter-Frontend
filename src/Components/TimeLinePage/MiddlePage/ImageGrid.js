@@ -28,7 +28,6 @@ function ImageGrid(props) {
 
     let gridStyle;
     if(props.media.length === 4){
-        console.log('four');
         gridStyle = (rows, cols) => ({
             marginRight: '80px',
             marginTop: '5px',
