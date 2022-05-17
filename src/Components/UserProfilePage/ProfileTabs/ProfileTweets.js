@@ -7,6 +7,7 @@ import axios from "axios";
 import instance from "../../axios";
 import { useParams } from "react-router-dom";
 import classes from "./ProfileTweets.module.css";
+import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 
 function ProfileTweets(props) {
   //GETTING TWEETS
@@ -83,23 +84,7 @@ function ProfileTweets(props) {
         userTweets = tweets.data.tweets;
       }
     }
-    //get user tweets from mock api
-    // else {
-    //   await fetch(
-    //     `http://localhost:3000/usertweets/${userName}?_page=${pageNumber}&_limit=5`
-    //   )
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       userTweets = data.tweets;
-    //       console.log("userTweets", data);
-    //     });
 
-    //   await fetch(`http://localhost:3000/users/${userName}`)
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       currentUserTweets = data;
-    //     });
-    // }
     userTweets.forEach((APItweet) => {
       if (props.testUrl) {
         currentUserTweets = {
@@ -115,7 +100,7 @@ function ProfileTweets(props) {
       }
       let tweet = {
         name: currentUserTweets.name, //user.name,
-        profilePic: currentUserTweets.profile_image_url,
+        profilePic: currentUserTweets.profile_image_url? currentUserTweets.profile_image_url : DefaultProfilePic,
         userName: currentUserTweets.username,
         isVerified: currentUserTweets.isVerified,
         bio: currentUserTweets.bio,
