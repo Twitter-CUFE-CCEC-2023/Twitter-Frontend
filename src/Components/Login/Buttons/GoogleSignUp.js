@@ -3,22 +3,12 @@ import { useHistory } from "react-router-dom";
 import classes from "./GoogleSignUp.module.css";
 import googleLogo from "../../../Assets/googleLogo.png";
 import axios from "../../axios";
+import { nodeJs } from "fontawesome";
 
 const GoogleSignUp = (props) => {
   const history = useHistory();
   const handleClick = () => {
-  axios
-    .get("/auth/google", {
-      headers: { "Content-Type": "application/json" },
-    })
-    .then((response) => {
-      console.log(response);
-      if (response.status === 200) {
-        console.log(response);
-        history.push("/home");
-      }
-    })
-    .catch((err) => { });
+    window.open("https://backlb.twittercloneteamone.tk/auth/google","_self");
   };
 
   return (
