@@ -15,7 +15,20 @@ import WrongData from "./InputField/InputField"
 const Mail = (props) => {
     
     const func = () => {
-        console.log("Hello");
+        axios
+            .post("/auth/gauth", {
+                headers: { "Content-Type": "application/json" },
+            })
+            .then((response) => {
+                if (response.status === 200) {
+                }
+                    if (response.data.user.role === "User") {
+                        
+                } else {
+                    
+                }
+            })
+            .catch((err) => {});
     }
     return (
         <div onLoad={func}>
