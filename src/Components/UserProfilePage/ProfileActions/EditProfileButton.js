@@ -203,7 +203,10 @@ function EditProfileButton(props) {
                   inputValue={currentuser.website}
                   onChangeVal={changeWebsiteVal}
                 ></InputBox>
-                <label for="birthday" className={`${classes.birthdayLabel}`}>
+                <label
+                  htmlFor="birthday"
+                  className={`${classes.birthdayLabel}`}
+                >
                   Birth date:
                 </label>
                 <br />

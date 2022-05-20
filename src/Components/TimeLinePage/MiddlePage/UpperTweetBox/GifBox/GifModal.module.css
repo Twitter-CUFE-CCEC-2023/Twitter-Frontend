@@ -6,24 +6,24 @@
     height: 100vh;
     background-color: black;
     opacity: 0.5;
-    z-index: 3;
+    z-index: 5;
   }
   .body {
     position: fixed;
     width: 30rem;
-    max-width: 90%;
-    z-index: 4;
+    max-width: 90vw;
+    z-index: 6;
     background-color: white;
     border-radius: 15px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     /* centering the element */
-    top: 50%;
-  left: 50%;
+    top: 50vh;
+  left: 50vw;
   transform: translate(-50%,-50%);
    overflow: auto;
-  max-height: 80%;
+  max-height: 80vh;
   }
   .header {
     display: flex;

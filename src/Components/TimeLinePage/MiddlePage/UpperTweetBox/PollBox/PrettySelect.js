@@ -10,7 +10,7 @@ export default function PrettySelect(props) {
   return (
     <select
       className={`form-select ${classes.width}${
-        props.classname ? props.classname : ""
+        props.className ? props.className : ""
       } ${props.red ? classes.red : ""}`}
       aria-label="Default select example"
       onChange={changeState}

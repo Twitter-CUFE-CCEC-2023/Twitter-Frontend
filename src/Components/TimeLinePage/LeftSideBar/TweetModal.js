@@ -16,8 +16,8 @@ function TweetModal(props) {
         </div>
         <div className={classes.message}>
           <FeedTweetBox
-            onAddTweet={props.addTweet}
-            changePostingTweet={props.changePostingTweet}
+            onAddTweet={props.onHide}
+            // changePostingTweet={props.changePostingTweet}
           ></FeedTweetBox>
         </div>
       </div>

@@ -5,6 +5,7 @@ import classes from "./ScheduleBox.module.css";
 import PrettySelect from "../PollBox/PrettySelect";
 import { datePickerDefaultProps } from "@material-ui/pickers/constants/prop-types";
 import { set } from "date-fns";
+import ReactDOM from "react-dom";
 
 export default function ScheduleBox(props) {
   const [c_month, set_c_month] = useState(9);
@@ -231,9 +232,12 @@ export default function ScheduleBox(props) {
     eventContentComp = new Date(c_year, c_month, c_day, hour, c_min, 0);
     dateCompare();
   }
-  return (
-    <React.Fragment>
-      <div className={classes.background} onClick={props.onHide}></div>
+
+  const Background = (props) => {
+    return <div className={classes.background} onClick={props.onHide}></div>;
+  };
+  const Body = (props) => {
+    return (
       <div className={classes.body}>
         <div className={classes.header}>
           <img
@@ -342,6 +346,18 @@ export default function ScheduleBox(props) {
           </div>
         </div>
       </div>
+    );
+  };
+  return (
+    <React.Fragment>
+      {ReactDOM.createPortal(
+        <Background onHide={props.onHide}></Background>,
+        document.getElementById("background")
+      )}
+      {ReactDOM.createPortal(
+        <Body onHide={props.onHide}></Body>,
+        document.getElementById("body")
+      )}
     </React.Fragment>
   );
 }

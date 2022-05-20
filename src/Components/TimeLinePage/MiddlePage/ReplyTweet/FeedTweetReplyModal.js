@@ -8,6 +8,7 @@ import x from "../../../../Assets/icons/close.png";
 import instance from "../../../axios";
 import ErrorModal from "../../BanModal/ErrorModal";
 import LoadingSpinner from "../../../AdminPage/AdminComponents/LoadingSpinner";
+import FeedTweetBox from "../UpperTweetBox/FeedTweetBox";
 function FeedTweetReplyModal(props) {
   const [tweetContent, setTweetContent] = useState("");
   const [banned, setBanned] = useState(false);
@@ -58,13 +59,14 @@ function FeedTweetReplyModal(props) {
         <div className={classes.message}>
           <TweetReplyBody {...props}></TweetReplyBody>
           <IsReplying name={props.userName}></IsReplying>
-          <Reply
+          {/* <Reply
             image={props.userName}
             isReply={true}
             setTweetContent={(val) => {
               setTweetContent(val);
             }}
-          ></Reply>
+          ></Reply> */}
+          <FeedTweetBox isReply={true} isModal={true}></FeedTweetBox>
         </div>
         <div className={classes.actions}>
           {/* <div className="upload__image-wrapper">
@@ -83,9 +85,9 @@ function FeedTweetReplyModal(props) {
           <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" /> */}
           {isLoading && <LoadingSpinner></LoadingSpinner>}
           {/* <LoadingSpinner></LoadingSpinner> */}
-          <button className={classes.button} onClick={replyTweet}>
+          {/* <button className={classes.button} onClick={replyTweet}>
             reply
-          </button>
+          </button> */}
         </div>
       </div>
       {banned && (
