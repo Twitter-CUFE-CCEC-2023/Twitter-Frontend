@@ -14,6 +14,11 @@ const Mail = (props) => {
                     //let authentication = response.user;
                     
                 }
+                else if (response.status === 500)
+                {
+                    console.log("Failed");
+                    console.log(response.status);
+                }
             })
             .catch((err) => {});
     }
