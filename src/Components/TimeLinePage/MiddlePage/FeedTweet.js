@@ -412,7 +412,7 @@ export default function FeedTweet(props) {
           {props.media &&
             !props.isShowPhotos &&
             props.gif &&
-            (<img onClick={(e) => e.stopPropagation()} className={classes.gif} src={props.gifs}></img>
+            (<img onClick={(e) => e.stopPropagation()} className={classes.gif} src={props.gif}></img>
             )}
 
           {props.isTopTweet && (

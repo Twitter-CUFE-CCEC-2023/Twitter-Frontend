@@ -66,7 +66,6 @@ export default function Feed(props) {
         });
     }
     newTweets.forEach((APItweet) => {
-      console.log("APItweet", APItweet);
       let tweet = APItweet
         ? {
             name: APItweet.user.name,
@@ -94,6 +93,7 @@ export default function Feed(props) {
             gif : APItweet.gif ? APItweet.gif : "",
           }
         : null;
+        console.log(tweet.gif);
       setFollowingSet((prevSet) => {
         let newSet = new Set(prevSet);
         newSet.add(tweet.userName);
