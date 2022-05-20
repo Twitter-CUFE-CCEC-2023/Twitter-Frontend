@@ -100,7 +100,7 @@ export default function FeedTweet(props) {
     }
   }
 
-  const imageExtenionsSet = new Set(["jpg", "jpeg", "png","webp"]);
+  const imageExtenionsSet = new Set(["jpg", "jpeg", "png", "webp"]);
   const videoExtenionsSet = new Set(["mp4", "avi", "mkv"]);
 
   function getMediaType() {
@@ -386,7 +386,7 @@ export default function FeedTweet(props) {
                   profileDesciption={props.topUser ? props.topUser.bio : ""}
                   following={props.topUser.following}
                   followers={props.topUser.followers}
-                  isFollowing = {props.topUser.isFollowing}
+                  isFollowing={props.topUser.isFollowing}
                 />
               </div>
             </div>

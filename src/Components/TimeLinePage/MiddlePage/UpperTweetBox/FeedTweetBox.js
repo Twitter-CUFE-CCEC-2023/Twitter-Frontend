@@ -87,7 +87,7 @@ export default function FeedTweetBox(props) {
     }
     formData.append("content", tweetContent);
     if (props.isReply) {
-      formData.append("replied_to_tweet", props.topTweetId);
+      formData.append("replied_to_tweet", props.Id);
     }
     instance
       .post("/status/tweet/post", formData)
@@ -98,13 +98,13 @@ export default function FeedTweetBox(props) {
         // props.onAddTweet(response.data.tweet);
         if (props.onAddTweet) props.onAddTweet();
         console.log(response);
+        setTweetContent("");
+        setImages([]);
+        setLeftLetters(280);
+        setPollView(false);
       });
 
     // props.changePostingTweet();
-    setTweetContent("");
-    setImages([]);
-    setLeftLetters(280);
-    setPollView(false);
   }
   const [pollView, setPollView] = useState(false);
   const togglePollView = () => {

@@ -66,7 +66,12 @@ function FeedTweetReplyModal(props) {
               setTweetContent(val);
             }}
           ></Reply> */}
-          <FeedTweetBox isReply={true} isModal={true}></FeedTweetBox>
+          <FeedTweetBox
+            isReply={true}
+            isModal={true}
+            onAddTweet={props.onHide}
+            Id={props.tweetId}
+          ></FeedTweetBox>
         </div>
         <div className={classes.actions}>
           {/* <div className="upload__image-wrapper">

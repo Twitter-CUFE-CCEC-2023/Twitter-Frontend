@@ -30,8 +30,8 @@ function TweetAndReplies(props) {
     if (splitPath.length < 4) {
       const prevPage = {
         prevPath: prevPath,
-        tweetId : id,       
-      }
+        tweetId: id,
+      };
       localStorage.setItem("homeBack", JSON.stringify(prevPage));
     }
 
@@ -110,14 +110,15 @@ function TweetAndReplies(props) {
     setTopUser(tu);
     setReplies(repl);
     setLoading(false);
-    
   };
 
   //console.log(replies);
 
-  function goBack(){
+  function goBack() {
     localStorage.setItem("currentPage", prevPath);
-    const prevPage = localStorage.getItem("homeBack") ? JSON.parse(localStorage.getItem("homeBack")) : null;
+    const prevPage = localStorage.getItem("homeBack")
+      ? JSON.parse(localStorage.getItem("homeBack"))
+      : null;
     history.push(
       prevPage && prevPage.tweetId === String(id) ? prevPage.prevPath : prevPath
     );
@@ -138,11 +139,7 @@ function TweetAndReplies(props) {
       >
         {!props.isShowPhotos && (
           <div className={classes.tweetHeader}>
-            <NavLink
-              className={classes.nlink}
-              to={prevPath}
-              onClick={goBack}
-            >
+            <NavLink className={classes.nlink} to={prevPath} onClick={goBack}>
               <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
             </NavLink>
             <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
@@ -169,11 +166,7 @@ function TweetAndReplies(props) {
     >
       {!props.isShowPhotos && (
         <div className={classes.tweetHeader}>
-          <NavLink
-            className={classes.nlink}
-            to={prevPath}
-            onClick={goBack}
-          >
+          <NavLink className={classes.nlink} to={prevPath} onClick={goBack}>
             <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
           </NavLink>
           <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
@@ -190,7 +183,7 @@ function TweetAndReplies(props) {
       </div>
       <div className={classes.tbox}>
         {" "}
-        <FeedTweetBox isReply={true} topTweetId = {topTweet.tweetId} />{" "}
+        <FeedTweetBox isReply={true} Id={topTweet.tweetId} />{" "}
       </div>
       {isLoading && (
         <ReactLoading
