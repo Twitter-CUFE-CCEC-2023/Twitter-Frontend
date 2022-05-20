@@ -90,6 +90,9 @@ export default function FeedTweetBox(props) {
     if (props.isReply) {
       formData.append("replied_to_tweet", props.Id);
     }
+    if (gifChosen) {
+      formData.append("gifs", gifChosen);
+    }
     instance
       .post("/status/tweet/post", formData)
       .catch((err) => {
@@ -103,6 +106,7 @@ export default function FeedTweetBox(props) {
         setImages([]);
         setLeftLetters(280);
         setPollView(false);
+        setGifChosen(undefined);
       });
 
     // props.changePostingTweet();
@@ -127,9 +131,12 @@ export default function FeedTweetBox(props) {
     setGifView(false);
   };
   const [gifChosen, setGifChosen] = useState(undefined);
-  function gifChosenChangeHandler(gif, val) {
+
+  const [gifChosenUrl, setGifChosenUrl] = useState(undefined);
+  function gifChosenChangeHandler(gif, val, url) {
     setGifChosen(gif);
-    toggleGifView();
+    setGifView(val);
+    setGifChosenUrl(url);
   }
 
   const [ScheduleView, setScheduleView] = useState(false);

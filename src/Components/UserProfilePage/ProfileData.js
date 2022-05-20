@@ -178,8 +178,11 @@ function ProfileData(props) {
             className={`${classes.profileImage} img-fluid`}
             onClick={handleProfilePhotoOpenAndClose}
             src={`${
-              isLoading?
-                 "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg": user.profilePic ? user.profilePic:DefaultProfilePic
+              isLoading
+                ? "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
+                : user.profilePic
+                ? user.profilePic
+                : DefaultProfilePic
             }`}
             alt=""
           />

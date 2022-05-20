@@ -9,7 +9,7 @@ export default function GifCategoryContent(props) {
             key={index}
             src={gif}
             onClick={() => {
-              props.onChangeGif(gif);
+              props.onChangeGif(gif, false, gif);
             }}
             className={classes.gif}
           ></img>

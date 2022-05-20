@@ -4,7 +4,9 @@ function SettingsSectionChoice(props) {
     <div
       className={`${classes.choice} ${props.chosen ? classes.chosen : ""}`}
       onClick={
-        props.name.toLowerCase().trim() != "your account" ? props.onShow : ""
+        props.name.toLowerCase().trim() != "your account"
+          ? props.onShow
+          : undefined
       }
     >
       {props.name}
