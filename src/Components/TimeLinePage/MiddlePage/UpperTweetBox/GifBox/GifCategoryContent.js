@@ -1,5 +1,5 @@
 import React from "react";
-import calsses from "./GifCategoryContent.module.css";
+import classes from "./GifCategoryContent.module.css";
 export default function GifCategoryContent(props) {
   return (
     <React.Fragment>
@@ -11,6 +11,7 @@ export default function GifCategoryContent(props) {
             onClick={() => {
               props.onChangeGif(gif);
             }}
+            className={classes.gif}
           ></img>
         );
       })}

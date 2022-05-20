@@ -280,7 +280,9 @@ export default function FeedTweetBox(props) {
               <button
                 className={classes["tweetButton"]}
                 disabled={
-                  (imageList.length === 0 && tweetContent.trim() === "") ||
+                  (imageList.length === 0 &&
+                    tweetContent.trim() === "" &&
+                    gifChosen == undefined) ||
                   leftLetters < 0
                 }
                 onClick={postTweet}

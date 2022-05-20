@@ -1,63 +1,79 @@
 .background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    opacity: 0.5;
-    z-index: 5;
-  }
-  .body {
-    position: fixed;
-    width: 30rem;
-    max-width: 90vw;
-    z-index: 6;
-    background-color: white;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    /* centering the element */
-    top: 50vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 5;
+}
+.body {
+  position: fixed;
+  width: 30rem;
+  max-width: 90vw;
+  z-index: 6;
+  background-color: white;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  /* centering the element */
+  top: 50vh;
   left: 50vw;
   transform: translate(-50%,-50%);
-   overflow: auto;
-   min-height: 20vh;
+  overflow: auto;
+  min-height: 20vh;
   max-height: 80vh;
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    color: white;
-    /* background-color: var(--twitterBlue); */
-    padding: 4px 0;
-    border-radius: 15px 15px 0 0;
-  }
-  .header-x {
-    margin-top: 5px;
-    padding: 0;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  /* background-color: var(--twitterBlue); */
+  padding: 4px 0;
+  border-radius: 15px 15px 0 0;
+  align-items: center;
+}
+.header-x {
+  margin-top: 5px;
+  padding: 0;
   opacity: 0.65;  height: 35px;
   padding: 10px;
-    margin-left: 5%;
+  margin-left: 5%;
   cursor: pointer;
 
-  }
-  
+}
+
 .header-x:hover {
   opacity: 1;
   cursor: pointer;
   background-color: rgba(128, 128, 128, 0.311);
   border-radius: 999px;
 }
-  .search-div{
-    flex-grow: 2;
-  }
-  .message{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-evenly; 
-   padding-bottom: 15px;
-   flex-wrap: wrap;
-   overflow-y: scroll;
-  }
+.search-div{
+  flex-grow: 2;
+}
+.message{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly; 
+  padding-bottom: 15px;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+.message-gif{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; 
+  padding-bottom: 15px;
+  flex-wrap: wrap;
+  overflow-y: scroll;}
+.width{
+  width: 78px
+}
+.profile-section-svg {
+  height: 30px;
+  transition: all ease-in-out 0.5s;
+  padding: 0;
+}
