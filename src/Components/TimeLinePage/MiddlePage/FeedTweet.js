@@ -411,14 +411,8 @@ export default function FeedTweet(props) {
 
           {props.media &&
             !props.isShowPhotos &&
-            props.media.length > 0 &&
-            getMediaType() === "video" && (
-              <video>
-                <source
-                  src={props.media[0]}
-                  type={`video/${props.media[0].split(".")[3]}`}
-                />
-              </video>
+            props.gifs &&
+            (<img src={props.gifs}></img>
             )}
 
           {props.isTopTweet && (
