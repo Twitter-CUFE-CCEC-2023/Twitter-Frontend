@@ -80,7 +80,7 @@ export default function FeedTweet(props) {
     const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
-
+    
     if (diffYears > 0) {
       return `${
         months[date1.getMonth()]
@@ -411,8 +411,8 @@ export default function FeedTweet(props) {
 
           {props.media &&
             !props.isShowPhotos &&
-            props.gifs &&
-            (<img src={props.gifs}></img>
+            props.gif &&
+            (<img onClick={(e) => e.stopPropagation()} className={classes.gif} src={props.gifs}></img>
             )}
 
           {props.isTopTweet && (
