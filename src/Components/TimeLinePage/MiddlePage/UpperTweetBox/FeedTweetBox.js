@@ -235,6 +235,7 @@ export default function FeedTweetBox(props) {
               {/* // write your building UI */}
               <div className={classes["upload__image-wrapper"]}>
                 <FeedBoxButton
+                  disabled={gifChosen != undefined || pollView}
                   Icon={ImageOutlinedIcon}
                   text="Media"
                   // style={isDragging ? { color: "red" } : null}
@@ -243,25 +244,39 @@ export default function FeedTweetBox(props) {
                 />
               </div>
               <FeedBoxButton
+                disabled={
+                  images.length > 0 || gifChosen != undefined || pollView
+                }
                 Icon={GifOutlinedIcon}
                 onClick={toggleGifView}
                 text="GIF"
               />
               <FeedBoxButton
+                disabled={
+                  images.length > 0 || gifChosen != undefined || pollView
+                }
                 Icon={PollOutlinedIcon}
                 onClick={togglePollView}
                 text="Poll"
               />
               <FeedBoxButton
+                disabled={false}
                 Icon={SentimentSatisfiedOutlinedIcon}
                 text="Emoji"
               />
               <FeedBoxButton
+                disabled={pollView}
                 Icon={DateRangeOutlinedIcon}
                 onClick={toggleScheduleView}
                 text="Schedule"
               />
-              <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
+              <FeedBoxButton
+                disabled={
+                  images.length > 0 || gifChosen != undefined || pollView
+                }
+                Icon={LocationOnOutlinedIcon}
+                text="Location"
+              />
               <button
                 className={classes["tweetButton"]}
                 disabled={
