@@ -7,6 +7,7 @@ import axios from "axios";
 import instance from "../../axios";
 import { useParams } from "react-router-dom";
 import classes from "./ProfileTweets.module.css";
+import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 
 function ProfileLikes(props) {
   const pathlocation = useLocation();
@@ -82,39 +83,12 @@ function ProfileLikes(props) {
         // userTweets = tweets.data.tweets;
       }
     }
-    //get user tweets from mock api
-    // else {
-    //   await fetch(
-    //     `http://localhost:3000/usertweets/${userName}?_page=${pageNumber}&_limit=5`
-    //   )
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       userTweets = data.tweets;
-    //       console.log("userTweets", data);
-    //     });
 
-    //   await fetch(`http://localhost:3000/users/${userName}`)
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       currentUserTweets = data;
-    //     });
-    // }
     userTweets.forEach((APItweet) => {
-      // if (props.testUrl) {
-      //   currentUserTweets = {
-      //     username: "userName",
-      //     name: "userName",
-      //     isVerified: true,
-      //     profileImage:
-      //       "https://pbs.twimg.com/profile_images/1209858989998693888/zHXx-qQl_400x400.jpg",
-      //     bio: "biooo",
-      //     followers: 0,
-      //     following: 0,
-      //   };
-      // }
+
       let tweet = {
         name: APItweet.user.name, //user.name,
-        profilePic: APItweet.user.profile_image_url,
+        profilePic: APItweet.user.profile_image_url? APItweet.user.profile_image_url : DefaultProfilePic,
         userName: APItweet.user.username,
         isVerified: APItweet.user.isVerified,
         bio: APItweet.user.bio,

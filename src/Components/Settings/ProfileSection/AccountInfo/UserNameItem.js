@@ -1,9 +1,11 @@
 import classes from "./UserNameItem.module.css";
 import classes1 from "../ProfileSection.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import instance from "../../../axios";
 function UserNameItem(props) {
   const [UserNameValue, setUserNameValue] = useState(props.value);
+  const [error, setError] = useState(0);
+
   const initial = props.value;
   function UserNameValueChangeHandler(e) {
     setUserNameValue(e.target.value);
@@ -16,14 +18,21 @@ function UserNameItem(props) {
       })
       .then((res) => {
         console.log(res);
-        props.onGoBack();
         props.onSave(UserNameValue);
+        let user = JSON.parse(localStorage.getItem("UserInfo"));
+        user.username = UserNameValue;
+        localStorage.setItem("UserInfo", JSON.stringify(user));
+        props.onGoBack();
       })
       .catch((err) => {
         console.log(err);
-        // setError(1);
+        setError(1);
       });
   }
+  useEffect(() => {
+    setError(false);
+  }, [UserNameValue]);
+
   return (
     <React.Fragment>
       <h2 className={classes1["profile-section-header"]}>
@@ -57,6 +66,9 @@ function UserNameItem(props) {
             save
           </button>
         </div>
+        {error == 1 && (
+          <span className={classes.error}>an error has ocurred</span>
+        )}
       </form>
     </React.Fragment>
   );

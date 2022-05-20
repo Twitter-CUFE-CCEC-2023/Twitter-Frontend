@@ -10,6 +10,7 @@ import ftclasses from "../../TimeLinePage/MiddlePage/FeedTweet.module.css";
 import MiniProfile from "../../TimeLinePage/MiniProfile.js";
 import { NavLink } from "react-router-dom";
 import FollowButton from "../ProfileActions/FollowButton";
+import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 
 function User(props) {
   const [isFollowing, setIsFollowing] = useState(
@@ -31,7 +32,7 @@ function User(props) {
           src={
             props.profilePic
               ? props.profilePic
-              : "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
+              :  DefaultProfilePic 
           }
           alt="profile"
           data-testid="profilePic"
@@ -42,7 +43,7 @@ function User(props) {
           profilePic={
             props.profilePic
               ? props.profilePic
-              : "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
+              : DefaultProfilePic 
           }
           name={props.name}
           userName={props.userName}
@@ -81,7 +82,7 @@ function User(props) {
           profilePic={
             props.profilePic
               ? props.profilePic
-              : "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
+              :  DefaultProfilePic 
           }
           name={props.name}
           onClickFollow={onFollow}

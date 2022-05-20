@@ -7,6 +7,7 @@ import axios from "axios";
 import instance from "../../axios";
 import { useParams } from "react-router-dom";
 import classes from "./ProfileTweets.module.css";
+import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 
 function ProfileTweetsAndReplies(props) {
   //GETTING TWEETS
@@ -101,7 +102,7 @@ function ProfileTweetsAndReplies(props) {
       }
       let tweet = {
         name: currentUserTweets.name, //user.name,
-        profilePic: currentUserTweets.profile_image_url,
+        profilePic: currentUserTweets.profile_image_url? currentUserTweets.profile_image_url : DefaultProfilePic,
         userName: currentUserTweets.username,
         isVerified: currentUserTweets.isVerified,
         bio: currentUserTweets.bio,
@@ -129,7 +130,7 @@ function ProfileTweetsAndReplies(props) {
     console.log("currentUserTweets", currentUserTweets);
     setUser({
       name: currentUserTweets.name, //user.name,
-      profilePic: currentUserTweets.profile_image_url,
+      profilePic: currentUserTweets.profile_image_url? currentUserTweets.profile_image_url : DefaultProfilePic,
       coverimage: currentUserTweets.cover_image_url,
       userName: currentUserTweets.username,
       email: currentUserTweets.email,

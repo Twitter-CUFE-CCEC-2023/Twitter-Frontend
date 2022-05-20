@@ -100,7 +100,7 @@ export default function FeedTweet(props) {
     }
   }
 
-  const imageExtenionsSet = new Set(["jpg", "jpeg", "png","webp"]);
+  const imageExtenionsSet = new Set(["jpg", "jpeg", "png", "webp"]);
   const videoExtenionsSet = new Set(["mp4", "avi", "mkv"]);
 
   function getMediaType() {
@@ -206,6 +206,7 @@ export default function FeedTweet(props) {
             <FeedTweetReplyModal
               onHide={hideReplyModal}
               {...props}
+              addRepliesNum={() => {}}
             ></FeedTweetReplyModal>
           )}
         </div>
@@ -386,7 +387,7 @@ export default function FeedTweet(props) {
                   profileDesciption={props.topUser ? props.topUser.bio : ""}
                   following={props.topUser.following}
                   followers={props.topUser.followers}
-                  isFollowing = {props.topUser.isFollowing}
+                  isFollowing={props.topUser.isFollowing}
                 />
               </div>
             </div>
@@ -409,17 +410,13 @@ export default function FeedTweet(props) {
               />
             )}
 
-          {props.media &&
-            !props.isShowPhotos &&
-            props.media.length > 0 &&
-            getMediaType() === "video" && (
-              <video>
-                <source
-                  src={props.media[0]}
-                  type={`video/${props.media[0].split(".")[3]}`}
-                />
-              </video>
-            )}
+          {props.media && !props.isShowPhotos && props.gif && (
+            <img
+              onClick={(e) => e.stopPropagation()}
+              className={classes.gif}
+              src={props.gif}
+            ></img>
+          )}
 
           {props.isTopTweet && (
             <div

@@ -11,15 +11,17 @@
 .body {
   position: fixed;
   width: 30rem;
-  left: calc(50% - 15rem);
-  min-height: 25rem;
-  top: calc(50% - 12.5rem);
+  max-width: 80vw;
+  left: 50vw;
+  min-height: 20rem;
+  top: 50vh;
   z-index: 4;
   background-color: white;
   border-radius: 15px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  transform: translate(-50%,-50%);
 }
 
 .header {
@@ -37,7 +39,7 @@
   padding: 10px 10px;
 }
 .actions {
-  height: 5rem;
+  /* height: 5rem; */
   display: flex;
   flex-direction: row-reverse;
   padding: 10px 20px;
@@ -48,6 +50,7 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   cursor: pointer;
+  padding: 5px 10px;
 }
 .button:hover {
   background-color: rgba(0, 0, 255, 0.651);

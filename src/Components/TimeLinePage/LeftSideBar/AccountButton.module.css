@@ -95,7 +95,7 @@
     }
 }
 
-@media (max-height : 650px) {
+@media (max-height : 690px) {
     .accountButton{
         margin-top: 20px;
         position: relative;

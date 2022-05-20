@@ -31,6 +31,7 @@ export default function AccountInfo(props) {
       oldPassword.trim() != "" &&
       NewPassword.trim() == ConfirmedPassword.trim() &&
       NewPassword.trim() != "" &&
+      NewPassword.trim() != oldPassword.trim() &&
       NewPassword.length >= 8
     ) {
       setRed(false);

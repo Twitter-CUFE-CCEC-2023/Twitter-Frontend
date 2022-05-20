@@ -17,12 +17,27 @@ position: relative;
 
 /* background-color: rgb(208, 204, 204); */
 }
+.container-photo-gif{
+    /* max-height: 10rem; */
+    max-width: 90%;
+    margin: 0.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 0.5%;
+    overflow: hidden;
+    /* background-color: rgb(208, 204, 204); */
+    }
 .void{
 position: relative;
 }
 .photo{
     max-height: 10rem;
     max-width: 100%;
+    }
+    .photo-gif{
+        width: 100%;
     }
 .svg-container{
     z-index: 2;

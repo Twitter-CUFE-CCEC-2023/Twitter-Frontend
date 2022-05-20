@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./FeedTweetBox.css";
+// import "./FeedTweetBox.css";
 import defaultMaleProfile from "../../../../Assets/DefaultProfilePic.jpg";
 import FeedBoxButton from "../FeedBoxButton";
 import { NavLink } from "react-router-dom";
@@ -21,6 +21,7 @@ import PollBox from "./PollBox/PollBox";
 import GifModal from "./GifBox/GifModal";
 import ScheduleBox from "./Schedule Box/ScheduleBox";
 import ErrorModal from "../../BanModal/ErrorModal";
+import { set } from "date-fns";
 
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
@@ -70,6 +71,7 @@ export default function FeedTweetBox(props) {
   };
 
   function postTweet() {
+    if (leftLetters < 0) return;
     // props.changePostingTweet();
     const isBanned = JSON.parse(localStorage.getItem("UserInfo")).isBanned;
     if (isBanned === true) {
@@ -85,8 +87,11 @@ export default function FeedTweetBox(props) {
       formData.append("media", media[i]);
     }
     formData.append("content", tweetContent);
-    if(props.isReply){
-      formData.append("replied_to_tweet", props.topTweetId);
+    if (props.isReply) {
+      formData.append("replied_to_tweet", props.Id);
+    }
+    if (gifChosen) {
+      formData.append("gif", gifChosen);
     }
     instance
       .post("/status/tweet/post", formData)
@@ -95,13 +100,16 @@ export default function FeedTweetBox(props) {
       })
       .then((response) => {
         // props.onAddTweet(response.data.tweet);
+        if (props.onAddTweet) props.onAddTweet();
         console.log(response);
+        setTweetContent("");
+        setImages([]);
+        setLeftLetters(280);
+        setPollView(false);
+        setGifChosen(undefined);
       });
 
     // props.changePostingTweet();
-    setTweetContent("");
-    setImages([]);
-    setLeftLetters(280);
   }
   const [pollView, setPollView] = useState(false);
   const togglePollView = () => {
@@ -122,6 +130,14 @@ export default function FeedTweetBox(props) {
   const removeGifView = () => {
     setGifView(false);
   };
+  const [gifChosen, setGifChosen] = useState(undefined);
+
+  const [gifChosenUrl, setGifChosenUrl] = useState(undefined);
+  function gifChosenChangeHandler(gif, val, url) {
+    setGifChosen(gif);
+    setGifView(val);
+    setGifChosenUrl(url);
+  }
 
   const [ScheduleView, setScheduleView] = useState(false);
   const toggleScheduleView = () => {
@@ -150,9 +166,11 @@ export default function FeedTweetBox(props) {
           // isDragging,
           // dragProps,
         }) => (
-          <div className="feedTweetBox">
-            <div className="boxInput">
-              <div className="profileImgOpacity">
+          <div className={classes.feedTweetBox}>
+            <div
+              className={`${classes.boxInput} ${props.isModal ? "ms-0" : ""}`}
+            >
+              <div className={classes.profileImgOpacity}>
                 <NavLink
                   to={`userprofile/${
                     loggedUser ? loggedUser.username : "amrzaki"
@@ -178,7 +196,7 @@ export default function FeedTweetBox(props) {
                       props.isReply ? "Tweet Your Reply" : "What's happening?"
                     }
                     value={tweetContent}
-                    maxLength="280"
+                    // maxLength="280"
                   ></textarea>
 
                   {images.length > 0 && (
@@ -193,11 +211,23 @@ export default function FeedTweetBox(props) {
                       ))}
                     </div>
                   )}
+                  {gifChosen != undefined && (
+                    <PhotosContainer
+                      photos={gifChosen}
+                      onRemove={() => setGifChosen(undefined)}
+                      isGif={true}
+                    ></PhotosContainer>
+                  )}
                   <span className={classes.tweetBoxTextSpan}>
                     {leftLetters}/280
                   </span>
                   {pollView && <PollBox onRemove={removePollView}></PollBox>}
-                  {GifView && <GifModal onHide={removeGifView}></GifModal>}
+                  {GifView && (
+                    <GifModal
+                      onHide={removeGifView}
+                      onChangeGif={gifChosenChangeHandler}
+                    ></GifModal>
+                  )}
                   {ScheduleView && (
                     <ScheduleBox onHide={removeScheduleView}></ScheduleBox>
                   )}
@@ -205,64 +235,63 @@ export default function FeedTweetBox(props) {
               </form>
             </div>
             <div
-              className={`buttons  ${
+              className={`${classes.buttons}  ${
                 !props.isReply || show ? classes.show : classes.hidden
               }`}
             >
               {/* // write your building UI */}
-              <div className="upload__image-wrapper">
+              <div className={classes["upload__image-wrapper"]}>
                 <FeedBoxButton
+                  disabled={gifChosen != undefined || pollView}
                   Icon={ImageOutlinedIcon}
                   text="Media"
                   // style={isDragging ? { color: "red" } : null}
                   onClick={onImageUpload}
                   // {...dragProps}
                 />
-
-                {/* <button
-                style={isDragging ? { color: "red" } : null}
-                onClick={onImageUpload}
-                {...dragProps}
-              >
-                Click or Drop here
-              </button> 
-              &nbsp;
-              <button onClick={onImageRemoveAll}>Remove all images</button>
-              //toCopy
-              {imageList.map((image, index) => (
-                <div key={index} className="image-item">
-                  <img src={image.data_url} alt="" width="100" />
-                  <div className="image-item__btn-wrapper">
-                    <button onClick={() => onImageUpdate(index)}>Update</button>
-                    <button onClick={() => onImageRemove(index)}>Remove</button>
-                  </div>
-                </div>
-              ))}
-              */}
               </div>
               <FeedBoxButton
+                disabled={
+                  images.length > 0 || gifChosen != undefined || pollView
+                }
                 Icon={GifOutlinedIcon}
                 onClick={toggleGifView}
                 text="GIF"
               />
               <FeedBoxButton
+                disabled={
+                  images.length > 0 || gifChosen != undefined || pollView
+                }
                 Icon={PollOutlinedIcon}
                 onClick={togglePollView}
                 text="Poll"
               />
               <FeedBoxButton
+                disabled={false}
                 Icon={SentimentSatisfiedOutlinedIcon}
                 text="Emoji"
               />
               <FeedBoxButton
+                disabled={pollView}
                 Icon={DateRangeOutlinedIcon}
                 onClick={toggleScheduleView}
                 text="Schedule"
               />
-              <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
+              <FeedBoxButton
+                disabled={
+                  images.length > 0 || gifChosen != undefined || pollView
+                }
+                Icon={LocationOnOutlinedIcon}
+                text="Location"
+              />
               <button
                 className={classes["tweetButton"]}
-                disabled={imageList.length === 0 && tweetContent.trim() === ""}
+                disabled={
+                  (imageList.length === 0 &&
+                    tweetContent.trim() === "" &&
+                    gifChosen == undefined) ||
+                  leftLetters < 0
+                }
                 onClick={postTweet}
               >
                 {props.isReply ? "Reply" : "Tweet"}

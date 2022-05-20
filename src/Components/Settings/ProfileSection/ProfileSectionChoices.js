@@ -48,6 +48,7 @@ function ProfileSectionChoices(props) {
           key={choice.name}
           data={choice}
           onChoose={chooseChoiceHandler}
+          onShow={props.onShow}
         ></ProfileSectionChoice>
       ))}
     </div>

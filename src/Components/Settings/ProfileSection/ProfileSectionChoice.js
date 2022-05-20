@@ -11,7 +11,7 @@ function ProfileSectionChoice(props) {
           props.data.name.toLowerCase()
         )
           ? choose
-          : undefined
+          : props.onShow
       }
     >
       <div className={classes["image-container"]}>

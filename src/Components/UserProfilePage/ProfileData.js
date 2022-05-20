@@ -14,6 +14,7 @@ import ReactLoading from "react-loading";
 import axios from "axios";
 import instance from "../axios";
 import { useParams } from "react-router-dom";
+import DefaultProfilePic from "../../Assets/DefaultProfilePic.jpg";
 
 function ProfileData(props) {
   const api = axios.create({
@@ -177,9 +178,11 @@ function ProfileData(props) {
             className={`${classes.profileImage} img-fluid`}
             onClick={handleProfilePhotoOpenAndClose}
             src={`${
-              user.profilePic
+              isLoading
+                ? "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
+                : user.profilePic
                 ? user.profilePic
-                : "https://www.glidden.com/cms/getmedia/9500a596-cfc5-483d-8d53-28fff52a0444/room-swatch_smoke-grey__90bg-30_073.jpg"
+                : DefaultProfilePic
             }`}
             alt=""
           />

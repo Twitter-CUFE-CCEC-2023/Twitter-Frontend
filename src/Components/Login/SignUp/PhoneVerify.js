@@ -36,17 +36,15 @@ const Verify = (props) => {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+          localStorage.setItem("user", JSON.stringify(response.data.user));
         }
       })
-      .catch((err) => { });
+      .catch((err) => {});
   }, []);
 
   const [alert, setAlert] = useState(true);
 
-  const handleSendEmail = () => {
-
-  }
+  const handleSendEmail = () => {};
 
   const handleClick = (val) => {
     props.handleButtonClick(val);

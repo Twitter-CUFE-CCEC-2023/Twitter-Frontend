@@ -33,4 +33,7 @@
     background-color: rgb(76, 194, 245);
     cursor:not-allowed;
 }
-  
+.error{
+    font-size: 15px;
+    color: red;
+  }
