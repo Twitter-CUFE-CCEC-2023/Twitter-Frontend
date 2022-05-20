@@ -91,7 +91,7 @@ export default function FeedTweetBox(props) {
       formData.append("replied_to_tweet", props.Id);
     }
     if (gifChosen) {
-      formData.append("gifs", gifChosen);
+      formData.append("gif", gifChosen);
     }
     instance
       .post("/status/tweet/post", formData)
