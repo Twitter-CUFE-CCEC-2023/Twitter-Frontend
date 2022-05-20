@@ -21,11 +21,29 @@ const Mail = (props) => {
             })
             .then((response) => {
                 if (response.status === 200) {
-                }
-                    if (response.data.user.role === "User") {
-                        
-                } else {
-                    
+                    if (response.status === 200) {
+                        localStorage.setItem(
+                            "UserInfo",
+                            JSON.stringify(response.data.user)
+                        );
+                        if (response.data.user.role === "User") {
+                            loginCtx.login(
+                                false,
+                                response.data.access_token,
+                                response.data.token_expiration_date
+                            );
+                            history.push("/home");
+                            localStorage.removeItem("userEmailOrName");
+                        } else if (response.data.user.role === "Admin") {
+                            loginCtx.login(
+                                true,
+                                response.data.access_token,
+                                response.data.token_expiration_date
+                            );
+                            history.push("/admin");
+                            localStorage.removeItem("userEmailOrName");
+                        }
+                    }
                 }
             })
             .catch((err) => {});
