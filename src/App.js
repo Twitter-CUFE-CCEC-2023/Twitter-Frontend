@@ -22,6 +22,7 @@ import ImageCropper from "./Components/UserProfilePage/ProfileActions/ImageCropp
 import FollowingFollowersPage from "./Components/UserProfilePage/FollowingFollowersPage/FollowingFollowersPage";
 import UnderConstructionPage from "./Components/ExtraPages/UnderConstructionPage";
 import SignUpPagePhone from "./Components/Login/SignUp/SignUpPagePhone"
+import GoogleRedirect from "./Components/Login/Google/GoogleBlankPage"
 
 import Admin from "./Components/AdminPage/Admin";
 import UsersList from "./Components/AdminPage/SideBarTabs/UsersList";
@@ -62,6 +63,7 @@ function App() {
           <Route path="/AddPhone" component={AddPhone} />
           <Route path="/Password" component={Password} />
           <Route path="/ForgetPW" component={forgotPW} />
+          <Route path="/GoogleRedirect" component={GoogleRedirect} />
 
           {loginCtx.isLoggedIn && <Route path="/home" component={Home} />}
           {loginCtx.isLoggedIn && <Route path="/:userId/status/:id" component={MainTweetPage} />}
