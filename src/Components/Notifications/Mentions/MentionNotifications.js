@@ -81,6 +81,7 @@ function MentionNotifications(props) {
           isRetweeted: notes.tweet.is_retweeted,
           isReply: notes.tweet.is_reply,
           media: notes.tweet.media,
+          gif: notes.tweet.gif ? notes.tweet.gif : "",
           is_read: notes.is_read,
           note_id: notes._id,
           isFollowing: notes.related_user.is_followed,
