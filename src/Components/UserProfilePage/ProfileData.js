@@ -164,13 +164,13 @@ function ProfileData(props) {
           tweets_count={user.tweets_count}
         ></ProfileHeader>
       </div>
-      <div className={`${classes.coverPhoto}  row `}>
+      <div className={`${classes.coverPhoto}   `}>
         <CoverPhoto
           onClickHandler={handleOpen}
           coverImage={
             user.coverimage
               ? user.coverimage
-              : "https://jannaschreier.files.wordpress.com/2012/03/website-header-blue-grey-background.jpg"
+              : "https://backlb.twittercloneteamone.tk/media/media-1653046788865.jpeg"
           }
         ></CoverPhoto>
         <div className={`${classes.profileImageContainer} `}>
@@ -196,7 +196,7 @@ function ProfileData(props) {
           ></ProfileActions>
         }
       </div>
-      <div className={`${classes.profileInfo} row  my-4 mx-1`}>
+      <div className={`${classes.profileInfo} row  mb-4 mx-1`}>
         <ProfileInfo
           name={user.name}
           userEmail={user.email}

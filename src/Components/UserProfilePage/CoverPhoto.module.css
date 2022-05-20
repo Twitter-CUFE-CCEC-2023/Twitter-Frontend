@@ -2,9 +2,11 @@
     height: 100%;
     width: 100% !important;
     object-fit: cover;    
+    max-width:598px;
+    max-height:199px;
 }
 .coverImageContainer{
-    width:598px;
-    height: 199.3px;
+    width:100%;
+    height: 100%;
     position: relative;
 }
