@@ -54,6 +54,12 @@
   flex-wrap: wrap;
   
 }
+.container-gif{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
 
 .tweetButton {
   margin-left: auto !important;

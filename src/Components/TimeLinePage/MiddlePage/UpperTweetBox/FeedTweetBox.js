@@ -21,6 +21,7 @@ import PollBox from "./PollBox/PollBox";
 import GifModal from "./GifBox/GifModal";
 import ScheduleBox from "./Schedule Box/ScheduleBox";
 import ErrorModal from "../../BanModal/ErrorModal";
+import { set } from "date-fns";
 
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
@@ -125,6 +126,11 @@ export default function FeedTweetBox(props) {
   const removeGifView = () => {
     setGifView(false);
   };
+  const [gifChosen, setGifChosen] = useState(undefined);
+  function gifChosenChangeHandler(gif, val) {
+    setGifChosen(gif);
+    toggleGifView();
+  }
 
   const [ScheduleView, setScheduleView] = useState(false);
   const toggleScheduleView = () => {
@@ -198,11 +204,23 @@ export default function FeedTweetBox(props) {
                       ))}
                     </div>
                   )}
+                  {gifChosen != undefined && (
+                    <PhotosContainer
+                      photos={gifChosen}
+                      onRemove={() => setGifChosen(undefined)}
+                      isGif={true}
+                    ></PhotosContainer>
+                  )}
                   <span className={classes.tweetBoxTextSpan}>
                     {leftLetters}/280
                   </span>
                   {pollView && <PollBox onRemove={removePollView}></PollBox>}
-                  {GifView && <GifModal onHide={removeGifView}></GifModal>}
+                  {GifView && (
+                    <GifModal
+                      onHide={removeGifView}
+                      onChangeGif={gifChosenChangeHandler}
+                    ></GifModal>
+                  )}
                   {ScheduleView && (
                     <ScheduleBox onHide={removeScheduleView}></ScheduleBox>
                   )}

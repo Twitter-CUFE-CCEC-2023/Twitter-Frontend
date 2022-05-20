@@ -7,7 +7,13 @@ export default function PhotosContainer(props) {
   //   setPhotos(props.photos);
   // }, [photos]);
   return (
-    <div className={classes["container-photo"]}>
+    <div
+      className={`${
+        props.isGif
+          ? classes["container-photo-gif"]
+          : classes["container-photo"]
+      } `}
+    >
       {/* <div className={classes.void}> */}
       <div className={classes["svg-container"]} onClick={props.onRemove}>
         <svg
@@ -20,10 +26,15 @@ export default function PhotosContainer(props) {
           </g>
         </svg>
       </div>
-      <div className={classes["edit-container"]} onClick={props.onUpdate}>
-        <img className={classes["edit"]} src={edit} />
-      </div>
-      <img src={props.photos.data_url} className={classes["photo"]} />
+      {!props.isGif && (
+        <div className={classes["edit-container"]} onClick={props.onUpdate}>
+          <img className={classes["edit"]} src={edit} />
+        </div>
+      )}
+      <img
+        src={!props.isGif ? props.photos.data_url : props.photos}
+        className={`${props.isGif ? classes["photo-gif"] : classes["photo"]}`}
+      />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./GifModal.module.css";
 import x from "../../../../../Assets/icons/close.png";
 import SearchGifs from "./SearchGifs";
@@ -12,13 +12,22 @@ import DoNotWant from "../../../../../Assets/Gif/do not want.png";
 import Eww from "../../../../../Assets/Gif/Eww.gif";
 import eyeRoll from "../../../../../Assets/Gif/eye roll.png";
 
+import agree1 from "../../../../../Assets/Gif/agree/agree1.gif";
+import agree2 from "../../../../../Assets/Gif/agree/agree2.gif";
+import agree3 from "../../../../../Assets/Gif/agree/agree3.gif";
+
 import ReactDOM from "react-dom";
+import GifCategoryContent from "./GifCategoryContent";
+import Modal from "../../../../UI/Modal";
 const Background = (props) => {
   return <div className={classes.background} onClick={props.onHide}></div>;
 };
 const Body = (props) => {
+  const [chosen, setChosen] = useState(undefined);
+  const [currentGifs, setCurrentGifs] = useState([agree1, agree2, agree3]);
   return (
     <div className={classes.body}>
+      {/* <Modal></Modal> */}
       <div className={classes.header}>
         <img
           className={classes["header-x"]}
@@ -29,16 +38,73 @@ const Body = (props) => {
           <SearchGifs></SearchGifs>
         </div>
       </div>
-      <div className={classes.message}>
-        <GifCategory name="agree" image={agree}></GifCategory>
-        <GifCategory name="applause" image={applause}></GifCategory>
-        <GifCategory name="awww" image={awww}></GifCategory>
-        <GifCategory name="dance" image={dance}></GifCategory>
-        <GifCategory name="deal with it" image={dealWithIt}></GifCategory>
-        <GifCategory name="do not want" image={DoNotWant}></GifCategory>
-        <GifCategory name="Eww" image={Eww}></GifCategory>
-        <GifCategory name="eye roll" image={eyeRoll}></GifCategory>
-      </div>
+      {chosen == undefined ? (
+        <div className={classes.message}>
+          <GifCategory
+            onClick={() => {
+              setChosen("agree");
+            }}
+            name="agree"
+            image={agree}
+          ></GifCategory>
+          <GifCategory
+            onClick={() => {
+              setChosen("applause");
+            }}
+            name="applause"
+            image={applause}
+          ></GifCategory>
+          <GifCategory
+            onClick={() => {
+              setChosen("awww");
+            }}
+            name="awww"
+            image={awww}
+          ></GifCategory>
+          <GifCategory
+            onClick={() => {
+              setChosen("dance");
+            }}
+            name="dance"
+            image={dance}
+          ></GifCategory>
+          <GifCategory
+            onClick={() => {
+              setChosen("deal with it");
+            }}
+            name="deal with it"
+            image={dealWithIt}
+          ></GifCategory>
+          <GifCategory
+            onClick={() => {
+              setChosen("do not want");
+            }}
+            name="do not want"
+            image={DoNotWant}
+          ></GifCategory>
+          <GifCategory
+            onClick={() => {
+              setChosen("Eww");
+            }}
+            name="Eww"
+            image={Eww}
+          ></GifCategory>
+          <GifCategory
+            onClick={() => {
+              setChosen("eye roll");
+            }}
+            name="eye roll"
+            image={eyeRoll}
+          ></GifCategory>
+        </div>
+      ) : (
+        <div className={classes.message}>
+          <GifCategoryContent
+            gifs={currentGifs}
+            onChangeGif={props.onChangeGif}
+          ></GifCategoryContent>
+        </div>
+      )}
     </div>
   );
 };
@@ -50,7 +116,7 @@ export default function GifModal(props) {
         document.getElementById("background")
       )}
       {ReactDOM.createPortal(
-        <Body onHide={props.onHide}></Body>,
+        <Body onHide={props.onHide} onChangeGif={props.onChangeGif}></Body>,
         document.getElementById("body")
       )}
     </React.Fragment>

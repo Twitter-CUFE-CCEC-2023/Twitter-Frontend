@@ -4,6 +4,7 @@
     display: inline-block;
     width: 49%;
     margin: 2px 0;
+    cursor: pointer;
 }
 .image{
     width: 100%;

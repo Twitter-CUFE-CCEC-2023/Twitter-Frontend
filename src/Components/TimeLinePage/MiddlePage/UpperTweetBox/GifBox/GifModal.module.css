@@ -23,6 +23,7 @@
   left: 50vw;
   transform: translate(-50%,-50%);
    overflow: auto;
+   min-height: 20vh;
   max-height: 80vh;
   }
   .header {
