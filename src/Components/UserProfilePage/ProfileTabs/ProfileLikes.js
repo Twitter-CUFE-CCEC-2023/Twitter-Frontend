@@ -77,7 +77,6 @@ function ProfileLikes(props) {
         currentUser = await instance.get(`/info/${userName}`);
         userTweets = tweets.data.tweets;
         currentUserTweets = currentUser.data.user;
-        console.log("likes", tweets);
       } else {
         // const tweets = await axios.get(props.testUrl);
         // userTweets = tweets.data.tweets;
@@ -107,6 +106,7 @@ function ProfileLikes(props) {
         isRetweeted: APItweet.is_retweeted,
         isTweetReply: APItweet.is_reply,
         media: APItweet.media,
+        gif : APItweet.gif ? APItweet.gif : "",
       };
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];

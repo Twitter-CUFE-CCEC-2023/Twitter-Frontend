@@ -16,7 +16,9 @@ function User(props) {
   const [isFollowing, setIsFollowing] = useState(
     props.isFollowing ? true : false
   );
-
+  const [user, setUser] = useState(props.user);
+    const[followersCount, setFollowersCount] = useState(props.followers);
+    const[followingCount, setFollowingCount] = useState(props.following);
   const onFollow = () => {
     if (isFollowing) {
       setIsFollowing(false);
@@ -24,6 +26,12 @@ function User(props) {
       setIsFollowing(true);
     }
   };
+  const onFollowChange=(userName)=> {
+    setFollowersCount(followersCount+1);
+  }
+  const onUnFollowChange=(userName)=> {
+    setFollowersCount(followersCount-1);
+  }
   return (
     <div className={classes.userContainer}>
       <NavLink to={`/userprofile/${props.userName}`} className={classes.navl + " " + classes.minip} >
@@ -51,8 +59,10 @@ function User(props) {
           isFollowing={isFollowing}
           setIsFollowing = {setIsFollowing}
           onClickFollow={onFollow}
-          following={props.following}
-          followers={props.followers}
+          following={followingCount}
+          followers={followersCount}
+          onFollowChange={onFollowChange}
+          onUnFollowChange={onUnFollowChange}
         />
       </div>
 
@@ -89,8 +99,10 @@ function User(props) {
           isFollowing={isFollowing}
           userName={props.userName}
           profileDesciption={props.bio}
-          following={props.following}
-          followers={props.followers}
+          following={followingCount}
+          followers={followersCount}
+          onFollowChange={onFollowChange}
+          onUnFollowChange={onUnFollowChange}
         />
       </div>
       <div
@@ -104,6 +116,8 @@ function User(props) {
             setIsFollowing = {setIsFollowing}
             onFollow={onFollow}
             username={props.userName}
+            onFollowChange={onFollowChange}
+            onUnFollowChange={onUnFollowChange}
           ></FollowButton>
         )}
       </div>

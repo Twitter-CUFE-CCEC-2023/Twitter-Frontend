@@ -80,7 +80,6 @@ function ProfileTweetsAndReplies(props) {
         currentUser = await instance.get(`/info/${userName}`);
         userTweets = tweets.data.tweets;
         currentUserTweets = currentUser.data.user;
-        console.log("tweets", tweets);
       } else {
         const tweets = await axios.get(props.testUrl);
         userTweets = tweets.data.tweets;
@@ -121,13 +120,12 @@ function ProfileTweetsAndReplies(props) {
         isRetweeted: APItweet.is_retweeted,
         isTweetReply: APItweet.is_reply,
         media: APItweet.media,
+        gif : APItweet.gif ? APItweet.gif : "",
       };
-      console.log("tweet and reply", tweet);
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
       });
     });
-    console.log("currentUserTweets", currentUserTweets);
     setUser({
       name: currentUserTweets.name, //user.name,
       profilePic: currentUserTweets.profile_image_url? currentUserTweets.profile_image_url : DefaultProfilePic,

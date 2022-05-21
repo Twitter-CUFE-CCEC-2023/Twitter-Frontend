@@ -61,6 +61,8 @@ function MiniProfile(props) {
             className={classes.miniButton}
             username={props.userName}
             setFollowingSet = {props.setFollowingSet}
+            onFollowChange={props.onFollowChange}
+            onUnFollowChange={props.onUnFollowChange}
           ></FollowButton>}
         </div>
       </div>

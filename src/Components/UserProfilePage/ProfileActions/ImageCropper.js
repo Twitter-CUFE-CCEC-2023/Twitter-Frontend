@@ -22,7 +22,6 @@ function ImageCropper(props) {
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
     
-    console.log(croppedAreaPixels)
   }, []);
 
   const showCroppedImage = useCallback(async () => {
@@ -31,7 +30,7 @@ function ImageCropper(props) {
         props.selectedImage,
         croppedAreaPixels
       );
-      console.log("donee", { croppedImage });
+
       setCroppedImage(croppedImage);
       props.setCropPhotoURL(croppedImage);
       props.setOpenCrop(false);

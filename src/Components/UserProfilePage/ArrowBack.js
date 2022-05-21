@@ -1,13 +1,14 @@
 import React, { useState, Fragment } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import classes from './ArrowBack.module.css';
-import { useHistory } from "react-router-dom";
+import { useHistory,useLocation  } from "react-router-dom";
 
 function ArrowBack() {
   const history = useHistory();
-
+  const pathlocation = useLocation();
+  localStorage.setItem("userlocation", JSON.stringify(pathlocation.pathname));
   const clickArrowBack = () => {
-    history.goBack()
+    history.goBack();     
   }
 
   return (

@@ -52,6 +52,13 @@ function ProfileData(props) {
     });
   };
 
+  const onFollow=(userName)=>{
+    setUser({...user,followers_count:user.followers_count+1})
+  }
+  const onUnFollow = (userName) => {
+    setUser({ ...user, followers_count: user.followers_count - 1 });
+  }
+
   const [user, setUser] = useState({});
   const [tabType, setTabType] = useState("Tweets");
   const [isLoading, setLoading] = useState(true);
@@ -196,6 +203,8 @@ function ProfileData(props) {
             username={user.userName}
             isMyProfile={currentuserName === userInPath ? true : false}
             setProfileData={handleProfileChange}
+            onFollow={onFollow}
+            onUnFollow={onUnFollow}
           ></ProfileActions>
         }
       </div>

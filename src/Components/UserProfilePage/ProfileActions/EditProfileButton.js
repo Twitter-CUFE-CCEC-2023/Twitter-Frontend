@@ -27,8 +27,7 @@ function EditProfileButton(props) {
   const [birth_date, setBirthDate] = useState(
     currentuser.birth_date.slice(0, 10)
   );
-  console.log(birth_date);
-  console.log(currentuser.name);
+
   const editCover = (editedcover) => {
     setCroppedCoverPhoto(editedcover);
   };
@@ -73,7 +72,6 @@ function EditProfileButton(props) {
       .put(`/user/update-profile`, formData)
       .then((res) => {
         props.setData(res.data.user);
-        console.log("response on update", res.data.user);
         let localStorageData = {
           name: res.data.user.name,
           bio: res.data.user.bio,
@@ -84,12 +82,11 @@ function EditProfileButton(props) {
           cover_image_url: res.data.user.cover_image_url,
           username: res.data.user.username,
         };
-        console.log("send data", localStorageData);
 
         //reload page
         if (
-          currentuser.profile_image_url != res.data.user.profile_image_url ||
-          currentuser.name != res.data.user.name
+          currentuser.profile_image_url !== res.data.user.profile_image_url ||
+          currentuser.name !== res.data.user.name
         ) {
           window.location.reload();
         }
@@ -102,7 +99,6 @@ function EditProfileButton(props) {
 
   const changeNameVal = (value) => {
     setName(value);
-    console.log(value);
   };
   const changeBioVal = (value) => {
     setBio(value);
@@ -218,7 +214,6 @@ function EditProfileButton(props) {
                   max="2021-01-01"
                   onChange={(e) => {
                     setBirthDate(e.target.value.toString());
-                    console.log(e.target.value.toString());
                   }}
                   className={`${classes.birthdayInput}`}
                 ></input>

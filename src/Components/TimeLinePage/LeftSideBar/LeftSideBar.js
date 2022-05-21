@@ -64,7 +64,6 @@ const LeftSideBar = (props) => {
     let numUnread;
     // console.log("fetching search results");
     numUnreadResponse = await instance.get(`/count-notifications`);
-    console.log("response", numUnreadResponse);
     numUnread = numUnreadResponse.data.count;
     setUnreadNotes(numUnread);
   };

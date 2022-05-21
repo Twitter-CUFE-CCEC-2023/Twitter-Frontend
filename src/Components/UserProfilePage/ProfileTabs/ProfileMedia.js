@@ -116,12 +116,12 @@ function ProfileMedia(props) {
         is_Reply: APItweet.is_reply,
         repliesCount : APItweet.replies_count,
         media: APItweet.media,
+        gif : APItweet.gif ? APItweet.gif : "",
       };
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
       });
     });
-    console.log("currentUserTweets", currentUserTweets);
     setUser({
       name: currentUserTweets.name, //user.name,
       profilePic: currentUserTweets.profile_image_url,

@@ -42,6 +42,8 @@ function ProfileActions(props) {
               onFollow={onFollow}
               username={props.username}
               setIsFollowing={setIsFollowing}
+              onFollowChange={props.onFollow}
+              onUnFollowChange={props.onUnFollow}
             ></FollowButton>
           )}
         </div>
