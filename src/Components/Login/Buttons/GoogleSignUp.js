@@ -9,18 +9,6 @@ const GoogleSignUp = (props) => {
   const history = useHistory();
   const handleClick = () => {
     window.open("https://backlb.twittercloneteamone.tk/auth/google", "_self");
-    axios
-      .get("/auth/google", {
-        headers: { "Content-Type": "application/json" },
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          console.log(response);
-          history.push("/home");
-        }
-      })
-      .catch((err) => {});
   };
 
   return (
