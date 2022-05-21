@@ -72,6 +72,7 @@ function TweetAndReplies(props) {
       isRetweeted: maintweet.is_retweeted,
       isReply: maintweet.is_reply,
       media: maintweet.media,
+      gif : maintweet.gif ? maintweet.gif : "",
     };
     let tu = {
       name: maintweet.user.name,
@@ -104,6 +105,7 @@ function TweetAndReplies(props) {
         isRetweeted: reply.is_retweeted,
         isReply: reply.is_reply,
         media: reply.media,
+        gif : reply.gif ? reply.gif : "",
       };
     });
     setTopTweet(tweet);

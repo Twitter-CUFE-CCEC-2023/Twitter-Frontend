@@ -1,7 +1,14 @@
 import classes from "./SettingsSectionChoice.module.css";
 function SettingsSectionChoice(props) {
   return (
-    <div className={`${classes.choice} ${props.chosen ? classes.chosen : ""}`}>
+    <div
+      className={`${classes.choice} ${props.chosen ? classes.chosen : ""}`}
+      onClick={
+        props.name.toLowerCase().trim() != "your account"
+          ? props.onShow
+          : undefined
+      }
+    >
       {props.name}
       <svg
         viewBox="0 0 24 24"

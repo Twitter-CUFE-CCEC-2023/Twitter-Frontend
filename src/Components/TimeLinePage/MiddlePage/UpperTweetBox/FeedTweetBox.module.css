@@ -54,6 +54,12 @@
   flex-wrap: wrap;
   
 }
+.container-gif{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
 
 .tweetButton {
   margin-left: auto !important;
@@ -111,7 +117,7 @@
   opacity: 1;
   z-index: 2;
 }
-.feedTweetBox {
+.feedTweetBox  {
   border-bottom: 1px solid var(--twitterBorder);
   min-width: inherit;
   flex-grow: 3;
@@ -142,7 +148,9 @@
   font-size: large;
   min-height: 56px;
 }
-
+/* .tweetBoxText:nth-letter(odd)  {
+  background-color: red;
+  } */
 .tweetBoxText:focus {
   border-bottom: 1px solid var(--twitterBorder);
 }

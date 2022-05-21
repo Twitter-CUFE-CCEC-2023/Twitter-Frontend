@@ -21,6 +21,7 @@ import PollBox from "./PollBox/PollBox";
 import GifModal from "./GifBox/GifModal";
 import ScheduleBox from "./Schedule Box/ScheduleBox";
 import ErrorModal from "../../BanModal/ErrorModal";
+import { set } from "date-fns";
 
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
@@ -89,6 +90,9 @@ export default function FeedTweetBox(props) {
     if (props.isReply) {
       formData.append("replied_to_tweet", props.Id);
     }
+    if (gifChosen) {
+      formData.append("gif", gifChosen);
+    }
     instance
       .post("/status/tweet/post", formData)
       .catch((err) => {
@@ -102,6 +106,7 @@ export default function FeedTweetBox(props) {
         setImages([]);
         setLeftLetters(280);
         setPollView(false);
+        setGifChosen(undefined);
       });
 
     // props.changePostingTweet();
@@ -125,6 +130,14 @@ export default function FeedTweetBox(props) {
   const removeGifView = () => {
     setGifView(false);
   };
+  const [gifChosen, setGifChosen] = useState(undefined);
+
+  const [gifChosenUrl, setGifChosenUrl] = useState(undefined);
+  function gifChosenChangeHandler(gif, val, url) {
+    setGifChosen(gif);
+    setGifView(val);
+    setGifChosenUrl(url);
+  }
 
   const [ScheduleView, setScheduleView] = useState(false);
   const toggleScheduleView = () => {
@@ -198,11 +211,23 @@ export default function FeedTweetBox(props) {
                       ))}
                     </div>
                   )}
+                  {gifChosen != undefined && (
+                    <PhotosContainer
+                      photos={gifChosen}
+                      onRemove={() => setGifChosen(undefined)}
+                      isGif={true}
+                    ></PhotosContainer>
+                  )}
                   <span className={classes.tweetBoxTextSpan}>
                     {leftLetters}/280
                   </span>
                   {pollView && <PollBox onRemove={removePollView}></PollBox>}
-                  {GifView && <GifModal onHide={removeGifView}></GifModal>}
+                  {GifView && (
+                    <GifModal
+                      onHide={removeGifView}
+                      onChangeGif={gifChosenChangeHandler}
+                    ></GifModal>
+                  )}
                   {ScheduleView && (
                     <ScheduleBox onHide={removeScheduleView}></ScheduleBox>
                   )}
@@ -217,6 +242,7 @@ export default function FeedTweetBox(props) {
               {/* // write your building UI */}
               <div className={classes["upload__image-wrapper"]}>
                 <FeedBoxButton
+                  disabled={gifChosen != undefined || pollView}
                   Icon={ImageOutlinedIcon}
                   text="Media"
                   // style={isDragging ? { color: "red" } : null}
@@ -225,29 +251,45 @@ export default function FeedTweetBox(props) {
                 />
               </div>
               <FeedBoxButton
+                disabled={
+                  images.length > 0 || gifChosen != undefined || pollView
+                }
                 Icon={GifOutlinedIcon}
                 onClick={toggleGifView}
                 text="GIF"
               />
               <FeedBoxButton
+                disabled={
+                  images.length > 0 || gifChosen != undefined || pollView
+                }
                 Icon={PollOutlinedIcon}
                 onClick={togglePollView}
                 text="Poll"
               />
               <FeedBoxButton
+                disabled={false}
                 Icon={SentimentSatisfiedOutlinedIcon}
                 text="Emoji"
               />
               <FeedBoxButton
+                disabled={pollView}
                 Icon={DateRangeOutlinedIcon}
                 onClick={toggleScheduleView}
                 text="Schedule"
               />
-              <FeedBoxButton Icon={LocationOnOutlinedIcon} text="Location" />
+              <FeedBoxButton
+                disabled={
+                  images.length > 0 || gifChosen != undefined || pollView
+                }
+                Icon={LocationOnOutlinedIcon}
+                text="Location"
+              />
               <button
                 className={classes["tweetButton"]}
                 disabled={
-                  (imageList.length === 0 && tweetContent.trim() === "") ||
+                  (imageList.length === 0 &&
+                    tweetContent.trim() === "" &&
+                    gifChosen == undefined) ||
                   leftLetters < 0
                 }
                 onClick={postTweet}

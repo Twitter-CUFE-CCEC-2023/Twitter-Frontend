@@ -200,3 +200,10 @@
   margin-left: auto;
   margin-right: 13%;
 }
+
+.gif{
+  margin-top: 10px;
+  max-width: 280px;
+  max-height: 510px;
+  border-radius: 10px;
+}

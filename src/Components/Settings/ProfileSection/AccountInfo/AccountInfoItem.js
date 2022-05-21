@@ -9,7 +9,7 @@ function AccountInfoItem(props) {
       onClick={
         ["username"].includes(props.data.name.toLowerCase())
           ? modify
-          : undefined
+          : props.onShow
       }
     >
       <div className={classes["data-container"]}>

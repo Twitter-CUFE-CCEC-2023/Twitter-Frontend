@@ -76,6 +76,7 @@ export default function AccountInfo(props) {
                 data={item}
                 key={item.id}
                 onModify={modifyChosenInfoItemHandler}
+                onShow={props.onShow}
               ></AccountInfoItem>
             ))}
           </div>
