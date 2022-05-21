@@ -2,10 +2,12 @@ import React from "react";
 import classes from "./NextButtonUp.module.css";
 
 const NextButtonUp = (props) => {
+  let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   const disable = (JSON.parse(localStorage.getItem("Name")) == "" || JSON.parse(localStorage.getItem("Email")) == "" 
     || JSON.parse(localStorage.getItem("Username")) == "" || props.handleGenderSet == "" || props.handleMonthSet == undefined || props.handleDaySet == undefined 
     || props.handleYearSet == undefined || props.handleMonthSet == "" || props.handleDaySet == "" || props.handleYearSet == "" || !JSON.parse(localStorage.getItem("Email")).includes("@") ||
-    !JSON.parse(localStorage.getItem("Email")).includes("."));
+    !JSON.parse(localStorage.getItem("Email")).includes(".") || !re.test(JSON.parse(localStorage.getItem("Email"))));
   const handleClick = () => {
     const name = JSON.parse(localStorage.getItem("Name"));
     const email = JSON.parse(localStorage.getItem("Email"));
