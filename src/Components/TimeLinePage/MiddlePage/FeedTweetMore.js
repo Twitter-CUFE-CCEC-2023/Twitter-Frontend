@@ -101,7 +101,9 @@ function FeedTweetMore(props) {
                     </div>
                 </div>
             </div>}
-            {showDelete && <DeleteModal setIsDeleted = {props.setIsDeleted} tweetId = {props.tweetId} setShowDelete = {setShowDelete}/>}
+            <div onClick={(e) => e.stopPropagation()}>
+                {showDelete && <DeleteModal setIsDeleted = {props.setIsDeleted} tweetId = {props.tweetId} setShowDelete = {setShowDelete}/>}
+            </div>
             {loggedUser.username !== props.userName &&
             <div className={classes.position}>
                 <div name = "ListItem" onClick={(e) => e.stopPropagation()} className={`${classes.list} ${listHidden && classes.hidden}`}>

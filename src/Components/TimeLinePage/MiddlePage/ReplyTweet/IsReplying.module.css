@@ -1,0 +1,23 @@
+.is-replying{
+    
+  font-size: 15px;
+  margin-left:68px;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+}
+.is-replying::before
+{
+  content: "";
+  height: 50px;
+  border-left: 2px solid black;
+  position: relative;
+  left: -33px;
+  top:-5px;
+  width: 0;
+  display: block;
+  border-color: gray;
+}
+.anchor{
+    color: blue;
+}

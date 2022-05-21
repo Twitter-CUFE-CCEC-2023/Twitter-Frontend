@@ -41,7 +41,7 @@ function ProfileInfo(props) {
           <div className={`${classes.userBirthDate}`}>
             <BsLink45Deg className={`${classes.calender} ms-3`}></BsLink45Deg>{" "}
             <a
-              href=""
+              href={`https://${props.userWebsite}`}
               style={{ color: "#1DA1F2" }}
               target="_blank"
             >

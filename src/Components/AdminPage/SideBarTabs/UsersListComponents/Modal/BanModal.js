@@ -84,12 +84,14 @@ export default function BanModel(props) {
         banDuration: todate,
         isPermanent: banForever,
       };
+      // console.log(banRequest)
       setSubmitButton("Submitting");
       axios
         .post("/dashboard/ban", banRequest, {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {
+          // console.log(response)
           if (response.status === 200) {
             setSubmitButton("Submited");
             props.handleBanSuccessFn(true);
@@ -97,7 +99,8 @@ export default function BanModel(props) {
             setSubmitButton("Error");
           }
         })
-        .catch(() => {
+        .catch((err) => {
+          // console.log(err)
           setError(true);
           setTimeout(() => {
             setError(false);

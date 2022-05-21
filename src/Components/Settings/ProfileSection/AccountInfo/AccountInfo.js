@@ -4,24 +4,36 @@ import classes1 from "../ProfileSection.module.css";
 import React, { useState } from "react";
 import UserNameItem from "./UserNameItem";
 export default function AccountInfo(props) {
+  const accName = JSON.parse(localStorage.getItem("UserInfo")).username;
+  const phone = JSON.parse(localStorage.getItem("UserInfo")).phone;
+  const email = JSON.parse(localStorage.getItem("UserInfo")).email;
+  const isVerified = JSON.parse(localStorage.getItem("UserInfo")).isVerified;
+  const created_at = JSON.parse(localStorage.getItem("UserInfo")).created_at;
+  const birth_date = JSON.parse(localStorage.getItem("UserInfo")).birth_date;
+
   const [Info, setInfo] = useState([
-    { id: 0, name: "username", value: "mena_lateaf" },
-    { id: 1, name: "Phone", value: "01276011964" },
-    { id: 2, name: "email", value: "mena.lateaf@gmail.com" },
-    { id: 3, name: "verified", value: false },
+    { id: 0, name: "username", value: accName },
+    { id: 1, name: "Phone", value: phone },
+    { id: 2, name: "email", value: email },
+    { id: 3, name: "verified", value: isVerified },
     { id: 4, name: "protected tweets", value: false },
     {
       id: 5,
       name: "account creation",
-      value: `Mar 25, 2022, 4:10:18 PM
-    62.114.47.17 (Egypt)`,
+      value: created_at,
     },
-    { id: 6, name: "country", value: "Egypt" },
+    { id: 6, name: "country", value: "" },
     //{ name: "languages", value1: "arabic", value2: "english" },
-    { id: 7, name: "gender", value: "malle" },
-    { id: 8, name: "birth date", value: "14/8/2000" },
-    { id: 9, name: "age", value: "21" },
-    { id: 10, name: "automation", value: "manage your automated account" },
+    { id: 7, name: "gender", value: "" },
+    { id: 8, name: "birth date", value: birth_date },
+    {
+      id: 9,
+      name: "age",
+      value: Math.round(
+        (Date.now() - new Date(birth_date)) / 1000 / 60 / 60 / 24 / 30 / 12
+      ),
+    },
+    { id: 10, name: "automation", value: "" },
   ]);
   const [chosenInfoItem, setChosenInfoItem] = useState(undefined);
   const [chosenInfoValue, setChosenInfoValue] = useState(undefined);
@@ -64,6 +76,7 @@ export default function AccountInfo(props) {
                 data={item}
                 key={item.id}
                 onModify={modifyChosenInfoItemHandler}
+                onShow={props.onShow}
               ></AccountInfoItem>
             ))}
           </div>

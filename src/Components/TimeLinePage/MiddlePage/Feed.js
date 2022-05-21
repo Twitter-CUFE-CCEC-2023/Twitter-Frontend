@@ -37,6 +37,14 @@ export default function Feed(props) {
     },
     [isLoading, hasMore]
   );
+  const [calling, setCalling] = useState(0);
+  // React.useEffect(() => {
+  //   // addTweets;
+  //   if (calling !== 0) {
+  //     addTweet(props.currentTweet);
+  //   }
+  //   setCalling(1);
+  // }, [props.updateTweets]);
 
   React.useEffect(() => subscribeNotifications(), []);
   React.useEffect(() => getTweets(), [pageNumber]);
@@ -47,14 +55,7 @@ export default function Feed(props) {
     let tryAgain = true;
     if (!isMock) {
       if (!props.testUrl)
-        while (tryAgain) {
-          try {
-            response = await instance.get(`/home/${pageNumber}/5`);
-          } catch (error) {
-            continue;
-          }
-          tryAgain = false;
-        }
+        response = await instance.get(`/home/${pageNumber}/5`);
       else response = await axios.get(props.testUrl);
       newTweets = response.data.tweets;
     } else {
@@ -65,27 +66,33 @@ export default function Feed(props) {
         });
     }
     newTweets.forEach((APItweet) => {
-      let tweet = {
-        name: APItweet.user.name,
-        profilePic: APItweet.user.profile_image_url ? APItweet.user.profile_image_url : DefaultProfilePic,
-        userName: APItweet.user.username,
-        isVerified: APItweet.user.isVerified,
-        bio: APItweet.user.bio,
-        isFollowing: APItweet.user.is_followed,
-        followers: APItweet.user.followers_count,
-        following: APItweet.user.following_count,
-        text: APItweet.content,
-        tweetId: APItweet.id,
-        date: APItweet.created_at,
-        replies: APItweet.replies,
-        likes: APItweet.likes_count,
-        retweets: APItweet.retweets_count,
-        quotes: APItweet.quotes_count,
-        isLiked: APItweet.is_liked,
-        isRetweeted: APItweet.is_retweeted,
-        isTweetReply: APItweet.is_reply,
-        media: APItweet.media,
-      };
+      let tweet = APItweet
+        ? {
+            name: APItweet.user.name,
+            profilePic: APItweet.user.profile_image_url
+              ? APItweet.user.profile_image_url
+              : DefaultProfilePic,
+            userName: APItweet.user.username,
+            isVerified: APItweet.user.isVerified,
+            bio: APItweet.user.bio,
+            isFollowing: APItweet.user.is_followed,
+            followers: APItweet.user.followers_count,
+            following: APItweet.user.following_count,
+            text: APItweet.content,
+            tweetId: APItweet.id,
+            date: APItweet.created_at,
+            replies: APItweet.replies,
+            repliesCount: APItweet.replies_count,
+            likes: APItweet.likes_count,
+            retweets: APItweet.retweets_count,
+            quotes: APItweet.quotes_count,
+            isLiked: APItweet.is_liked,
+            isRetweeted: APItweet.is_retweeted,
+            isTweetReply: APItweet.is_reply,
+            media: APItweet.media,
+            gif : APItweet.gif ? APItweet.gif : "",
+          }
+        : null;
       setFollowingSet((prevSet) => {
         let newSet = new Set(prevSet);
         newSet.add(tweet.userName);
@@ -125,28 +132,29 @@ export default function Feed(props) {
     });
   };
   function addTweet(tweet) {
-    setTweets((prevTweets) => {
-      let tweet_to_add = {
-        name: tweet.user.name,
-        profilePic: tweet.user.profile_image_url,
-        userName: tweet.user.username,
-        isVerified: tweet.user.isVerified,
-        bio: tweet.user.bio,
-        followers: tweet.user.followers_count,
-        following: tweet.user.following_count,
-        text: tweet.content,
-        tweetId: tweet.id,
-        date: tweet.created_at,
-        replies: tweet.replies,
-        likes: tweet.likes_count,
-        retweets: tweet.retweets_count,
-        quotes: tweet.quotes_count,
-        isLiked: tweet.is_liked,
-        isRetweeted: tweet.is_retweeted,
-        isReply: tweet.is_reply,
-      };
-      return [tweet_to_add, ...prevTweets];
-    });
+    //   setTweets((prevTweets) => {
+    //     let tweet_to_add = {
+    //       name: tweet.user.name,
+    //       profilePic: tweet.user.profile_image_url,
+    //       userName: tweet.user.username,
+    //       isVerified: tweet.user.isVerified,
+    //       bio: tweet.user.bio,
+    //       followers: tweet.user.followers_count,
+    //       following: tweet.user.following_count,
+    //       text: tweet.content,
+    //       tweetId: tweet.id,
+    //       date: tweet.created_at,
+    //       replies: tweet.replies,
+    //       likes: tweet.likes_count,
+    //       retweets: tweet.retweets_count,
+    //       quotes: tweet.quotes_count,
+    //       isLiked: tweet.is_liked,
+    //       isRetweeted: tweet.is_retweeted,
+    //       isReply: tweet.is_reply,
+    //     };
+    //     return [tweet_to_add, ...prevTweets];
+    //   });
+    return;
   }
   const [postingTweet, setPostingTweet] = useState(0);
   function changePostingTweet() {

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import AccountInfo from "./AccountInfo/AccountInfo";
+import ChangePassword from "./AccountInfo/ChangePassword";
 import classes from "./ProfileSection.module.css";
 import ProfileSectionChoices from "./ProfileSectionChoices";
-function ProfilesSection() {
+function ProfilesSection(props) {
   {
     /* <SettingsSectionChoices></SettingsSectionChoices> */
   }
@@ -26,16 +27,17 @@ function ProfilesSection() {
           <ProfileSectionChoices
             chosen={chosenOption}
             onChangeChosenOption={changeChosenOptionHandler}
+            onShow={props.onShow}
           ></ProfileSectionChoices>
         </div>
       ) : // the code for profile section when account inforrmation is chosen
       chosenOption.toLowerCase() === "account information" ? (
-        <AccountInfo onGoBack={goBack}></AccountInfo>
+        <AccountInfo onGoBack={goBack} onShow={props.onShow}></AccountInfo>
       ) : (
         // the code for profile section when change your password is chosen
 
         chosenOption.toLowerCase() === "change your password" && (
-          <AccountInfo onGoBack={goBack}></AccountInfo>
+          <ChangePassword onGoBack={goBack}></ChangePassword>
         )
       )}
     </React.Fragment>

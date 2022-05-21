@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    align-items: center;
+    width: 100%;
+  }
+  .formWidth{
+    width: 100%;
+  }
+  .formWidth2{
+    width: 90%;
+  }
+  .label{
+    font-size: 70%;
+  }
+  .red{
+    border-color: red;
+  }

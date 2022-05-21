@@ -3,8 +3,17 @@ import classes from "./FeedBoxButton.module.css";
 
 function FeedBoxButton(props) {
   return (
-    <button className={classes.buttonRemover} onClick={props.onClick}>
-      <div className={`${classes.tooltip} ${classes.feedBoxButton}`}>
+    <button
+      className={`${classes.buttonRemover} ${
+        props.disabled ? classes["disabled"] : ""
+      }`}
+      onClick={props.disabled ? undefined : props.onClick}
+    >
+      <div
+        className={`${classes.tooltip} ${classes.feedBoxButton}  ${
+          props.disabled ? classes["disabled"] : ""
+        }`}
+      >
         <props.Icon />
         <span className={classes.tooltiptext}>{props.text}</span>
       </div>

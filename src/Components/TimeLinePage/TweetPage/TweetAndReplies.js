@@ -11,6 +11,7 @@ import axios from "axios";
 // import { SkipPreviousRounded } from '@material-ui/icons';
 import instance from "../../axios";
 import ReactLoading from "react-loading";
+import { useHistory } from "react-router-dom";
 
 function TweetAndReplies(props) {
   let { userId, id } = useParams();
@@ -25,6 +26,15 @@ function TweetAndReplies(props) {
   React.useEffect(() => getTweet(), [props.increment]);
 
   const getTweet = async () => {
+    const splitPath = prevPath.split("/");
+    if (splitPath.length < 4) {
+      const prevPage = {
+        prevPath: prevPath,
+        tweetId: id,
+      };
+      localStorage.setItem("homeBack", JSON.stringify(prevPage));
+    }
+
     let maintweet;
     let replies;
     if (!isMock) {
@@ -41,7 +51,6 @@ function TweetAndReplies(props) {
           replies = data.replies;
         });
     }
-
 
     let tweet = {
       name: maintweet.user.name,
@@ -63,6 +72,7 @@ function TweetAndReplies(props) {
       isRetweeted: maintweet.is_retweeted,
       isReply: maintweet.is_reply,
       media: maintweet.media,
+      gif : maintweet.gif ? maintweet.gif : "",
     };
     let tu = {
       name: maintweet.user.name,
@@ -72,8 +82,8 @@ function TweetAndReplies(props) {
       bio: maintweet.user.bio,
       followers: maintweet.user.followers_count,
       following: maintweet.user.following_count,
-      isFollowing: maintweet.user.is_followed
-    }
+      isFollowing: maintweet.user.is_followed,
+    };
     let repl = replies.map((reply) => {
       return {
         name: reply.user.name,
@@ -83,6 +93,7 @@ function TweetAndReplies(props) {
         bio: reply.user.bio,
         followers: reply.user.followers_count,
         following: reply.user.following_count,
+        isFollowing: reply.user.is_followed,
         text: reply.content,
         tweetId: reply.id,
         date: reply.created_at,
@@ -94,6 +105,7 @@ function TweetAndReplies(props) {
         isRetweeted: reply.is_retweeted,
         isReply: reply.is_reply,
         media: reply.media,
+        gif : reply.gif ? reply.gif : "",
       };
     });
     setTopTweet(tweet);
@@ -104,17 +116,37 @@ function TweetAndReplies(props) {
 
   //console.log(replies);
 
-  //let history = useHistory();
+  function goBack() {
+    localStorage.setItem("currentPage", prevPath);
+    const prevPage = localStorage.getItem("homeBack")
+      ? JSON.parse(localStorage.getItem("homeBack"))
+      : null;
+    history.push(
+      prevPage && prevPage.tweetId === String(id) ? prevPage.prevPath : prevPath
+    );
+    window.location.reload();
+  }
+
+  let history = useHistory();
+  let prevPath = localStorage.getItem("currentPage")
+    ? localStorage.getItem("currentPage")
+    : "/home";
 
   if (isLoading) {
     return (
-      <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
-        {!props.isShowPhotos && <div className={classes.tweetHeader}>
-          <NavLink className={classes.nlink} to={localStorage.getItem("currentPage") === "/notifications" ? "/notifications" : "/home"}>
-            <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
-          </NavLink>
-          <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
-        </div>}
+      <div
+        className={`${classes.TweetAndReplies} ${
+          props.isShowPhotos && classes.widthPhotos
+        }`}
+      >
+        {!props.isShowPhotos && (
+          <div className={classes.tweetHeader}>
+            <NavLink className={classes.nlink} to={prevPath} onClick={goBack}>
+              <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
+            </NavLink>
+            <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
+          </div>
+        )}
         {isLoading && (
           <ReactLoading
             type={"spin"}
@@ -129,19 +161,31 @@ function TweetAndReplies(props) {
   }
 
   return (
-    <div className={`${classes.TweetAndReplies} ${props.isShowPhotos && classes.widthPhotos}`}>
-      {!props.isShowPhotos && <div className={classes.tweetHeader}>
-        <NavLink className={classes.nlink} to={localStorage.getItem("currentPage") === "/notifications" ? "/notifications" : "/home"}>
-          <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
-        </NavLink>
-        <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
-      </div>}
+    <div
+      className={`${classes.TweetAndReplies} ${
+        props.isShowPhotos && classes.widthPhotos
+      }`}
+    >
+      {!props.isShowPhotos && (
+        <div className={classes.tweetHeader}>
+          <NavLink className={classes.nlink} to={prevPath} onClick={goBack}>
+            <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
+          </NavLink>
+          <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
+        </div>
+      )}
       <div data-testid="topTweet">
-        <FeedTweet isShowPhotos={props.isShowPhotos} isTopTweet={true} {...topTweet} setPhotosActive={props.setPhotosActive} setIncrement={props.setIncrement} />
+        <FeedTweet
+          isShowPhotos={props.isShowPhotos}
+          isTopTweet={true}
+          {...topTweet}
+          setPhotosActive={props.setPhotosActive}
+          setIncrement={props.setIncrement}
+        />
       </div>
       <div className={classes.tbox}>
         {" "}
-        <FeedTweetBox isReply={true} />{" "}
+        <FeedTweetBox isReply={true} Id={topTweet.tweetId} />{" "}
       </div>
       {isLoading && (
         <ReactLoading

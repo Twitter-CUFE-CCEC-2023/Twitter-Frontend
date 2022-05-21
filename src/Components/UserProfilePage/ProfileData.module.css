@@ -22,10 +22,9 @@
 }
 
 .coverPhoto {
-  /* height: 199px; */
-  width:598px;
-  height: 199.3px;
   position: relative;
+  margin-right:0px;
+  margin:0px;
 }
 
 .profileImage { 
@@ -67,6 +66,10 @@
   margin-top: 5%;
 }
 
+.profileInfo{
+  margin-top: 6%;
+}
+
 @media screen and (min-width: 689px) {
   .profileDataContainer {
     margin-top: 0;
@@ -77,4 +80,15 @@
     scrollbar-width: none; /* Firefox to hide scrollbar */
     min-width: 598px;
   }
+  .profileDataContainer{
+    display: inline;
+  }
+}
+
+
+@media screen and (max-width: 350px) {
+  .profileInfo{
+    margin-top: 3%;
+  }
+  
 }

@@ -8,21 +8,31 @@ import { nodeJs } from "fontawesome";
 const GoogleSignUp = (props) => {
   const history = useHistory();
   const handleClick = () => {
-    window.open("https://backlb.twittercloneteamone.tk/auth/google","_self");
+    window.open("https://backlb.twittercloneteamone.tk/auth/google", "_self");
+    axios
+      .get("/auth/google", {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          console.log(response);
+          history.push("/home");
+        }
+      })
+      .catch((err) => {});
   };
 
   return (
-    <div className={classes.googleSignUp} style={props.style} onClick={handleClick}>
-      <table>
-        <tbody>
-          <tr>
-            <td className={classes.logo}>
-              <img src={googleLogo} alt="GoogleLogo" width="20px" />
-            </td>
-            <td>{props.content}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div
+      className={classes.googleSignUp}
+      style={props.style}
+      onClick={handleClick}
+    >
+      <p className={classes.logo}>
+        <img src={googleLogo} alt="GoogleLogo" width="20px" />
+      </p>{" "}
+      {props.content}
     </div>
   );
 };

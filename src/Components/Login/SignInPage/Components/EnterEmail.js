@@ -56,7 +56,7 @@ const EnterEmail = (props) => {
                 itemName="userEmailOrName"
                 maxLength={50}
                 handleButtonClick={handleNextClick}
-                passData={() => {}}
+                passData={() => { }}
               />
               <NextButton
                 handleButtonClick={handleNextClick}

@@ -18,7 +18,7 @@ const UserRow = (props) => {
         open={open}
         ban={row.isBanned}
         handleOpen={handleOpen}
-        class={props.class}
+        classname={props.class}
         userId={row._id}
         id={props.id}
       />

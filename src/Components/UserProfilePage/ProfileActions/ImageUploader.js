@@ -17,12 +17,10 @@ function ImageUploader(props) {
 
   const [selectedImage, setSelectedImage] = useState("");
   const onChange = (imageList, addUpdateIndex) => {
-    console.log("entered");
     images[0] = {};
-    console.log(imageList, addUpdateIndex);
     setImages(imageList);
     setShowCropper(true);
-    console.log("entered");
+
   };
 
   const setOpenCrop = (value) => {
@@ -31,7 +29,6 @@ function ImageUploader(props) {
   const setCropPhotoURL = (croppedPhoto) => {
     if (croppedPhoto === false) {
       props.editPhoto(props.croppedPhoto);
-      console.log("no photos");
     } else {
       props.editPhoto(croppedPhoto);
     }

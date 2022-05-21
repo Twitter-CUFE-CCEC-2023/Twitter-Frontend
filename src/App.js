@@ -16,13 +16,14 @@ import Password from "./Components/Login/SignUp/Password";
 import Home from "./Components/TimeLinePage/Home";
 import AllNotificationsPage from "./Components/Notifications/AllNotificationsPage";
 import MentionNotificationsPage from "./Components/Notifications/MentionNotificationsPage";
+import DeletedTweet from "./Components/Notifications/All/DeletedTweet";
 import Settings from "./Components/Settings/Settings";
 import UserProfile from "./Components/UserProfilePage/UserProfile";
 import ImageCropper from "./Components/UserProfilePage/ProfileActions/ImageCropper";
 import FollowingFollowersPage from "./Components/UserProfilePage/FollowingFollowersPage/FollowingFollowersPage";
 import UnderConstructionPage from "./Components/ExtraPages/UnderConstructionPage";
-import SignUpPagePhone from "./Components/Login/SignUp/SignUpPagePhone"
-import GoogleRedirect from "./Components/Login/Google/GoogleBlankPage"
+import SignUpPagePhone from "./Components/Login/SignUp/SignUpPagePhone";
+import GoogleRedirect from "./Components/Login/Google/GoogleBlankPage";
 
 import Admin from "./Components/AdminPage/Admin";
 import UsersList from "./Components/AdminPage/SideBarTabs/UsersList";
@@ -32,7 +33,7 @@ import Retweets from "./Components/AdminPage/SideBarTabs/Retweets";
 import Statistics from "./Components/AdminPage/SideBarTabs/Statistics";
 import MainTweetPage from "./Components/TimeLinePage/TweetPage/MainTweetPage";
 import PhotosPage from "./Components/TimeLinePage/ViewPhotosPage/PhotosPage";
-import forgotPW from "./Components/Login/ForgetPassword/Process"
+import forgotPW from "./Components/Login/ForgetPassword/Process";
 
 // ctrl k + ctrl shift s => to save without formatting
 
@@ -55,6 +56,7 @@ function App() {
         <Switch>
           <Route exact={true} path="/" component={MainPage} />
           <Route path="/SignIn" component={SignInPage} />
+          <Route path="/auth/google" />
 
           <Route path="/Mail" component={Mail} />
           <Route path="/Phone" component={SignUpPagePhone} />
@@ -71,6 +73,7 @@ function App() {
           {loginCtx.isLoggedIn && <Route path="/explore" component={UnderConstructionPage} />}
           {loginCtx.isLoggedIn && <Route path="/notifications" component={AllNotificationsPage} />}
           {loginCtx.isLoggedIn && <Route path="/mentionnotifications" component={MentionNotificationsPage} />}
+          {loginCtx.isLoggedIn && <Route path="/deletedtweet" component={DeletedTweet} />}
           {loginCtx.isLoggedIn && <Route path="/messages" component={UnderConstructionPage} />}
           {loginCtx.isLoggedIn && <Route path="/i/bookmarks" component={UnderConstructionPage} />}
           {loginCtx.isLoggedIn && <Route path="/profileName/lists" component={UnderConstructionPage} />}
@@ -97,9 +100,9 @@ function App() {
           {loginCtx.isLoggedIn && <Route path="/admin-retweets" component={Retweets} />}
           {loginCtx.isLoggedIn && <Route path="/admin-statistics" component={Statistics} />}
 
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
+          {!loginCtx.isLoggedIn && <Route path="*"><Redirect to="/" /></Route>}
+          {loginCtx.isLoggedIn && <Route path="*"><Redirect to="/home" /></Route>}
+
         </Switch>
       </BrowserRouter>
     </div>

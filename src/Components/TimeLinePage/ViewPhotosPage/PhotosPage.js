@@ -48,7 +48,7 @@ function PhotosPage(props) {
     if (!isMock) {
       const res = await instance.get(`/status/tweet/${id}`);
       setPhotosTweet(res.data.tweet);
-      tweet = {
+      tweet =photosTweet ? {
         content: photosTweet.content,
         dateCreated: photosTweet.created_at,
         likes: photosTweet.likes_count,
@@ -56,7 +56,7 @@ function PhotosPage(props) {
         replies: photosTweet.replies_count,
         id: photosTweet.id,
         userId: photosTweet.user.id,
-      };
+      } : null;
       setPhotos(res.data.tweet.media);
     } else {
       await fetch(`http://localhost:3000/home/${id}`)

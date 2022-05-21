@@ -1,6 +1,6 @@
 import SettingsSectionChoice from "./SettingsSectionChoice";
 import classes from "./SettingsSectionChoices.module.css";
-function SettingsSectionChoices() {
+function SettingsSectionChoices(props) {
   const choisces = [
     "Your Account",
     "Twitter Blue",
@@ -18,6 +18,9 @@ function SettingsSectionChoices() {
           key={choice}
           name={choice}
           chosen={choice === chosen}
+          onShow={() => {
+            props.onShow();
+          }}
         ></SettingsSectionChoice>
       ))}
     </div>

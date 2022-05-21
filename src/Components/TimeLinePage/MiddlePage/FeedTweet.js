@@ -20,7 +20,7 @@ import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 import FeedTweetMore from "./FeedTweetMore";
 // import { LinkSharp } from "@material-ui/icons";
 // import { react } from "fontawesome";
-// import FeedTweetReplyModal from "./FeedTweetReplyModal";
+import FeedTweetReplyModal from "./ReplyTweet/FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
   const [replyModal, setReplyModal] = useState(false);
@@ -30,14 +30,17 @@ export default function FeedTweet(props) {
 
   const [isDeleted, setIsDeleted] = useState(false);
 
-  const [isFollowing, setIsFollowing] = useState(props.followingSet ? props.followingSet.has(props.userName) : props.isFollowing);
+  const [isFollowing, setIsFollowing] = useState(
+    props.followingSet
+      ? props.followingSet.has(props.userName)
+      : props.isFollowing
+  );
 
   React.useEffect(() => {
     if (props.followingSet) {
       if (props.followingSet.has(props.userName)) {
         setIsFollowing(true);
-      }
-      else {
+      } else {
         setIsFollowing(false);
       }
     }
@@ -46,6 +49,9 @@ export default function FeedTweet(props) {
   // function hideReplyModal() {
   //   setReplyModal(false);
   // }
+  function hideReplyModal() {
+    setReplyModal(false);
+  }
 
   // {
   //   console.log(props.img);
@@ -76,8 +82,9 @@ export default function FeedTweet(props) {
     const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
 
     if (diffYears > 0) {
-      return `${months[date1.getMonth()]
-        } ${date1.getDate()}, ${date1.getFullYear()}`;
+      return `${
+        months[date1.getMonth()]
+      } ${date1.getDate()}, ${date1.getFullYear()}`;
     }
     if (diffDays > 0) {
       return `${months[date1.getMonth()]} ${date1.getDate()}`;
@@ -90,6 +97,23 @@ export default function FeedTweet(props) {
     }
     if (diffSeconds > 0) {
       return `${diffSeconds}s`;
+    }
+  }
+
+  const imageExtenionsSet = new Set(["jpg", "jpeg", "png", "webp"]);
+  const videoExtenionsSet = new Set(["mp4", "avi", "mkv"]);
+
+  function getMediaType() {
+    if (props.media) {
+      if (props.media.length > 0) {
+        if (imageExtenionsSet.has(props.media[0].split(".")[3])) {
+          return "image";
+        } else if (videoExtenionsSet.has(props.media[0].split(".")[3])) {
+          return "video";
+        } else {
+          return "gif";
+        }
+      }
     }
   }
 
@@ -160,6 +184,7 @@ export default function FeedTweet(props) {
   let history = useHistory();
   function handleClick(e) {
     if (!props.isTopTweet) {
+      localStorage.setItem("currentPage", window.location.pathname);
       history.push(`/${props.userName}/status/${props.tweetId}`);
       window.location.reload();
     }
@@ -176,12 +201,15 @@ export default function FeedTweet(props) {
         id={`Tweet${props.tweetId}`}
         className={props.isTopTweet ? classes.topTweet : classes.feedTweet}
       >
-        {/* {replyModal && (
-        <FeedTweetReplyModal
-          onHide={hideReplyModal}
-          data={props}
-        ></FeedTweetReplyModal>
-      )} */}
+        <div onClick={(e) => e.stopPropagation()}>
+          {replyModal && (
+            <FeedTweetReplyModal
+              onHide={hideReplyModal}
+              {...props}
+              addRepliesNum={() => {}}
+            ></FeedTweetReplyModal>
+          )}
+        </div>
         {/* <NavLink
           to={`/userProfile/${props.userName}`}
           className={classes.fs15  + " " + classes.noStyle}
@@ -321,15 +349,17 @@ export default function FeedTweet(props) {
               </p>
             )}
             <div className={classes.moreIcon}>
-              <FeedTweetMore userName={props.userName}
+              <FeedTweetMore
+                userName={props.userName}
                 tweetId={props.tweetId}
                 setIsDeleted={setIsDeleted}
                 isFollowing={isFollowing}
                 setIsFollowing={setIsFollowing}
-                setFollowingSet={props.setFollowingSet} />
+                setFollowingSet={props.setFollowingSet}
+              />
             </div>
           </div>
-          {props.isReply && (
+          {props.isReply && !props.isTopTweet && (
             <div className={classes.flex}>
               <p className={`${classes.gray} ${classes.fs15} ${classes.nom}`}>
                 Replying to{" "}
@@ -340,14 +370,24 @@ export default function FeedTweet(props) {
               >
                 @{props.topUser ? props.topUser.userName : ""}
               </p>
-              <div className={classes.hoverProfile + " " + classes.repmin}>
+              <div
+                className={classes.hoverProfile + " " + classes.repmin}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <MiniProfile
-                  profilePic={props.topUser ? props.topUser.profilePic ? props.topUser.profilePic : DefaultProfilePic : ""}
+                  profilePic={
+                    props.topUser
+                      ? props.topUser.profilePic
+                        ? props.topUser.profilePic
+                        : DefaultProfilePic
+                      : ""
+                  }
                   name={props.topUser ? props.topUser.name : ""}
                   userName={props.topUser ? props.topUser.userName : ""}
                   profileDesciption={props.topUser ? props.topUser.bio : ""}
-                  following={props.following}
-                  followers={props.followers}
+                  following={props.topUser.following}
+                  followers={props.topUser.followers}
+                  isFollowing={props.topUser.isFollowing}
                 />
               </div>
             </div>
@@ -356,10 +396,26 @@ export default function FeedTweet(props) {
             data-testid="text"
             className={classes.fs15 + " " + classes.txt}
             dangerouslySetInnerHTML={{ __html: tweetText }}
-          >
-          </div>
-          {props.media && !props.isShowPhotos && props.media.length > 0 && (
-            <ImageGrid media={props.media} userName={props.userName} tweetId={props.tweetId} setPhotosActive={props.setPhotosActive} setIncrement={props.setIncrement} />
+          ></div>
+          {props.media &&
+            !props.isShowPhotos &&
+            props.media.length > 0 &&
+            getMediaType() === "image" && (
+              <ImageGrid
+                media={props.media}
+                userName={props.userName}
+                tweetId={props.tweetId}
+                setPhotosActive={props.setPhotosActive}
+                setIncrement={props.setIncrement}
+              />
+            )}
+
+          {props.media && !props.isShowPhotos && props.gif && (
+            <img
+              onClick={(e) => e.stopPropagation()}
+              className={classes.gif}
+              src={props.gif}
+            ></img>
           )}
 
           {props.isTopTweet && (
@@ -371,8 +427,9 @@ export default function FeedTweet(props) {
                   classes.underline + " " + classes.fs15 + " " + classes.pointer
                 }
               >
-                {`${tweetDate.getHours()}:${tweetDate.getMinutes()} . ${months[tweetDate.getMonth()]
-                  } ${tweetDate.getDay()}, ${tweetDate.getFullYear()}`}
+                {`${tweetDate.getHours()}:${tweetDate.getMinutes()} . ${
+                  months[tweetDate.getMonth()]
+                } ${tweetDate.getDay()}, ${tweetDate.getFullYear()}`}
               </p>
             </div>
           )}
@@ -381,7 +438,7 @@ export default function FeedTweet(props) {
             <div id="FeedTweetAttributes" className={classes.attributes}>
               <TweetAtrribute
                 Icon={ChatBubbleOutlineOutlinedIcon}
-                num={props.replies}
+                num={props.repliesCount ? props.repliesCount : 0}
                 color="b"
                 tooltip="Reply"
                 onClick={viewReplyModal}
@@ -424,6 +481,7 @@ export default function FeedTweet(props) {
               retweets={props.retweets}
               quoteTweets={props.quotes}
               isShowPhotos={props.isShowPhotos}
+              {...props}
             />
           )}
         </div>

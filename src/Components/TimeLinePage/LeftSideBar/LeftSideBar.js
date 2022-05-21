@@ -26,7 +26,7 @@ import instance from "../../axios";
 
 import MoreButton from "./MoreButton";
 
-const LeftSideBar = () => {
+const LeftSideBar = (props) => {
   const [moreSelected, setMoreSelected] = useState(false);
   const [unreadNotes, setUnreadNotes] = useState(0);
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
@@ -64,7 +64,6 @@ const LeftSideBar = () => {
     let numUnread;
     // console.log("fetching search results");
     numUnreadResponse = await instance.get(`/count-notifications`);
-    console.log("response", numUnreadResponse);
     numUnread = numUnreadResponse.data.count;
     setUnreadNotes(numUnread);
   };
@@ -177,7 +176,10 @@ const LeftSideBar = () => {
       )}{" "} */}
       {/* need to add the functionality of more */}
       <div className={classes.phoneInvis}>
-        <TweetButton />
+        <TweetButton
+          addTweet={props.addTweet}
+          changePostingTweet={props.changePostingTweet}
+        />
 
         <AccountButton />
       </div>

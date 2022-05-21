@@ -1,0 +1,91 @@
+.coverPhotoModalOpened {
+ /* Hidden by default */
+ display: block; /* Hidden by default */
+
+  z-index: 2000; /* Sit on top */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+
+}
+
+.coverPhotoModalClosed {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2000; /* Sit on top */
+
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  /* overflow: auto; Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.coverPhotoModalContent {
+z-index: 1000;
+width:100%;
+position: absolute;
+top:15%;
+
+}
+
+.openedCoverPic {
+  position: absolute;
+  object-fit: cover;
+  width:100%;
+  top:30%;
+
+}
+
+.closeIcon{
+  cursor: pointer;
+}
+.closeIcon:hover{
+  color:grey;
+}
+
+
+@media  screen and (max-width: 768px) {
+  .coverPhotoModalContent {
+    top:30%;
+  }
+
+  
+}
+@media screen and (max-width: 500px) {
+  .coverPhotoModalOpened {
+    /* Hidden by default */
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+     z-index: 2000; /* Sit on top */
+     padding-top: 100px; /* Location of the box */
+     left: 0;
+     top: 0;
+     width: 100%; /* Full width */
+     height: 100%; /* Full height */
+     /* overflow: auto; Enable scroll if needed */
+     background-color: rgb(0, 0, 0); /* Fallback color */
+     background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+   
+   }
+   .coverPhotoModalContent {
+    z-index: 1000;
+    width:100%;
+    position: absolute;
+    top:40%;
+    
+    }
+}
+
+@media screen and (max-width: 370px) {
+  /* .openedCoverPic {
+          width: 220px;
+          height: 220px;
+        }  */
+}

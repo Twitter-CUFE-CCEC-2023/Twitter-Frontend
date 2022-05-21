@@ -27,8 +27,18 @@ function ImageGrid(props) {
     }
 
     let gridStyle;
-
-    if(props.media.length !== 3){
+    if(props.media.length === 4){
+        gridStyle = (rows, cols) => ({
+            marginRight: '80px',
+            marginTop: '5px',
+            display: 'grid',
+            boxSizing : 'border-box',
+            gridTemplateColumns: `repeat(2, 1fr)`,
+            gridTemplateRows: `repeat(2, 1fr)`,
+            gridGap: '2px',
+        });
+    }
+    else if(props.media.length !== 3){
         gridStyle = (rows, cols) => ({
             marginRight: '80px',
             marginTop: '5px',
@@ -39,6 +49,7 @@ function ImageGrid(props) {
             gridGap: '2px',
         });
     }
+    
     else{
         gridStyle = (rows, cols) => (
             {
@@ -47,6 +58,8 @@ function ImageGrid(props) {
             display: 'grid',
             boxSizing : 'border-box',
             gridAutoFlow: 'column',
+            gridTemplateColumns: `repeat(${cols}, 1fr)`,
+            gridTemplateRows: `repeat(${rows}, 16.3vmin)`,
             gridTemplateAreas:  `'A B' 'A C'`,
             gridGap: '2px',
             
@@ -54,7 +67,17 @@ function ImageGrid(props) {
     }
 
     let imageStyle;
-    if(props.media.length !== 3){
+    if(props.media.length === 4){
+        imageStyle = (rows, index) => ({
+            cursor: 'pointer',
+            width:`100%`,
+            height: `100%`,
+            maxHeight: `140.75px`,
+            objectFit: 'cover',
+            borderRadius: getBorderRadius(index),
+        });
+    }
+    else if(props.media.length !== 3){
         imageStyle = (rows, index) => ({
                 cursor: 'pointer',
                 width:`100%`,
@@ -68,8 +91,8 @@ function ImageGrid(props) {
             {
             cursor: 'pointer',
             gridArea : three[index],
-            width: "100%",
             height: `100%`,
+            width: `100%`,
             objectFit: 'cover',
             borderRadius: getBorderRadius(index),
         });

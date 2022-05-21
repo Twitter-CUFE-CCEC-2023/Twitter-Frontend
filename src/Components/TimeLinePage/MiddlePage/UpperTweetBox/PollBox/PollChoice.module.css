@@ -1,0 +1,10 @@
+.choice{
+    margin-bottom: 15px;
+    width: 100%;
+}
+.formWidth{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }

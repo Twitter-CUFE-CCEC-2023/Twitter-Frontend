@@ -27,8 +27,8 @@ function FollowingFollowersPage() {
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [pageNumberFollowers, setPageNumberFollowers] = React.useState(1);
-  const [pageNumberFollowing, setPageNumberFollowing] = React.useState(1);
+  const [pageNumberFollowers, setPageNumberFollowers] = React.useState(0);
+  const [pageNumberFollowing, setPageNumberFollowing] = React.useState(0);
   const [hasMoreFollowers, setHasMoreFollowers] = React.useState(true);
   const [hasMoreFollowing, setHasMoreFollowing] = React.useState(true);
   const location = useLocation();
@@ -70,12 +70,30 @@ function FollowingFollowersPage() {
   );
 
   useEffect(() => {
-    getUsers();
-  }, [pageNumberFollowers, pageNumberFollowing, type]);
-  useEffect(() => {
-    setFollowers([]);
-    setFollowing([]);
+    console.log(type,"page type")
+    if (type === "followers") {
+      setFollowers(()=>{return[]});
+      if(pageNumberFollowers === 1){
+        getUsers();
+      }
+      else
+      setPageNumberFollowers(()=>{return 1});
+
+    }
+    if (type === "following") {
+      setFollowing(()=>{return[]});
+      if(pageNumberFollowing === 1){
+       getUsers();
+      }
+      else
+      setPageNumberFollowing(()=>{return 1});
+    }
   }, [type]);
+
+  useEffect(() => {
+    console.log( "followersSelected")
+    getUsers();
+  }, [pageNumberFollowers, pageNumberFollowing]);
 
   const getUsers = async () => {
     setLoading(true);
@@ -92,8 +110,9 @@ function FollowingFollowersPage() {
     if (type === "followers") {
       let userFollowers;
       if (!isMock) {
+        console.log(pageNumberFollowers, "page number followers");
         const res = await instance
-          .get(`/follower/list/${userName}/${pageNumberFollowers}/3`)
+          .get(`/follower/list/${userName}/${pageNumberFollowers}/6`)
           .catch(function (error) {
             if (error.response) {
               console.log(error.response.data);
@@ -105,11 +124,10 @@ function FollowingFollowersPage() {
               console.log("Error", error.message);
             }
           });
-        console.log(res.data);
         userFollowers = res.data.followers;
       } else {
         await fetch(
-          `http://localhost:3000/followerslist/${userName}?_page=${pageNumberFollowers}&_limit=5`
+          `http://localhost:3000/followerslist/${userName}?_page=${pageNumberFollowers}&_limit=6`
         )
           .then((res) => res.json())
           .then((data) => {
@@ -131,15 +149,15 @@ function FollowingFollowersPage() {
           return [...prevFollowers, follower];
         });
       });
-      console.log(followers);
-      setHasMoreFollowers(userFollowers.length === 3);
+      setHasMoreFollowers(userFollowers.length === 6);
       setLoading(false);
     }
     if (type === "following") {
       let userFollowings;
+      console.log(pageNumberFollowing, "page number following");
       if (!isMock) {
         const res = await instance
-          .get(`/following/list/${userName}/${pageNumberFollowing}/3`)
+          .get(`/following/list/${userName}/${pageNumberFollowing}/6`)
           .catch(function (error) {
             if (error.response) {
               console.log(error.response.data);
@@ -151,11 +169,10 @@ function FollowingFollowersPage() {
               console.log("Error", error.message);
             }
           });
-        console.log("following", res.data);
         userFollowings = res.data.followings;
       } else {
         await fetch(
-          `http://localhost:3000/followingslist/${userName}?_page=${pageNumberFollowers}&_limit=5`
+          `http://localhost:3000/followingslist/${userName}?_page=${pageNumberFollowers}&_limit=6`
         )
           .then((res) => res.json())
           .then((data) => {
@@ -177,8 +194,7 @@ function FollowingFollowersPage() {
           return [...prevFollowing, followingUser];
         });
       });
-      console.log(userFollowings);
-      setHasMoreFollowing(userFollowings.length === 5);
+      setHasMoreFollowing(userFollowings.length === 6);
       setLoading(false);
     }
   };
@@ -263,20 +279,44 @@ function FollowingFollowersPage() {
                   </div>
                 );
               } else {
-                return;
-                <div>
-                  <User
-                    {...follower}
-                    key={index}
-                    showAction={true}
-                    currentuser={
-                      currentuserName === follower.userName ? true : false
-                    }
-                  />
-                </div>;
+                return (
+                  <div>
+                    <User
+                      {...follower}
+                      key={index}
+                      showAction={true}
+                      currentuser={
+                        currentuserName === follower.userName ? true : false
+                      }
+                    />
+                  </div>
+                );
               }
             })}
+          {type === "followers" && followers.length === 0 && !isLoading && (
+            <div>
+              <div className={`row`}>
+                <img
+                  src="https://abs.twimg.com/sticky/illustrations/empty-states/yellow-birds-power-line-800x400.v1.png"
+                  alt=""
+                />
+              </div>
+              <div className={`${classes.noFollowersContainer}`}>
+                <p className={`${classes.noFollowers} `}>
+                  {" "}
+                  Looking for followers?
+                </p>
+                <p className={`text-muted h6`}>
+                  <small>
+                    When someone follows this account, they’ll show up here.
+                    Tweeting and interacting with others helps boost followers.
+                  </small>
+                </p>
+              </div>
+            </div>
+          )}
           {type === "following" &&
+            following &&
             following.map((followingUser, index) => {
               if (index === following.length - 1) {
                 return (
@@ -296,6 +336,7 @@ function FollowingFollowersPage() {
                 return (
                   <div>
                     <User
+                    
                       {...followingUser}
                       currentuser={
                         currentuserName === followingUser.userName
@@ -309,6 +350,27 @@ function FollowingFollowersPage() {
                 );
               }
             })}
+          {type === "following" && following.length === 0 && !isLoading && (
+            <div>
+              <div className={`row`}>
+                <img
+                  src="https://abs.twimg.com/sticky/illustrations/empty-states/yellow-birds-power-line-800x400.v1.png"
+                  alt=""
+                />
+              </div>
+              <div className={`${classes.noFollowersContainer}`}>
+                <p className={`${classes.noFollowers}  mb-0 `}>
+                  {userName} isn’t{" "}
+                </p>
+                <p className={`${classes.noFollowers}  `}> following anyone</p>
+                <p className={`text-muted h5`}>
+                  <small>
+                    Once they follow accounts, they’ll show up here.
+                  </small>
+                </p>
+              </div>
+            </div>
+          )}
           {isLoading && (
             <ReactLoading
               type={"spin"}
