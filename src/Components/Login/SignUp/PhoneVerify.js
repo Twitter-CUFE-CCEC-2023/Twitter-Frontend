@@ -9,6 +9,10 @@ import Alert from "./Alert/Alert";
 import axios from "../../axios";
 
 const Verify = (props) => {
+  const [CODE, setCODE] = useState();
+  const handleCODEChange = (value) => {
+    setCODE(value);
+  };
   useEffect(() => {
     const Name = JSON.parse(localStorage.getItem("Name"));
     const Email = JSON.parse(localStorage.getItem("Email"));
@@ -95,6 +99,7 @@ const Verify = (props) => {
           disable={false}
           itemName="VerificationCode"
           maxLength={50}
+          passData={handleCODEChange}
         />
         <div className={classes.Minor4} onClick={ResendHandler}>
           Didn't receive email?
