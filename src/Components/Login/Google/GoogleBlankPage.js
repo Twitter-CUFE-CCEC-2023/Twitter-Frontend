@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "../../axios";
-const Mail = (props) => {
-    
-    const func = () => {
+const GoogleBlankPage = (props) => {
+    // useEffect(() => {
+        console.log("hello");
         axios
             .post("/auth/gauth", {
                 headers: { "Content-Type": "application/json" },
@@ -21,12 +21,12 @@ const Mail = (props) => {
                 }
             })
             .catch((err) => {});
-    }
+    // }, []);
     return (
-        <div onLoad={func}>
-            
+        <div>
+            <p> hello </p>
         </div>
     );
 };
 
-export default Mail;
+export default GoogleBlankPage;
