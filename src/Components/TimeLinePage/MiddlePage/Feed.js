@@ -90,7 +90,7 @@ export default function Feed(props) {
             isRetweeted: APItweet.is_retweeted,
             isTweetReply: APItweet.is_reply,
             media: APItweet.media,
-            gif : APItweet.gif ? APItweet.gif : "",
+            gif: APItweet.gif ? APItweet.gif : "",
           }
         : null;
       setFollowingSet((prevSet) => {
