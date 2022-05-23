@@ -20,6 +20,10 @@ const PASSWORD = (props) => {
             setAlert(true);
         }, 5000);
     }, [alert]);
+    const [PASSword, setPASSword] = useState();
+    const handlePASSwordChange = (value) => {
+        setPASSword(value);
+    };
     return (
         <div>
             <img
@@ -39,6 +43,7 @@ const PASSWORD = (props) => {
                     itemName="Password"
                     type="password"
                     maxLength={50}
+                    passData={handlePASSwordChange}
                 />
             </div>
 

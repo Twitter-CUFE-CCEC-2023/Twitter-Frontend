@@ -5,6 +5,7 @@ import { LoginContext } from "../../../../login-context";
 import axios from "../../../axios";
 
 const NextButtonUp = (props) => {
+  const disable = (JSON.parse(localStorage.getItem("Password")) == "");
   const history = useHistory();
   const handleClick = () => {
     const Name = JSON.parse(localStorage.getItem("Name"));
@@ -54,7 +55,7 @@ const NextButtonUp = (props) => {
   };
 
   return (
-    <div className={classes.buttonNext}>
+    <div disabled={disable} className={disable ? `${classes.disabled}` : `${classes.buttonNext}`}>
       <p className={classes.content} onClick={handleClick}>
         Sign Up
       </p>
