@@ -69,7 +69,12 @@ function FeedTweetReplyModal(props) {
           <FeedTweetBox
             isReply={true}
             isModal={true}
-            onAddTweet={props.onHide}
+            onAddTweet={(tweet) => {
+              if (props.onAddTweet) {
+                props.onAddTweet(tweet);
+              }
+              props.onHide();
+            }}
             Id={props.tweetId}
           ></FeedTweetBox>
         </div>

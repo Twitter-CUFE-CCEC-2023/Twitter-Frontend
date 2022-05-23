@@ -207,6 +207,9 @@ export default function FeedTweet(props) {
               onHide={hideReplyModal}
               {...props}
               addRepliesNum={() => {}}
+              onAddtweet={(tweet) => {
+                if (props.onAddtweet()) props.onAddtweet();
+              }}
             ></FeedTweetReplyModal>
           )}
         </div>

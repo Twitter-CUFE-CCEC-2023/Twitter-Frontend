@@ -211,6 +211,9 @@ function TweetAndReplies(props) {
           {...topTweet}
           setPhotosActive={props.setPhotosActive}
           setIncrement={props.setIncrement}
+          onAddTweet={(tweet) => {
+            addReply(tweet);
+          }}
         />
       </div>
       <div className={classes.tbox}>
@@ -240,6 +243,9 @@ function TweetAndReplies(props) {
             key={tweet.tweetId}
             setPhotosActive={props.setPhotosActive}
             setIncrement={props.setIncrement}
+            onAddTweet={(tweet) => {
+              addReply(tweet);
+            }}
           />
         );
       })}
