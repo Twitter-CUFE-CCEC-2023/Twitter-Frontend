@@ -50,7 +50,7 @@ function TweetAndReplies(props) {
         media: reply.media,
         gif: reply.gif ? reply.gif : "",
       };
-      return [reply_to_add, ...prevReplies];
+      return [...prevReplies, reply_to_add];
     });
   }
   React.useEffect(() => getTweet(), [props.increment]);

@@ -65,8 +65,11 @@
   text-decoration: none!important;
 }
 
-.loadingIcon{
+/* .loadingIcon{
   margin-left: 50%;
   margin-top: 5%;
-}
+} */
 
+.loadingIcon{
+  margin-left: auto;
+}

@@ -21,11 +21,13 @@ import PollBox from "./PollBox/PollBox";
 import GifModal from "./GifBox/GifModal";
 import ScheduleBox from "./Schedule Box/ScheduleBox";
 import ErrorModal from "../../BanModal/ErrorModal";
-import { set } from "date-fns";
+
+import ReactLoading from "react-loading";
 
 export default function FeedTweetBox(props) {
   const [leftLetters, setLeftLetters] = useState(280);
   const [tweetContent, setTweetContent] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
   function textAreaChangeHandler(event) {
     setLeftLetters(280 - event.target.value.length);
     setTweetContent(event.target.value);
@@ -70,7 +72,7 @@ export default function FeedTweetBox(props) {
     setBanned(val);
   };
 
-  function postTweet() {
+  const postTweet = async () => {
     if (leftLetters < 0) return;
     // props.changePostingTweet();
     const isBanned = JSON.parse(localStorage.getItem("UserInfo")).isBanned;
@@ -78,7 +80,7 @@ export default function FeedTweetBox(props) {
       setBanned(true);
       return;
     }
-
+    setIsProcessing(true);
     const formData = new FormData();
     const media = images.map((img) => {
       return img.file;
@@ -93,24 +95,38 @@ export default function FeedTweetBox(props) {
     if (gifChosen) {
       formData.append("gif", gifChosen);
     }
-    instance
-      .post("/status/tweet/post", formData)
-      .catch((err) => {
-        console.log(err);
-      })
-      .then((response) => {
-        // props.onAddTweet(response.data.tweet);
-        if (props.onAddTweet) props.onAddTweet(response.data.tweet);
-        console.log(response);
-        setTweetContent("");
-        setImages([]);
-        setLeftLetters(280);
-        setPollView(false);
-        setGifChosen(undefined);
-      });
+    try {
+      const response = await instance.post("/status/tweet/post", formData);
+      if (props.onAddTweet) props.onAddTweet(response.data.tweet);
+      console.log(response);
+      setTweetContent("");
+      setImages([]);
+      setLeftLetters(280);
+      setPollView(false);
+      setGifChosen(undefined);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsProcessing(false);
+    /* right code */
+    // instance
+    //   .post("/status/tweet/post", formData)
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+    //   .then((response) => {
+    //     // props.onAddTweet(response.data.tweet);
+    //     if (props.onAddTweet) props.onAddTweet(response.data.tweet);
+    //     console.log(response);
+    //     setTweetContent("");
+    //     setImages([]);
+    //     setLeftLetters(280);
+    //     setPollView(false);
+    //     setGifChosen(undefined);
+    //   });
 
     // props.changePostingTweet();
-  }
+  };
   const [pollView, setPollView] = useState(false);
   const togglePollView = () => {
     setPollView((prev) => {
@@ -284,18 +300,28 @@ export default function FeedTweetBox(props) {
                 Icon={LocationOnOutlinedIcon}
                 text="Location"
               />
-              <button
-                className={classes["tweetButton"]}
-                disabled={
-                  (imageList.length === 0 &&
-                    tweetContent.trim() === "" &&
-                    gifChosen == undefined) ||
-                  leftLetters < 0
-                }
-                onClick={postTweet}
-              >
-                {props.isReply ? "Reply" : "Tweet"}
-              </button>
+              <div className={classes["after-attributes-div"]}>
+                {isProcessing && (
+                  <ReactLoading
+                    type={"spin"}
+                    color={"#1DA1F2"}
+                    width="25px"
+                    height="25px"
+                  />
+                )}
+                <button
+                  className={classes["tweetButton"]}
+                  disabled={
+                    (imageList.length === 0 &&
+                      tweetContent.trim() === "" &&
+                      gifChosen == undefined) ||
+                    leftLetters < 0
+                  }
+                  onClick={postTweet}
+                >
+                  {props.isReply ? "Reply" : "Tweet"}
+                </button>
+              </div>
             </div>
           </div>
         )}
