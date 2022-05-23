@@ -1,12 +1,13 @@
 .buttonNext {
   margin-top: 3%;
   margin-left: -25%;
-  margin-right: -50%;
-  margin-bottom: 150%;
+  /* margin-right: -50%; */
+  /* margin-bottom: 150%; */
   padding: 0px;
-  height: 52px;
+  /* height: 52px; */
   width: 150%;
   min-height: 52px;
+  
 
   text-decoration: none;
   font-family: sans-serif;
@@ -18,7 +19,7 @@
   background-color: rgb(15, 20, 25);
   border: 1px solid black;
   border-radius: 99999px;
-  display: flex;
+  display: block;
   justify-content: center;
   text-align: left;
 }
@@ -33,6 +34,7 @@
   background-color: rgb(63, 67, 71);
   border-color: rgb(63, 67, 71);
   cursor: pointer;
+  display: block;
 }
 .disabled {
   margin-top: 3%;

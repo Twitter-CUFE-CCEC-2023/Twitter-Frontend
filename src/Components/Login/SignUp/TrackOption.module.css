@@ -9,11 +9,15 @@
   text-align: left;
   margin: 3% 15%;
   font-weight: bold;
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  width: 60vw;
 }
 
 .container {
   text-align: left;
   margin: 5% 10%;
+  
 }
 
 .closeIcon {

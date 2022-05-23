@@ -22,6 +22,11 @@ const Mail = (props) => {
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
   const [USERname, setUserNAME] = useState();
+  const [emailcheck, setEmailCheck] = useState();
+  const handleEmailChecker = (value) =>{
+    setEmailCheck(value);
+    setAlert(value);
+  }
   const handleuserchange = (value) =>
   {
     setUserNAME(value);
@@ -68,7 +73,7 @@ const Mail = (props) => {
   };
   const handleClick = (val) => {
     props.handleButtonClick(val);
-    setAlert(val);
+    // setAlert(val);
   };
   //Use above for day month and year to gain their value
   useEffect(() => {
@@ -183,12 +188,13 @@ const Mail = (props) => {
           handleDaySet={day}
           handleMonthSet={month}
           handleYearSet={year}
+          handleEmailChangeFn={handleEmailChecker}
           Step={step}
         />
       </div>
       {!alert && (
         <div className={classes.alert}>
-          <Alert message="Invalid credentials. Please enter all the data." />
+          <Alert message="Invalid Email. Please enter a valid one." />
         </div>
       )}
     </div>

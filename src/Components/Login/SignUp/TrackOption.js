@@ -26,7 +26,8 @@ const TrackOption = (props) => {
                 <ClearIcon />
             </NavLink>
             <div className={classes.containerStep}>
-                <p>Step 2 of 5</p>
+                {/* <p>Step 2 of 5</p> */}
+                Step 2 of 5
             </div>
             <div className={classes.container}>
                 <div className={classes.Minor}>
