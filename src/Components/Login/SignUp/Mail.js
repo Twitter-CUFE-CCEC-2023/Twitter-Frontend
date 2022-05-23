@@ -21,6 +21,16 @@ const Mail = (props) => {
   const [gender, setGender] = useState();
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
+  const [USERname, setUserNAME] = useState();
+  const handleuserchange = (value) =>
+  {
+    setUserNAME(value);
+  }
+  const handleEmailChange = (value) => {
+    setEmail(value);
+  };
+
 
   const usephoneInstead = () => {
     setPhone(!phone);
@@ -87,6 +97,7 @@ const Mail = (props) => {
           itemName="Name"
           maxLength={50}
           passData={SetName}
+          // defaultValue={""}
         />
         {/* <InputFieldError label="Name"
           disable={false}
@@ -103,6 +114,8 @@ const Mail = (props) => {
           disable={false}
           itemName="Email"
           maxLength={50}
+          passData={handleEmailChange}
+          value={email}
         />}
         {phone && <InputField
           label="Phone number"
@@ -120,6 +133,8 @@ const Mail = (props) => {
           disable={false}
           itemName="Username"
           maxLength={50}
+          passData={handleuserchange}
+          value={USERname}
         />
       </div>
 
@@ -134,9 +149,10 @@ const Mail = (props) => {
           <Select
             onChange={SetGender}
             native
-            defaultValue="00"
+            defaultValue=""
             id="grouped-native-select"
             itemname="Gender"
+            
           >
             <option aria-label="None" value="" />
             <option value="Male">Male</option>

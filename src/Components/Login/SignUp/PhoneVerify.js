@@ -9,6 +9,10 @@ import Alert from "./Alert/Alert";
 import axios from "../../axios";
 
 const Verify = (props) => {
+  const [CODE, setCODE] = useState();
+  const handleCODEChange = (value) => {
+    setCODE(value);
+  };
   useEffect(() => {
     const Name = JSON.parse(localStorage.getItem("Name"));
     const Email = JSON.parse(localStorage.getItem("Email"));
@@ -50,6 +54,24 @@ const Verify = (props) => {
     props.handleButtonClick(val);
     setAlert(val);
   };
+  const ResendHandler = () => {
+    const Email = JSON.parse(localStorage.getItem("Email"));
+
+    let userObject = {
+      email_or_username: Email,
+    };
+    axios
+      .post("/auth/resend-verification", userObject, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+        }
+      })
+      .catch((err) => {});
+  };
   //Use above for day month and year to gain their value
   useEffect(() => {
     setTimeout(() => {
@@ -79,8 +101,9 @@ const Verify = (props) => {
           disable={false}
           itemName="VerificationCode"
           maxLength={50}
+          passData={handleCODEChange}
         />
-        <div className={classes.Minor4} onClick={handleSendEmail}>
+        <div className={classes.Minor4} onClick={ResendHandler}>
           Didn't receive email?
         </div>
         <div className={classes.NextButton}>

@@ -34,7 +34,28 @@
   border-color: rgb(63, 67, 71);
   cursor: pointer;
 }
+.disabled {
+  margin-top: 3%;
+  margin-left: -50%;
+  margin-right: -50%;
+  margin-bottom: 150%;
+  padding: 0px;
+  height: 52px;
+  width: 150%;
+  min-height: 52px;
 
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 65%;
+  font-weight: 700;
+
+  color: white;
+  background-color: rgb(15, 20, 25);
+  border: 1px solid black;
+  border-radius: 99999px;
+
+  opacity: 0.4;
+}
 .content {
   font-family: Arial, Helvetica, sans-serif;
   /* font-size: 60%; */

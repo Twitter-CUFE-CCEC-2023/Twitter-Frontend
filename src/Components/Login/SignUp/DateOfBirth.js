@@ -73,7 +73,7 @@ const GroupedSelect = (props) => {
             </FormControl>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-select">Year</InputLabel>
-                <Select onChange={props.YearBack} native defaultValue="00" id="grouped-native-select">
+                <Select onChange={props.YearBack} native defaultValue="" id="grouped-native-select">
                     <option aria-label="None" value="" />
                     <option value="1980">1980</option>
                     <option value="1981">1981</option>
