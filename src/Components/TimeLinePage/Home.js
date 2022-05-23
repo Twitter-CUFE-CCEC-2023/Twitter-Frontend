@@ -30,7 +30,6 @@ export default function Home() {
       <div className={classes.timeLine}>
         <LeftSideBar
           addTweet={(tweet) => {
-            toggleUpdateTweets();
             setCurrentTweet(tweet);
           }}
           changePostingTweet={() => {}}

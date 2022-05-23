@@ -177,7 +177,9 @@ const LeftSideBar = (props) => {
       {/* need to add the functionality of more */}
       <div className={classes.phoneInvis}>
         <TweetButton
-          addTweet={props.addTweet}
+          addTweet={(tweet) => {
+            props.addTweet(tweet);
+          }}
           changePostingTweet={props.changePostingTweet}
         />
 

@@ -1,7 +1,7 @@
 import React from "react";
 import FeedTweet from "../MiddlePage/FeedTweet";
 import classes from "./TweetAndReplies.module.css";
-// import defaultMaleProfile from '../../../Assets/defaultMaleProfile.jpg'
+import defaultMaleProfile from "../../../Assets/defaultMaleProfile.jpg";
 import FeedTweetBox from "../MiddlePage/UpperTweetBox/FeedTweetBox";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { NavLink } from "react-router-dom";
@@ -23,6 +23,36 @@ function TweetAndReplies(props) {
 
   let isMock = localStorage.getItem("isMock") === "true";
 
+  function addReply(reply) {
+    setReplies((prevReplies) => {
+      let reply_to_add = {
+        name: reply.user.name,
+        profilePic: reply.user.profile_image_url
+          ? reply.user.profile_image_url
+          : defaultMaleProfile,
+        userName: reply.user.username,
+        isVerified: reply.user.isVerified,
+        bio: reply.user.bio,
+        isFollowing: reply.user.is_followed,
+        followers: reply.user.followers_count,
+        following: reply.user.following_count,
+        text: reply.content,
+        tweetId: reply.id,
+        date: reply.created_at,
+        replies: reply.replies,
+        repliesCount: reply.replies_count,
+        likes: reply.likes_count,
+        retweets: reply.retweets_count,
+        quotes: reply.quotes_count,
+        isLiked: reply.is_liked,
+        isRetweeted: reply.is_retweeted,
+        isTweetReply: reply.is_reply,
+        media: reply.media,
+        gif: reply.gif ? reply.gif : "",
+      };
+      return [reply_to_add, ...prevReplies];
+    });
+  }
   React.useEffect(() => getTweet(), [props.increment]);
 
   const getTweet = async () => {
@@ -72,7 +102,7 @@ function TweetAndReplies(props) {
       isRetweeted: maintweet.is_retweeted,
       isReply: maintweet.is_reply,
       media: maintweet.media,
-      gif : maintweet.gif ? maintweet.gif : "",
+      gif: maintweet.gif ? maintweet.gif : "",
     };
     let tu = {
       name: maintweet.user.name,
@@ -105,7 +135,7 @@ function TweetAndReplies(props) {
         isRetweeted: reply.is_retweeted,
         isReply: reply.is_reply,
         media: reply.media,
-        gif : reply.gif ? reply.gif : "",
+        gif: reply.gif ? reply.gif : "",
       };
     });
     setTopTweet(tweet);
@@ -185,7 +215,11 @@ function TweetAndReplies(props) {
       </div>
       <div className={classes.tbox}>
         {" "}
-        <FeedTweetBox isReply={true} Id={topTweet.tweetId} />{" "}
+        <FeedTweetBox
+          onAddTweet={addReply}
+          isReply={true}
+          Id={topTweet.tweetId}
+        />{" "}
       </div>
       {isLoading && (
         <ReactLoading
@@ -203,7 +237,7 @@ function TweetAndReplies(props) {
             isReply={true}
             topUser={topUser}
             showAction={true}
-            key={index}
+            key={tweet.tweetId}
             setPhotosActive={props.setPhotosActive}
             setIncrement={props.setIncrement}
           />

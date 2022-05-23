@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useEffect } from "react";
 import classes from "./Feed.module.css";
 import FeedTweetBox from "./UpperTweetBox/FeedTweetBox";
 import FeedTweet from "./FeedTweet";
@@ -38,14 +38,16 @@ export default function Feed(props) {
     [isLoading, hasMore]
   );
   const [calling, setCalling] = useState(0);
-  // React.useEffect(() => {
-  //   // addTweets;
-  //   if (calling !== 0) {
-  //     addTweet(props.currentTweet);
-  //   }
-  //   setCalling(1);
-  // }, [props.updateTweets]);
-
+  React.useEffect(() => {
+    // addTweets;
+    if (calling !== 0) {
+      addTweet(props.currentTweet);
+    }
+    setCalling(1);
+  }, [props.currentTweet]);
+  useEffect(() => {
+    console.log(tweets);
+  }, [tweets]);
   React.useEffect(() => subscribeNotifications(), []);
   React.useEffect(() => getTweets(), [pageNumber]);
   const getTweets = async () => {
@@ -90,7 +92,7 @@ export default function Feed(props) {
             isRetweeted: APItweet.is_retweeted,
             isTweetReply: APItweet.is_reply,
             media: APItweet.media,
-            gif : APItweet.gif ? APItweet.gif : "",
+            gif: APItweet.gif ? APItweet.gif : "",
           }
         : null;
       setFollowingSet((prevSet) => {
@@ -132,28 +134,34 @@ export default function Feed(props) {
     });
   };
   function addTweet(tweet) {
-    //   setTweets((prevTweets) => {
-    //     let tweet_to_add = {
-    //       name: tweet.user.name,
-    //       profilePic: tweet.user.profile_image_url,
-    //       userName: tweet.user.username,
-    //       isVerified: tweet.user.isVerified,
-    //       bio: tweet.user.bio,
-    //       followers: tweet.user.followers_count,
-    //       following: tweet.user.following_count,
-    //       text: tweet.content,
-    //       tweetId: tweet.id,
-    //       date: tweet.created_at,
-    //       replies: tweet.replies,
-    //       likes: tweet.likes_count,
-    //       retweets: tweet.retweets_count,
-    //       quotes: tweet.quotes_count,
-    //       isLiked: tweet.is_liked,
-    //       isRetweeted: tweet.is_retweeted,
-    //       isReply: tweet.is_reply,
-    //     };
-    //     return [tweet_to_add, ...prevTweets];
-    //   });
+    setTweets((prevTweets) => {
+      let tweet_to_add = {
+        name: tweet.user.name,
+        profilePic: tweet.user.profile_image_url
+          ? tweet.user.profile_image_url
+          : DefaultProfilePic,
+        userName: tweet.user.username,
+        isVerified: tweet.user.isVerified,
+        bio: tweet.user.bio,
+        isFollowing: tweet.user.is_followed,
+        followers: tweet.user.followers_count,
+        following: tweet.user.following_count,
+        text: tweet.content,
+        tweetId: tweet.id,
+        date: tweet.created_at,
+        replies: tweet.replies,
+        repliesCount: tweet.replies_count,
+        likes: tweet.likes_count,
+        retweets: tweet.retweets_count,
+        quotes: tweet.quotes_count,
+        isLiked: tweet.is_liked,
+        isRetweeted: tweet.is_retweeted,
+        isTweetReply: tweet.is_reply,
+        media: tweet.media,
+        gif: tweet.gif ? tweet.gif : "",
+      };
+      return [tweet_to_add, ...prevTweets];
+    });
     return;
   }
   const [postingTweet, setPostingTweet] = useState(0);
@@ -177,12 +185,12 @@ export default function Feed(props) {
             <div
               data-testid={`tweet-${index}`}
               ref={lastTweetElementRef}
-              key={index}
+              key={tweet.tweetId}
             >
               <FeedTweet
                 {...tweet}
                 showAction={true}
-                key={index}
+                key={tweet.tweetId}
                 setPhotosActive={props.setPhotosActive}
                 setIncrement={props.setIncrement}
                 followingSet={followingSet}
@@ -195,7 +203,7 @@ export default function Feed(props) {
             <FeedTweet
               data-testid={`tweet-${index}`}
               {...tweet}
-              key={index}
+              key={tweet.tweetId}
               showAction={true}
               setPhotosActive={props.setPhotosActive}
               setIncrement={props.setIncrement}

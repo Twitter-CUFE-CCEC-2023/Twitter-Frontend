@@ -100,7 +100,7 @@ export default function FeedTweetBox(props) {
       })
       .then((response) => {
         // props.onAddTweet(response.data.tweet);
-        if (props.onAddTweet) props.onAddTweet();
+        if (props.onAddTweet) props.onAddTweet(response.data.tweet);
         console.log(response);
         setTweetContent("");
         setImages([]);
