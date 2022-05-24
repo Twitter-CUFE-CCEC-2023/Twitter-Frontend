@@ -12,7 +12,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-PATH = "C:/Users/Lucio/AppData/Local/Programs/Python/Python310/chromedriver_win32/chromedriver.exe"
+PATH = "/usr/bin/chromedriver"
 testcases=0
 passed=0
 failed=0
