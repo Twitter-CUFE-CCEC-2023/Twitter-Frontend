@@ -2,6 +2,11 @@ import React from 'react'
 import classes from './DeleteModal.module.css'
 import instance from "../../axios";
 
+/**
+ * Modal to delete a tweet
+ * 
+ * @param  {String} tweetId
+ */
 function DeleteModal(props) {
 
     async function deleteTweet(){

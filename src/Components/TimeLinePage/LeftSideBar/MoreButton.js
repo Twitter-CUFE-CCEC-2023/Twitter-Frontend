@@ -14,7 +14,9 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import TvOutlinedIcon from '@material-ui/icons/TvOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-
+/**
+ * More Button Implemented on its own to show the list when it is clicked
+ */
 function MoreButton() {
     let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
     const [hidden, setHidden] = React.useState(true);

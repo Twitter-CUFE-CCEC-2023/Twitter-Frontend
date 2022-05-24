@@ -1,4 +1,32 @@
-import React, { useEffect, useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: TimeLinePage/LeftSideBar/LeftSideBar.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: TimeLinePage/LeftSideBar/LeftSideBar.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from "react";
 import classes from "./LeftSideBar.module.css";
 import classesLeftButton from "./LeftButton.module.css";
 import TweetButton from "./TweetButton";
@@ -71,38 +99,38 @@ const LeftSideBar = (props) => {
   };
 
   return (
-    <div className={classes.leftSideBar}>
-      {!moreSelected && (
-        <div className={classes.twitterIcon}>
+    &lt;div className={classes.leftSideBar}>
+      {!moreSelected &amp;&amp; (
+        &lt;div className={classes.twitterIcon}>
           {" "}
-          <TwitterIcon className={classes.iconTest} />{" "}
-        </div>
+          &lt;TwitterIcon className={classes.iconTest} />{" "}
+        &lt;/div>
       )}
-      {!moreSelected && (
-        <div data-testid="homeButton" className={classes.phoneVis}>
-          <LeftButton
+      {!moreSelected &amp;&amp; (
+        &lt;div data-testid="homeButton" className={classes.phoneVis}>
+          &lt;LeftButton
             Icon={HomeOutlinedIcon}
             IconActive={HomeIcon}
             url="home"
             title="Home"
             onPage={pageActive.get("home")}
           />
-        </div>
+        &lt;/div>
       )}
-      {!moreSelected && (
-        <div data-testid="exploreButton" className={classes.phoneVis}>
-          <LeftButton
+      {!moreSelected &amp;&amp; (
+        &lt;div data-testid="exploreButton" className={classes.phoneVis}>
+          &lt;LeftButton
             Icon={PageviewOutlinedIcon}
             IconActive={PageviewIcon}
             url="explore"
             title="Explore"
             onPage={pageActive.get("explore")}
           />
-        </div>
+        &lt;/div>
       )}
-      {!moreSelected && (
-        <div data-testid="notificationsButton" className={classes.phoneVis}>
-          <LeftButton
+      {!moreSelected &amp;&amp; (
+        &lt;div data-testid="notificationsButton" className={classes.phoneVis}>
+          &lt;LeftButton
             Icon={NotificationsNoneOutlinedIcon}
             IconActive={NotificationsIcon}
             url="notifications"
@@ -112,81 +140,104 @@ const LeftSideBar = (props) => {
               pageActive.get("mentionnotifications")
             }
           />
-          {unreadNotes !== 0 && (
-            <div className={classes.numberCircle}>{unreadNotes}</div>
+          {unreadNotes !== 0 &amp;&amp; (
+            &lt;div className={classes.numberCircle}>{unreadNotes}&lt;/div>
           )}
-        </div>
+        &lt;/div>
       )}
-      {!moreSelected && (
-        <div data-testid="messagesButton" className={classes.phoneVis}>
-          <LeftButton
+      {!moreSelected &amp;&amp; (
+        &lt;div data-testid="messagesButton" className={classes.phoneVis}>
+          &lt;LeftButton
             Icon={LocalPostOfficeOutlinedIcon}
             IconActive={LocalPostOfficeIcon}
             url="messages"
             title="Messages"
             onPage={pageActive.get("messages")}
           />
-        </div>
+        &lt;/div>
       )}
-      {!moreSelected && (
-        <div data-testid="bookmarksButton" className={classes.phoneInvis}>
-          <LeftButton
+      {!moreSelected &amp;&amp; (
+        &lt;div data-testid="bookmarksButton" className={classes.phoneInvis}>
+          &lt;LeftButton
             Icon={BookmarkBorderOutlinedIcon}
             IconActive={BookmarkIcon}
             url="i/bookmarks"
             title="Bookmarks"
             onPage={pageActive.get("i/bookmarks")}
           />
-        </div>
+        &lt;/div>
       )}
-      {!moreSelected && (
-        <div data-testid="listsButton" className={classes.phoneInvis}>
-          <LeftButton
+      {!moreSelected &amp;&amp; (
+        &lt;div data-testid="listsButton" className={classes.phoneInvis}>
+          &lt;LeftButton
             Icon={ViewListOutlinedIcon}
             IconActive={ViewListIcon}
             url="profileName/lists"
             title="Lists"
             onPage={pageActive.get("profilename/lists")}
           />
-        </div>
+        &lt;/div>
       )}{" "}
       {/* profile name is the logged in user in the future*/}
-      {!moreSelected && (
-        <div data-testid="profileButton" className={classes.phoneInvis}>
-          <LeftButton
+      {!moreSelected &amp;&amp; (
+        &lt;div data-testid="profileButton" className={classes.phoneInvis}>
+          &lt;LeftButton
             Icon={AccountCircleOutlinedIcon}
             IconActive={AccountCircleIcon}
             url={`userprofile/${currentuser ? currentuser.username : null}`}
             title="Profile"
             onPage={pageActive.get("userprofile")}
           />
-        </div>
+        &lt;/div>
       )}
-      <MoreButton />
-      {/* {!moreSelected && (
-        <div
+      &lt;MoreButton />
+      {/* {!moreSelected &amp;&amp; (
+        &lt;div
           className={`${classesLeftButton.leftButton} ${classes.phoneInvis}`}
         >
-          <MoreOutlinedIcon />
-          <p
+          &lt;MoreOutlinedIcon />
+          &lt;p
             className={classesLeftButton.title}
             onClick={() => setMoreSelected(true)}
           >
             More
-          </p>
-        </div>
+          &lt;/p>
+        &lt;/div>
       )}{" "} */}
       {/* need to add the functionality of more */}
-      <div className={classes.phoneInvis}>
-        <TweetButton
+      &lt;div className={classes.phoneInvis}>
+        &lt;TweetButton
           addTweet={props.addTweet}
           changePostingTweet={props.changePostingTweet}
         />
 
-        <AccountButton />
-      </div>
-    </div>
+        &lt;AccountButton />
+      &lt;/div>
+    &lt;/div>
   );
 };
 
 export default LeftSideBar;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountButton">AccountButton</a></li><li><a href="global.html#DeleteModal">DeleteModal</a></li><li><a href="global.html#ImageGrid">ImageGrid</a></li><li><a href="global.html#LeftSideBar">LeftSideBar</a></li><li><a href="global.html#MiniProfile">MiniProfile</a></li><li><a href="global.html#MoreButton">MoreButton</a></li><li><a href="global.html#PhotosPage">PhotosPage</a></li><li><a href="global.html#rotateSize">rotateSize</a></li><li><a href="global.html#TweetAndReplies">TweetAndReplies</a></li><li><a href="global.html#TweetAtrribute">TweetAtrribute</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue May 24 2022 20:05:32 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

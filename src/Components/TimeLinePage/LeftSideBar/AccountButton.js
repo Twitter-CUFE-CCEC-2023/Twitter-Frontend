@@ -7,6 +7,9 @@ import LogoutModal from "./LogoutModal";
 
 import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 
+/**
+ * The bottom left button used to open the list to logout
+ */
 function AccountButton() {
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
   loggedUser.profile_image_url = loggedUser.profile_image_url ? loggedUser.profile_image_url : DefaultProfilePic;

@@ -1,4 +1,32 @@
-import React from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: TimeLinePage/TweetPage/TweetAndReplies.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: TimeLinePage/TweetPage/TweetAndReplies.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
 import FeedTweet from "../MiddlePage/FeedTweet";
 import classes from "./TweetAndReplies.module.css";
 // import defaultMaleProfile from '../../../Assets/defaultMaleProfile.jpg'
@@ -31,7 +59,7 @@ function TweetAndReplies(props) {
 
   const getTweet = async () => {
     const splitPath = prevPath.split("/");
-    if (splitPath.length < 4) {
+    if (splitPath.length &lt; 4) {
       const prevPage = {
         prevPath: prevPath,
         tweetId: id,
@@ -126,7 +154,7 @@ function TweetAndReplies(props) {
       ? JSON.parse(localStorage.getItem("homeBack"))
       : null;
     history.push(
-      prevPage && prevPage.tweetId === String(id) ? prevPage.prevPath : prevPath
+      prevPage &amp;&amp; prevPage.tweetId === String(id) ? prevPage.prevPath : prevPath
     );
     window.location.reload();
   }
@@ -138,21 +166,21 @@ function TweetAndReplies(props) {
 
   if (isLoading) {
     return (
-      <div
+      &lt;div
         className={`${classes.TweetAndReplies} ${
-          props.isShowPhotos && classes.widthPhotos
+          props.isShowPhotos &amp;&amp; classes.widthPhotos
         }`}
       >
-        {!props.isShowPhotos && (
-          <div className={classes.tweetHeader}>
-            <NavLink className={classes.nlink} to={prevPath} onClick={goBack}>
-              <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
-            </NavLink>
-            <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
-          </div>
+        {!props.isShowPhotos &amp;&amp; (
+          &lt;div className={classes.tweetHeader}>
+            &lt;NavLink className={classes.nlink} to={prevPath} onClick={goBack}>
+              &lt;ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
+            &lt;/NavLink>
+            &lt;h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet&lt;/h2>
+          &lt;/div>
         )}
-        {isLoading && (
-          <ReactLoading
+        {isLoading &amp;&amp; (
+          &lt;ReactLoading
             type={"spin"}
             color={"#1DA1F2"}
             height={"4%"}
@@ -160,39 +188,39 @@ function TweetAndReplies(props) {
             className={`${classes.loadingIcon}`}
           />
         )}
-      </div>
+      &lt;/div>
     );
   }
 
   return (
-    <div
+    &lt;div
       className={`${classes.TweetAndReplies} ${
-        props.isShowPhotos && classes.widthPhotos
+        props.isShowPhotos &amp;&amp; classes.widthPhotos
       }`}
     >
-      {!props.isShowPhotos && (
-        <div className={classes.tweetHeader}>
-          <NavLink className={classes.nlink} to={prevPath} onClick={goBack}>
-            <ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
-          </NavLink>
-          <h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet</h2>
-        </div>
+      {!props.isShowPhotos &amp;&amp; (
+        &lt;div className={classes.tweetHeader}>
+          &lt;NavLink className={classes.nlink} to={prevPath} onClick={goBack}>
+            &lt;ArrowBackIcon className={`${classes.fs20} ${classes.icon}`} />
+          &lt;/NavLink>
+          &lt;h2 className={`${classes.headerText} ${classes.fs20}`}>Tweet&lt;/h2>
+        &lt;/div>
       )}
-      <div data-testid="topTweet">
-        <FeedTweet
+      &lt;div data-testid="topTweet">
+        &lt;FeedTweet
           isShowPhotos={props.isShowPhotos}
           isTopTweet={true}
           {...topTweet}
           setPhotosActive={props.setPhotosActive}
           setIncrement={props.setIncrement}
         />
-      </div>
-      <div className={classes.tbox}>
+      &lt;/div>
+      &lt;div className={classes.tbox}>
         {" "}
-        <FeedTweetBox isReply={true} Id={topTweet.tweetId} />{" "}
-      </div>
-      {isLoading && (
-        <ReactLoading
+        &lt;FeedTweetBox isReply={true} Id={topTweet.tweetId} />{" "}
+      &lt;/div>
+      {isLoading &amp;&amp; (
+        &lt;ReactLoading
           type={"spin"}
           color={"#1DA1F2"}
           height={"4%"}
@@ -202,7 +230,7 @@ function TweetAndReplies(props) {
       )}
       {replies.map((tweet, index) => {
         return (
-          <FeedTweet
+          &lt;FeedTweet
             {...tweet}
             isReply={true}
             topUser={topUser}
@@ -213,8 +241,31 @@ function TweetAndReplies(props) {
           />
         );
       })}
-    </div>
+    &lt;/div>
   );
 }
 
 export default TweetAndReplies;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountButton">AccountButton</a></li><li><a href="global.html#DeleteModal">DeleteModal</a></li><li><a href="global.html#ImageGrid">ImageGrid</a></li><li><a href="global.html#LeftSideBar">LeftSideBar</a></li><li><a href="global.html#MiniProfile">MiniProfile</a></li><li><a href="global.html#MoreButton">MoreButton</a></li><li><a href="global.html#PhotosPage">PhotosPage</a></li><li><a href="global.html#rotateSize">rotateSize</a></li><li><a href="global.html#TweetAndReplies">TweetAndReplies</a></li><li><a href="global.html#TweetAtrribute">TweetAtrribute</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue May 24 2022 20:05:32 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

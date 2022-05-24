@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: TimeLinePage/LeftSideBar/MoreButton.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: TimeLinePage/LeftSideBar/MoreButton.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react'
+import classes from './MoreButton.module.css'
+import buttonClasses from "./LeftButton.module.css";
+import MoreOutlinedIcon from "@material-ui/icons/MoreOutlined";
+import { NavLink } from 'react-router-dom';
+
+import InsertCommentOutlinedIcon from "@material-ui/icons/InsertCommentOutlined";
+import FlashOnIcon from '@material-ui/icons/FlashOn';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import LaunchIcon from '@material-ui/icons/Launch';
+import InputOutlinedIcon from '@material-ui/icons/InputOutlined';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import SettingsIcon from '@material-ui/icons/Settings';
+import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
+import TvOutlinedIcon from '@material-ui/icons/TvOutlined';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+/**
+ * More Button Implemented on its own to show the list when it is clicked
+ */
+function MoreButton() {
+    let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
+    const [hidden, setHidden] = React.useState(true);
+
+    React.useEffect(() => {
+        document.body.addEventListener("click", hide, true);
+    }, []);
+
+    function hide(event) {
+        var isClickInsideElement = document.getElementById("moreList") ? document.getElementById("moreList").contains(event.target) : false;
+        if (!isClickInsideElement) {
+            setHidden(true);
+        }
+    }
+
+    return (
+        &lt;div className= {classes.moreButton}>
+            &lt;div className={`${buttonClasses.leftButton}`} onClick={() => setHidden((prev) => !prev)}>
+                &lt;MoreOutlinedIcon />
+                &lt;p className={buttonClasses.title}>More&lt;/p>
+            &lt;/div>
+            &lt;div id = "moreList" className={`${classes.moreList} ${hidden &amp;&amp; classes.hidden}`}>
+                &lt;NavLink to = {`/${loggedUser.username}/topics`} className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice} ${classes.firstChoice}`}>
+                    &lt;div className={classes.flex}>
+                        &lt;InsertCommentOutlinedIcon className={classes.listIcon}/>
+                        &lt;p className={classes.choiceText}>Topics&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+                &lt;NavLink to = "/i/moment_maker" className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice}`}>
+                    &lt;div className={classes.flex}>
+                    &lt;FlashOnIcon className={classes.listIcon}/>
+                    &lt;p className={classes.choiceText}>Moments&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+                &lt;NavLink to = "/i/newsletters" className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice}`}>
+                    &lt;div className={classes.flex}>
+                    &lt;ChatOutlinedIcon className={classes.listIcon}/>
+                    &lt;p className={classes.choiceText}>Newsletters&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+                &lt;NavLink to = "/i/flow/convert_to_professional" className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice}`}>
+                    &lt;div className={classes.flex}>
+                    &lt;LaunchIcon className={classes.listIcon}/>
+                    &lt;p className={classes.choiceText}>Twitter for Professionals&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+                &lt;NavLink to = "/twitter-ads" className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice}`}>
+                    &lt;div className={classes.flex}>
+                    &lt;InputOutlinedIcon className={classes.listIcon}/>
+                    &lt;p className={classes.choiceText}>Twitter Ads&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+                &lt;NavLink to = "/analytics" className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice} ${classes.borderBottom}`}>
+                    &lt;div className={classes.flex}>
+                    &lt;BarChartIcon className={classes.listIcon}/>
+                    &lt;p className={classes.choiceText}>Analytics&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+                &lt;NavLink to = "/settings" className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice}`}>
+                    &lt;div className={classes.flex}>
+                    &lt;SettingsIcon className={classes.listIcon}/>
+                    &lt;p className={classes.choiceText}>Settings And Privacy&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+                &lt;NavLink to = "/help-center" className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice}`}>
+                    &lt;div className={classes.flex}>
+                    &lt;HelpOutlineOutlinedIcon className={classes.listIcon}/>
+                    &lt;p className={classes.choiceText}>Help Center&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+                &lt;NavLink to = "/i/display" className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice}`}>
+                    &lt;div className={classes.flex}>
+                    &lt;TvOutlinedIcon className={classes.listIcon}/>
+                    &lt;p className={classes.choiceText}>Display&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+                &lt;NavLink to = "/i/keyboard-shortcuts" className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice}  ${classes.lastChoice}`}>
+                    &lt;div className={classes.flex}>
+                    &lt;AccountCircleOutlinedIcon className={classes.listIcon}/>
+                    &lt;p className={classes.choiceText}>Keyboard shortcuts&lt;/p>
+                    &lt;/div>
+                &lt;/NavLink>
+            &lt;/div>
+        &lt;/div>
+    )
+}
+
+export default MoreButton</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountButton">AccountButton</a></li><li><a href="global.html#DeleteModal">DeleteModal</a></li><li><a href="global.html#ImageGrid">ImageGrid</a></li><li><a href="global.html#LeftSideBar">LeftSideBar</a></li><li><a href="global.html#MiniProfile">MiniProfile</a></li><li><a href="global.html#MoreButton">MoreButton</a></li><li><a href="global.html#PhotosPage">PhotosPage</a></li><li><a href="global.html#rotateSize">rotateSize</a></li><li><a href="global.html#TweetAndReplies">TweetAndReplies</a></li><li><a href="global.html#TweetAtrribute">TweetAtrribute</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue May 24 2022 20:05:32 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

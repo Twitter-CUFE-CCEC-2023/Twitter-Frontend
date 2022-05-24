@@ -2,7 +2,13 @@ import React from "react";
 import classes from "./LeftButton.module.css";
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
+/**
+ * Buttons of left side bar
+ * 
+ * @param  {String} title The Text of the Button
+ * @param  {Icon} Icon The icon of the Button
+ * @param  {Icon} IconActive The icon of the Button when it is active (on Page)
+ */
 export default function LeftButton(props) {
 
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
