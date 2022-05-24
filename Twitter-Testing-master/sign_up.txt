@@ -1,0 +1,33 @@
+SIGN UP PAGE -> test case of inserting wrong email 
+FAILED: no error msg when you enter invaild email
+
+SIGN UP PAGE -> test case of Sign up with google 
+PASSED
+
+SIGN UP PAGE -> test case of format of  Email link 
+PASSED
+
+SIGN UP PAGE -> test case of Sign up button 
+PASSED
+
+SIGN UP PAGE -> test case of creating account 
+PASSED
+
+SIGN UP PAGE -> test case of is next button is enable without inserting info. 
+PASSED
+
+SIGN UP PAGE -> test case of checking the next button after inserting wrong phone number 
+PASSED
+
+SIGN UP PAGE -> test case of check text of phone link 
+PASSED
+
+SIGN UP PAGE -> test case of inserting more than 50 letter in the textbox of the Name 
+PASSED
+
+SIGN UP PAGE -> test case of inserting wrong number 
+FAILED:no error msg when you enter invaild phone number
+
+SIGN UP PAGE -> test case of check years 
+FAILED: not all years are exist
+

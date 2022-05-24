@@ -1,0 +1,34 @@
+profile PAGE -> tweet a tweet 
+PASSED 
+profile PAGE -> tweet a tweet 
+FAILED 
+profile PAGE -> tweet a tweet 
+PASSED 
+profile PAGE -> tweet a tweet 
+FAILED 
+profile PAGE -> follow myself 
+FAILED: congratulation you followed yourself  
+profile PAGE -> follow myself 
+profile PAGE -> follow myself 
+profile PAGE -> follow myself 
+profile PAGE -> body of the tweet accept more than 280 letter 
+PASSED 
+
+profile PAGE -> discard msg of the tweet when you cancel it  
+PASSED 
+
+profile PAGE -> discard msg of the tweet when you cancel it  
+PASSED 
+
+profile PAGE -> discard msg of the tweet when you cancel it  
+PASSED 
+
+profile PAGE -> discard msg of the tweet when you cancel it  
+PASSED 
+
+profile PAGE -> discard msg of the tweet when you cancel it  
+FALIED : there is no discard msg  
+
+profile PAGE -> discard msg of the tweet when you cancel it  
+FALIED : there is no discard msg  
+
