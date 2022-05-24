@@ -1,4 +1,32 @@
-import React, { useContext } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: AdminSideBar.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: AdminSideBar.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -45,62 +73,62 @@ function AdminSideBar(props) {
   };
 
   const drawer = (
-    <div className={classes.drawerContainer}>
-      <div className={classes.toolbar} />
-      <List>
+    &lt;div className={classes.drawerContainer}>
+      &lt;div className={classes.toolbar} />
+      &lt;List>
         {Tabs.map((item, index) => {
           return (
-            <div key={index}>
-              <NavLink
+            &lt;div key={index}>
+              &lt;NavLink
                 to={`${item.url}`}
                 style={{
                   textDecoration: "none",
                   color: "rgba(0, 0, 0, 0.8)",
                 }}
               >
-                <ListItem button key={index}>
-                  <ListItemIcon style={{ minWidth: 0, marginRight: "15px" }}>
+                &lt;ListItem button key={index}>
+                  &lt;ListItemIcon style={{ minWidth: 0, marginRight: "15px" }}>
                     {item.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={item.title} />
-                </ListItem>
-              </NavLink>
-              <Divider />
-            </div>
+                  &lt;/ListItemIcon>
+                  &lt;ListItemText primary={item.title} />
+                &lt;/ListItem>
+              &lt;/NavLink>
+              &lt;Divider />
+            &lt;/div>
           );
         })}
 
-        <NavLink
+        &lt;NavLink
           to={`/`}
           style={{
             textDecoration: "none",
             color: "rgba(0, 0, 0, 0.8)",
           }}
         >
-          <div onClick={handleLogout}>
-            {/* <div> */}
-            <ListItem button key={"logout"}>
-              <ListItemIcon style={{ minWidth: 0, marginRight: "15px" }}>
-                <ExitToAppRoundedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Logout" />
-            </ListItem>
-          </div>
-        </NavLink>
-        <Divider />
-      </List>
-    </div>
+          &lt;div onClick={handleLogout}>
+            {/* &lt;div> */}
+            &lt;ListItem button key={"logout"}>
+              &lt;ListItemIcon style={{ minWidth: 0, marginRight: "15px" }}>
+                &lt;ExitToAppRoundedIcon />
+              &lt;/ListItemIcon>
+              &lt;ListItemText primary="Logout" />
+            &lt;/ListItem>
+          &lt;/div>
+        &lt;/NavLink>
+        &lt;Divider />
+      &lt;/List>
+    &lt;/div>
   );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root}>
-      <AdminHeader handleDrawerToggleFn={handleDrawerToggle} />
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        <Hidden smUp implementation="css">
-          <Drawer
+    &lt;div className={classes.root}>
+      &lt;AdminHeader handleDrawerToggleFn={handleDrawerToggle} />
+      &lt;nav className={classes.drawer} aria-label="mailbox folders">
+        &lt;Hidden smUp implementation="css">
+          &lt;Drawer
             container={container}
             variant="temporary"
             anchor={theme.direction === "rtl" ? "right" : "left"}
@@ -114,10 +142,10 @@ function AdminSideBar(props) {
             }}
           >
             {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
+          &lt;/Drawer>
+        &lt;/Hidden>
+        &lt;Hidden xsDown implementation="css">
+          &lt;Drawer
             classes={{
               paper: classes.drawerPaper,
             }}
@@ -125,10 +153,10 @@ function AdminSideBar(props) {
             open
           >
             {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
-    </div>
+          &lt;/Drawer>
+        &lt;/Hidden>
+      &lt;/nav>
+    &lt;/div>
   );
 }
 
@@ -141,3 +169,26 @@ AdminSideBar.propTypes = {
 };
 
 export default AdminSideBar;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AdminPage-SideBar.html">AdminPage-SideBar</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue May 24 2022 19:35:39 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

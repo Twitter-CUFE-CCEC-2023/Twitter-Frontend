@@ -1,4 +1,32 @@
-import React, { useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: BanModal.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: BanModal.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -28,12 +56,12 @@ const useStyles = makeStyles((theme) => ({
 const BlueCheckbox = withStyles({
   root: {
     color: "#3F51B5",
-    "&$checked": {
+    "&amp;$checked": {
       color: "#3b4fbf",
     },
   },
   checked: {},
-})((props) => <Checkbox color="default" {...props} />);
+})((props) => &lt;Checkbox color="default" {...props} />);
 
 export default function BanModel(props) {
   const classes = useStyles();
@@ -91,14 +119,14 @@ export default function BanModel(props) {
    * @description Send a request to ban a user by id
    */
   const handleBan = () => {
-    if (reason.length === 0 || (banForever === false && todate === null)) {
+    if (reason.length === 0 || (banForever === false &amp;&amp; todate === null)) {
       setAlert(true);
       setTimeout(() => {
         setAlert(false);
       }, 3000);
     } else {
       const today = new Date();
-      if (!banForever && today >= todate) {
+      if (!banForever &amp;&amp; today >= todate) {
         setDateError(true);
         setTimeout(() => {
           setDateError(false);
@@ -142,8 +170,8 @@ export default function BanModel(props) {
   };
 
   return (
-    <div>
-      <Modal
+    &lt;div>
+      &lt;Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
@@ -155,31 +183,31 @@ export default function BanModel(props) {
           timeout: 500,
         }}
       >
-        <Fade in={props.open}>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title">Banning</h2>
-            <div style={{ marginTop: "20px" }}>
-              <InputField
+        &lt;Fade in={props.open}>
+          &lt;div className={classes.paper}>
+            &lt;h2 id="transition-modal-title">Banning&lt;/h2>
+            &lt;div style={{ marginTop: "20px" }}>
+              &lt;InputField
                 label="Reason"
                 disable={false}
                 maxLength={100}
                 passData={handleReason}
                 value={reason}
               />
-            </div>
-            {!banForever && (
-              <div style={{ marginTop: "20px" }}>
-                <FilterDates
+            &lt;/div>
+            {!banForever &amp;&amp; (
+              &lt;div style={{ marginTop: "20px" }}>
+                &lt;FilterDates
                   label="To"
                   date={todate}
                   handleChange={handleToDateChange}
                 />
-              </div>
+              &lt;/div>
             )}
-            <div style={{ marginTop: "10px" }}>
-              <FormControlLabel
+            &lt;div style={{ marginTop: "10px" }}>
+              &lt;FormControlLabel
                 control={
-                  <BlueCheckbox
+                  &lt;BlueCheckbox
                     checked={banForever}
                     onChange={handleBanForever}
                     name="banForever"
@@ -187,27 +215,27 @@ export default function BanModel(props) {
                 }
                 label="Ban Forever"
               />
-            </div>
-            <div style={{ marginTop: "20px", textAlign: "center" }}>
-              <BootstrapButton
+            &lt;/div>
+            &lt;div style={{ marginTop: "20px", textAlign: "center" }}>
+              &lt;BootstrapButton
                 variant="contained"
                 color="primary"
                 disableRipple
                 onClick={handleBan}
               >
                 {submitButton}
-              </BootstrapButton>{" "}
-              <BootstrapButton
+              &lt;/BootstrapButton>{" "}
+              &lt;BootstrapButton
                 variant="contained"
                 color="primary"
                 disableRipple
                 onClick={handleCloseModal}
               >
                 Close
-              </BootstrapButton>
-            </div>
-            {alert && (
-              <p
+              &lt;/BootstrapButton>
+            &lt;/div>
+            {alert &amp;&amp; (
+              &lt;p
                 id="transition-modal-description"
                 style={{
                   marginTop: "30px",
@@ -216,10 +244,10 @@ export default function BanModel(props) {
                 }}
               >
                 Please enter a reason and/or to date first
-              </p>
+              &lt;/p>
             )}
-            {dateError && (
-              <p
+            {dateError &amp;&amp; (
+              &lt;p
                 id="transition-modal-description"
                 style={{
                   marginTop: "30px",
@@ -228,10 +256,10 @@ export default function BanModel(props) {
                 }}
               >
                 ToDate can't be before/equal today
-              </p>
+              &lt;/p>
             )}
-            {error && (
-              <p
+            {error &amp;&amp; (
+              &lt;p
                 id="transition-modal-description"
                 style={{
                   marginTop: "30px",
@@ -240,11 +268,34 @@ export default function BanModel(props) {
                 }}
               >
                 An Error Occured, Please Try Again
-              </p>
+              &lt;/p>
             )}
-          </div>
-        </Fade>
-      </Modal>
-    </div>
+          &lt;/div>
+        &lt;/Fade>
+      &lt;/Modal>
+    &lt;/div>
   );
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AdminPage-BanModal.html">AdminPage-BanModal</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue May 24 2022 20:06:08 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

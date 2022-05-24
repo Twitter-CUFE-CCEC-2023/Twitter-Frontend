@@ -1,4 +1,32 @@
-import React, { useEffect, useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: UsersTable.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: UsersTable.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -42,7 +70,7 @@ const UsersTable = () => {
     };
 
     if (
-      localStorage.getItem(`filter-gender`) !== "" &&
+      localStorage.getItem(`filter-gender`) !== "" &amp;&amp;
       localStorage.getItem(`filter-gender`) !== "All"
     ) {
       requestFilters["gender"] = localStorage.getItem("filter-gender");
@@ -82,7 +110,7 @@ const UsersTable = () => {
   /**
    * @function handleChangePage
    * @name handleChangePage
-   * @description Handle the page change & send a request with the new page to get more users
+   * @description Handle the page change &amp; send a request with the new page to get more users
    * @param {event} event event object
    * @param {integer} newPage page number
    */
@@ -105,31 +133,31 @@ const UsersTable = () => {
   }, []);
 
   return (
-    <Paper className={classess.paper}>
-      {!noUsers && !error && (
-        <TableContainer className={classess.container}>
-          {isLoading && (
-            <Table>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <LoadingSpinner />
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+    &lt;Paper className={classess.paper}>
+      {!noUsers &amp;&amp; !error &amp;&amp; (
+        &lt;TableContainer className={classess.container}>
+          {isLoading &amp;&amp; (
+            &lt;Table>
+              &lt;TableBody>
+                &lt;TableRow>
+                  &lt;TableCell>
+                    &lt;LoadingSpinner />
+                  &lt;/TableCell>
+                &lt;/TableRow>
+              &lt;/TableBody>
+            &lt;/Table>
           )}
 
-          {!isLoading && (
-            <Table
+          {!isLoading &amp;&amp; (
+            &lt;Table
               stickyHeader
               aria-label="collapsible table"
               className={classess.table}
             >
-              <Header />
-              <TableBody>
+              &lt;Header />
+              &lt;TableBody>
                 {users.map((row, index) => {
-                  return <UserRow key={index} row={row} id={index} />;
+                  return &lt;UserRow key={index} row={row} id={index} />;
                 })}
                 {/* {(rowsPerPage > 0
                 ? users.slice(
@@ -138,15 +166,15 @@ const UsersTable = () => {
                   )
                 : users
               ).map((row, index) => {
-                return <UserRow key={index} row={row} id={index} />;
+                return &lt;UserRow key={index} row={row} id={index} />;
               })} */}
-              </TableBody>
-            </Table>
+              &lt;/TableBody>
+            &lt;/Table>
           )}
-        </TableContainer>
+        &lt;/TableContainer>
       )}
-      {!noUsers && !error && (
-        <TablePagination
+      {!noUsers &amp;&amp; !error &amp;&amp; (
+        &lt;TablePagination
           rowsPerPageOptions={[10]}
           component="div"
           count={totalNumberUsers}
@@ -157,8 +185,8 @@ const UsersTable = () => {
           ActionsComponent={TablePaginationActions}
         />
       )}
-      {noUsers && !error && (
-        <div
+      {noUsers &amp;&amp; !error &amp;&amp; (
+        &lt;div
           className={classess.container}
           style={{
             display: "flex",
@@ -166,11 +194,11 @@ const UsersTable = () => {
             alignItems: "center",
           }}
         >
-          <h1>No Users Found</h1>
-        </div>
+          &lt;h1>No Users Found&lt;/h1>
+        &lt;/div>
       )}
-      {error && (
-        <div
+      {error &amp;&amp; (
+        &lt;div
           className={classess.container}
           style={{
             display: "flex",
@@ -178,13 +206,36 @@ const UsersTable = () => {
             alignItems: "center",
           }}
         >
-          <h2 style={{ margin: "0% 12%" }}>
+          &lt;h2 style={{ margin: "0% 12%" }}>
             An Error Occured, Please Try Again Later.
-          </h2>
-        </div>
+          &lt;/h2>
+        &lt;/div>
       )}
-    </Paper>
+    &lt;/Paper>
   );
 };
 
 export default UsersTable;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AdminPage-UsersTable.html">AdminPage-UsersTable</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue May 24 2022 19:53:26 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
