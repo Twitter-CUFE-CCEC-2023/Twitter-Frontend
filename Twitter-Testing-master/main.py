@@ -52,7 +52,7 @@ class PythonOrgSearch(unittest.TestCase):
 
    
     
-    '''
+    
     def test_case_SIGNUP_click_sign_up_button(self):
         SignUp_page=page.SignUpPage(self.driver)
         global testcases
@@ -1876,8 +1876,8 @@ class PythonOrgSearch(unittest.TestCase):
                 
         except:
             Report_profile.write("FALIED :    \n\n" )    
-    '''                                                                                                                                                                                                          
-    def test_log_in(self):
+                                                                                                                                                                                                              
+    def log_in(self):
         Signin_page=page.SignInPage(self.driver)
         profile=page.profile(self.driver)
         Signin_page.click_sign_in_button()
@@ -1894,7 +1894,7 @@ class PythonOrgSearch(unittest.TestCase):
     
     
     
-    def test_refresh(self):
+    def refresh(self):
         profile=page.profile(self.driver)  
         profile.click_profile_icon()
         time.sleep(2)
@@ -1903,7 +1903,7 @@ class PythonOrgSearch(unittest.TestCase):
         profile.click_profile_icon()  
     
     
-    def test_tearDown(self):
+    def tearDown(self):
         time.sleep(2)
         self.driver.close()
         # Report_profile.close()
