@@ -1877,7 +1877,7 @@ class PythonOrgSearch(unittest.TestCase):
         except:
             Report_profile.write("FALIED :    \n\n" )    
     '''                                                                                                                                                                                                          
-    def log_in(self):
+    def test_log_in(self):
         Signin_page=page.SignInPage(self.driver)
         profile=page.profile(self.driver)
         Signin_page.click_sign_in_button()
@@ -1894,7 +1894,7 @@ class PythonOrgSearch(unittest.TestCase):
     
     
     
-    def refresh(self):
+    def test_refresh(self):
         profile=page.profile(self.driver)  
         profile.click_profile_icon()
         time.sleep(2)
@@ -1903,7 +1903,7 @@ class PythonOrgSearch(unittest.TestCase):
         profile.click_profile_icon()  
     
     
-    def tearDown(self):
+    def test_tearDown(self):
         time.sleep(2)
         self.driver.close()
         # Report_profile.close()
