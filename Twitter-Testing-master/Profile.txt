@@ -1,0 +1,95 @@
+
+profile PAGE -> testing on unlike  
+PASSED    
+
+profile PAGE -> testing on cheack duplicate  
+PASSED    
+
+profile PAGE -> click on the tweet  
+PASSED    
+
+profile PAGE -> click on the tweet then check if it accept more tan 280   
+PASSED  
+
+profile PAGE -> click on the tweet then reply   
+PASSED  
+
+profile PAGE -> click on the tweet then check enable of reply button   
+PASSED   
+
+profile PAGE -> discard msg in the reply  
+FALIED : dicard msg not found    
+
+profile PAGE -> testing on like  
+PASSED   
+
+profile PAGE -> testing on reply   
+PASSED    
+
+profile PAGE -> accept more than 280   
+PASSED  
+
+profile PAGE -> Enbale reply button   
+PASSED  
+
+profile PAGE -> testing on reply appers in tweet & replies tab  
+FAILED:the  reply is not working the replied tweet is not appering 
+
+profile PAGE -> testing on reply appers in tweet tab  
+FAILED:the  reply is not apper in tweets tab 
+
+profile PAGE -> testing on reply by Gif   
+PASSED    
+
+profile PAGE -> body of the tweet accept more than 280 letter 
+PASSED 
+
+profile PAGE -> name   
+PASSED  
+
+profile PAGE -> testing on retweet  
+FAILED :not mention who retweet the tweet  
+
+profile PAGE -> discard msg of the tweet when you cancel it  
+FALIED : there is no discard msg  
+
+profile PAGE -> follow myself 
+FAILED: congratulation you followed yourself XD 
+
+profile PAGE -> tweet a tweet 
+PASSED 
+
+profile PAGE ->Testing post a pic   
+PASSED  
+
+profile PAGE -> username   
+FALIED : its not right username   
+
+profile PAGE ->Testing GIF search bar   
+FALIED : search is not working   
+
+profile PAGE -> testing on delete the tweet  
+PASSED    
+
+profile PAGE -> click on the tweet then click like & retweet  
+PASSED   
+
+profile PAGE ->tweet button  enable   
+PASSED  
+
+
+profile PAGE -> testing follower text link  
+PASSED    
+
+profile PAGE -> testing following text link  
+PASSED    
+  
+profile PAGE -> testing unfollow button from followeing  
+PASSED    
+
+profile PAGE -> testing unfollow button from follower  
+FAILED :  counting wrong   
+
+profile PAGE -> testing unfollow msg that confirm the unfollow  
+FAILED :  the msg is not found   
+

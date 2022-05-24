@@ -1,0 +1,27 @@
+SIGN IN PAGE -> test case of forget password in forget password page. 
+PASSED
+
+SIGN IN PAGE(FORGET PASSWORD) -> test case of cheack error msg when enter wrong email in search text 
+PASSED
+
+SIGN IN PAGE -> test case of  enable of search button 
+FAILED: search button is not enable without info
+
+SIGN IN PAGE -> test case of click next without inserting info. 
+PASSED
+
+SIGN IN PAGE(FORGET PASSWORD) -> test case of insert wrong password. 
+PASSED
+
+SIGN IN PAGE -> test case of Sign in button 
+PASSED
+
+SIGN IN PAGE -> test case of functionality forget password button 
+PASSED
+
+SIGN IN PAGE -> test case of login button is enable withot info. 
+PASSED
+
+SIGN IN PAGE -> test case Sign up link from sign in page . 
+PASSED
+
