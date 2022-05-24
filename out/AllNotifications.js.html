@@ -1,4 +1,32 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: AllNotifications.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: AllNotifications.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect, useRef, useCallback } from "react";
 import classes from "./AllNotifications.module.css";
 import NotificationsNavBar from "../NotificationsNavBar";
 import SingleNotification from "./SingleNotification";
@@ -25,7 +53,7 @@ function AllNotifications(props) {
       if (isLoading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
+        if (entries[0].isIntersecting &amp;&amp; hasMore) {
           setPageNumber((prevPageNumber) => prevPageNumber + 1);
         }
       });
@@ -59,7 +87,7 @@ function AllNotifications(props) {
       }
     } else {
       await fetch(
-        `${instance.baseURL}/notifications?_page=${pageNumber}&_limit=5`
+        `${instance.baseURL}/notifications?_page=${pageNumber}&amp;_limit=5`
       )
         .then((res) => res.json())
         .then((notes) => {
@@ -159,9 +187,9 @@ function AllNotifications(props) {
   };
 
   return (
-    <div className={classes.notes}>
-      <NotificationsNavBar selected={true} notReadNotesNum={notReadNotes} />
-      {/* <SingleNotification
+    &lt;div className={classes.notes}>
+      &lt;NotificationsNavBar selected={true} notReadNotesNum={notReadNotes} />
+      {/* &lt;SingleNotification
         Person="YoussefMokhtar"
         type="Like"
         profilePicture="https://pbs.twimg.com/profile_images/1409740849995522049/u85BO_GZ.jpg"
@@ -171,56 +199,56 @@ function AllNotifications(props) {
           let tid = `${index}`;
           if (notification.type === "Reply") {
             return (
-              <div
+              &lt;div
                 ref={lastNotificationElementRef}
                 key={index}
                 data-testid={`${index}`}
-                className={`${classes.is_read} && ${!notification.is_read}`}
+                className={`${classes.is_read} &amp;&amp; ${!notification.is_read}`}
               >
-                <SingleMentionNotification
+                &lt;SingleMentionNotification
                   {...notification}
                   showAction={true}
                 />
-              </div>
+              &lt;/div>
             );
           } else {
             return (
-              <div
+              &lt;div
                 ref={lastNotificationElementRef}
                 key={index}
                 data-testid={`${index}`}
               >
-                <SingleNotification {...notification} showAction={true} />
-              </div>
+                &lt;SingleNotification {...notification} showAction={true} />
+              &lt;/div>
             );
           }
         } else {
           let tid = `${index}`;
           if (notification.type === "Reply") {
             return (
-              <div data-testid={`${index}`}>
-                <SingleMentionNotification
+              &lt;div data-testid={`${index}`}>
+                &lt;SingleMentionNotification
                   {...notification}
                   key={index}
                   showAction={true}
                 />
-              </div>
+              &lt;/div>
             );
           } else {
             return (
-              <div data-testid={`${index}`}>
-                <SingleNotification
+              &lt;div data-testid={`${index}`}>
+                &lt;SingleNotification
                   {...notification}
                   key={index}
                   showAction={true}
                 />
-              </div>
+              &lt;/div>
             );
           }
         }
       })}
-      {isLoading && (
-        <ReactLoading
+      {isLoading &amp;&amp; (
+        &lt;ReactLoading
           type={"spin"}
           color={"#1DA1F2"}
           height={"4%"}
@@ -228,7 +256,30 @@ function AllNotifications(props) {
           className={`${classes.loadingIcon}`}
         />
       )}
-    </div>
+    &lt;/div>
   );
 }
 export default AllNotifications;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AllNotifications.html">AllNotifications</a></li><li><a href="module-SingleNotification.html">SingleNotification</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed May 25 2022 01:38:09 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
