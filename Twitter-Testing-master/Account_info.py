@@ -116,7 +116,7 @@ class PythonOrgSearch(unittest.TestCase):
         chromeOptions.add_argument("--disable-setuid-sandbox") 
 
         chromeOptions.add_argument("--headless");
-        chromeOptions.add_argument("--remote-debugging-port=9222")  # this
+        chromeOptions.add_argument("--remote-debugging-port=9230")  # this
 
         chromeOptions.add_argument("--disable-dev-shm-using") 
         chromeOptions.add_argument("--disable-extensions") 
