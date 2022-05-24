@@ -37,5 +37,10 @@ jobs:
           chmod +x ./Twitter-Testing-master/InstallChrome.sh
           ./Twitter-Testing-master/InstallChrome.sh
           CI=true python3 Twitter-Testing-master/main.py 
-          #CI=true python3 Twitter-Testing-master/Side_bar.py 
-          #CI=true python3 Twitter-Testing-master/Settings_Privacy.py 
+          CI=true python3 Twitter-Testing-master/Account_info.py
+          CI=true python3 Twitter-Testing-master/change_pass.py
+          CI=true python3 Twitter-Testing-master/Edit_Profile.py
+          CI=true python3 Twitter-Testing-master/Home_Page.py
+          CI=true python3 Twitter-Testing-master/your_Account.py
+          CI=true python3 Twitter-Testing-master/Side_bar.py 
+          CI=true python3 Twitter-Testing-master/Settings_Privacy.py 
