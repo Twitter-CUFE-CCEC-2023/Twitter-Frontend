@@ -12,7 +12,7 @@ describe("Sign in Page", () => {
     );
 
     const wrongPassword = await screen.queryByTestId("passwordAlert");
-    expect(wrongPassword).not.toBeInTheDocument();
+    expect(wrongPassword).toBeInTheDocument();
   });
 
   //   test("Renders 'Wrong password!' in case of wrong password", async () => {
