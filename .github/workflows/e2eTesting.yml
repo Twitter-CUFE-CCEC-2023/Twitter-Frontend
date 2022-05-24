@@ -36,7 +36,7 @@ jobs:
           chmod +x Twitter-Testing-master/chromedriver.exe
           chmod +x ./Twitter-Testing-master/InstallChrome.sh
           ./Twitter-Testing-master/InstallChrome.sh
-          CI=true python3 Twitter-Testing-master/main.py 
+          #CI=true python3 Twitter-Testing-master/main.py 
           CI=true python3 Twitter-Testing-master/Account_info.py
           CI=true python3 Twitter-Testing-master/change_pass.py
           CI=true python3 Twitter-Testing-master/Edit_Profile.py
