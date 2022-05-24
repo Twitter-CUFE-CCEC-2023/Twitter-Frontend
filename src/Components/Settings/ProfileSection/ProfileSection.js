@@ -4,14 +4,27 @@ import ChangePassword from "./AccountInfo/ChangePassword";
 import classes from "./ProfileSection.module.css";
 import ProfileSectionChoices from "./ProfileSectionChoices";
 function ProfilesSection(props) {
+  /**
+   * @module ProfilesSection
+   */
   {
     /* <SettingsSectionChoices></SettingsSectionChoices> */
   }
   const [chosenOption, setChosenOption] = useState(undefined);
   function changeChosenOptionHandler(name) {
+    /**
+     * @name changeChosenOptionHandler
+     * @function changeChosenOptionHandler
+     * @description is responsible for rendering the chosen option
+     */
     setChosenOption(name);
   }
   function goBack() {
+    /**
+     * @name goBack
+     * @function goBack
+     * @description returns to the main profile section page
+     */
     setChosenOption(undefined);
   }
   return (

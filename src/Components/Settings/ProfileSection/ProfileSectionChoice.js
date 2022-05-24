@@ -1,6 +1,14 @@
 import classes from "./ProfileSectionChoice.module.css";
 function ProfileSectionChoice(props) {
+  /**
+   * @module ProfileSectionChoice
+   */
   function choose() {
+    /**
+     * @name choose
+     * @function choose
+     * @description choose the current choice to render
+     */
     props.onChoose(props.data.name);
   }
   return (
