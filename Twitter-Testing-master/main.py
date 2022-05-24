@@ -317,7 +317,7 @@ class PythonOrgSearch(unittest.TestCase):
             Report_signIn.write("FAILED\n\n")
             assert False    
      
-      
+    '''  
     def test_case_SIGNIN_forget_password(self):
         global testcases
         global passed
@@ -1876,7 +1876,7 @@ class PythonOrgSearch(unittest.TestCase):
                 
         except:
             Report_profile.write("FALIED :    \n\n" )    
-                                                                                                                                                                                                              
+    '''                                                                                                                                                                                                         
     def log_in(self):
         Signin_page=page.SignInPage(self.driver)
         profile=page.profile(self.driver)
