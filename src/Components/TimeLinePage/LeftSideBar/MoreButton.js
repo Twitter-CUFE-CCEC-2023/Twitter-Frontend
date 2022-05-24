@@ -39,7 +39,7 @@ function MoreButton() {
                 <p className={buttonClasses.title}>More</p>
             </div>
             <div id = "moreList" className={`${classes.moreList} ${hidden && classes.hidden}`}>
-                <NavLink to = {`/${loggedUser.username}/topics`} className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice} ${classes.firstChoice}`}>
+                <NavLink to = {`/${loggedUser && loggedUser.username}/topics`} className={`${classes.flex} ${classes.noStyle} ${classes.moreListChoice} ${classes.firstChoice}`}>
                     <div className={classes.flex}>
                         <InsertCommentOutlinedIcon className={classes.listIcon}/>
                         <p className={classes.choiceText}>Topics</p>

@@ -5,7 +5,6 @@ import mockAxios from "axios";
 import {setupServer} from "msw/node";
 
 
-
 let tweets = [
     {
         id: "626690e1c28380b5a04a474c",
@@ -64,6 +63,7 @@ test ("the API works correctly", async() => {
             tweets: tweets
         }
     });
+
     const url = "/home/1/1";
     const {getByTestId} = render(<Router><Feed testUrl = {url}/></Router>);
     

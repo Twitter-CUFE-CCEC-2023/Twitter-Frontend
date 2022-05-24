@@ -112,7 +112,8 @@ export default function Feed(props) {
   };
 
   const subscribeNotifications = async () => {
-    const vapidKeys = await instance.get("/vapid-key");
+    if(!props.testUrl)
+    {const vapidKeys = await instance.get("/vapid-key");
     const publicKey = vapidKeys.data.publicKey;
     const privateKey = vapidKeys.data.privateKey;
     navigator.serviceWorker.ready.then((sw) => {
@@ -133,7 +134,7 @@ export default function Feed(props) {
         .catch((err) => {
           console.log(err);
         });
-    });
+    });}
   };
   function addTweet(tweet) {
     //   setTweets((prevTweets) => {

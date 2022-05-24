@@ -97,6 +97,7 @@ function PhotosPage(props) {
             }
         }
     }
+
   return (
     <div className={`${classes.flex} ${classes.photosPage}`} onKeyDown = {keyPress} tabIndex = "2" onClick ={() => {window.history.pushState("", "", `${props.prevPath}`); props.setPhotosActive(false); }}>
       <div className={`${classes.photo}`} >
@@ -116,7 +117,8 @@ function PhotosPage(props) {
                 </div>
                 )}
             </div>
-            <img
+             <img
+              data-testid="next-photo"
               className={classes.image}
               src={photos[currentPhoto - 1]}
               alt=""
@@ -131,7 +133,6 @@ function PhotosPage(props) {
 
             {currentPhoto < photos.length && (
               <div
-                data-testid="next-photo"
                 className={`${classes.arrow} ${classes.forward}`}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -187,7 +188,7 @@ function PhotosPage(props) {
         )}
       </div>
       <div className={`${classes.tweetsAndReplies} ${hidden && classes.none}`} onClick = {(e) => e.stopPropagation()}>
-        <TweetAndReplies isShowPhotos={true} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement} increment = {props.increment}/>
+        {!props.testUrl && <TweetAndReplies isShowPhotos={true} setPhotosActive = {props.setPhotosActive} setIncrement = {props.setIncrement} increment = {props.increment}/>}
       </div>
       {isLoading && (
         <ReactLoading

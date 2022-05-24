@@ -95,7 +95,7 @@ beforeEach(() => {
 afterEach(cleanup);
 
 test ("API Tweet page renders correctly", async() => {
-    mockAxios.get.mockResolvedValueOnce({
+    mockAxios.get.mockResolvedValue({
         data: {
             tweet: tweetAndReplies.tweet
         }

@@ -12,7 +12,8 @@ import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
  */
 function AccountButton() {
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
-  loggedUser.profile_image_url = loggedUser.profile_image_url ? loggedUser.profile_image_url : DefaultProfilePic;
+  if(loggedUser)
+    {loggedUser.profile_image_url = loggedUser.profile_image_url ? loggedUser.profile_image_url : DefaultProfilePic;}
   const [hidden, setHidden] = React.useState(true);
   const [showLogout, setShowLogout] = React.useState(false);
 
@@ -39,12 +40,12 @@ function AccountButton() {
       >
 
         <img
-          src={loggedUser.profile_image_url}
+          src={loggedUser && loggedUser.profile_image_url}
           className={classes.profilePic}
         />
         <div className={classes.info}>
-          <p className={classes.name}>{loggedUser.name}</p>
-          <p className={classes.username}>@{loggedUser.username}</p>
+          <p className={classes.name}>{loggedUser && loggedUser.name}</p>
+          <p className={classes.username}>@{loggedUser && loggedUser.username}</p>
         </div>
         <div className={classes.more}>
           <MoreHorizIcon />
@@ -56,12 +57,12 @@ function AccountButton() {
           className={`${classes.flex} ${classes.listHeader}`}
         >
           <img
-            src={loggedUser.profile_image_url}
+            src={loggedUser && loggedUser.profile_image_url}
             className={classes.profilePic}
           />
           <div>
-            <p className={classes.name}>{loggedUser.name}</p>
-            <p className={classes.username}>@{loggedUser.username}</p>
+            <p className={classes.name}>{loggedUser && loggedUser.name}</p>
+            <p className={classes.username}>@{loggedUser && loggedUser.username}</p>
           </div>
           <div className={classes.done}>
             <DoneIcon />
@@ -71,7 +72,7 @@ function AccountButton() {
           Add an existing account
         </p>
         <p name="accountListItem" className={classes.listItem} onClick={() => setShowLogout(true)}>
-          Log out @{loggedUser.username}
+          Log out @{loggedUser && loggedUser.username}
         </p>
       </div>
       {showLogout && <LogoutModal setShowLogout = {setShowLogout}/>}

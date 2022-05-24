@@ -72,7 +72,7 @@ function FeedTweetMore(props) {
             <div onClick={toggleList}>
                 <MoreHorizIcon className={classes.icon}/>
             </div>
-            {loggedUser.username === props.userName &&
+            {loggedUser && loggedUser.username === props.userName &&
             <div className={classes.position}>
                 <div name = "ListItem" onClick={(e) => e.stopPropagation()} className={`${classes.list} ${listHidden && classes.hidden}`}>
                     <div onClick={() => setShowDelete(true)} className={`${classes.listItem} ${classes.delete}`}>
@@ -104,7 +104,7 @@ function FeedTweetMore(props) {
             <div onClick={(e) => e.stopPropagation()}>
                 {showDelete && <DeleteModal setIsDeleted = {props.setIsDeleted} tweetId = {props.tweetId} setShowDelete = {setShowDelete}/>}
             </div>
-            {loggedUser.username !== props.userName &&
+            {loggedUser && loggedUser.username !== props.userName &&
             <div className={classes.position}>
                 <div name = "ListItem" onClick={(e) => e.stopPropagation()} className={`${classes.list} ${listHidden && classes.hidden}`}>
                     <div className={`${classes.listItem}`}>

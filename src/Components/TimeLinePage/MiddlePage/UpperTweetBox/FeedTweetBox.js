@@ -59,9 +59,10 @@ export default function FeedTweetBox(props) {
   }, []);
 
   let loggedUser = JSON.parse(localStorage.getItem("UserInfo"));
-  loggedUser.profile_image_url = loggedUser.profile_image_url
+  if(loggedUser)
+  {loggedUser.profile_image_url = loggedUser.profile_image_url
     ? loggedUser.profile_image_url
-    : DefaultProfilePic;
+    : DefaultProfilePic;}
   //console.log(loggedUser);
   //postTweet configuration
 

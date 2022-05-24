@@ -71,5 +71,5 @@ test ("the API works correctly", async() => {
     const {getByTestId} = render(<Router><PhotosPage testUrl = {url}/></Router>);
     
     const photos = await waitFor(() => getByTestId("next-photo"));
-    expect(photos).toHaveTextContent(tweet.media[0]);
+    expect(photos).toBeEnabled();
     });
