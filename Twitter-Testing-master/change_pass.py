@@ -73,7 +73,25 @@ class PythonOrgSearch(unittest.TestCase):
     
     
     def setUp(self):
-        self.driver = webdriver.Chrome(PATH)
+        chromeOptions = webdriver.ChromeOptions() 
+
+        chromeOptions.add_argument("--no-sandbox") 
+        chromeOptions.add_argument("--disable-setuid-sandbox") 
+
+        chromeOptions.add_argument("--headless");
+        chromeOptions.add_argument("--remote-debugging-port=9230")  # this
+
+        chromeOptions.add_argument("--disable-dev-shm-using") 
+        chromeOptions.add_argument("--disable-extensions") 
+        chromeOptions.add_argument("--disable-gpu") 
+        chromeOptions.add_argument("start-maximized") 
+        chromeOptions.add_argument("disable-infobars")
+        chromeOptions.add_argument(r"user-data-dir=.\cookies\\test") 
+
+
+
+        self.driver =  webdriver.Chrome(PATH,chrome_options=chromeOptions)
+
         self.driver.get("http://www.twittercloneteamone.tk/home")
         self.driver.implicitly_wait(10)
         self.total_tests = 0
