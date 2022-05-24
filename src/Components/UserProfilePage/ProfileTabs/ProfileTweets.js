@@ -10,6 +10,9 @@ import classes from "./ProfileTweets.module.css";
 import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 
 function ProfileTweets(props) {
+  /**
+   * @module ProfileTweets
+   */
   //GETTING TWEETS
 
   const pathlocation = useLocation();
@@ -51,6 +54,11 @@ function ProfileTweets(props) {
     getTweets();
   }, [pageNumber]);
 
+  /**
+   * @name getTweets
+   * @function getTweets
+   * @description Gets the tweets of the user
+   */
   const getTweets = async () => {
     setLoading(true);
 

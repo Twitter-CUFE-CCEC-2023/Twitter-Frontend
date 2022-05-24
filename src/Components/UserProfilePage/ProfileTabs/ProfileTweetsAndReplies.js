@@ -10,6 +10,9 @@ import classes from "./ProfileTweets.module.css";
 import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 
 function ProfileTweetsAndReplies(props) {
+  /**
+   * @module ProfileTweetsAndReplies
+   */
   //GETTING TWEETS
 
   const pathlocation = useLocation();
@@ -51,6 +54,11 @@ function ProfileTweetsAndReplies(props) {
     getTweets();
   }, [pageNumber]);
 
+  /**
+   * @name getTweets
+   * @function getTweets
+   * @description Gets the tweets and replies of the user
+   */
   const getTweets = async () => {
     setLoading(true);
 
@@ -101,7 +109,9 @@ function ProfileTweetsAndReplies(props) {
       }
       let tweet = {
         name: currentUserTweets.name, //user.name,
-        profilePic: currentUserTweets.profile_image_url? currentUserTweets.profile_image_url : DefaultProfilePic,
+        profilePic: currentUserTweets.profile_image_url
+          ? currentUserTweets.profile_image_url
+          : DefaultProfilePic,
         userName: currentUserTweets.username,
         isVerified: currentUserTweets.isVerified,
         bio: currentUserTweets.bio,
@@ -120,7 +130,7 @@ function ProfileTweetsAndReplies(props) {
         isRetweeted: APItweet.is_retweeted,
         isTweetReply: APItweet.is_reply,
         media: APItweet.media,
-        gif : APItweet.gif ? APItweet.gif : "",
+        gif: APItweet.gif ? APItweet.gif : "",
       };
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
@@ -128,7 +138,9 @@ function ProfileTweetsAndReplies(props) {
     });
     setUser({
       name: currentUserTweets.name, //user.name,
-      profilePic: currentUserTweets.profile_image_url? currentUserTweets.profile_image_url : DefaultProfilePic,
+      profilePic: currentUserTweets.profile_image_url
+        ? currentUserTweets.profile_image_url
+        : DefaultProfilePic,
       coverimage: currentUserTweets.cover_image_url,
       userName: currentUserTweets.username,
       email: currentUserTweets.email,

@@ -10,6 +10,10 @@ import classes from "./ProfileTweets.module.css";
 import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 
 function ProfileLikes(props) {
+  /**
+   * @module ProfileLikes
+   */
+
   const pathlocation = useLocation();
   let userInPath = pathlocation.pathname.split("/")[2];
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
@@ -49,6 +53,11 @@ function ProfileLikes(props) {
     getTweets();
   }, [pageNumber]);
 
+  /**
+   * @name getTweets
+   * @function getTweets
+   * @description Gets the tweets that the user liked
+   */
   const getTweets = async () => {
     setLoading(true);
 

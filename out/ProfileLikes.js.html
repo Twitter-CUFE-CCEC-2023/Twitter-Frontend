@@ -1,4 +1,32 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ProfileLikes.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ProfileLikes.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FeedTweet from "../../../Components/TimeLinePage/MiddlePage/FeedTweet";
@@ -9,10 +37,11 @@ import { useParams } from "react-router-dom";
 import classes from "./ProfileTweets.module.css";
 import DefaultProfilePic from "../../../Assets/DefaultProfilePic.jpg";
 
-function ProfileMedia(props) {
+function ProfileLikes(props) {
   /**
-   * @module ProfileMedia
+   * @module ProfileLikes
    */
+
   const pathlocation = useLocation();
   let userInPath = pathlocation.pathname.split("/")[2];
   const currentuser = JSON.parse(localStorage.getItem("UserInfo"));
@@ -39,7 +68,7 @@ function ProfileMedia(props) {
       if (isLoading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
+        if (entries[0].isIntersecting &amp;&amp; hasMore) {
           setPageNumber((prevPageNumber) => prevPageNumber + 1);
         }
       });
@@ -55,8 +84,8 @@ function ProfileMedia(props) {
   /**
    * @name getTweets
    * @function getTweets
-   * @description Gets the tweets of the user that has media
-    */
+   * @description Gets the tweets that the user liked
+   */
   const getTweets = async () => {
     setLoading(true);
 
@@ -64,9 +93,9 @@ function ProfileMedia(props) {
     let currentUser;
     //get user tweets from api
     if (!isMock) {
-      if (!props.testUrl) {
+      if (true) {
         const tweets = await instance
-          .get(`/media/list/${userName}/${pageNumber}/3`)
+          .get(`/liked/list/${userName}/${pageNumber}/3`)
           .catch(function (error) {
             if (error.response) {
               // Request made and server responded
@@ -81,48 +110,38 @@ function ProfileMedia(props) {
               console.log("Error", error.message);
             }
           });
+
         currentUser = await instance.get(`/info/${userName}`);
         userTweets = tweets.data.tweets;
         currentUserTweets = currentUser.data.user;
       } else {
-        const tweets = await axios.get(props.testUrl);
-        userTweets = tweets.data.tweets;
+        // const tweets = await axios.get(props.testUrl);
+        // userTweets = tweets.data.tweets;
       }
     }
 
     userTweets.forEach((APItweet) => {
-      if (props.testUrl) {
-        currentUserTweets = {
-          username: "userName",
-          name: "userName",
-          isVerified: true,
-          profileImage:
-            "https://pbs.twimg.com/profile_images/1209858989998693888/zHXx-qQl_400x400.jpg",
-          bio: "biooo",
-          followers: 0,
-          following: 0,
-        };
-      }
+
       let tweet = {
-        name: currentUserTweets.name, //user.name,
-        profilePic: currentUserTweets.profile_image_url? currentUserTweets.profile_image_url : DefaultProfilePic,
-        userName: currentUserTweets.username,
-        isVerified: currentUserTweets.isVerified,
-        bio: currentUserTweets.bio,
-        isFollowing: currentUserTweets.is_followed,
-        followers: currentUserTweets.followers_count,
-        following: currentUserTweets.following_count,
+        name: APItweet.user.name, //user.name,
+        profilePic: APItweet.user.profile_image_url? APItweet.user.profile_image_url : DefaultProfilePic,
+        userName: APItweet.user.username,
+        isVerified: APItweet.user.isVerified,
+        bio: APItweet.user.bio,
+        isFollowing: APItweet.user.is_followed,
+        followers: APItweet.user.followers_count,
+        following: APItweet.user.following_count,
         text: APItweet.content,
         tweetId: APItweet.id,
         date: APItweet.created_at,
         replies: APItweet.replies,
         likes: APItweet.likes_count,
+        repliesCount : APItweet.replies_count,
         retweets: APItweet.retweets_count,
         quotes: APItweet.quotes_count,
         isLiked: APItweet.is_liked,
         isRetweeted: APItweet.is_retweeted,
-        is_Reply: APItweet.is_reply,
-        repliesCount : APItweet.replies_count,
+        isTweetReply: APItweet.is_reply,
         media: APItweet.media,
         gif : APItweet.gif ? APItweet.gif : "",
       };
@@ -130,6 +149,7 @@ function ProfileMedia(props) {
         return [...prevTweets, tweet];
       });
     });
+
     setUser({
       name: currentUserTweets.name, //user.name,
       profilePic: currentUserTweets.profile_image_url,
@@ -151,14 +171,14 @@ function ProfileMedia(props) {
     setLoading(false);
   };
   return (
-    <div>
-      <div>
+    &lt;div>
+      &lt;div>
         {/* FOR TWEETS */}
         {tweets.map((tweet, index) => {
           if (index === tweets.length - 1) {
             return (
-              <div ref={lastTweetElementRef} key={index}>
-                <FeedTweet
+              &lt;div ref={lastTweetElementRef} key={index}>
+                &lt;FeedTweet
                   {...tweet}
                   setPhotosActive={props.setPhotosActive}
                   setIncrement={props.setIncrement}
@@ -166,13 +186,13 @@ function ProfileMedia(props) {
                   setFollowingSet={setFollowingSet}
                   showAction={true}
                 />
-              </div>
+              &lt;/div>
             );
           } else {
             return (
-              <div data-testid={`${index}`}>
+              &lt;div data-testid={`${index}`}>
                 {" "}
-                <FeedTweet
+                &lt;FeedTweet
                   {...tweet}
                   setPhotosActive={props.setPhotosActive}
                   setIncrement={props.setIncrement}
@@ -181,12 +201,12 @@ function ProfileMedia(props) {
                   key={index}
                   showAction={true}
                 />{" "}
-              </div>
+              &lt;/div>
             );
           }
         })}
-        {isLoading && (
-          <ReactLoading
+        {isLoading &amp;&amp; (
+          &lt;ReactLoading
             type={"spin"}
             color={"#1DA1F2"}
             height={"4%"}
@@ -194,21 +214,40 @@ function ProfileMedia(props) {
             className={`${classes.loadingIcon}`}
           />
         )}
-        {tweets.length === 0 && !isLoading && (
-          <div>
-          <div className="row">
-            <img src="https://abs.twimg.com/sticky/illustrations/empty-states/masked-doll-head-with-camera-800x400.v1.png" alt="" />
-          </div>
-          <div className={classes.noTweetsContainer}>
+        {tweets.length === 0 &amp;&amp; !isLoading &amp;&amp;
+          &lt;div className={classes.noLikesContainer}>
+            &lt;h1>{userName}&lt;/h1>
+            &lt;h1>hasn’t liked &lt;/h1>
+            &lt;h1>any Tweets&lt;/h1>
+            &lt;/div>
 
-            <h1>{user.userName} hasn’t Tweeted media</h1>
-          </div>
-          </div>
-        )}
-      </div>
-      
-    </div>
+        }
+      &lt;/div>
+    &lt;/div>
   );
 }
 
-export default ProfileMedia;
+export default ProfileLikes;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ProfileLikes.html">ProfileLikes</a></li><li><a href="module-ProfileMedia.html">ProfileMedia</a></li><li><a href="module-ProfileTweets.html">ProfileTweets</a></li><li><a href="module-ProfileTweetsAndReplies.html">ProfileTweetsAndReplies</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed May 25 2022 00:14:59 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

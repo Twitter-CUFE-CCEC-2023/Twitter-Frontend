@@ -1,4 +1,32 @@
-import React, { useState, Fragment } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: EditProfileButton.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: EditProfileButton.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, Fragment } from "react";
 import classes from "./EditProfileButton.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CloseIcon from "@mui/icons-material/Close";
@@ -120,32 +148,32 @@ function EditProfileButton(props) {
   };
 
   return (
-    <Fragment>
-      <button
+    &lt;Fragment>
+      &lt;button
         data-bs-target="#myModal"
         data-bs-toggle="modal"
         className={`${classes.editButton} btn btn-outlined btn-light text-bold p-1 px-3`}
       >
         Edit Profile
-      </button>
-      <div
+      &lt;/button>
+      &lt;div
         className={` ${classes.editModal} modal fade `}
         tabIndex="-1"
         id="myModal"
       >
-        <div className={`${classes.modalDialog} modal-dialog `}>
-          <div className={`${classes.modalContent} modal-content p-0`}>
-            <div className={`${classes.modalHeader} modal-header pb-3 pt-2 `}>
-              <CloseIcon
+        &lt;div className={`${classes.modalDialog} modal-dialog `}>
+          &lt;div className={`${classes.modalContent} modal-content p-0`}>
+            &lt;div className={`${classes.modalHeader} modal-header pb-3 pt-2 `}>
+              &lt;CloseIcon
                 className={`${classes.closeIcon} ps-0  me-4`}
                 data-bs-dismiss="modal"
                 aria-label="Close"
                 onClick={resetModal}
               />
-              <h5 className={`${classes.modalTitle} col-3 modal-title`}>
+              &lt;h5 className={`${classes.modalTitle} col-3 modal-title`}>
                 Edit profile
-              </h5>
-              <button
+              &lt;/h5>
+              &lt;button
                 className={`${classes.saveButton}   text-bold p-1 pt-0 px-3 `}
                 type="button"
                 data-bs-dismiss="modal"
@@ -153,24 +181,24 @@ function EditProfileButton(props) {
                 onClick={onSaveEdits}
               >
                 Save
-              </button>
-            </div>
+              &lt;/button>
+            &lt;/div>
 
-            <div className={`${classes.modalBody} modal-body py-0 px-1`}>
-              <ImageUploader
+            &lt;div className={`${classes.modalBody} modal-body py-0 px-1`}>
+              &lt;ImageUploader
                 profileOrCover="cover"
                 className={classes.coverCropUploader}
                 editPhoto={editCover}
                 croppedPhoto={croppedCoverPhoto}
-              ></ImageUploader>
-              <ImageUploader
+              >&lt;/ImageUploader>
+              &lt;ImageUploader
                 profileOrCover="profile"
                 className={classes.profileCropUploader}
                 editPhoto={editProfilePhoto}
                 croppedPhoto={croppedProfilePhoto}
-              ></ImageUploader>
-              <div className={`${classes.coverPhotoEdit} row`}>
-                <img
+              >&lt;/ImageUploader>
+              &lt;div className={`${classes.coverPhotoEdit} row`}>
+                &lt;img
                   width="596"
                   height="198"
                   src={croppedCoverPhoto}
@@ -178,44 +206,44 @@ function EditProfileButton(props) {
                   className={`${classes.coverImage} img-fluid py-0`}
                 />
 
-                <div className={`${classes.profileImageContainer}`}>
-                  <img
+                &lt;div className={`${classes.profileImageContainer}`}>
+                  &lt;img
                     className={`${classes.profilePhotoEdit} img-fluid`}
                     src={croppedProfilePhoto}
                     alt=""
                   />
-                </div>
-              </div>
+                &lt;/div>
+              &lt;/div>
 
-              <form action="">
-                <InputBox
+              &lt;form action="">
+                &lt;InputBox
                   inputName="Name"
                   inputValue={currentuser.name}
                   onChangeVal={changeNameVal}
-                ></InputBox>
-                <InputBox
+                >&lt;/InputBox>
+                &lt;InputBox
                   inputName="Bio"
                   inputValue={currentuser.bio}
                   onChangeVal={changeBioVal}
-                ></InputBox>
-                <InputBox
+                >&lt;/InputBox>
+                &lt;InputBox
                   inputName="Location"
                   inputValue={currentuser.location}
                   onChangeVal={changeLocationVal}
-                ></InputBox>
-                <InputBox
+                >&lt;/InputBox>
+                &lt;InputBox
                   inputName="Website"
                   inputValue={currentuser.website}
                   onChangeVal={changeWebsiteVal}
-                ></InputBox>
-                <label
+                >&lt;/InputBox>
+                &lt;label
                   htmlFor="birthday"
                   className={`${classes.birthdayLabel}`}
                 >
                   Birth date:
-                </label>
-                <br />
-                <input
+                &lt;/label>
+                &lt;br />
+                &lt;input
                   type="date"
                   id="birthday"
                   name="birthday"
@@ -225,15 +253,38 @@ function EditProfileButton(props) {
                     setBirthDate(e.target.value.toString());
                   }}
                   className={`${classes.birthdayInput}`}
-                ></input>
-              </form>
-            </div>
-            <div className="modal-footer"></div>
-          </div>
-        </div>
-      </div>
-    </Fragment>
+                >&lt;/input>
+              &lt;/form>
+            &lt;/div>
+            &lt;div className="modal-footer">&lt;/div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    &lt;/Fragment>
   );
 }
 
 export default EditProfileButton;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-EditProfileButton.html">EditProfileButton</a></li></ul><h3>Global</h3><ul><li><a href="global.html#rotateSize">rotateSize</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue May 24 2022 23:55:11 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
