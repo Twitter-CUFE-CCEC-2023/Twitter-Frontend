@@ -159,8 +159,6 @@ function ProfileLikes(props) {
                   {...tweet}
                   setPhotosActive={props.setPhotosActive}
                   setIncrement={props.setIncrement}
-                  followingSet={followingSet}
-                  setFollowingSet={setFollowingSet}
                   key={index}
                   showAction={true}
                 />{" "}

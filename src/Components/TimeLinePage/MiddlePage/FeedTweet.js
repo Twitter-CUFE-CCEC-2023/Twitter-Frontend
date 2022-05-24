@@ -11,6 +11,7 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import TweetAtrribute from "./TweetAtrribute";
 import MiniProfile from "../MiniProfile";
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import TopTweetAttributes from "./TopTweetAttributes";
 // import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -23,10 +24,24 @@ import FeedTweetMore from "./FeedTweetMore";
 import FeedTweetReplyModal from "./ReplyTweet/FeedTweetReplyModal";
 
 export default function FeedTweet(props) {
+  const pathlocation = useLocation();
+  let isUserProfile = pathlocation.pathname.split("/")[1];
+
   const [replyModal, setReplyModal] = useState(false);
   function viewReplyModal() {
     setReplyModal(true);
   }
+
+  const[followersCount, setFollowersCount] = useState(props.followers);
+  const[followingCount, setFollowingCount] = useState(props.following);
+
+  const onFollowChange=(userName)=> {
+    setFollowersCount(followersCount+1);
+  }
+  const onUnFollowChange=(userName)=> {
+    setFollowersCount(followersCount-1);
+  }
+
 
   const [isDeleted, setIsDeleted] = useState(false);
 
@@ -234,17 +249,22 @@ export default function FeedTweet(props) {
           }}
           className={classes.hoverProfile + " " + classes.top}
         >
-          <MiniProfile
+           {isUserProfile!=="userprofile" &&<MiniProfile
             profilePic={profilePic}
             name={props.name}
             userName={props.userName}
             profileDesciption={props.bio}
-            following={props.following}
-            followers={props.followers}
+
             isFollowing={isFollowing}
             setIsFollowing={setIsFollowing}
             setFollowingSet={props.setFollowingSet}
-          />
+            followingSet={props.followingSet}
+
+            following={followingCount}
+            followers={followersCount}
+            onFollowChange={onFollowChange}
+            onUnFollowChange={onUnFollowChange}
+          />}
         </div>
         {/* </NavLink> */}
 
@@ -283,17 +303,21 @@ export default function FeedTweet(props) {
               }}
               className={classes.hoverProfile + " " + classes.bot}
             >
-              <MiniProfile
+              {isUserProfile!=="userprofile"&&<MiniProfile
                 profilePic={profilePic}
                 name={props.name}
                 userName={props.userName}
                 profileDesciption={props.bio}
-                following={props.following}
-                followers={props.followers}
                 isFollowing={isFollowing}
                 setIsFollowing={setIsFollowing}
                 setFollowingSet={props.setFollowingSet}
-              />
+                followingSet={props.followingSet}
+
+                following={followingCount}
+                followers={followersCount}
+                onFollowChange={onFollowChange}
+                onUnFollowChange={onUnFollowChange}
+              />}
             </div>
             &nbsp;
             <NavLink
@@ -328,17 +352,21 @@ export default function FeedTweet(props) {
               }}
               className={classes.hoverProfile + " " + classes.bot}
             >
-              <MiniProfile
+              {isUserProfile!=="userprofile" && <MiniProfile
                 profilePic={profilePic}
                 name={props.name}
                 userName={props.userName}
                 profileDesciption={props.bio}
-                following={props.following}
-                followers={props.followers}
                 isFollowing={isFollowing}
                 setIsFollowing={setIsFollowing}
                 setFollowingSet={props.setFollowingSet}
-              />
+                followingSet={props.followingSet}
+
+                following={followingCount}
+                followers={followersCount}
+                onFollowChange={onFollowChange}
+                onUnFollowChange={onUnFollowChange}
+              />}
             </div>
             &nbsp;{!props.isTopTweet && <p className={classes.gray}>.</p>}&nbsp;
             {!props.isTopTweet && (

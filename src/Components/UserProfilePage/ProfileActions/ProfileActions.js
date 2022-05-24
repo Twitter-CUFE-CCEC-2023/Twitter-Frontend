@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import classes from "./ProfileActions.module.css";
 import EditProfileButton from "./EditProfileButton";
 import FollowButton from "./FollowButton";
@@ -9,19 +9,15 @@ function ProfileActions(props) {
   const [isFollowing, setIsFollowing] = useState(
     props.isFollowing ? true : false
   );
+
   const [isLoading, setIsLoading] = useState(false);
 
-  const onFollow = () => {
-    if (isFollowing) {
-      setIsFollowing(false);
-    } else {
-      setIsFollowing(true);
-    }
-  };
+
 
   const handleChangeData = (user) => {
     props.setProfileData(user);
   };
+
 
   let actionsRendered;
   if (props.isMyProfile === true) {
@@ -39,11 +35,13 @@ function ProfileActions(props) {
           {!props.isLoading && (
             <FollowButton
               isFollowing={props.isFollowing}
-              onFollow={onFollow}
+              onFollow={props.onFollow}
               username={props.username}
               setIsFollowing={setIsFollowing}
-              onFollowChange={props.onFollow}
-              onUnFollowChange={props.onUnFollow}
+              onFollowChange={props.onFollowChange}
+              onUnFollowChange={props.onUnFollowChange}
+              followingSet={props.followingSet}
+              setFollowingSet={props.setFollowingSet}
             ></FollowButton>
           )}
         </div>
@@ -57,9 +55,9 @@ function ProfileActions(props) {
             <MailOutlineRoundedIcon fontsize="meduim" />
           </div>
         )}
-        {
-          props.isLoading && <div className={`${classes.messageButton1} col-2 d-flex `}></div>
-        }
+        {props.isLoading && (
+          <div className={`${classes.messageButton1} col-2 d-flex `}></div>
+        )}
       </Fragment>
     );
   }

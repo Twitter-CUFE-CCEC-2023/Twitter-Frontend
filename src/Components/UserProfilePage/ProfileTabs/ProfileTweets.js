@@ -23,13 +23,14 @@ function ProfileTweets(props) {
     currentuserName = currentuser.username;
   }
 
-  const [user, setUser] = useState({});
+  // for follow
+  const [isFollowing, setIsFollowing] = useState(false);
 
+  const [user, setUser] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [tweets, setTweets] = useState([]);
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
-  const [followingSet, setFollowingSet] = React.useState(new Set());
   let isMock = localStorage.getItem("isMock") === "true";
   let userTweets;
   const observer = useRef();
@@ -78,6 +79,7 @@ function ProfileTweets(props) {
         currentUser = await instance.get(`/info/${userName}`);
         userTweets = tweets.data.tweets;
         currentUserTweets = currentUser.data.user;
+        console.log(currentUserTweets);
       } else {
         const tweets = await axios.get(props.testUrl);
         userTweets = tweets.data.tweets;
@@ -99,18 +101,20 @@ function ProfileTweets(props) {
       }
       let tweet = {
         name: currentUserTweets.name, //user.name,
-        profilePic: currentUserTweets.profile_image_url? currentUserTweets.profile_image_url : DefaultProfilePic,
+        profilePic: currentUserTweets.profile_image_url
+          ? currentUserTweets.profile_image_url
+          : DefaultProfilePic,
         userName: currentUserTweets.username,
         isVerified: currentUserTweets.isVerified,
         bio: currentUserTweets.bio,
-        isFollowing: currentUserTweets.is_followed,
+        // isFollowing: currentUserTweets.is_followed,
         followers: currentUserTweets.followers_count,
         following: currentUserTweets.following_count,
         text: APItweet.content,
         tweetId: APItweet.id,
         date: APItweet.created_at,
         replies: APItweet.replies,
-        repliesCount : APItweet.replies_count,
+        repliesCount: APItweet.replies_count,
         likes: APItweet.likes_count,
         retweets: APItweet.retweets_count,
         quotes: APItweet.quotes_count,
@@ -118,10 +122,17 @@ function ProfileTweets(props) {
         isRetweeted: APItweet.is_retweeted,
         is_Reply: APItweet.is_reply,
         media: APItweet.media,
-        gif : APItweet.gif ? APItweet.gif : "",
+        gif: APItweet.gif ? APItweet.gif : "",
       };
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
+      });
+      props.setFollowingSet((prevSet) => {
+        let newSet = new Set(prevSet);
+        if (currentUserTweets.is_followed) {
+          newSet.add(tweet.userName);
+        }
+        return newSet;
       });
     });
     console.log("currentUserTweets", currentUserTweets);
@@ -158,8 +169,8 @@ function ProfileTweets(props) {
                   {...tweet}
                   setPhotosActive={props.setPhotosActive}
                   setIncrement={props.setIncrement}
-                  followingSet={followingSet}
-                  setFollowingSet={setFollowingSet}
+                  followingSet={props.followingSet}
+                  setFollowingSet={props.setFollowingSet}
                   showAction={true}
                 />
               </div>
@@ -170,12 +181,13 @@ function ProfileTweets(props) {
                 {" "}
                 <FeedTweet
                   {...tweet}
+                  isFollowing={isFollowing}
                   setPhotosActive={props.setPhotosActive}
                   setIncrement={props.setIncrement}
-                  followingSet={followingSet}
-                  setFollowingSet={setFollowingSet}
                   key={index}
                   showAction={true}
+                  followingSet={props.followingSet}
+                  setFollowingSet={props.setFollowingSet}
                 />{" "}
               </div>
             );

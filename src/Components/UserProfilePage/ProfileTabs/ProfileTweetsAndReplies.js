@@ -125,6 +125,13 @@ function ProfileTweetsAndReplies(props) {
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
       });
+      props.setFollowingSet((prevSet) => {
+        let newSet = new Set(prevSet);
+        if (currentUserTweets.is_followed) {
+          newSet.add(tweet.userName);
+        }
+        return newSet;
+      });
     });
     setUser({
       name: currentUserTweets.name, //user.name,
@@ -173,10 +180,10 @@ function ProfileTweetsAndReplies(props) {
                   {...tweet}
                   setPhotosActive={props.setPhotosActive}
                   setIncrement={props.setIncrement}
-                  followingSet={followingSet}
-                  setFollowingSet={setFollowingSet}
                   key={index}
                   showAction={true}
+                  followingSet={props.followingSet}
+                  setFollowingSet={props.setFollowingSet}
                 />{" "}
               </div>
             );

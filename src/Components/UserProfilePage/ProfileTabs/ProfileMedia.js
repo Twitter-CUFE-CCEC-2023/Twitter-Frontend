@@ -121,6 +121,13 @@ function ProfileMedia(props) {
       setTweets((prevTweets) => {
         return [...prevTweets, tweet];
       });
+      props.setFollowingSet((prevSet) => {
+        let newSet = new Set(prevSet);
+        if (currentUserTweets.is_followed) {
+          newSet.add(tweet.userName);
+        }
+        return newSet;
+      });
     });
     setUser({
       name: currentUserTweets.name, //user.name,
@@ -168,8 +175,8 @@ function ProfileMedia(props) {
                   {...tweet}
                   setPhotosActive={props.setPhotosActive}
                   setIncrement={props.setIncrement}
-                  followingSet={followingSet}
-                  setFollowingSet={setFollowingSet}
+                  followingSet={props.followingSet}
+                  setFollowingSet={props.setFollowingSet}
                   key={index}
                   showAction={true}
                 />{" "}
@@ -191,7 +198,7 @@ function ProfileMedia(props) {
           <div className="row">
             <img src="https://abs.twimg.com/sticky/illustrations/empty-states/masked-doll-head-with-camera-800x400.v1.png" alt="" />
           </div>
-          <div className={classes.noTweetsContainer}>
+          <div className={classes.noLikesContainer}>
 
             <h1>{user.userName} hasn’t Tweeted media</h1>
           </div>
