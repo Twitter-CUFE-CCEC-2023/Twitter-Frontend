@@ -8,7 +8,10 @@ const LoginButton = (props) => {
   const loginCtx = useContext(LoginContext);
   const history = useHistory();
 
-  const disable = props.data.length === 0;
+  let disable;
+  if (props.data) {
+    disable = props.data.length === 0;
+  }
 
   /**@module LoginPage-LoginButton */
 
