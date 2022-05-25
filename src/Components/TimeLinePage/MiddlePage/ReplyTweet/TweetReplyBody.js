@@ -92,33 +92,6 @@ export default function TweetReplyBody(props) {
               <CheckCircleIcon className={classes.verifiedIcon} />
             )}
           </h2>
-          {/* <NavLink
-            to={`/userProfile/${props.userName}`}
-            className={
-              classes.fs15 + " " + classes.minip + " " + classes.noStyle
-            }
-          >
-            <h2
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              data-testid="name"
-              className={
-                classes.underline +
-                " " +
-                classes.fs15 +
-                " " +
-                classes.pointer +
-                " " +
-                classes.alignTop
-              }
-            >
-              {props.name}{" "}
-              {props.isVerified && (
-                <CheckCircleIcon className={classes.verifiedIcon} />
-              )}
-            </h2>
-          </NavLink> */}
           <div className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
               profilePic={profilePic}
@@ -129,33 +102,6 @@ export default function TweetReplyBody(props) {
               followers={props.followers}
             />
           </div>
-          &nbsp;
-          {/* <NavLink
-            to={`/userProfile/${props.userName}`}
-            className={
-              classes.fs15 + " " + classes.minip + " " + classes.noStyle
-            }
-          >
-            <p
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              className={
-                classes.gray +
-                " " +
-                classes.minip +
-                " " +
-                classes.fs15 +
-                " " +
-                classes.pointer +
-                " " +
-                classes.alignTop
-              }
-              data-testid="userName"
-            >
-              @{props.userName}
-            </p>
-          </NavLink> */}
           <div className={classes.hoverProfile + " " + classes.bot}>
             <MiniProfile
               profilePic={profilePic}
@@ -237,58 +183,7 @@ export default function TweetReplyBody(props) {
             </p>
           </div>
         )}
-
-        {/* {!props.isTopTweet && (
-          <div id="FeedTweetAttributes" className={classes.attributes}>
-            <TweetAtrribute
-              Icon={ChatBubbleOutlineOutlinedIcon}
-              num={props.replies}
-              color="b"
-              tooltip="Reply"
-              onClick={viewReplyModal}
-              tweet={tweet}
-            />
-            <TweetAtrribute
-              Icon={LoopOutlinedIcon}
-              num={props.retweets}
-              color="g"
-              tooltip="Retweet"
-              isRetweeted={props.isRetweeted}
-              tweet={tweet}
-            />
-            <TweetAtrribute
-              Icon={FavoriteBorderOutlinedIcon}
-              FilledIcon={FavoriteIcon}
-              num={props.likes}
-              color="r"
-              tooltip="Like"
-              isLiked={props.isLiked}
-              tweet={tweet}
-            />
-            <TweetAtrribute
-              isLiked={props.isLiked}
-              isRetweeted={props.isRetweeted}
-              Icon={ShareOutlinedIcon}
-              color="b"
-              tooltip="Share"
-              tweet={tweet}
-            />
-          </div>
-        )} */}
-
-        {/* {props.isTopTweet && (
-          <TopTweetAttributes
-            isLiked={props.isLiked}
-            isRetweeted={props.isRetweeted}
-            tweet={tweet}
-            likes={props.likes}
-            retweets={props.retweets}
-            quoteTweets={props.quotes}
-            isShowPhotos={props.isShowPhotos}
-          />
-        )} */}
       </div>
-      {/* {!props.showAction && <div></div>} */}
     </div>
   );
 }

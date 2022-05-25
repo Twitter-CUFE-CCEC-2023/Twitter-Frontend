@@ -172,6 +172,8 @@ function ProfileTabs(props) {
           setIncrement={props.setIncrement}
           updateTweets={props.updateTweets}
           currentTweet={props.currentTweet}
+          followingSet={props.followingSet}
+          setFollowingSet={props.setFollowingSet}
         />
       )}
       {tweetsType == "Likes" && (
@@ -188,14 +190,19 @@ function ProfileTabs(props) {
           setIncrement={props.setIncrement}
           updateTweets={props.updateTweets}
           currentTweet={props.currentTweet}
+          followingSet={props.followingSet}
+          setFollowingSet={props.setFollowingSet}
         />
       )}
       {tweetsType == "TweetsAndReplies" && (
         <ProfileTweetsAndReplies
-        setPhotosActive={props.setPhotosActive}
-        setIncrement={props.setIncrement}
-        updateTweets={props.updateTweets}
-        currentTweet={props.currentTweet}/>
+          setPhotosActive={props.setPhotosActive}
+          setIncrement={props.setIncrement}
+          updateTweets={props.updateTweets}
+          currentTweet={props.currentTweet}
+          followingSet={props.followingSet}
+          setFollowingSet={props.setFollowingSet}
+        />
       )}
     </Fragment>
   );

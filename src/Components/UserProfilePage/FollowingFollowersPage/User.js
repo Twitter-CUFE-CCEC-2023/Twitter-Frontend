@@ -97,6 +97,7 @@ function User(props) {
           name={props.name}
           onClickFollow={onFollow}
           isFollowing={isFollowing}
+          setIsFollowing = {setIsFollowing}
           userName={props.userName}
           profileDesciption={props.bio}
           following={followingCount}

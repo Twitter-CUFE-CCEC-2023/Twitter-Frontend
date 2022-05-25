@@ -3,6 +3,9 @@ import classes from "./TweetModal.module.css";
 import x from "../../../Assets/icons/close.png";
 import FeedTweetBox from "../MiddlePage/UpperTweetBox/FeedTweetBox";
 function TweetModal(props) {
+  function addTweet(tweet) {
+    props.addTweet(tweet);
+  }
   return (
     <React.Fragment>
       <div className={classes.background} onClick={props.onHide}></div>
@@ -16,7 +19,7 @@ function TweetModal(props) {
         </div>
         <div className={classes.message}>
           <FeedTweetBox
-            onAddTweet={props.onHide}
+            onAddTweet={addTweet}
             // changePostingTweet={props.changePostingTweet}
           ></FeedTweetBox>
         </div>

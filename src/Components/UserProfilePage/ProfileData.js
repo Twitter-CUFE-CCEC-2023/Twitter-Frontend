@@ -52,12 +52,35 @@ function ProfileData(props) {
     });
   };
 
-  const onFollow=(userName)=>{
-    setUser({...user,followers_count:user.followers_count+1})
-  }
-  const onUnFollow = (userName) => {
+  const [isFollowing, setIsFollowing] = useState(false);
+  const onFollow = () => {
+    if (isFollowing) {
+      setIsFollowing(false);
+      if (setFollowingSet) {
+        setFollowingSet((prev) => {
+          let newFollowingSet = new Set(prev);
+          newFollowingSet.delete(user.userName);
+          return newFollowingSet;
+        });
+      }
+    } else {
+      setIsFollowing(true);
+      if (setFollowingSet) {
+        setFollowingSet((prev) => {
+          let newFollowingSet = new Set(prev);
+          newFollowingSet.add(user.userName);
+          return newFollowingSet;
+        });
+      }
+    }
+  };
+
+  const onFollowChange = (userName) => {
+    setUser({ ...user, followers_count: user.followers_count + 1 });
+  };
+  const onUnFollowChange = (userName) => {
     setUser({ ...user, followers_count: user.followers_count - 1 });
-  }
+  };
 
   const [user, setUser] = useState({});
   const [tabType, setTabType] = useState("Tweets");
@@ -65,6 +88,7 @@ function ProfileData(props) {
   const [pageNumber, setPageNumber] = React.useState(1);
   const [hasMore, setHasMore] = React.useState(true);
   const [loaded, setLoaded] = React.useState(null);
+  const [followingSet, setFollowingSet] = React.useState(new Set());
   let isMock = localStorage.getItem("isMock") === "true";
   let userTweets;
   const observer = useRef();
@@ -125,7 +149,14 @@ function ProfileData(props) {
       tweets_count: currentUserTweets.tweets_count,
       isFollowing: currentUserTweets.is_followed,
     });
-    // setHasMore(userTweets.length === 3);
+    setIsFollowing(currentUserTweets.is_followed);
+    setFollowingSet((prevSet) => {
+      let newSet = new Set(prevSet);
+      if (currentUserTweets.is_followed) {
+        newSet.add(currentUserTweets.username);
+      }
+      return newSet;
+    });
     setLoading(false);
   };
 
@@ -203,8 +234,11 @@ function ProfileData(props) {
             username={user.userName}
             isMyProfile={currentuserName === userInPath ? true : false}
             setProfileData={handleProfileChange}
+            onFollowChange={onFollowChange}
+            onUnFollowChange={onUnFollowChange}
             onFollow={onFollow}
-            onUnFollow={onUnFollow}
+            followingSet={followingSet}
+            setFollowingSet={setFollowingSet}
           ></ProfileActions>
         }
       </div>
@@ -228,6 +262,8 @@ function ProfileData(props) {
         setIncrement={props.setIncrement}
         updateTweets={props.updateTweets}
         currentTweet={props.currentTweet}
+        followingSet={followingSet}
+        setFollowingSet={setFollowingSet}
       ></ProfileTabs>
     </div>
   );
