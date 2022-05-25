@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Mail.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Mail.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import classes from "./Mail.module.css";
+import ClearIcon from "@material-ui/icons/Clear";
+import NextButtonUp from "./Buttons/NextButtonUp";
+import twitterBlueLogo from "../../../Assets/twitterBlueLogo.png";
+import DateOfBirth from "./DateOfBirth";
+import InputFieldError from "./InputFieldError"
+import InputField from "../InputField";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Alert from "./Alert/Alert";
+import WrongData from "./InputField/InputField"
+
+const Mail = (props) => {
+  const [alert, setAlert] = useState(true);
+  const [day, setDay] = useState();
+  const [month, setMonth] = useState();
+  const [year, setYear] = useState();
+  const [gender, setGender] = useState();
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
+  const [USERname, setUserNAME] = useState();
+
+  const [emailcheck, setEmailCheck] = useState();
+  /**
+   * Helps to check whether a valid email or not and set the value alert to whether to show error message or not
+   * @function handleEmailChecker
+   * @name handleEmailChecker
+   * @param {boolean} value
+   * @module Mail
+   */
+  const handleEmailChecker = (value) =>{
+    setEmailCheck(value);
+    setAlert(value);
+  }
+  /**
+   * Sets the string written in username textbox in a variable
+   * @function handleuserchange
+   * @name handleuserchange
+   * @param {boolean} value
+   */
+  const handleuserchange = (value) => {
+    setUserNAME(value);
+  }
+  /**
+   * Used to pass the email value to the function passData in its respective InputField
+   * @function handleEmailChange
+   * @name handleEmailChange
+   * @param {boolean} value 
+   */
+  const handleEmailChange = (value) => {
+    setEmail(value);
+  };
+
+  /**
+     * Decides whether its the email sign up or phone number sign up form
+     * @function usephoneInstead
+     * @name usephoneInstead
+     */
+  const usephoneInstead = () =>
+  {
+    setPhone(!phone);
+  }
+
+  /**
+     * Sets the string written in the Name textbox to the variable Name
+     * @function SetName
+     * @name SetName
+     * @param {string} value
+     */
+  const SetName = (value) =>
+  {
+
+    setName(value);
+    console.log(value);
+  }
+  /**
+     * Sets the gender choice value in variable Gender
+     * @function SetGender
+     * @name SetGender
+     * @param {string} value
+     */
+  const SetGender = (value) => {
+    props.handleSetGenderFn(value.target.value);
+    setGender(value.target.value);
+
+    console.log(value.target.value);
+  };
+  /**
+     * Sets the month choice value in variable Month
+     * @function Monthchanged
+     * @name Monthchanged
+     * @param {string} value
+     */
+  const Monthchanged = (value) => {
+    props.handleMonthchangedFn(value.target.value);
+    setMonth(value.target.value);
+    console.log(value.target.value);
+    //console.log(value.target.value);
+  };
+  /**
+     * Sets the day choice value in variable Day
+     * @function Daychanged
+     * @name Daychanged
+     * @param {string} value
+     */
+  const Daychanged = (value) => {
+    props.handleDaychangedFn(value.target.value);
+    setDay(value.target.value);
+    console.log(value.target.value);
+    //console.log(value.target.value);
+  };
+  /**
+     * Sets the year choice value in variable Year
+     * @function Yearchanged
+     * @name Yearchanged
+     * @param {string} value
+     */
+  const Yearchanged = (value) => {
+    props.handleYearchangedFn(value.target.value);
+    setYear(value.target.value);
+    console.log(value.target.value);
+    //console.log(value.target.value);
+  };
+  /**
+     * Used to see if the button is clicked or not. If clicked, val is true. 
+     * @function handleClick
+     * @name handleClick
+     * @param {boolean} val
+     */
+  const handleClick = (val) => {
+    props.handleButtonClick(val);
+    setAlert(val);
+  };
+  //Use above for day month and year to gain their value
+  useEffect(() => {
+    setTimeout(() => {
+      setAlert(true);
+    }, 5000);
+  }, [alert]);
+  let step = 2;
+  return (
+    &lt;div>
+      &lt;img
+        className={classes.twitterBluelogo}
+        src={twitterBlueLogo}
+        alt="TwitterLogo"
+      />
+
+      &lt;NavLink to="/" className={classes.closeIcon}>
+        &lt;ClearIcon />
+      &lt;/NavLink>
+
+      &lt;div className={classes.Header}>Create your account&lt;/div>
+
+      &lt;div className={classes.Minor3} onPointerLeave={SetName} onChange={SetName}   >
+        &lt;InputField
+          label="Name"
+          disable={false}
+          itemName="Name"
+          maxLength={50}
+          passData={SetName}
+        // defaultValue={""}
+        />
+        {/* &lt;InputFieldError label="Name"
+          disable={false}
+          itemName="Name"
+          maxLength={50}
+          passData={SetName} /> */}
+      &lt;/div>
+
+      &lt;p>&lt;/p>
+
+      &lt;div className={classes.Minor3}>
+        {!phone &amp;&amp; &lt;InputField
+          label="Email address"
+          disable={false}
+          itemName="Email"
+          maxLength={50}
+          passData={handleEmailChange}
+          value={email}
+        />}
+        {phone &amp;&amp; &lt;InputField
+          label="Phone number"
+          disable={false}
+          itemName="Phone"
+          maxLength={50}
+        />}
+      &lt;/div>
+
+      &lt;p>&lt;/p>
+
+      &lt;div className={classes.Minor3}>
+        &lt;InputField
+          label="Username"
+          disable={false}
+          itemName="Username"
+          maxLength={50}
+          passData={handleuserchange}
+          value={USERname}
+        />
+      &lt;/div>
+
+      &lt;div className={classes.content2} onClick={usephoneInstead} >
+        {!phone &amp;&amp; &lt;p>Use phone instead&lt;/p>}
+        {phone &amp;&amp; &lt;p>Use email instead&lt;/p>}
+      &lt;/div>
+
+      &lt;div className={classes.Gender}>
+        &lt;FormControl className={classes.formControl}>
+          &lt;InputLabel htmlFor="grouped-native-select">Gender&lt;/InputLabel>
+          &lt;Select
+            onChange={SetGender}
+            native
+            defaultValue=""
+            id="grouped-native-select"
+            itemname="Gender"
+
+          >
+            &lt;option aria-label="None" value="" />
+            &lt;option value="Male">Male&lt;/option>
+            &lt;option value="Female">Female&lt;/option>
+          &lt;/Select>
+        &lt;/FormControl>
+      &lt;/div>
+
+      &lt;p>&lt;/p>
+
+      &lt;div className={classes.DateOfBirth} style={{ fontWeight: "bold" }}>
+        Date of birth{" "}
+      &lt;/div>
+
+      &lt;div className={classes.Minor3}>
+        This will not be shown publicly. Confirm your own age, even if this
+        account is for a business, a pet, or something else.
+      &lt;/div>
+
+      &lt;div className={classes.Minor3}>
+        &lt;DateOfBirth
+          YearBack={Yearchanged}
+          MonthBack={Monthchanged}
+          DayBack={Daychanged}
+        />
+      &lt;/div>
+
+      &lt;div className={classes.NextButton}>
+        &lt;NextButtonUp
+          handleButtonClick={handleClick}
+          handleGenderSet={gender}
+          handleDaySet={day}
+          handleMonthSet={month}
+          handleYearSet={year}
+          handleEmailChangeFn={handleEmailChecker}
+          PhoneCheck={phone}
+          Step={step}
+        />
+      &lt;/div>
+      {!alert &amp;&amp; !phone &amp;&amp; (
+        &lt;div className={classes.alert}>
+          &lt;Alert message="Invalid credentials. Please enter all the data." />
+        &lt;/div>
+      )}
+      {!alert &amp;&amp; phone &amp;&amp; (
+        &lt;div className={classes.alert}>
+          &lt;Alert message="Invalid Phone Number. Please enter a valid one." />
+        &lt;/div>
+      )}
+    &lt;/div>
+  );
+};
+
+export default Mail;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Mail.html">Mail</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed May 25 2022 02:19:05 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
