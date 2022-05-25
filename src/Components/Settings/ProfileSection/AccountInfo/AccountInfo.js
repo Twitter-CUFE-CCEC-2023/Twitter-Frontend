@@ -7,12 +7,24 @@ export default function AccountInfo(props) {
   /**
    * @module AccountInfo
    */
-  const accName = JSON.parse(localStorage.getItem("UserInfo")).username;
-  const phone = JSON.parse(localStorage.getItem("UserInfo")).phone;
-  const email = JSON.parse(localStorage.getItem("UserInfo")).email;
-  const isVerified = JSON.parse(localStorage.getItem("UserInfo")).isVerified;
-  const created_at = JSON.parse(localStorage.getItem("UserInfo")).created_at;
-  const birth_date = JSON.parse(localStorage.getItem("UserInfo")).birth_date;
+  const accName = JSON.parse(localStorage.getItem("UserInfo"))
+    ? JSON.parse(localStorage.getItem("UserInfo")).username
+    : "";
+  const phone = JSON.parse(localStorage.getItem("UserInfo"))
+    ? JSON.parse(localStorage.getItem("UserInfo")).phone
+    : "";
+  const email = JSON.parse(localStorage.getItem("UserInfo"))
+    ? JSON.parse(localStorage.getItem("UserInfo")).email
+    : "";
+  const isVerified = JSON.parse(localStorage.getItem("UserInfo"))
+    ? JSON.parse(localStorage.getItem("UserInfo")).isVerified
+    : "";
+  const created_at = JSON.parse(localStorage.getItem("UserInfo"))
+    ? JSON.parse(localStorage.getItem("UserInfo")).created_at
+    : "";
+  const birth_date = JSON.parse(localStorage.getItem("UserInfo"))
+    ? JSON.parse(localStorage.getItem("UserInfo")).birth_date
+    : "";
 
   const [Info, setInfo] = useState([
     { id: 0, name: "username", value: accName },
