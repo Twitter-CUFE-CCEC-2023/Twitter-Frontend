@@ -10,15 +10,28 @@ import axios from "../../axios";
 
 const Verify = (props) => {
   const [CODE, setCODE] = useState();
+  /**
+     * Sets the verification code that the user received in his email in its respective InputField into the variable CODE
+     * @function handleCODEChange
+     * @name handleCODEChange
+     * @param {int} value
+     * @module EmailVerify
+     */
   const handleCODEChange = (value) => {
     setCODE(value);
   };
+  /**
+     * Used to create the userObject with all the data needed for sign up as well as making a request for the backend to send a verification code to the user's email
+     * @function useEffect
+     * @name useEffect
+     * 
+     */
   useEffect(() => {
     const Name = JSON.parse(localStorage.getItem("Name"));
     const Email = JSON.parse(localStorage.getItem("Email"));
     const phone = JSON.parse(localStorage.getItem("PhoneNumber"));
     const Username = JSON.parse(localStorage.getItem("Username"));
-    
+
     let userObject = {
       email: Email,
       username: Username,
@@ -40,19 +53,31 @@ const Verify = (props) => {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+          localStorage.setItem("user", JSON.stringify(response.data.user));
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
+
   const [alert, setAlert] = useState(true);
 
+  /**
+     * Used to see if the button is clicked or not. If clicked, val is true.
+     * @function handleClick
+     * @name handleClick
+     * @param {boolean} val
+     */
   const handleClick = (val) => {
     props.handleButtonClick(val);
     setAlert(val);
   };
+  /**
+     * Handles resending the verification code to the user's email in case he didn't receive an email automatically.
+     * @function ResendHandler
+     * @name ResendHandler
+     */
   const ResendHandler = () => {
-    const Email = JSON.parse(localStorage.getItem("Email")); 
+    const Email = JSON.parse(localStorage.getItem("Email"));
 
     let userObject = {
       email_or_username: Email,
@@ -68,8 +93,7 @@ const Verify = (props) => {
         }
       })
       .catch((err) => { });
-
-  }
+  };
   //Use above for day month and year to gain their value
   useEffect(() => {
     setTimeout(() => {
