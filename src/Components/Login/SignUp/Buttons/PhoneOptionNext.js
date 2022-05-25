@@ -4,10 +4,12 @@ import axios from "../../../axios";
 import { propTypes } from "react-bootstrap/esm/Image";
 
 const PhoneOptionNext = (props) => {
- console.log("props",props)
+  console.log("props",props)
+  
 
    const handleClick = () => {
-       props.handleButtonClick(true);
+    
+    props.handleButtonClick(true);
      
   //   // let verification = {  };
   //   // axios
@@ -17,8 +19,8 @@ const PhoneOptionNext = (props) => {
    };
 
   return (
-    <div className={classes.buttonNext}>
-      <p className={classes.content} onClick={handleClick}>
+    <div className={classes.buttonNext} onClick={handleClick}>
+      <p className={classes.content} >
         Next
       </p>
     </div>

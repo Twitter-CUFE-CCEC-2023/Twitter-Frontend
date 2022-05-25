@@ -13,8 +13,8 @@ const ButtonSignUp = (props) => {
         //         <p className={classes.content} onClick={props.handleButtonClick}>Next</p>
         //     </div>
         // </div>
-        <button className={classes.buttonNext}>
-            <p className={classes.content} onClick={handleClick}>
+        <button className={classes.buttonNext} onClick={handleClick}>
+            <p className={classes.content} >
             Next
             </p>
     </button>

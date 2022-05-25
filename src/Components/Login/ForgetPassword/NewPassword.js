@@ -9,7 +9,13 @@ import Alert from "../SignUp/Alert/Alert";
 
 const NewPassword = (props) => {
     const [alert, setAlert] = useState(true);
-
+    /**
+     * Used to see if the button is clicked or not. If clicked, val is true. 
+     * @function handleClick
+     * @name handleClick
+     * @param {boolean} val
+     * @module NewPassword
+     */
     const handleClick = (val) => {
         props.handleButtonClick(val);
         setAlert(val);

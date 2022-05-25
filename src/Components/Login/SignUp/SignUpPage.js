@@ -67,32 +67,86 @@ const SignUpPage = () => {
   const [year, setYear] = useState();
   const [gender, setGender] = useState();
 
+  
+  /**
+     * Used to receive the value of Gender from the drop down list
+     * @function handleClick
+     * @name handleClick
+     * @param {string} value
+     */
   const handleSetGender = (value) => {
     setGender(value);
   };
-
+  /**
+       * Used to receive the value of Month from the drop down list
+       * @function handleClick
+       * @name handleClick
+       * @param {int} value
+       */
   const handleMonthchanged = (value) => {
     setMonth(value);
   };
+  /**
+     * Used to receive the value of Day from the drop down list
+     * @function handleClick
+     * @name handleClick
+     * @param {int} value
+     */
   const handleDaychanged = (value) => {
     setDay(value);
   };
+  /**
+     * Used to receive the value of Year from the drop down list
+     * @function handleClick
+     * @name handleClick
+     * @param {int} value
+     */
   const handleYearchanged = (value) => {
     setYear(value);
   };
 
+  /**
+     * Used to see if the button is clicked or not. If clicked, val is true and move to the 2nd page of sign up
+     * @function handleClick
+     * @name handleClick
+     * @param {boolean} click
+     */
   const handleClick = (click) => {
     setNextClicked(click);
   };
+  /**
+     * Used to see if the button is clicked or not. If clicked, val is true and move to the 3rd page of sign up
+     * @function handleClick2
+     * @name handleClick2
+     * @param {boolean} click
+     */
   const handleClick2 = (click) => {
     setNextClicked2(click);
   };
+  /**
+     * Used to see if the button is clicked or not. If clicked, val is true and move to the 4th page of sign up
+     * @function handleClick3
+     * @name handleClick3
+     * @param {boolean} click
+     */
   const handleClick3 = (click) => {
     setNextClicked3(click);
   };
+  /**
+     * Used to see if the button is clicked or not. If clicked, val is true and move to the 5th page of sign up
+     * @function handleClick4
+     * @name handleClick4
+     * @param {boolean} click
+     */
   const handleClick4 = (click) => {
     setNextClicked4(click);
   };
+  /**
+     * Used to see if the button is clicked or not. If clicked, val is true. Useless though sadly
+     * @function handleClick5
+     * @name handleClick5
+     * @param {boolean} click
+     */
   const handleClick5 = (click) => {
     setNextClicked5(click);
   };

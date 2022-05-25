@@ -15,9 +15,14 @@ import InputField from "../InputField";
 
 const AddPhone = (props) => {
     const [alert, setAlert] = useState(true);
-    
+    /**
+     * Used to see if the button is clicked or not. If clicked, val is true. 
+     * @function handleClick
+     * @name handleClick
+     * @param {boolean} val
+     * @module AddPhone
+     */
     const handleClick = (val) => {
-
         props.handleButtonClick(val);
         setAlert(val);
     };

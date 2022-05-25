@@ -8,7 +8,13 @@ import AddPhoneNext from "../Buttons/AddPhoneNext"
 
 const TrackOption = (props) => {
     // const [alert, setAlert] = useState(true);
-
+    /**
+     * Used to see if the button is clicked or not. If clicked, val is true. 
+     * @function handleClick
+     * @name handleClick
+     * @param {boolean} val
+     * @module TrackOption
+     */
     const handleClick = (val) => {
         props.handleButtonClick(val);
         // setAlert(val);
@@ -22,7 +28,7 @@ const TrackOption = (props) => {
     return (
         
         <div>
-            <NavLink to="/" className={classes.closeIcon}>
+            <NavLink to="/" className={classes.closeIcon} >
                 <ClearIcon />
             </NavLink>
             <div className={classes.containerStep}>

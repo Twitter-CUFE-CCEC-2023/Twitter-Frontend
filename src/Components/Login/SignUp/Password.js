@@ -10,7 +10,13 @@ import axios from "../../axios";
 
 const PASSWORD = (props) => {
     const [alert, setAlert] = useState(true);
-
+    /**
+     * Used to see if the button is clicked or not. If clicked, val is true. 
+     * @function handleClick
+     * @name handleClick
+     * @param {boolean} val
+     * @module Password
+     */
     const handleClick = (val) => {
         props.handleButtonClick(val);
         setAlert(val);
@@ -21,6 +27,12 @@ const PASSWORD = (props) => {
         }, 5000);
     }, [alert]);
     const [PASSword, setPASSword] = useState();
+    /**
+     * Sets the string entered in the password textbox to the variable PASSword.
+     * @function handlePASSwordChange
+     * @name handlePASSwordChange
+     * @param {string} value
+     */
     const handlePASSwordChange = (value) => {
         setPASSword(value);
     };

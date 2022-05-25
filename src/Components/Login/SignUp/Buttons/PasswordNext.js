@@ -39,8 +39,8 @@ const NextButtonUp = (props) => {
         }
     };
     return (
-        <div disabled={disable} className={disable ? `${classes.disabled}` : `${classes.buttonNext}`}>
-            <p className={classes.content} onClick={handleClick}>
+        <div disabled={disable} className={disable ? `${classes.disabled}` : `${classes.buttonNext}`} onClick={handleClick}>
+            <p className={classes.content} >
                 Next
             </p>
         </div>
