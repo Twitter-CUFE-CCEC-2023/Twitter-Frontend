@@ -30,6 +30,7 @@ import applause5 from "../../../../../Assets/Gif/applause/applause5.gif";
 import applause6 from "../../../../../Assets/Gif/applause/applause6.gif";
 import applause7 from "../../../../../Assets/Gif/applause/applause7.gif";
 import applause8 from "../../../../../Assets/Gif/applause/applause8.gif";
+import applause9 from "../../../../../Assets/Gif/applause/saber.gif";
 
 import ReactDOM from "react-dom";
 import GifCategoryContent from "./GifCategoryContent";
@@ -99,6 +100,7 @@ const Body = (props) => {
                 applause6,
                 applause7,
                 applause8,
+                applause9,
               ]);
             }}
             name="applause"
